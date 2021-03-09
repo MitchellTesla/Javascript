@@ -1,0 +1,22 @@
+Do a global search for non-digit characters:
+
+Copy
+let str = "this is 10 a 234 test 100%!";
+let patt1 = /\D/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Description
+The \D metacharacter is used to find a non-digit character.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+\D	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("\\D") or simply: /\D/
+Syntax with modifiers
+Copy
+new RegExp("\\D", "g") or simply: /\D/g
