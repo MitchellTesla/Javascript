@@ -1,0 +1,143 @@
+Whenever a function is created, its prototype property is also created according to a specific set of rules.
+
+By default, all prototypes automatically get a property called constructor that points back to the function on which it is a property.
+
+For instance, from the following code, Person.prototype.constructor points to Person.
+
+Copy
+let Person = function() {};
+
+console.log(Person.prototype.constructor == Person);//true
+Then, depending on the constructor, other properties and methods may be added to the prototype.
+
+When defining a custom constructor, the prototype gets the constructor property only by default; all other methods are inherited from Object.
+
+Each time the constructor is called to create a new instance, that instance has an internal pointer to the constructor's prototype.
+
+In ECMA-262, this is called [[Prototype]].
+
+There is no standard way to access [[Prototype]] from script, but Firefox, Safari, and Chrome all support a property on every object called __proto__.
+
+A direct link exists between the instance and the constructor's prototype but not between the instance and the constructor.
+
+You can refer to the following code as a sort of lookup table for overall prototype behavior:
+
+Constructor function can exist as function expression or function declaration, so both of these are suitable:
+
+Copy
+function Person {}
+let Person = function() {}
+Upon declaration, the constructor function already has a prototype object associated with it: console.log(typeof Person.prototype); console.log(Person.prototype);
+
+Output:
+
+
+The constructor function has * a 'prototype' reference to the prototype object, and the prototype object has a 'constructor' reference to the constructor function. These references are cyclical:
+
+Copy
+console.log(Person.prototype.constructor === Person);  // true
+Any normal prototype chain will terminate at the Object prototype.
+
+The prototype of the Object prototype is null.
+
+Copy
+console.log(Person.prototype.__proto__ === Object.prototype);    // true
+console.log(Person.prototype.__proto__.constructor === Object);  // true
+console.log(Person.prototype.__proto__.__proto__ === null);      // true
+
+console.log(Person.prototype.__proto__);
+// {
+//   constructor: f Object(),
+//   toString: ...
+//   hasOwnProperty: ...
+//   isPrototypeOf: ...
+//   ...
+// }
+The constructor, the prototype object, and an instance are three completely distinct objects:
+
+Copy
+let person1 = new Person(),
+person2 = new Person();
+
+console.log(person1 !== Person);            // true
+console.log(person1 !== Person.prototype);  // true
+console.log(Person.prototype !== person);   // true
+An instance is linked to the prototype through __proto__, which is the literal manifestation of the [[Prototype]] hidden property.
+
+A constructor is linked to the prototype through the constructor property.
+
+An instance has no direct link to the constructor, only through the prototype.
+
+Copy
+console.log(person1.__proto__ === Person.prototype);    // true
+conosle.log(person1.__proto__.constructor === Person);  // true
+Two instances created from the same constructor function will share a prototype object: console.log(person1.__proto__ === person2.__proto__); // true
+
+instanceof will check the instance's prototype chain against the prototype property of a constructor function:
+
+Copy
+console.log(person1 instanceof Person);           // true
+console.log(person1 instanceof Object);           // true
+console.log(Person.prototype instanceof Object);  // true
+The Person's prototype, and the two instances of Person that exist.
+
+Note that Person.prototype points to the prototype object but Person.prototype.constructor points back to Person.
+
+The prototype contains the constructor property and the other properties that were added.
+
+Each instance of Person, person1, and person2 has internal properties that point back to Person.prototype only; each has no direct relationship with the constructor.
+
+Even though neither of these instances have properties or methods, person1.sayName() works because of the lookup procedure for object properties.
+
+Even though [[Prototype]] is not accessible in all implementations, the isPrototypeOf() method can be used to determine if this relationship exists between objects.
+
+Essentially, isPrototypeOf() returns true if [[Prototype]] points to the prototype on which the method is being called, as shown here:
+
+Copy
+console.log(Person.prototype.isPrototypeOf(person1));  // true
+console.log(Person.prototype.isPrototypeOf(person2));  // true
+In this code, the prototype's isPrototypeOf() method is called on both person1 and person2.
+
+Because both instances have a link to Person.prototype, it returns true.
+
+The ECMAScript Object type has a method called Object.getPrototypeOf(), which returns the value of [[Prototype]].
+
+For example:
+
+Copy
+console.log(Object.getPrototypeOf(person1) == Person.prototype);  // true
+console.log(Object.getPrototypeOf(person1).name);                 // "CSS"
+The first line of this code confirms that the object returned from Object.getPrototypeOf() is actually the prototype of the object.
+
+The second line retrieves the value of the name property on the prototype, which is "CSS".
+
+Using Object.getPrototypeOf(), you can retrieve an object's prototype, which is important to implement inheritance using the prototype.
+
+The Object type has a setPrototypeOf() method, which writes a new value into the [[Prototype]] of the instance.
+
+This allows you to overwrite the prototype hierarchy of an already-instantiated object:
+
+Copy
+let animal = {
+   numLegs: 2
+};
+let person = {
+   name: 'HTML'
+};
+
+Object.setPrototypeOf(person, animal);
+
+console.log(person.name);                              // HTML
+console.log(person.numLegs);                           // 2
+console.log(Object.getPrototypeOf(person) === animal);  // true
+Copy
+let animal = {
+   numLegs: 2
+};
+let person = Object.create(animal);
+
+person.name = 'HTML';
+
+console.log(person.name);                              // HTML
+console.log(person.numLegs);                           // 2
+console.log(Object.getPrototypeOf(person) === animal);  // true
