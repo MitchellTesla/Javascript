@@ -1,0 +1,28 @@
+We may want to add a variable to an object, and the property name used to key that variable is the variable name itself.
+
+For example:
+
+Copy
+let name = 'HTML';
+
+let person = {
+  name: name
+};
+
+console.log(person);  // { name: 'HTML' }
+The property value shorthand convention was introduced.
+
+It allows you to use the variable itself without the colon notation, and the interpreter will automatically use the variable name as the property key.
+
+If the variable name is not found, a ReferenceError will be thrown.
+
+The following code is equivalent:
+
+Copy
+let name = 'HTML';
+
+let person = {
+  name
+};
+
+console.log(person);  // { name: 'HTML' }
