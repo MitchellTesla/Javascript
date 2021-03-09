@@ -1,0 +1,49 @@
+The prototype pattern negates the ability to pass initialization arguments into the constructor.
+
+All instances get the same property values by default.
+
+All properties on the prototype are shared among instances, which is ideal for functions.
+
+Properties that contain primitive values also work well.
+
+We can hide the prototype property by assigning a property of the same name to the instance.
+
+The real problem occurs when a property contains a reference value.
+
+Consider the following example:
+
+Copy
+function Person() {}
+
+Person.prototype = {
+    constructor: Person,
+    name: "CSS",
+    age: 19,
+    job: "Style",
+    friends: ["HTML", "Javascript"],
+    sayName() {
+        console.log(this.name);
+    }
+};
+
+let person1 = new Person();
+let person2 = new Person();
+
+person1.friends.push("Browser");
+
+console.log(person1.friends);//[ 'HTML', 'Javascript', 'Browser' ]
+console.log(person2.friends);//[ 'HTML', 'Javascript', 'Browser' ]
+console.log(person1.friends === person2.friends); // true
+Here, the Person.prototype object has a property called friends that contains an array of strings.
+
+Two instances of Person are then created.
+
+The person1.friends array is altered by adding another string.
+
+Because the friends array exists on Person.prototype, not on person1, the changes made are also reflected on person2.friends which points to the same array.
+
+If the intention is to have an array shared by all instances, then this outcome is okay.
+
+Typically, instances want to have their own copies of all properties.
+
+This is why the prototype pattern is rarely used on its own.
