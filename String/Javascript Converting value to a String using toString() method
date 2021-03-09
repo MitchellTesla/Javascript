@@ -1,0 +1,35 @@
+There are two ways to convert a value into a string.
+
+The first is to use the toString() method that almost every value has.
+
+This method's job is to return the string equivalent of the value.
+
+Consider this example:
+
+Copy
+let age = 11;
+let ageAsString = age.toString();      // the string "11"
+let found = true;
+let foundAsString = found.toString();  // the string "true"
+The toString() method is available on values that are numbers, Booleans, objects, and strings.
+
+If a value is null or undefined, this method is not available.
+
+In most cases, toString() doesn't have any arguments.
+
+However, when used on a number value, toString() actually accepts a single argument: the radix in which to output the number.
+
+By default, toString() always returns a string that represents the number as a decimal, but by passing in a radix, toString() can output the value in binary, octal, hexadecimal, or any other valid base, as in this example:
+
+Copy
+let num = 10;
+console.log(num.toString());     // "10"
+console.log(num.toString(2));    // "1010"
+console.log(num.toString(8));    // "12"
+console.log(num.toString(10));   // "10"
+console.log(num.toString(16));   // "a"
+This example shows how the output of toString() can change for numbers when providing a radix.
+
+The value 10 can be output into any number of numeric formats.
+
+The default is the same as providing a radix of 10..
