@@ -1,0 +1,37 @@
+Objects in ECMAScript are created by using the new operator followed by the name of the object type to create.
+
+Developers create their own objects by creating instances of the Object type and adding properties and/or methods to it, as shown here:
+
+Copy
+let o = new Object();
+ECMAScript requires parentheses to be used only when providing arguments to the constructor.
+
+If there are no arguments, as in the following example, then the parentheses can be omitted safely. It is not recommended to do this.
+
+Copy
+let o = new Object;  // legal, but not recommended
+The Object type in ECMAScript is the base from which all other objects are derived.
+
+All of the properties and methods of the Object type are also present on other, more specific objects.
+
+Each Object instance has the following properties and methods:
+
+Method
+Description
+constructor
+
+The function that was used to create the object.
+In the previous example, the constructor is the Object() function.
+hasOwnProperty(propertyName )
+Indicates if the given property exists on the object instance (not on the prototype). The property name must be specified as a string (for example, o.hasOwnProperty("name")).
+isPrototypeof(object)
+Determines if the object is a prototype of another object.
+propertyIsEnumerable(propertyName )
+Indicates if the given property can be enumerated using the for-in statement (discussed later in this chapter). As with hasOwnProperty(), the property name must be a string.
+toLocaleString()
+Returns a string representation of the object that is appropriate for the locale of execution environment.
+toString()
+Returns a string representation of the object.
+valueOf()
+Returns a string, number, or Boolean equivalent of the object. It often returns the same value as toString().
+Because Object is the base for all objects in ECMAScript, every object has these base properties and methods.
