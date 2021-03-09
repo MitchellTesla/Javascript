@@ -1,0 +1,83 @@
+Do a global search for characters that are NOT inside the brackets [h]:
+
+Copy
+let str = "this is a test";
+let patt1 = /[^h]/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Description
+The [^abc] expression is used to find any character NOT between the brackets.
+
+The characters inside the brackets can be any characters or span of characters:
+
+[abcde..] - Any character between the brackets
+[A-Z] - Any character from uppercase A to uppercase Z
+[a-z] - Any character from lowercase a to lowercase z
+[A-z]- Any character from uppercase A to lowercase z
+We can use the [abc] expression to find any character between the brackets.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+[^abc]	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("[^xyz]") or simply: /[^xyz]/
+Syntax with modifiers
+Copy
+new RegExp("[^xyz]", "g") or simply: /\[^xyz]/g
+More Examples
+Do a global search for characters that are NOT "i" and "s" in a string:
+
+Copy
+let str = "this is a test?";
+let patt1 = /[^is]/gi;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Example
+Do a global search for the character-span NOT from lowercase "a" to lowercase "h" in a string:
+
+Copy
+let str = "this is a test?";
+let patt1 = /[^a-h]/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Example
+Do a global search for the character-span NOT from uppercase "A" to uppercase "E":
+
+Copy
+let str = "THIS IS A TEST!";
+let patt1 = /[^A-E]/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Example
+Do a global search for the character-span NOT from uppercase "A" to lowercase "e":
+
+Copy
+let str = "This Is a TEST?!";
+let patt1 = /[^A-e]/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Example
+Do a global, case-insensitive search for the character-span that's NOT [a-s]:
+
+Copy
+let str = "this is a test?!";
+let patt1 = /[^a-s]/gi;
+let result = str.match(patt1);
+console.log(result);
+Output:
