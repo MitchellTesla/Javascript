@@ -1,0 +1,84 @@
+The constructor keyword is used inside the class definition block to define the class's constructor function.
+
+The interpreter will invoke constructor to create a fresh instance using the new operator.
+
+Definition of the constructor is optional.
+
+Copy
+class Animal {}
+
+class Person {
+ constructor() {
+   console.log('person ctor');
+ }
+}
+
+class MyClass {
+ constructor() {
+   this.color = 'orange';
+ }
+}
+
+let a = new Animal();
+
+let p = new Person();  // person constructor
+
+let v = new MyClass();
+console.log(v.color);  // orange
+Parameters
+Parameters provided when instantiating the class are used as parameters to the constructor function.
+
+If you do not require the use of parameters, empty parentheses following the class name are optional:
+
+Copy
+class Person {
+ constructor(name) {
+   console.log(arguments.length);
+   this.name = name || null;
+ }
+}
+
+let p1 = new Person;          // 0
+console.log(p1.name);         // null
+
+let p2 = new Person();        // 0
+console.log(p2.name);         // null
+
+let p3 = new Person('CSS');   // 1
+console.log(p3.name);         // CSS
+By default, the constructor will return the this object after execution.
+
+If a different object is returned, the returned object will not be associated with the class via instanceof because its prototype pointer was never modified.
+
+Copy
+class Person {
+  constructor(override) {
+    this.foo = 'foo';
+    if (override) {
+      return {
+        bar: 'bar'
+      };
+    }
+  }
+}
+
+let p1 = new Person(),
+    p2 = new Person(true);
+
+console.log(p1);                    // Person{ foo: 'foo' }
+console.log(p1 instanceof Person);  // true
+
+console.log(p2);                    // { bar: 'bar' }
+console.log(p2 instanceof Person);  // false
+The use of the new operator with class constructors is mandatory.
+
+Copy
+function Person() {}
+
+class Animal {}
+
+// Constructs instance using window as 'this'
+let p = Person();
+
+let a = Animal();
+// TypeError: class constructor Animal cannot be invoked without 'new'
