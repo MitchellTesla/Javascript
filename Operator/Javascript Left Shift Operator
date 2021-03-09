@@ -1,0 +1,23 @@
+The left shift is represented by two less-than signs (<<) and shifts all bits in a number to the left by the number of positions given.
+
+For example, if the number 2 (which is equal to 10 in binary) is shifted 5 bits to the left, the result is 64 (which is equal to 1000000 in binary), as shown here:
+
+Copy
+let oldValue = 2;              // equal to binary 10
+let newValue = oldValue << 5;  // equal to binary 1000000 which is decimal 64
+Note that when the bits are shifted, five empty bits remain to the right of the number.
+
+The left shift fills these bits with 0s to make the result a complete 32-bit number.
+
+The left most bit is the sign bit.
+
+Copy
+The number 2
+00000000000000000000000000000010
+The number 2 shifted to the left five bits (the number 64)
+
+Copy
+00000000000000000000000001000000
+Note that left shift preserves the sign of the number it's operating on.
+
+For instance, if -2 is shifted to the left by five spaces, it becomes -64, not positive 64.
