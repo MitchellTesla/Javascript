@@ -1,0 +1,34 @@
+Using the var operator to define a variable makes it local to the function scope where it was defined.
+
+For example, defining a variable inside of a function using var means that the variable is destroyed as soon as the function exits, as shown here:
+
+Copy
+function test() {
+   var myValue = "hi";  // local variable
+}
+test();
+console.log(myValue); // error!
+Here, the myValue variable is defined within a function using var.
+
+The function test() creates the variable and assigns its value.
+
+Immediately after that, the variable is destroyed so the last line in this example causes an error.
+
+Global
+We can define a variable globally by simply omitting the var operator as follows:
+
+Copy
+function test() {
+   myValue = "hi";  // global variable
+}
+test();
+console.log(myValue); // "hi"
+By removing the var operator from the example, the myValue variable becomes global.
+
+When the function test() is called, the variable is defined and becomes accessible outside of the function once it has been executed.
+
+Although it's possible to define global variables by omitting the var operator, this approach is not recommended.
+
+Global variables defined locally are hard to maintain and cause confusion.
+
+Strict mode throws a ReferenceError when an undeclared variable is assigned a value.
