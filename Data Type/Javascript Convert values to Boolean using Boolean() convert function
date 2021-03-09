@@ -1,0 +1,46 @@
+All types of values have Boolean equivalents in ECMAScript.
+
+To convert a value into its Boolean equivalent, the special Boolean() casting function is called, like this:
+
+Copy
+let message = "hi!";
+let messageAsBoolean = Boolean(message);
+In this example, the string message is converted into a Boolean value and stored in messageAsBoolean.
+
+The Boolean() casting function can be called on any type of data and will always return a Boolean value.
+
+The rules for when a value is converted to true or false depend on the data type as much as the actual value.
+
+The following table outlines the various data types and their specific conversions.
+
+Data Type
+Values Converted To True
+Values Converted To False
+Boolean
+true
+false
+String
+Any nonempty string
+"" (empty string)
+Number
+
+Any nonzero number
+(including infinity)
+0, NaN
+
+Object
+Any object
+null
+Undefined
+n/a
+undefined
+The flow-control statements, such as the if statement, automatically perform this Boolean conversion, as shown here:
+
+Copy
+let message = "hi!";
+if (message) {
+  console.log("Value is true");
+}
+In this example, the console.log will be displayed because the string message is automatically converted into its Boolean equivalent (true).
+
+It's important to understand what variable you're using in a flow-control statement because of this automatic conversion.
