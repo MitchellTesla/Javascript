@@ -1,0 +1,41 @@
+String localeCompare() compares one string to another and returns one of three values as follows:
+
+If the string should come alphabetically before the string argument, a negative number is returned.
+If the string is equal to the string argument, 0 is returned.
+If the string should come alphabetically after the string argument, a positive number is returned.
+Here's an example:
+
+Copy
+let stringValue = "y";
+console.log(stringValue.localeCompare("b"));  // 1
+console.log(stringValue.localeCompare("y")); // 0
+console.log(stringValue.localeCompare("z"));  // -1
+In this code, the string "y" is compared to three different values: "b", "y", and "z".
+
+Because "b" comes alphabetically before "y", localeCompare() returns 1; "y" is equal to "y", so localeCompare() returns 0 for that line; and "z" comes after "y", so localeCompare() returns -1 for that line.
+
+The returned values are implementation-specific, it is best to use localeCompare() as shown in this example:
+
+Copy
+function determineOrder(value) {
+  let stringValue = "y";  
+  let result = stringValue.localeCompare(value);
+  if (result < 0) {
+    console.log(`The string 'y' comes before the string '${value}'.`);
+  } else if (result > 0) {
+    console.log(`The string 'y' comes after the string '${value}'.`);
+  } else {
+    console.log(`The string 'y' is equal to the string '${value}'.`);
+  }
+}
+determineOrder("b");
+determineOrder("y");
+determineOrder("z");
+Output:
+
+
+localeCompare() is depended on an implementation's locale (country and language).
+
+In the United States, where English is the standard language for ECMAScript implementations, localeCompare() is case-sensitive, determining that uppercase letters come alphabetically after lowercase letters.
+
+This may not be the case in other locales.
