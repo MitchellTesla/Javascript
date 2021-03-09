@@ -1,0 +1,20 @@
+The do-while statement is a post-test loop, meaning that the escape condition is evaluated only after the code inside the loop has been executed.
+
+The body of the loop is always executed at least once before the expression is evaluated.
+
+Here's the syntax:
+
+Copy
+do {
+  statement
+} while (expression);
+And here's an example of its usage:
+
+Copy
+let i = 0;
+do {
+   i += 2;
+} while (i < 10);
+In this example, the loop continues as long as i is less than 10.
+
+The variable starts at 0 and is incremented by two each time through the loop.
