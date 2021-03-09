@@ -1,0 +1,18 @@
+ECMAScript Well Known Symbol Symbol.unscopables is used as a property for "An object valued property whose own and inherited property names are property names that are excluded from the with environment bindings of the associated object".
+
+Setting this symbol so it keys an object mapping a corresponding property to true will prevent a with environment binding, as shown here:
+
+Copy
+let o = { foo: 'test' };
+with (o) {
+  console.log(foo);  // test
+}
+
+o[Symbol.unscopables] = {
+  foo: true
+};
+
+with (o) {
+  console.log(foo);  // ReferenceError
+}
+It's not recommended to use with statement, so using Symbol.unscopables is also not recommended.
