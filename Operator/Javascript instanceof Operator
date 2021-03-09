@@ -1,0 +1,37 @@
+The instanceof operator expects a left-side operand that is an object and a right-side operand that identifies a class of objects.
+
+The operator evaluates to true if the left-side object is an instance of the right-side class and evaluates to false otherwise.
+
+In JavaScript, classes of objects are defined by the constructor function that initializes them.
+
+Thus, the right-side operand of instanceof should be a function.
+
+Here are examples:
+
+Create a new object with the Date() constructor.
+
+Copy
+let d = new Date();
+Apply instanceof operator
+
+Copy
+d instanceof Date    // => true: d was created with Date()
+d instanceof Object  // => true: all objects are instances of Object
+d instanceof Number  // => false: d is not a Number object
+Create an array with array literal syntax
+
+Copy
+let a = [1, 2, 3];
+Apply instanceof operator
+
+Copy
+a instanceof Array   // => true: a is an array
+a instanceof Object  // => true: all arrays are objects
+a instanceof RegExp  // => false: arrays are not regular expressions
+Note that all objects in Javascript are instances of Object.
+
+instanceof considers the "superclasses" when deciding whether an object is an instance of a class.
+
+If the left-side operand of instanceof is not an object, instanceof returns false.
+
+If the right hand side is not a class of objects, it throws a TypeError.
