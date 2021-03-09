@@ -1,0 +1,25 @@
+The parseFloat() function looks at each character starting in position 0.
+
+It continues to parse the string until it reaches either the end of the string or a character that is invalid in a floating-point number.
+
+This means that a decimal point (.) is valid the first time it appears, but a second decimal point is invalid and the rest of the string is ignored, resulting in "2.34.5" being converted to 2.34.
+
+parseFloat() always ignores the initial zeros.
+
+parseFloat() recognizes any of the floating-point formats.
+
+Hexadecimal numbers always become 0 in parseFloat().
+
+Because parseFloat() parses only decimal values, there is no radix mode.
+
+If the string represents a whole number without decimal point or only a zero after the decimal point, parseFloat() returns an integer.
+
+Here are some examples:
+
+Copy
+let num1 = parseFloat("1234demo");  // 1234 - integer
+let num2 = parseFloat("0xA");       // 0
+let num3 = parseFloat("2.5");       // 2.5
+let num4 = parseFloat("2.34.5");    // 2.34
+let num5 = parseFloat("0907.6");    // 907.6
+let num6 = parseFloat("3.1
