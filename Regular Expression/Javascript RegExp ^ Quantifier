@@ -1,0 +1,33 @@
+Do a global search for "Is" at the beginning of a string:
+
+Copy
+let str = "Is this his";
+let patt1 = /^Is/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Description
+The ^n quantifier matches any string with n at the beginning of it.
+
+Use the n$ quantifier to match any string with n at the END of it.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+^	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("^n") or /^n/
+Syntax with modifiers
+Copy
+new RegExp("^n", "g") or simply: /\^n/g
+More Examples
+Do a global, case-insensitive, multiline search for "is" at the beginning of each line in a string:
+
+Copy
+let str = "\nIs th\nis h\nis?";
+let patt1 = /^is/gmi;
+let result = str.match(patt1);
+console.log(result);
+Output:
