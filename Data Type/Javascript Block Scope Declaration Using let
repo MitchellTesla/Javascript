@@ -1,0 +1,52 @@
+ES6 let operates much in the same way as var, but it is scoped at the block level in JavaScript.
+
+Block scope is defined as the nearest set of enclosing curly braces {}.
+
+This means if blocks, while blocks, function blocks, and even standalone blocks will be the extent of the scope of any variable declared with let.
+
+Copy
+if (true) {
+  let a;
+}
+console.log(a);  // ReferenceError: a is not defined
+
+while (true) {
+  let b;
+}
+console.log(b);  // ReferenceError: b is not defined
+
+function foo() {
+  let c;
+}
+console.log(c);  // ReferenceError: c is not defined
+
+// This is not an object literal, this is a standalone block.
+{
+  let d;
+}
+console.log(d);  // ReferenceError: d is not defined
+let cannot be declared twice inside the same block scope.
+
+Duplicate var declarations are simply ignored; duplicate let declarations throw a SyntaxError.
+
+Copy
+var a;
+var a;
+// No errors thrown
+
+{
+    let b;
+    let b;
+}
+// SyntaxError: Identifier 'b' has already been declared
+The behavior of let is especially useful when using iterators inside loops.
+
+Iterator declarations using var will bleed outside the loop after it completes, which is frequently a very undesirable behavior.
+
+Consider these two examples:
+
+Copy
+for (var i = 0; i < 10; ++i) {}
+console.log(i);  // 10
+for (let j = 0; j < 10; ++j) {}
+console.log(j);  // Reference
