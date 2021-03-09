@@ -1,0 +1,48 @@
+JavaScript is a scripting language designed to interact with web pages and is made up of the following three distinct parts:
+
+The Core (ECMAScript)
+The Document Object Model (DOM)
+The Browser Object Model (BOM)
+JavaScript and ECMAScript are often used synonymously, but JavaScript is much more than just what is defined in ECMA-262.
+
+ECMAScript
+ECMAScript, the language defined in ECMA-262, isn't tied to web browsers.
+
+ECMA-262 defines this language as a base upon which more-robust scripting languages may be built.
+
+Web browsers are just one host environment in which an ECMAScript implementation may exist.
+
+Extensions, such as the Document Object Model (DOM), use ECMAScript's core types and syntax to provide additional functionality that's more specific to the environment.
+
+Other host environments include NodeJS, a server-side JavaScript platform, and the increasingly obsolete Adobe Flash.
+
+ECMA-262 describes the following parts of the language:
+
+Syntax
+Types
+Statements
+Keywords
+Reserved words
+Operators
+Global objects
+ECMAScript is a description of a language implementing all of the facets described in the specification.
+
+JavaScript implements ECMAScript, but so does Adobe ActionScript.
+
+The different versions of ECMAScript are defined as editions. For example, the ECMA-262 edition 7 is released in 2016.
+
+The Document Object Model
+The Document Object Model (DOM) is an application programming interface (API) for XML that was extended for use in HTML.
+
+The DOM maps out an entire page as a hierarchy of nodes.
+
+Each part of an HTML or XML page is a type of node.
+
+By creating a tree to represent a document, the DOM can control its content and structure.
+
+Nodes can be removed, added, replaced, and modified by using the DOM API.
+
+The Browser Object Model
+The BOM deals with the browser window and frames.
+
+For example, with BOM we can pop up new browser windows, move, resize, and close browser windows
