@@ -1,0 +1,110 @@
+The yield keyword also behaves as an intermediate function parameter.
+
+The value provided to the first next() invocation is not used, as this next() is used to begin the generator function execution:
+
+Copy
+function* generatorFn(initial) {
+  console.log(initial);
+  console.log(yield);
+  console.log(yield);
+}
+
+let generatorObject = generatorFn('foo');
+
+generatorObject.next('bar');  // foo
+generatorObject.next('baz');  // baz
+generatorObject.next('qux');  // qux
+The yield keyword can be simultaneously used as both an input and an output, as is shown in the following example:
+
+Copy
+function* generatorFn() {
+  return yield 'foo';
+}
+
+let generatorObject = generatorFn();
+
+console.log(generatorObject.next());       // { done: false, value: 'foo' }
+console.log(generatorObject.next('bar'));  // { done: true, value: 'bar' }
+Because the function must evaluate the entire expression to determine the value to return, it will pause execution when encountering the yield keyword and evaluate the value to yield, foo.
+
+The subsequent next() invocation provides the bar value as the value for that same yield, and this in turn is evaluated as the generator function return value.
+
+The yield keyword is not limited to a one-time use.
+
+An infinite counting generator function can be defined as follows:
+
+Copy
+function* generatorFn() {
+  for (let i = 0;;++i) {
+    yield i;
+  }
+}
+
+let generatorObject = generatorFn();
+
+console.log(generatorObject.next().value);  // 0
+console.log(generatorObject.next().value);  // 1
+console.log(generatorObject.next().value);  // 2
+console.log(generatorObject.next().value);  // 3
+console.log(generatorObject.next().value);  // 4
+console.log(generatorObject.next().value);  // 5
+...
+Suppose you wanted to define a generator function that would iterate a configurable number of times and produce the index of iteration.
+
+This can be accomplished by instantiating a new array, but the same behavior can be accomplished without the array:
+
+Copy
+function* nTimes(n) {
+  for (let i = 0; i < n; ++i) {
+    yield i;
+  }
+}
+
+for (let x of nTimes(3)) {
+  console.log(x);
+}
+// 0
+// 1
+// 2
+Alternately, the following has a slightly less verbose while loop implementation:
+
+Copy
+function* nTimes(n) {
+  let i = 0;
+  while(n--) {
+    yield i++;
+  }
+}
+
+for (let x of nTimes(3)) {
+  console.log(x);
+}
+Output:
+
+
+Using generators in this way provides a useful way of implementing ranges or populating arrays:
+
+Copy
+function* range(start, end) {
+  let i = start;
+  while(end > start) {
+    yield start++;
+  }
+}
+
+for (const x of range(4, 7)) {
+  console.log(x);
+}
+Output:
+
+
+Copy
+function* zeroes(n) {
+  while(n--) {
+    yield 0;
+  }
+}
+
+console.log(Array.from(zeroes(8)));
+Output:
+
