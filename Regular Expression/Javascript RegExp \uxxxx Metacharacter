@@ -1,0 +1,24 @@
+Do a global search for the hexadecimal number 0057 (W) in a string:
+
+Copy
+let str = "Visit Demo2s.com. Hello World!";
+let patt1 = /\u0057/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Description
+The \udddd character is used to find the Unicode character specified by a hexadecimal number dddd.
+
+If no match is found, it returns null.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+\udddd	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("\\udddd") or simply: /\udddd/
+Syntax with modifiers
+Copy
+new RegExp("\\udddd", "g") or simply: /\udddd/g
