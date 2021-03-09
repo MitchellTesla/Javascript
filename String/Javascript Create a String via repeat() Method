@@ -1,0 +1,9 @@
+ECMAScript features a repeat() method on all strings.
+
+The repeat() method accepts a single integer argument count, copies the string count times, and concatenates all the copies.
+
+Copy
+let stringValue = "hi ";
+console.log(stringValue.repeat(6) + "hello");
+Output:
+
