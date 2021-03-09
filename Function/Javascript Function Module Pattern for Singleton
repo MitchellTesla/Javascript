@@ -1,0 +1,75 @@
+The module pattern, as described by Douglas Crockford, does the same for singletons.
+
+Singletons are objects of which there will only ever be one instance.
+
+Traditionally, singletons are created in JavaScript using object literal notation, as shown in the following example:
+
+Copy
+let singleton = {
+  name: value,
+  method() {
+    // method code here
+  }
+};
+The module pattern augments the basic singleton to allow for private variables and privileged methods, taking the following format:
+
+Copy
+let singleton = function() {
+  // private variables and functions
+  let privateVariable = 10;
+
+  function privateFunction() {
+    return false;
+  }
+
+  // privileged/public methods and properties
+  return {
+    publicProperty: true,
+
+    publicMethod() {
+      privateVariable++;
+      return privateFunction();
+    }
+  };
+}();
+The module pattern uses an anonymous function that returns an object.
+
+Inside of the anonymous function, the private variables and functions are defined first.
+
+After that, an object literal is returned as the function value.
+
+That object literal contains only properties and methods that should be public.
+
+Because the object is defined inside the anonymous function, all of the public methods have access to the private variables and functions.
+
+Essentially, the object literal defines the public interface for the singleton.
+
+This can be useful when the singleton requires some sort of initialization and access to private variables, as in this example:
+
+Copy
+let application = function() {
+  // private variables and functions
+  let components = new Array();
+
+  // initialization
+  components.push(new BaseComponent());
+
+  // public interface
+  return {
+    getComponentCount() {
+      return components.length;
+    },
+      registerComponent(component) {
+        if (typeof component == 'object') {
+          components.push(component);
+        }
+      }
+    };
+}();
+The getComponentCount() and registerComponent() methods are privileged methods with access to the components array.
+
+The former simply returns the number of registered components, and the latter registers a new component.
+
+The module pattern is useful for cases such as when a single object is created, initialized with some data, and then needs to expose public methods that have access to private data.
+
+Every singleton created in this manner is an instance of Object because ultimately an object literal represents it.
