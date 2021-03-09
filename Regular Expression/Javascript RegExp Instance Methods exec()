@@ -1,0 +1,114 @@
+The primary method of a RegExp object is exec(), which is intended for use with capturing groups.
+
+This method accepts a single argument, which is the string on which to apply the pattern, and returns an array of information about the first match or null if no match was found.
+
+The returned array contains two additional properties: index, which is the location in the string where the pattern was matched, and input, which is the string that the expression was run against.
+
+In the array, the first item is the string that matches the entire pattern.
+
+Any additional items represent captured groups inside the expression.
+
+If there are no capturing groups in the pattern, then the array has only one item.
+
+Consider the following:
+
+Copy
+let text = "cat dog and date and test";
+let pattern = /dog( and date( and test)?)?/gi;
+
+let matches = pattern.exec(text);
+console.log(matches.index);
+console.log(matches.input);
+console.log(matches[0]);
+console.log(matches[1]);
+console.log(matches[2]);
+Output:
+
+
+In this example, the pattern has two capturing groups.
+
+When exec() is called on the string, a match is found.
+
+The exec() method returns information about one match at a time even if the pattern is global.
+
+When the global flag is not specified, calling exec() on the same string multiple times will always return information about the first match.
+
+Copy
+let text = "cat, bat, sat, fat";
+let pattern = /.at/;
+
+let matches = pattern.exec(text);
+console.log(matches.index);       // 0
+console.log(matches[0]);          // cat
+console.log(pattern.lastIndex);   // 0
+
+matches = pattern.exec(text);
+console.log(matches.index);       // 0
+console.log(matches[0]);          // cat
+console.log(pattern.lastIndex);   // 0
+The pattern in this example is not global, so each call to exec() returns the first match only ( "cat").
+
+lastIndex remains unchanged in nonglobal mode.
+
+With the global g flag set on the pattern, each call to exec() moves further into the string looking for matches, as in this example:
+
+Copy
+let text = "cat, bat, sat, fat";
+let pattern = /.at/g;
+
+let matches = pattern.exec(text);
+console.log(matches.index);       // 0
+console.log(matches[0]);          // cat
+console.log(pattern.lastIndex);   // 3
+
+matches = pattern.exec(text);
+console.log(matches.index);       // 5
+console.log(matches[0]);          // bat
+console.log(pattern.lastIndex);   // 8
+
+matches = pattern.exec(text);
+console.log(matches.index);       // 10
+console.log(matches[0]);          // sat
+console.log(pattern.lastIndex);   // 13
+This pattern is global, so each call to exec() returns the next match in the string until the end of the string is reached.
+
+Note also how the pattern's lastIndex property is affected.
+
+In global matching mode, lastIndex is incremented after each call to exec().
+
+lastIndex tracks the index of the character that appears immediately to the right of the last match.
+
+With the sticky y flag set on the pattern, each call to exec() will search for a match in the string only at lastIndex-nowhere else.
+
+The sticky flag overrides the global flag.
+
+Copy
+let text = "cat, bat, sat, fat";
+let pattern = /.at/y;
+
+let matches = pattern.exec(text);
+console.log(matches.index);       // 0
+console.log(matches[0]);          // cat
+console.log(pattern.lastIndex);   // 3
+There is no match starting at character index 3, so exec() will return null.
+
+exec() finding no matches resets lastIndex to 0
+
+Copy
+let text = "cat, bat, sat, fat";
+let pattern = /.at/y;
+matches = pattern.exec(text);
+matches = pattern.exec(text);
+console.log(matches);             // null
+console.log(pattern.lastIndex);   // 0
+Advancing lastIndex will allow a sticky regex exec() to find the next match:
+
+Copy
+let text = "cat, bat, sat, fat";
+let pattern = /.at/y;
+matches = pattern.exec(text);
+pattern.lastIndex = 5;
+matches = pattern.exec(text);
+console.log(matches.index);       // 5
+console.log(matches[0]);          // bat
+console.log(pattern.lastIndex);   // 8
