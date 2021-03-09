@@ -1,0 +1,29 @@
+The typeof operator determine the data type in Javascript.
+
+Using the typeof operator on a value returns one of the following strings:
+
+"undefined" if the value is undefined
+"boolean" if the value is a Boolean
+"string" if the value is a string
+"number" if the value is a number
+"object" if the value is an object (other than a function) or null
+"function" if the value is a function
+"symbol" if the value is a Symbol
+Example
+The typeof operator is called like this:
+
+Copy
+let message = "some string";
+console.log(typeof message);   // "string"
+console.log(typeof(message));  // "string"
+console.log(typeof 5);        // "number"
+In this example, both a variable message and a numeric literal are passed into the typeof operator.
+
+typeof is an operator and not a function, no parentheses are required although they can be used.
+
+Note
+typeof might return a confusing but technically correct value.
+
+Calling typeof null returns a value of "object", as the special value null is considered to be an empty object reference.
+
+Technically, functions are considered objects in ECMAScript and don't represent another data type.
