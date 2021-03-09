@@ -1,0 +1,15 @@
+let declarations cannot be used in a way that assumes hoisting:
+
+Copy
+// name is hoisted, since it is defined by var
+console.log(name);  // undefined
+var name = 'Javascript';
+
+// age is not hoisted, since it is defined by let
+console.log(age);  // ReferenceError: age is not defined
+let age = 26;
+JavaScript engines knows that the let declarations that appear later in a block.
+
+These variables cannot be referenced before the actual declaration occurs.
+
+Any attempted references to these variables from the segment of execution that occurs before the declaration will throw a ReferenceError.
