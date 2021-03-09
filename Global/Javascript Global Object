@@ -1,0 +1,9 @@
+The Global object is the most unique in ECMAScript because it isn't explicitly accessible.
+
+ECMA-262 specifies the Global object as a catch all for properties and methods that don't otherwise have an owning object.
+
+In Javascript, there is no global variables or global functions. All variables and functions defined globally become properties of the Global object.
+
+Functions such as isNaN(), isFinite(), parseInt(), and parseFloat(), are actually methods of the Global object.
+
+Global object also has methods for encoding and decoding URL. It also has an eval function.
