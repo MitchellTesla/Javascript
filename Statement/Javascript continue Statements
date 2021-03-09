@@ -1,0 +1,43 @@
+The break and continue statements provide stricter control over the execution of code in a loop.
+
+The continue statement exits the loop immediately, but execution continues from the top of the loop.
+
+Consider the following code
+
+Copy
+let num = 0;
+
+for (let i = 1; i < 10; i++) {
+ if (i % 5 == 0) {
+   continue;
+ }
+ num++;
+}
+console.log(num);  // 8
+Here, the console.log displays 8, the number of times the loop has been executed.
+
+When i reaches a value of 5, the loop is exited before num is incremented, but execution continues with the next iteration, when the value is 6.
+
+The loop then continues until its natural completion, when i is 10.
+
+The final value of num is 8 instead of 9 because one increment didn't occur due to the continue statement.
+
+The continue statement can be used with a label, as shown in the following example:
+
+Copy
+let num = 0;
+
+outermost:
+for (let i = 0; i < 10; i++) {
+   for (let j = 0; j < 10; j++) {
+    if (i == 5 && j == 5) {
+      continue outermost;
+    }
+    num++;
+  }
+}
+
+console.log(num);  // 95
+In this case, the continue statement forces execution to continue-not in the inner loop but in the outer loop.
+
+When j is equal to 5, continue is executed, which means that the inner loop misses five iterations, leaving num equal to 95.
