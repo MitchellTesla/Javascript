@@ -1,0 +1,132 @@
+ECMAScript 6 Map is a new collection type that introduces true key/value behavior into the language.
+
+An empty Map is instantiated with the new keyword:
+
+Copy
+const m = new Map();
+To populate the Map when it is initialized, the constructor optionally accepts an iterable object, expecting it to contain key/value pair arrays.
+
+Each pair in the iterable argument will be inserted into the newly created Map in the order in which they are iterated:
+
+Copy
+// Initialize map with nested arrays
+const m1 = new Map([
+  ["key1", "val1"],
+  ["key2", "val2"],
+  ["key3", "val3"]
+]);
+console.log(m1.size);  // 3
+
+// Initialize map with custom-defined iterator
+const m2 = new Map({
+  [Symbol.iterator]: function*() {
+    yield ["key1", "val1"];
+    yield ["key2", "val2"];
+    yield ["key3", "val3"];
+  }
+});
+console.log(m2.size);  // 3
+
+// Map expects values to be key/value whether they are provided or not
+const m3 = new Map([[]]);
+console.log(m3.has(undefined));  // true
+console.log(m3.get(undefined));  // undefined
+Key/value pairs can be added after initialization with set(), queried with get() and has(), counted with the size property, and removed with delete()and clear():
+
+Copy
+const m = new Map();
+
+console.log(m.has("firstName"));   // false
+console.log(m.get("firstName "));  // undefined
+console.log(m.size);               // 0
+
+m.set("firstName", "HTML")
+ .set("lastName", "Frisbie");
+
+console.log(m.has("firstName"));  // true
+console.log(m.get("firstName"));  // HTML
+console.log(m.size);              // 2
+
+m.delete("firstName");  // deletes only this key/value pair
+
+console.log(m.has("firstName"));  // false
+console.log(m.has("lastName"));   // true
+console.log(m.size);              // 1
+
+m.clear();  // destroys all key/value pairs in this Map instance
+
+console.log(m.has("firstName"));  // false
+console.log(m.has("lastName"));   // false
+console.log(m.size);              // 0
+The set() method returns the Map instance, so it is possible to chain multiple set operations together, including on the initial declaration:
+
+Copy
+const m = new Map().set("key1", "val1");
+
+m.set("key2", "val2")
+ .set("key3", "val3");
+
+console.log(m.size);  // 3
+A Map can use any JavaScript data type as a key.
+
+It uses the SameValueZero comparison operation and is comparable to using strict object equivalence to check for a key match.
+
+There is no restriction on what is contained in the value.
+
+Copy
+const m = new Map();
+
+const functionKey = function() {};
+const symbolKey = Symbol();
+const objectKey = new Object();
+
+m.set(functionKey, "functionValue");
+m.set(symbolKey, "symbolValue");
+m.set(objectKey, "objectValue");
+
+console.log(m.get(functionKey));  // functionValue
+console.log(m.get(symbolKey));    // symbolValue
+console.log(m.get(objectKey));    // objectValue
+
+// SameValueZero checks mean separate instances will not collide
+console.log(m.get(function() {}));  // undefined
+The objects and other collection types used for keys and values remain unchanged inside a Map when their contents or properties are altered:
+
+Copy
+const m = new Map();
+
+const objKey = {},
+     objVal = {},
+     arrKey = [],
+     arrVal = [];
+
+
+m.set(objKey, objVal);
+m.set(arrKey, arrVal);
+
+objKey.foo = "foo";
+objVal.bar = "bar";
+arrKey.push("foo");
+arrVal.push("bar");
+
+console.log(m.get(objKey));  // {bar: "bar"}
+console.log(m.get(arrKey));  // ["bar"]
+The use of the SameValueZero operation may introduce unexpected collisions:
+
+Copy
+const m = new Map();
+
+const a = 0/"",  // NaN
+     b = 0/"",  // NaN
+     pz = +0,
+     nz = -0;
+
+console.log(a === b);    // false
+console.log(pz === nz);  // true
+
+
+m.set(a, "foo");
+m.set(pz, "bar");
+
+console.log(m.get(b));   // foo
+console.log(m.get(nz));  // bar
