@@ -1,0 +1,35 @@
+ECMAScript offers two strategies for searching inside an array instance: searching by strict equivalence, and searching with a predicate function.
+
+Strict Equivalence
+ECMAScript's three strict equivalence lookup methods are indexOf() and lastIndexOf(), available in all ECMAScript versions, and includes(), which was introduced in the ECMAScript 7 specification.
+
+Each of these methods accepts two arguments: the item to look for and an optional index from which to start looking.
+
+The indexOf() and includes() methods start searching from the front of the array (item 0) and continue to the back, whereas lastIndexOf() starts from the last item in the array and continues to the front.
+
+indexOf() and lastIndexOf() each return the position of the item in the array or -1 if the item isn't in the array.
+
+includes() returns a Boolean indicating if at least one element in the searched array matched the provided element.
+
+An identity comparison is used when comparing the first argument to each item in the array, meaning that the items must be strictly equal as if compared using ===.
+
+Here are some examples of this usage:
+
+Copy
+let numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+
+console.log(numbers.indexOf(4));      // 3
+console.log(numbers.lastIndexOf(4));  // 5
+console.log(numbers.includes(4));     // true
+console.log(numbers.indexOf(4, 4));      // 5
+console.log(numbers.lastIndexOf(4, 4));  // 3
+console.log(numbers.includes(4, 7));     // false
+
+let person = { name: "CSS" };
+let people = [{ name: "CSS" }];
+let morePeople = [person];
+
+console.log(people.indexOf(person));      // -1
+console.log(morePeople.indexOf(person));  // 0
+console.log(people.includes(person));     // false
+console.log(morePeople.includes(person)); // true
