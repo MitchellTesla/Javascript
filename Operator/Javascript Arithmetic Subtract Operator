@@ -1,0 +1,27 @@
+The subtract operator ( -) is another that is used quite frequently. Here's an example:
+
+Copy
+let result = 2 - 1;
+The subtract operator has special rules to deal with the type conversions present in ECMAScript. They are as follows:
+
+If the two operands are numbers, perform arithmetic subtract and return the result.
+If either operand is NaN, the result is NaN.
+If Infinity is subtracted from Infinity, the result is NaN.
+If -Infinity is subtracted from -Infinity, the result is NaN.
+If -Infinity is subtracted from Infinity, the result is Infinity.
+If Infinity is subtracted from -Infinity, the result is -Infinity.
+If +0 is subtracted from +0, the result is +0.
+If -0 is subtracted from +0, the result is -0.
+If -0 is subtracted from -0, the result is +0.
+If either operand is a string, a Boolean, null, or undefined, it is converted to a number using Number() behind the scenes and the arithmetic is calculated using the previous rules.
+If that conversion results in NaN, then the result of the subtraction is NaN.
+If either operand is an object, its valueOf() method is called to retrieve a numeric value to represent it. If that value is NaN, then the result of the subtraction is NaN. If the object doesn't have valueOf() defined, then toString() is called and the resulting string is converted into a number.
+The following are some examples of these behaviors:
+
+Copy
+let result1 = 5 - true;  // 4 because true is converted to 1
+let result2 = NaN - 1;   // NaN
+let result3 = 5 - 3;     // 2
+let result4 = 5 - "";    // 5 because "" is converted to 0
+let result5 = 5 - "2";   // 3 because "2" is converted to 2
+let result6 = 5 - null;  // 5 because null is converted to 0
