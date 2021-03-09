@@ -1,0 +1,16 @@
+Regular expressions test() accepts a string argument and returns true if the pattern matches the argument and false if it does not.
+
+We can use it test if a pattern is matched without needing the actual matched text.
+
+The test() method is often used in if statements, such as the following:
+
+Copy
+let text = "000-00-0000";
+let pattern = /\d{3}-\d{2}-\d{4}/;
+
+if (pattern.test(text)) {
+  console.log("The pattern was matched.");
+}
+In this example, the regular expression tests for a specific numeric sequence.
+
+If the input text matches the pattern, then a message is displayed.
