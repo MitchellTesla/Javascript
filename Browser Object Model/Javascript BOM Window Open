@@ -1,0 +1,183 @@
+The window.open() method can navigate to a particular URL and to open a new browser window.
+
+This method accepts four arguments:
+
+the URL to load,
+the window target,
+a string of features, and
+a Boolean value indicating that the new page should take the place of the currently
+loaded page in the browser history.
+Typically only the first three arguments are used; the last argument applies only when not opening a new window.
+
+If the second argument passed to window.open() is the name of a window or frame that already exists, then the URL is loaded into the window or frame with that name.
+
+Here's an example:
+
+Copy
+window.open("https://www.demo2s.com/", "topFrame");
+It is the same as
+
+Copy
+<a href="http://www.demo2s.com" target="topFrame"/>
+This line of code acts as if the user clicked a link with the href attribute set to "https://www.demo2s.com" and the target attribute set to topFrame.
+
+If there is a window named topFrame, then the URL will be loaded there; otherwise, a new window is created and given the name topFrame.
+
+The second argument may be any of the special window names:
+
+_self,
+_parent,
+_top, or
+_blank.
+Popping Up Windows
+When the second argument doesn't identify an existing window, a new window or tab is created based on a string passed in as the third argument.
+
+If the third argument is missing, a new browser window or tab is opened with all of the default browser window settings.
+
+Toolbars, the location bar, and the status bar are all set based on the browser's default settings.
+
+The third argument is ignored when not opening a new window.
+
+The third argument is a comma-delimited string of settings indicating display information for the new window.
+
+The following table describes the various options.
+
+Setting
+Value(S)
+Description
+height
+
+Number
+
+The initial height of the new window.
+This cannot be less than 100.
+left
+
+Number
+
+The initial left coordinate of the new window.
+This cannot be a negative number.
+location
+
+
+"yes" or "no"
+
+
+Indicates if the location bar should be displayed.
+The default varies based on the browser.
+When set to "no", the location bar may be either hidden or disabled.
+menubar
+
+"yes" or "no"
+
+Indicates if the menu bar should be displayed.
+The default is "no".
+resizable
+
+"yes" or "no"
+
+Indicates if the new window can be resized by dragging its border.
+The default is "no".
+scrollbars
+
+"yes" or "no"
+
+Indicates if the new window allows scrolling if the content cannot fit in the viewport.
+The default is "no".
+status
+
+"yes" or "no"
+
+Indicates if the status bar should be displayed.
+The default varies based on the browser.
+toolbar
+
+"yes" or "no"
+
+Indicates if the toolbar should be displayed.
+The default is "no".
+top
+
+Number
+
+The initial top coordinate of the new window.
+This cannot be a negative number.
+width
+
+Number
+
+The initial width of the new window.
+This cannot be less than 100.
+Any or all of these settings may be specified as a comma-delimited set of name-value pairs.
+
+The name-value pairs are indicated by an equal sign.
+
+No white space is allowed in the feature string.
+
+Consider the following example:
+
+Copy
+window.open("https://www.demo2s.com/",
+           "myWindow",
+           "height=400,width=400,top=10,left=10,resizable=yes");
+This code opens a new resizable window that's 400x400 and positioned 10 pixels from the top and left of the screen.
+
+Return
+The window.open() method returns a reference to the newly created window.
+
+This object is the same as any other window object except that you typically have more control over it.
+
+For instance, some browsers that don't allow you to resize or move the main browser window by default may allow you to resize or move windows that you've created using window.open().
+
+This object can be used to manipulate the newly opened window in the same way as any other window, as shown in this example:
+
+Copy
+let myWin = window.open("https://www.demo2s.com/",
+              "myWindow",
+              "height=400,width=400,top=10,left=10,resizable=yes");
+
+// resize it
+myWin.resizeTo(500, 500);
+
+// move it
+myWin.moveTo(100, 100);
+We can close the newly opened window by calling the close() method as follows:
+
+Copy
+myWin.close();
+This method works only for pop-up windows created by window.open().
+
+It's not possible to close the main browser window without confirmation from the user.
+
+It is possible, however, for the pop-up window to close itself without user confirmation by calling top.close().
+
+Once the window has been closed, the window reference still exists but cannot be used other than to check the closed property, as shown here:
+
+Copy
+myWin.close();
+console.log(myWin.closed);  // true
+The newly created window object has a reference back to the window that opened it via the opener property.
+
+This property is defined only on the topmost window object (top) of the pop-up window and is a pointer to the window or frame that called window.open().
+
+For example:
+
+Copy
+let myWin = window.open("https://www.demo2s.com/",
+              "myWindow",
+              "height=400,width=400,top=10,left=10,resizable=yes");
+
+console.log(myWin.opener === window);  // true
+Even though there is a pointer from the pop-up window back to the window that opened it, there is no reverse relationship.
+
+Windows do not keep track of the pop-ups that they spawn, so it's up to you to keep track if necessary.
+
+Depend on browsers, some allow you to indicate that the newly created tab should be run in a separate process by setting the opener property to null, as in the following example:
+
+Copy
+let myWin = window.open("https://www.demo2s.com/",
+              "myWindow",
+              "height=400,width=400,top=10,left=10,resizable=yes");
+
+myWin.opener = null;
+Setting opener to null indicates to the browser that the newly created tab doesn't need to communicate with the tab that opened it, so it may be run in a separate process.
