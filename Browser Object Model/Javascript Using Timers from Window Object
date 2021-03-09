@@ -1,0 +1,68 @@
+A useful feature provided by the Window object is the ability to set one-off and recurring timers.
+
+These timers are used to execute a function after a preset period.
+
+The following table summarizes the methods that support this feature.
+
+Name
+Description
+Returns
+clearInterval(<id>)
+Cancels an interval timer
+void
+clearTimeout(<id>)
+Cancels a timeout timer
+void
+setInterval(<function>, <time>)
+
+Creates a timer that will call the specified
+function every time milliseconds
+int
+
+setTimeout(<function>, <time>)
+
+Creates a timer that will call the specified
+function once after time milliseconds
+int
+
+The setTimeout() method creates a timer that executes the specified function just once, whereas the setInterval() method creates a timer that executes a function repeatedly.
+
+These methods return a unique identifier that can later be used as an argument to the clearTimeout() and clearInterval() methods to cancel the timer.
+
+The following code shows the use of the timer methods.
+
+Copy
+let buttons = document.getElementsByTagName("button");
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].onclick = handleButtonPress;
+}
+
+let timeID;
+let intervalID;
+let count = 0;
+
+function handleButtonPress(e) {
+    if (e.target.id == "settime") {
+        timeID = window.setTimeout(function() {
+            displayMsg("Timeout Expired");
+        }, 5000);
+        displayMsg("Timeout Set");
+    } else if (e.target.id == "cleartime") {
+        window.clearTimeout(timeID);
+        displayMsg("Timeout Cleared");
+    } else if (e.target.id == "setinterval") {
+        intervalID = window.setInterval(function() {
+             displayMsg("Interval expired. Counter: " + count++);
+        }, 2000);
+        displayMsg("Interval Set");
+    } else if (e.target.id == "clearinterval") {
+        window.clearInterval(intervalID);
+        displayMsg("Interval Cleared");
+    }
+}
+
+function displayMsg(msg) {
+    document.getElementById("msg").innerHTML = msg;
+}
+
+The script in this example sets and cancels timers and intervals that call the displayMsg() function to set the content of a <p> element.
