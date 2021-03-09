@@ -1,0 +1,31 @@
+We can disable the association between the proxy object and the target object.
+
+Proxy revocable() method can disassociate the proxy object from the target object.
+
+Revoking the proxy is irreversible.
+
+The revoke function have no effect if called multiple times.
+
+Any method called on a proxy after it is revoked will throw a TypeError.
+
+The revoke function can be captured upon proxy instantiation:
+
+Copy
+const target = {
+  foo: 'bar'
+ };
+
+const handler = {
+  get() {
+    return 'intercepted';
+  }
+ };
+
+const { proxy, revoke } = Proxy.revocable(target, handler);
+
+console.log(proxy.foo);   // intercepted
+console.log(target.foo);  // bar
+
+revoke();
+
+console.log(proxy.foo);   // TypeError
