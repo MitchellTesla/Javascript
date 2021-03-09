@@ -1,0 +1,112 @@
+JavaScript developers will often find that it is useful to be able to perform a "merge" of two objects.
+
+This merge will move all the local properties of one source object into a destination object.
+
+This behavior is also referred to as using a "mixin," in which the destination object is augmented by mixing in the properties of a source object.
+
+ECMAScript 6 introduces this exact behavior with the Object.assign() method.
+
+This method accepts one destination object, and one or many source objects, and for each source object copies the enumerable (Object.propertyIsEnumerable returns true) and own (Object.hasOwnProperty returns true) properties onto the destination object.
+
+Properties keyed with strings and symbols will be copied.
+
+For each suitable property, the method will use [[Get]] to retrieve a value from the source object and [[Set]] on the destination object to assign the value.
+
+The following code shows a simple copy.
+
+Copy
+let dest, src, result;.
+dest = {};
+src = {
+    id: 'src'
+};
+
+result = Object.assign(dest, src);
+
+// Object.assign mutates the destination object
+// and also returns that object after exiting.
+console.log(dest === result); // true
+console.log(dest !== src); // true
+console.log(result); // { id: src }
+console.log(dest); // { id: src }
+Multiple source objects
+
+Copy
+dest = {};
+
+result = Object.assign(dest, {
+    a: 'foo'
+}, {
+    b: 'bar'
+});
+
+console.log(result); // { a: foo, b: bar }
+Invoke Getters and setters
+
+Copy
+dest = {
+    set a(val) {
+        console.log('Invoked dest setter with param ${val}');
+    }
+};
+src = {
+    get a() {
+        console.log('Invoked src getter');
+        return 'foo';
+    }
+};
+
+Object.assign(dest, src);
+// Invoked src getter
+// Invoked dest setter with param foo
+// Since the setter does not perform an assignment,
+// no value is actually transferred
+console.log(dest); // { set a(val) {...} }
+Output:
+
+
+Object.assign() is effectively performing a shallow copy from each source object.
+
+If multiple source objects have the same property defined, the last one to be copied will be the ultimate value.
+
+Any value retrieved from accessor properties, such as a getter, on a source object will be assigned as a static value on the destination object.
+
+It cannot transfer getters and setters between objects.
+
+Copy
+let dest, src, result;
+/**
+ * Overwritten properties
+ */
+dest = { id: 'dest' };
+
+result = Object.assign(dest, { id: 'src1', a: 'foo' }, 
+                             { id: 'src2', b: 'bar' });
+
+// Object.assign will overwrite duplicate properties.
+console.log(result);  // { id: src2, a: foo, b: bar }
+This can be observed by using a setter on the destination object:
+
+Copy
+dest = {
+  set id(x) {
+    console.log(x);
+  }
+};
+
+Object.assign(dest, { id: 'first' }, { id: 'second' }, { id: 'third' });
+Output:
+
+
+Object references in object merge
+
+Copy
+dest = {};
+src = { a: {} };
+
+Object.assign(dest, src);
+
+// Shallow property copies means only object references copied.
+console.log(dest);              // { a :{} }
+console.log(dest.a === src.a);  // true
+If an error is thrown during the assignment, it will discontinue and exit with the thrown error.
