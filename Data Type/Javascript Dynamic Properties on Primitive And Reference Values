@@ -1,0 +1,43 @@
+When you work with reference values, you can add, change, or delete properties and methods at any time.
+
+Consider this example:
+
+Copy
+let person = new Object();
+person.name = "CSS";
+console.log(person.name);  // "CSS"
+Here, an object is created and stored in the variable person.
+
+Next, a property called name is added and assigned the string value of "CSS".
+
+The new property is accessible until the object is destroyed or the property is explicitly removed.
+
+Primitive values can't have properties added to them even though attempting to do so won't cause an error.
+
+Here's an example:
+
+Copy
+let name = "CSS";
+name.age = 12;
+console.log(name.age);  // undefined
+Here, a property called age is defined on the string name and assigned a value of 12.
+
+On the next line, however, the property is gone.
+
+Only reference values can have properties defined dynamically for later use.
+
+Note that the instantiation of a primitive type can be accomplished using only the primitive literal form.
+
+If you were to use the new keyword, JavaScript will create an Object type, but one that behaves like a primitive.
+
+Here's an example to distinguish between the two:
+
+Copy
+let name1 = "CSS";
+let name2 = new String("Javascript");
+name1.age = 27;
+name2.age = 26;
+console.log(name1.age);  // undefined
+console.log(name2.age);  // 26
+console.log(typeof name1); // string
+console.log(typeof name2); /
