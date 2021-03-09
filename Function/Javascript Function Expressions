@@ -1,0 +1,90 @@
+There are two ways to define a function: by function declaration and by function expression.
+
+The first, function declaration, has the following form:
+
+Copy
+function functionName(arg0, arg1, arg2) {
+  // function body
+}
+One of the key characteristics of function declarations is function declaration hoisting, whereby function declarations are read before the code executes.
+
+That means a function declaration may appear after code that calls it and still work:
+
+Copy
+sayHi();
+function sayHi() {
+  console.log("Hi!");
+}
+This example doesn't throw an error because the function declaration is read first before the code begins to execute.
+
+Function expression
+The second way to create a function is by using a function expression.
+
+Function expressions have several forms.
+
+The most common is as follows:
+
+Copy
+let functionName = function(arg0, arg1, arg2) {
+  // function body
+};
+This pattern of function expression looks like a normal variable assignment.
+
+A function is created and assigned to the variable functionName.
+
+The created function is considered to be an anonymous function, because it has no identifier after the function keyword.
+
+Anonymous functions are also sometimes called lambda functions.
+
+This means the name property is the empty string.
+
+Function expressions act like other expressions and, therefore, must be assigned before usage.
+
+The following causes an error:
+
+Copy
+sayHi();  // Error! function doesn't exist yet
+let sayHi = function() {
+  console.log("Hi!");
+};
+Function hoisting
+Understanding function hoisting is key to understanding the differences between function declarations and function expressions.
+
+We can use function expressions in this way:
+
+Copy
+// OK
+let sayHi;
+if (condition) {
+  sayHi = function() {
+    console.log("Hi!");
+  };
+} else {
+  sayHi = function() {
+    console.log("Yo!");
+  };
+}
+This example behaves the way you would expect, assigning the correct function expression to the variable sayHi based on condition.
+
+The ability to create functions for assignment to variables also allows you to return functions as the value of other functions.
+
+Copy
+function createComparisonFunction(propertyName) {
+  return function(object1, object2) {
+    let value1 = object1[propertyName];
+    let value2 = object2[propertyName];
+
+    if (value1 < value2) {
+      return -1;
+    } else if (value1 > value2) {
+      return 1;
+    } else {
+      return 0;
+    }
+  };
+}
+createComparisonFunction() returns an anonymous function.
+
+The returned function will, presumably, be either assigned to a variable or otherwise called, but within createComparisonFunction() it is anonymous.
+
+Any time a function is being used as a value, it is a function expression.
