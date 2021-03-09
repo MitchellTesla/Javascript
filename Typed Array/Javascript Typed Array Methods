@@ -1,0 +1,43 @@
+Javascript typed arrays behave like their regular array counterparts would.
+
+Typed arrays support the following operators, methods, and properties:
+
+[]
+copyWithin()
+entries()
+every()
+fill()
+filter()
+find()
+findIndex()
+forEach()
+indexOf()
+join()
+keys()
+lastIndexOf()
+length
+map()
+reduce()
+reduceRight()
+reverse()
+slice()
+some()
+sort()
+toLocaleString()
+toString()
+values()
+Methods that return a new array will return a new typed array with the same element type:
+
+Copy
+const ints = new Int16Array([1, 2, 3]);
+const doubleints = ints.map(x => 2*x);
+console.log(doubleints instanceof Int16Array);  // true
+Typed arrays have a Symbol.iterator defined, meaning that for..of loops and spread operators can also be used:
+
+Copy
+const ints = new Int16Array([1, 2, 3]);
+for (const int of ints) {
+  console.log(int);
+}
+Output:
+
