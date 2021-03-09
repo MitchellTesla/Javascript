@@ -1,0 +1,56 @@
+Do a multiline search for "is" at the beginning of each line in a string:
+
+Copy
+let str = "\nIs th\nis it?";
+let patt1 = /^is/m;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Description
+The m modifier can perform a multiline match.
+
+The m modifier treat beginning (^) and end ($) characters to match the beginning or end of each line of a string (delimited by \n or \r), rather than just the beginning or end of the string.
+
+The m modifier is case-sensitive and will stop the search after the first match.
+
+To perform a global, case-insensitive, multiline search, use this modifier together with "g" and "i".
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+m	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("regexp", "m") or simply: /regexp/m
+More Examples
+Do a global, multiline search for "is" at the beginning of each line in a string:
+
+Copy
+let str = "\nIs th\nis h\nis?";
+let patt1 = /^is/gm;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Example
+Do a global, case-insensitive, multiline search for "is" at the beginning of each line in a string:
+
+Copy
+let str = "\nIs th\nis h\nis?";
+let patt1 = /^is/gmi;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Example
+Do a global, multiline search for "is" at the end of each line in a string:
+
+Copy
+let str = "Is\nthis\nhis\n?";
+let patt1 = /is$/gm;
+let result = str.match(patt1);
+console.log(result);
+Output:
