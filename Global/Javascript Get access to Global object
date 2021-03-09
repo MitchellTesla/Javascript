@@ -1,0 +1,17 @@
+To retrieve the Global object is to use the following code:
+
+Copy
+abc = 'a';
+let global = function() {
+  return this;
+}();
+
+console.log(abc);
+Output:
+
+
+This code creates an immediately-invoked function expression that returns the value of this.
+
+The this value is equivalent to the Global object when a function is executed with no explicit this value specified either by being an object method or via call()/apply().
+
+Thus, calling a function that simply returns this is a consistent way to retrieve the Global object in any execution environment.
