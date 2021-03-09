@@ -1,0 +1,13 @@
+The divide operator is represented by a slash (/) and divides the first operand by the second operand, as shown here:
+
+Copy
+let result = 60 / 10;
+The divide operator has special behaviors for special values. They are as follows:
+
+If the operands are numbers, regular arithmetic division is performed. If the result can't be represented in ECMAScript, it returns either Infinity or -Infinity.
+If either operand is NaN, the result is NaN.
+If Infinity is divided by Infinity, the result is NaN.
+If zero is divided by zero, the result is NaN.
+If a nonzero finite number is divided by zero, the result is either Infinity or -Infinity, depending on the sign of the first operand.
+If Infinity is divided by any number, the result is either Infinity or -Infinity, depending on the sign of the second operand.
+If either operand isn't a number, it is converted to a number behind the scenes using Number() and then the other rules are applied.
