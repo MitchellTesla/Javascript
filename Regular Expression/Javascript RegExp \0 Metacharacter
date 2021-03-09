@@ -1,0 +1,23 @@
+Search for a NUL character in a string:
+
+Copy
+let str = "Visit Demo2s.com.\0Learn JavaScript.";
+let patt1 = /\0/;
+let result = str.search(patt1);
+console.log(result);
+Output:
+
+
+Description
+The \0 metacharacter is used to find NUL character.
+
+\0 returns the position where the NUL character was found.
+
+If no match is found, it returns -1.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+\0	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("\\0") or simply: /\0/
