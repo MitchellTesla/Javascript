@@ -1,0 +1,66 @@
+ECMAScript 6 supports explicitly defining values for parameters if they are not provided when the function is invoked.
+
+ES6 default parameters is done using the = operator directly inside the function signature:
+
+Copy
+function sayHi(name = 'CSS') {
+  return `Hi ${name} 3`;
+}
+
+console.log(sayHi('HTML'));  // 'Hi HTML 3'
+console.log(sayHi());         // 'Hi CSS 3'
+Output:
+
+
+Passing undefined as an argument is treated the same as not passing any argument, which allows for multiple independent default variables:
+
+Copy
+function sayHi(name = 'CSS', numerals = '3') {
+  return `Hi ${name} ${numerals}`;
+}
+
+console.log(sayHi());                // 'Hi CSS 3'
+console.log(sayHi('HTML'));          // 'Hi HTML 3'
+console.log(sayHi(undefined, '4'));  // 'Hi CSS 4'
+When using default parameters, the arguments object's value does not reflect the default value of a parameter, but rather the argument passed to the function.
+
+This mirrors the ES5 strict mode behavior and is valuable because it preserves the values as they were passed when the function was invoked:
+
+Copy
+function sayHi(name = 'CSS') {
+  name = 'HTML';
+  return `Hi ${arguments[0]}`;
+}
+
+console.log(sayHi());         // 'Hi undefined'
+console.log(sayHi('HTML'));  // 'Hi HTML'
+Default parameter values are not limited to primitives or object types, you can also calculate a value from an invoked function:
+
+Copy
+let romanNumerals = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+let ordinality = 0;
+
+function getNumerals() {
+  // Increment the ordinality after using it to 
+  // index into the numerals array
+  return romanNumerals[ordinality++];
+}
+
+function sayHi(name = 'CSS', numerals = getNumerals()) {
+  return `Hi ${name} ${numerals}`;
+}
+
+console.log(sayHi());                // 'Hi CSS I'
+console.log(sayHi('HTML', 'XVI'));  // 'Hi HTML XVI'
+console.log(sayHi());                // 'Hi CSS II'
+console.log(sayHi());                // 'Hi CSS III'
+The function default parameter is only invoked when the function itself is invoked, not when the function is defined.
+
+The method that calculates the default value is only invoked when the argument is not provided.
+
+Arrow functions can use default parameters in the same way, although it means parentheses around a single argument is no longer optional if a default value is specified:
+
+Copy
+let sayHi = (name = 'CSS') => `Hi ${name}`;
+
+console.log(sayHi());  // Hi CSS
