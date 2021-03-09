@@ -1,0 +1,42 @@
+All proxy traps can access parameters and we can recreate the behavior of the trapped method.
+
+For example, the get() method receives a reference to the target object, the property being looked up, and a reference to the proxy object.
+
+Copy
+const target = {
+  foo: 'bar'
+};
+
+const handler = {
+  get(trapTarget, property, receiver) {
+    console.log(trapTarget === target);
+    console.log(property);
+    console.log(receiver === proxy);
+  }
+};
+
+const proxy = new Proxy(target, handler);
+proxy.foo;
+Output:
+
+
+Thus, we can define a trap handler that recreates the behavior of the method being trapped:
+
+Copy
+const target = {
+  foo: 'bar'
+};
+const handler = {
+  get(trapTarget, property, receiver) {
+    return trapTarget[property];
+  }
+};
+
+const proxy = new Proxy(target, handler);
+
+console.log(proxy.foo);   // bar
+console.log(target.foo);  // bar
+Output:
+
+
+Such a tactic can be implemented for all traps.
