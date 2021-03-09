@@ -1,0 +1,50 @@
+Well Known Symbol Symbol.asyncIterator is used as a property for "A method that returns the default AsyncIterator for an object. Called by the semantics of the for-await-of statement".
+
+It is used to identify the function that implements the asynchronous iterator API.
+
+The for-await-of loop uses this function to perform asynchronous iteration.
+
+They will invoke the function keyed by Symbol.asyncIterator and expect it to return an object which implements the Iterator API.
+
+In many cases, this will take the form of an AsyncGenerator, an object which implements this API:
+
+Copy
+class Foo {
+  async *[Symbol.asyncIterator]() {}
+}
+
+let f = new Foo();
+
+console.log(f[Symbol.asyncIterator]());
+// AsyncGenerator {<suspended>}
+The object produced by the Symbol.asyncIterator function should sequentially produce Promise instances via its next() method.
+
+This can be through explicit next() method definition or implicitly through an async generator function:
+
+Copy
+class Emitter {
+  constructor(max) {
+    this.max = max;
+    this.asyncIdx = 0;
+  }
+
+  async *[Symbol.asyncIterator]() {
+    while(this.asyncIdx < this.max) {
+      yield new Promise((resolve) => resolve(this.asyncIdx++));
+    }
+  }
+}
+
+async function asyncCount() {
+  let emitter = new Emitter(5);
+
+  for await(const x of emitter) {
+    console.log(x);
+  }
+}
+
+asyncCount();
+Output:
+
+
+Symbol.asyncIterator is part of the ES2018 specification.
