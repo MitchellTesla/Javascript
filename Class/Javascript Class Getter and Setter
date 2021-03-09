@@ -1,0 +1,19 @@
+Class definitions also support getters and setter accessors.
+
+The syntax and behavior is identical to that of regular objects:
+
+Copy
+class Person {
+   set name(newName) {
+     this.name_ = newName;
+   }
+  
+   get name() {
+     return this.name_;
+   }
+}
+
+let p = new Person();
+
+p.name = 'CSS';
+console.log(p.name);  // CSS
