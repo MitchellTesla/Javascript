@@ -1,0 +1,29 @@
+When passing a promise instance to console.log, the console output indicates that this promise instance is pending.
+
+Copy
+let p = new Promise(() => {});
+setTimeout(console.log, 0, p);  // Promise <pending>
+Output:
+
+
+A promise is a stateful object that can exist in one of three states:
+
+Copy
+Pending
+Fulfilled (or resolved)
+Rejected
+A pending state is the initial state a promise begins in.
+
+From a pending state, a promise can become settled by turning to a fulfilled state to indicate success, or a rejected state to indicate failure.
+
+This transition to a settled state is irreversible; once a transition to either fulfilled or rejected occurs, the state of the promise can never change.
+
+It is not guaranteed that a promise will ever leave the pending state.
+
+Therefore, well-structured code should behave properly if the promise successfully resolves, if the promise rejects, or if it never exits the pending state.
+
+The state of a promise is private and cannot be directly inspected in JavaScript.
+
+The state of a promise cannot be mutated by external JavaScript.
+
+The promise intentionally encapsulates a block of asynchronous behavior, and external code performing synchronous definition of its state would be antithetical to its purpose.
