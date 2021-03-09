@@ -1,0 +1,77 @@
+We can retrieve the property descriptor for a given property by using the Object.getOwnPropertyDescriptor() method.
+
+This method accepts two arguments: the object on which the property resides and the name of the property whose descriptor should be retrieved.
+
+The return value is an object with properties for configurable, enumerable, get, and set for accessor properties or configurable, enumerable, writable, and value for data properties.
+
+For example:
+
+Copy
+let book = {};
+Object.defineProperties(book, {
+  year_: {
+    value: 2017
+  },
+
+  edition: {
+    value: 1
+  },
+
+  year: {
+    get: function() {
+      return this.year_;
+    },
+
+    set: function(newValue){
+      if (newValue > 2017) {
+        this.year_ = newValue;
+        this.edition += newValue - 2017;
+      }
+    }
+  }
+});
+
+let descriptor = Object.getOwnPropertyDescriptor(book, "year_");
+console.log(descriptor.value);         // 2017
+console.log(descriptor.configurable);  // false
+console.log(typeof descriptor.get);    // "undefined"
+let descriptor = Object.getOwnPropertyDescriptor(book, "year");
+console.log(descriptor.value);         // undefined
+console.log(descriptor.enumerable);    // false
+console.log(typeof descriptor.get);    // "function"
+For the data property year_, value is equal to the original value, configurable is false, and get is undefined.
+
+For the accessor property year, value is undefined, enumerable is false, and get is a pointer to the specified getter function.
+
+ECMAScript Object.getOwnPropertyDescriptors() static method performs on Object.getOwnPropertyDescriptor() on all own properties and returns them in a new object.
+
+For the previous example, using this static method would return the following object:
+
+Copy
+let book = {};
+Object.defineProperties(book, {
+  year_: {
+    value: 2017
+  },
+
+  edition: {
+    value: 1
+  },
+
+  year: {
+    get: function() {
+      return this.year_;
+    },
+
+    set: function(newValue){
+      if (newValue > 2017) {
+        this.year_ = newValue;
+        this.edition += newValue - 2017;
+      }
+    }
+  }
+ });
+
+console.log(Object.getOwnPropertyDescriptors(book));
+Output:
+
