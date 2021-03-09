@@ -1,0 +1,87 @@
+ECMAScript supports regular expressions through the RegExp type.
+
+Regular expressions are easy to create using syntax similar to Perl, as shown here:
+
+Copy
+let expression = /pattern/flags;
+The pattern part of the expression can be any simple or regular expression, including character classes, quantifiers, grouping, look ahead, and back references.
+
+Each expression can have zero or more flags indicating how the expression should behave.
+
+Three supported flags represent matching modes, as follows:
+
+Flag
+Description
+g
+Indicates global mode, meaning the pattern will be applied to all of the string instead of stopping after the first match is found.
+i
+Indicates case-insensitive mode, meaning the case of the pattern and the string are ignored when determining matches.
+m
+Indicates multiline mode, meaning the pattern will continue looking for matches after reaching the end of one line of text.
+y
+Indicates sticky mode, meaning the pattern will only look at the string contents beginning at lastIndex.
+u
+Indicates Unicode mode is enabled.
+A regular expression is created using a combination of a pattern and these flags to produce different results.
+
+Match all instances of "at" in a string.
+
+Copy
+let pattern1 = /at/g;
+Match the first instance of "bat" or "cat", regardless of case.
+
+Copy
+let pattern2 = /[bc]at/i;
+Match all three-character combinations ending with "at", regardless of case.
+
+Copy
+let pattern3 = /.at/gi;
+All metacharacters must be escaped when used as part of the pattern.
+
+The metacharacters are as follows:
+
+Copy
+( [ { \ ^ $ | ) ] } ? * + .
+Each metacharacter has one or more uses in regular-expression syntax and so must be escaped by a backslash when you want to match the character in a string.
+
+Match the first instance of "bat" or "cat", regardless of case.
+
+Copy
+let pattern1 = /[bc]at/i;
+Match the first instance of "[bc]at", regardless of case.
+
+Copy
+let pattern2 = /\[bc\]at/i;
+Match all three-character combinations ending with "at", regardless of case.
+
+Copy
+let pattern3 = /.at/gi;
+Match all instances of ".at", regardless of case.
+
+Copy
+let pattern4 = /\.at/gi;
+pattern1 matches all instances of "bat" or "cat", regardless of case.
+
+To match "[bc]at" directly, both square brackets need to be escaped with a backslash, as in pattern2.
+
+In pattern3, the dot indicates that any character can precede "at" to be a match.
+
+If you want to match ".at", then the dot needs to be escaped, as in pattern4.
+
+Regular expressions can also be created by using the RegExp constructor, which accepts two arguments: a string pattern to match and an optional string of flags to apply.
+
+Any regular expression that can be defined using literal syntax can also be defined using the constructor.
+
+Match the first instance of "bat" or "cat", regardless of case.
+
+Copy
+let pattern1 = /[bc]at/i;
+Same as pattern1, just using the constructor.
+
+Copy
+let pattern2 = new RegExp("[bc]at", "i");
+Here, pattern1 and pattern2 define equivalent regular expressions.
+
+Both arguments of the RegExp constructor are strings.
+
+Because the pattern argument of the RegExp constructor is a string, there are some instances in which you need to double-escape characters.
