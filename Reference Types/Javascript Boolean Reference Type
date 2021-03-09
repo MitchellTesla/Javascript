@@ -1,0 +1,45 @@
+The Boolean type is the reference type to the Boolean values.
+
+To create a Boolean object, use the Boolean constructor and pass in either true or false, as in the following example:
+
+Copy
+let booleanObject = new Boolean(true);
+Instances of Boolean override the valueOf() method to return a primitive value of either true or false.
+
+The toString() method is also overridden to return a string of "true" or "false" when called.
+
+Do not use it
+We should not use Boolean objects in ECMAScript, since they can be rather confusing.
+
+The problem occurs when trying to use Boolean objects in Boolean expressions, as in this example:
+
+Copy
+let falseObject = new Boolean(false);
+let result = falseObject && true;
+console.log(result);  // true
+
+let falseValue = false;
+result = falseValue && true;
+console.log(result);  // false
+In this code, a Boolean object is created with a value of false.
+
+That same object is then ANDed with the primitive value true.
+
+In Boolean math, false AND true equals false.
+
+However, in this line of code, it is the object named falseObject being evaluated, not its value (false).
+
+All objects are automatically converted to true in Boolean expressions, so falseObject actually is given a value of true in the expression.
+
+Then, true ANDed with true is equal to true.
+
+The typeof operator returns "boolean" for the primitive but "object" for the reference.
+
+A Boolean object is an instance of the Boolean type and will return true when used with the instanceof operator, whereas a primitive value returns false, as shown here:
+
+Copy
+console.log(typeof falseObject);        // object
+console.log(typeof falseValue);         // boolean
+console.log(falseObject instanceof Boolean);  // true
+console.log(falseValue instanceof Boolean);   // false
+We need to understand the difference between a primitive Boolean value and a Boolean object-prefer to never use the latter.
