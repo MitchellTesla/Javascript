@@ -1,0 +1,21 @@
+The Date type overrides toLocaleString(), toString(), and valueOf().
+
+The Date type's toLocaleString() method returns the date and time in a format appropriate for the locale in which the browser is being run.
+
+This often means that the format includes AM or PM for the time and doesn't include any time-zone information.
+
+The toString() method typically returns the date and time with time-zone information, and the time is typically indicated in 24-hour notation (hours ranging from 0 to 23).
+
+The valueOf() method for the Date type returns the milliseconds representation of the date so that operators (such as less-than and greater than) will work appropriately for date values.
+
+Consider this example:
+
+Copy
+let date1 = new Date(2019, 0, 1);    // "January 1, 2019"
+let date2 = new Date(2019, 1, 1);    // "February 1, 2019"
+
+console.log(date1 < date2);  // true
+console.log(date1 > date2);  // false
+The date January 1, 2019, comes before February 1, 2019, so it would make sense to say that the former is less than the latter.
+
+Because the milliseconds representation of January 1, 2019, is less than that of February 1, 2019, the less-than operator returns true when the dates are compared, providing an easy way to determine the order of dates.
