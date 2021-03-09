@@ -1,0 +1,48 @@
+JavaScript types can be divided into two categories:
+
+primitive types and
+object types.
+Primitive types
+JavaScript's primitive types include numbers, strings, and booleans.
+
+The special JavaScript values null and undefined are primitive values, but they are not numbers, strings, or booleans.
+
+ES6 adds a new special-purpose type, known as Symbol, that enables the definition of language extensions without harming backward compatibility.
+
+Object
+Any JavaScript value that is not a number, a string, a boolean, a symbol, null, or unde fined is an object.
+
+An object is a collection of properties where each property has a name and a value.
+
+An ordinary JavaScript object is an unordered collection of named values.
+
+Array
+The language also defines a special kind of object, known as an array, that represents an ordered collection of numbered values.
+
+The JavaScript language includes special syntax for working with arrays, and arrays have some special behavior that distinguishes them from ordinary objects.
+
+Other
+JavaScript defines a number of other useful object types.
+
+A Set object represents a set of values.
+
+A Map object represents a mapping from keys to values.
+
+Various "typed array" types facilitate operations on arrays of bytes and other binary data.
+
+The RegExp type represents String patterns and enables matching, searching, and replacing operations on strings.
+
+The Date type represents dates and times.
+
+Error and its subtypes represent errors that can arise when executing JavaScript code.
+
+JavaScript functions and classes are not just part of the language syntax, they are values that can be manipulated by JavaScript programs.
+
+Note
+JavaScript's object types are mutable and its primitive types are immutable.
+
+JavaScript liberally converts values from one type to another.
+
+If a program expects a string, for example, and you give it a number, it will automatically convert the num ber to a string for you.
+
+And if you use a non-boolean value where a boolean is expected, JavaScript will convert accordingly.
