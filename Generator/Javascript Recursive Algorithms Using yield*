@@ -1,0 +1,24 @@
+yield* is useful when used in a recursive operation, where the generator can yield itself.
+
+Consider the following example:
+
+Copy
+function* nTimes(n) {
+  if (n > 0) {
+    yield* nTimes(n - 1);
+    yield n - 1;
+  }
+}
+
+for (const x of nTimes(3)) {
+  console.log(x);
+}
+Output:
+
+
+In this example, each generator is first yielding each value from a newly created generator object, and then yielding a single integer.
+
+The generator function will recursively decrement the counter value and instantiate another generator object, which at the top level will have the effect of creating a single iterable that returns incremental integers.
+
+Using recursive generator structure and yield* allows for elegantly expressing recursive algorithms.
+
