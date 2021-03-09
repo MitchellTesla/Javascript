@@ -1,0 +1,22 @@
+To determine whether a given object is an array, use ECMAScript Array.isArray() method.
+
+This method determines if a given value is an array regardless of the global execution context in which it was created.
+
+Consider the following example:
+
+Copy
+const value = "a";
+if (Array.isArray(value)){
+  console.log("value is an array");
+}else{
+  console.log("value is NOT an array");
+}
+
+const a = [];
+if (Array.isArray(a)){
+  console.log("a is an array");
+}else{
+  console.log("a is NOT an array");
+}
+Output:
+
