@@ -1,0 +1,95 @@
+The RegExp constructor function has several properties.
+
+These would be considered static properties in other languages.
+
+These properties apply to all regular expressions that are in scope, and they change based on the last regular-expression operation that was performed.
+
+They can be accessed in two different ways:a verbose property name and a shorthand name.
+
+The RegExp constructor properties are listed in the following table.
+
+Verbose Name
+Short Name
+Description
+input
+$_
+The last string matched against.
+lastMatch
+$&
+The last matched text.
+lastParen
+$+
+The last matched capturing group.
+leftContext
+$`
+The text that appears in the input string prior to lastMatch.
+rightContext
+$'
+The text that appears in the input string after lastMatch.
+These properties can be used to extract specific information about the operation performed by exec() or test().
+
+Consider this example:
+
+Copy
+let text = "this is a test from demo2s.com";
+let pattern = /(.)test/g;
+
+if (pattern.test(text)) {
+  console.log(RegExp.input);
+  console.log(RegExp.leftContext);
+  console.log(RegExp.rightContext);
+  console.log(RegExp.lastMatch);
+  console.log(RegExp.lastParen);
+}
+Output:
+
+
+This code creates a pattern that searches for any character followed by "test" and puts a capturing group around the first letter.
+
+The various properties are used as follows:
+
+The input property contains the original string.
+The leftContext property contains the characters of the string before the word "test".
+The lastMatch property contains the last string that matches the entire regular expression, which is "test".
+The lastParen property contains the last matched capturing group.
+These verbose property names can be replaced with the short property names, although you must use bracket notation to access them, as shown in the following example, because most are illegal identifiers in ECMAScript:
+
+Copy
+let text = "this is a test from demo2s.com";
+let pattern = /(.)test/g;
+
+if (pattern.test(text)) {
+   console.log(RegExp.$_);
+   console.log(RegExp["$`"]);
+   console.log(RegExp["$'"]);
+   console.log(RegExp["$&"]);
+   console.log(RegExp["$+"]);
+   console.log(RegExp["$*"]);
+}
+Output:
+
+
+The constructor properties can store up to nine capturing-group matches.
+
+These properties are accessed via RegExp.$1, which contains the first capturing-group match through RegExp.$9, which contains the ninth capturing-group match.
+
+These properties are filled in when calling either exec() or test(), allowing you to do things like this:
+
+Copy
+let text = "corde short forgot";
+let pattern = /(..)or(.)/g;
+
+if (pattern.test(text)) {
+ console.log(RegExp.$1);
+ console.log(RegExp.$2);
+}
+Output:
+
+
+In this example, a pattern with two matching groups is created and tested against a string.
+
+Even though test() simply returns a Boolean value, the properties $1 and $2 are filled in on the RegExp constructor.
+
+All these RegExp constructor properties are not part of any web standard.
+
+We should not use them in any production application.
