@@ -1,0 +1,27 @@
+ECMAScript Well Known Symbol Symbol.species is used as a property for "A function valued property that is the constructor function that is used to create derived objects".
+
+This is most commonly used for build-in types which expose methods that instantiate derived objects for the return value of an instance method.
+
+Defining a static getter method with Symbol.species allows you to override the prototype definition for the newly created instance:
+
+Copy
+class Bar extends Array {}
+class Test extends Array {
+  static get [Symbol.species]() {
+    return Array;
+  }
+}
+
+let bar = new Bar();
+console.log(bar instanceof Array);  // true
+console.log(bar instanceof Bar);    // true
+bar = bar.concat('bar');
+console.log(bar instanceof Array);  // true
+console.log(bar instanceof Bar);    // true
+
+let baz = new Test();
+console.log(baz instanceof Array);  // true
+console.log(baz instanceof Test);    // true
+baz = baz.concat('baz');
+console.log(baz instanceof Array);  // true
+console.log(baz instanceof Test);    // false
