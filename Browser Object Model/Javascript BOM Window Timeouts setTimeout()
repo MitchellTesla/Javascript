@@ -1,0 +1,41 @@
+JavaScript execution in a browser is single-threaded.
+
+It does allow for the scheduling of code to run at specific points in time through the use of timeouts and intervals.
+
+Timeouts execute some code after a specified amount of time, whereas intervals execute code repeatedly, waiting a specific amount of time in between each execution.
+
+You set a timeout using the window's setTimeout() method, which accepts two arguments: the code to execute and the time in milliseconds to wait before scheduling the callback function to be executed.
+
+The first argument can be either a string containing JavaScript code or a function.
+
+For example: schedules an alert to show after 1 second
+
+Copy
+setTimeout(() => console.log("Hello world!"), 1000);
+The second argument, the number of milliseconds to wait, is not necessarily when the specified code will execute.
+
+JavaScript is single-threaded and, as such, can execute only one piece of code at a time.
+
+The second argument of setTimeout() tells the JavaScript engine to add this task onto the queue after a set number of milliseconds.
+
+If the queue is empty, then that code is executed immediately; if the queue is not empty, the code must wait its turn.
+
+Time out ID
+When setTimeout() is called, it returns a numeric ID for the timeout.
+
+The timeout ID is a unique identifier for the scheduled code that can be used to cancel the timeout.
+
+To cancel a pending timeout, use the clearTimeout() method and pass in the timeout ID, as in the following example:
+
+Copy
+// set the timeout
+let timeoutId = setTimeout(() => console.log("Hello world!"), 1000);
+// cancel it
+clearTimeout(timeoutId);
+As long as clearTimeout() is called before the specified amount of time has passed, a timeout can be canceled completely.
+
+Calling clearTimeout() after the code has been executed has no effect.
+
+All code executed by a timeout using a conventional anonymous function runs in the global scope, so the value of this inside the function will always point to window when running in non strict mode and undefined when running in strict mode.
+
+When setTimeout is instead provided an arrow function, this preserves the lexical scope in which it was defined.
