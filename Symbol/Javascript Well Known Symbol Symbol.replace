@@ -1,0 +1,39 @@
+ECMAScript Well Known Symbol Symbol.replace is used as a property for "A regular expression method that replaces matched substrings of a string. Called by the String.prototype.replace() method".
+
+The String.prototype.replace() method will use the function identified by Symbol.replace to evaluate the expression.
+
+The regular expression prototype has this function defined by default, and therefore all regular expression instances are valid parameters to the String method by default:
+
+Copy
+console.log(RegExp.prototype[Symbol.replace]);
+// f[Symbol.replace]() { [native code] }
+
+console.log('foobarbaz'.replace(/bar/, 'qux'));
+// 'fooquxbaz'
+Providing something other than a regular expression to this method will cause it to be converted to a RegExp object.
+
+This function has two parameters, the string instance upon which replace() is invoked and the replacement string.
+
+The return value is unrestricted:
+
+Copy
+class FooReplacer {
+    static[Symbol.replace](target, replacement) {
+        return target.split('foo').join(replacement);
+    }
+}
+console.log('barfoobaz'.replace(FooReplacer, 'qux'));
+// "barquxbaz"
+
+class StringReplacer {
+    constructor(str) {
+        this.str = str;
+    }
+
+    [Symbol.replace](target, replacement) {
+        return target.split(this.str).join(replacement);
+    }
+}
+
+console.log('barfoobaz'.replace(new StringReplacer('foo'), 'qux'));
+// "barquxbaz"
