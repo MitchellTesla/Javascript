@@ -1,0 +1,83 @@
+Anywhere you can normally use a string or number property, you can also use a symbol.
+
+This includes object literal properties and Object.defineProperty()/Object.defineProperties().
+
+An object literal can only use a symbol as a property inside the computed property syntax.
+
+Copy
+let s1 = Symbol('test'),
+    s2 = Symbol('demo'),
+    s3 = Symbol('baz'),
+    s4 = Symbol('qux');
+
+let o = {
+  [s1]: 'test val'
+};
+// Also valid:   o[s1] = 'test val';
+
+console.log(o);
+// {Symbol{test}: test val}
+
+Object.defineProperty(o, s2, {value: 'demo val'});
+
+console.log(o);
+// {Symbol{test}: test val, Symbol(demo): demo val}
+
+Object.defineProperties(o, {
+  [s3]: {value: 'baz val'},
+  [s4]: {value: 'qux val'}
+});
+
+console.log(o);
+// {Symbol{test}: test val, Symbol(demo): demo val,
+//  Symbol{baz}: baz val, Symbol(qux): qux val}
+Object.getOwnPropertyNames() returns an array of regular properties on an object instance.
+
+Object.getOwnPropertySymbols() returns an array of symbol properties on an object instance.
+
+The return values of these two methods are mutually exclusive.
+
+Object.getOwnPropertyDescriptors() will return an object containing both regular and symbol property descriptors.
+
+Reflect.ownKeys() will return both types of keys:
+
+Copy
+let s1 = Symbol('test'),
+    s2 = Symbol('demo');
+
+let o = {
+    [s1]: 'test val',
+    [s2]: 'demo val',
+    baz: 'baz val',
+    qux: 'qux val'
+};
+
+console.log(Object.getOwnPropertySymbols(o));
+// [Symbol(test), Symbol(demo)]
+
+console.log(Object.getOwnPropertyNames(o));
+// ["baz", "qux"]
+
+console.log(Object.getOwnPropertyDescriptors(o));
+// {baz: {...}, qux: {...}, Symbol(test): {...}, Symbol(demo): {...}}
+
+console.log(Reflect.ownKeys(o));
+// ["baz", "qux", Symbol(test), Symbol(demo)]
+Symbols can be directly created and used as properties.
+
+We can traverse all the object's symbol properties to get the property key:
+
+Copy
+let o = {
+   [Symbol('test')]: 'test val',
+   [Symbol('demo')]: 'demo val'
+};
+
+console.log(o);
+// {Symbol(test): "test val", Symbol(demo): "demo val"}
+
+let demoSymbol = Object.getOwnPropertySymbols(o)
+              .find((symbol) => symbol.toString().match(/demo/));
+
+console.log(demoSymbol);
+// Symbol(demo)
