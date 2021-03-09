@@ -1,0 +1,65 @@
+The add operator (+) is used just as one would expect, as shown in the following example:
+
+Copy
+let result = 1 + 2;
+If the two operands are numbers, they perform an arithmetic add and return the result according to the following rules:
+
+If either operand is NaN, the result is NaN.
+If Infinity is added to Infinity, the result is Infinity.
+If -Infinity is added to -Infinity, the result is -Infinity.
+If Infinity is added to -Infinity, the result is NaN.
+If +0 is added to +0, the result is +0.
+If -0 is added to +0, the result is +0.
+If -0 is added to -0, the result is -0.
+If, however, one of the operands is a string, then the following rules apply:
+If both operands are strings, the second string is concatenated to the first.
+If only one operand is a string, the other operand is converted to a string and the result is the concatenation of the two strings.
+If either operand is an object, number, or Boolean, its toString() method is called to get a string value and then the previous rules regarding strings are applied. For undefined and null, the String() function is called to retrieve the values "undefined" and "null", respectively.
+Here are some examples:
+
+Copy
+1 + 2         // => 3: addition
+"1" + "2"     // => "12": concatenation
+"1" + 2       // => "12": concatenation after number-to-string
+1 + {}        // => "1[object Object]": concatenation after object-to-string
+true + true   // => 2: addition after boolean-to-number
+2 + null      // => 2: addition after null converts to 0
+2 + undefined // => NaN: addition after undefined converts to NaN
+Consider the following:
+
+Copy
+let result1 = 5 + 5;    // two numbers
+console.log(result1);         // 10
+let result2 = 5 + "5";  // a number and a string
+console.log(result2);         // "55"
+Normally, 5 + 5 equals 10 (a number value), as illustrated by the first two lines of code.
+
+However, if one of the operands is changed to a string, "5", the result becomes "55" because the first operand gets converted to "5" as well.
+
+Consider the following:
+
+Copy
+let num1 = 5;
+let num2 = 10;
+let message = "The sum of 5 and 10 is " + num1 + num2;
+console.log(message);  // "The sum of 5 and 10 is 510"
+In this example, the message variable is filled with a string that is the result of two addition operations.
+
+One might expect the final string to be "The sum of 5 and 10 is 15"; however, it actually ends up as "The sum of 5 and 10 is 510".
+
+This happens because each addition is done separately.
+
+The first combines a string with a number (5), which results in a string.
+
+The second takes that result (a string) and adds a number (10), which also results in a string.
+
+To perform the arithmetic calculation and then append that to the string, just add some parentheses like this:
+
+Copy
+let num1 = 5;
+let num2 = 10;
+let message = "The sum of 5 and 10 is " + (num1 + num2);
+console.log(message);  // "The sum of 5 and 10 is 15"
+Here, the two number variables are surrounded by parentheses, which instruct the interpreter to calculate its result before adding it to the string.
+
+The resulting string is "The sum of 5 and 10 is 15".
