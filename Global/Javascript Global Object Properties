@@ -1,0 +1,48 @@
+The Global object has a number of properties, some of which have already been mentioned in this book.
+
+The special values of undefined, NaN, and Infinity are all properties of the Global object.
+
+Additionally, all native reference type constructors, such as Object and Function, are properties of the Global object.
+
+The following table lists all of the properties.
+
+Property
+Description
+undefined
+The special value undefined
+NaN
+The special value NaN
+Infinity
+The special value Infinity
+Object
+Constructor for Object
+Array
+Constructor for Array
+Function
+Constructor for Function
+Boolean
+Constructor for Boolean
+String
+Constructor for String
+Number
+Constructor for Number
+Date
+Constructor for Date
+RegExp
+Constructor for RegExp
+Symbol
+Pseudo-constructor for Symbol
+Error
+Constructor for Error
+EvalError
+Constructor for EvalError
+RangeError
+Constructor for RangeError
+ReferenceError
+Constructor for ReferenceError
+SyntaxError
+Constructor for SyntaxError
+TypeError
+Constructor for TypeError
+URIError
+Constructor for URIError
