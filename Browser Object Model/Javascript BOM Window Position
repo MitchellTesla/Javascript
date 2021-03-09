@@ -1,0 +1,29 @@
+The position of a window object can be retrieved and changed using various properties and methods.
+
+Modern browsers all provide screenLeft and screenTop properties that indicate the window's location in relation to the left and top of the screen, respectively, in CSS pixels.
+
+We can move the window to a new position using the moveTo() and moveBy() methods.
+
+Each method accepts two arguments.
+
+moveTo() expects the x and y coordinates to move to an absolute coordinate, and moveBy() expects the number of pixels to move relative to the current coordinate.
+
+These methods are demonstrated here:
+
+move the window to the upper-left coordinate
+
+Copy
+window.moveTo(0,0);
+move the window down by 100 pixels
+
+Copy
+window.moveBy(0, 100);
+move the window to position (200, 300).
+
+Copy
+window.moveTo(200, 300);
+move the window left by 50 pixels.
+
+Copy
+window.moveBy(-50, 0);
+Depending on the browser, these methods may be conditionally or completely disabled.
