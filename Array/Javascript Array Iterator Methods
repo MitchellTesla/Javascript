@@ -1,0 +1,26 @@
+In ES6, three new methods are added on the Array prototype that allow you to inspect the contents of an array: keys(), values(), and entries().
+
+keys() will return an iterator of the array's indices, values() will return an iterator of the array's elements, and entries() will return an iterator of index/value pairs:
+
+Copy
+const a = ["foo", "bar", "baz", "qux"];
+
+// Because these methods return iterators, 
+// you can funnel their contents
+// into array instances using Array.from()
+const aKeys = Array.from(a.keys());
+const aValues = Array.from(a.values());
+const aEntries = Array.from(a.entries());
+
+console.log(aKeys);     // [0, 1, 2, 3]
+console.log(aValues);   // ["foo", "bar", "baz", "qux"]
+console.log(aEntries);  // [[0, "foo"], [1, "bar"], [2, "baz"], [3, "qux"]]
+ES6 destructuring means it is now very easy to split out the key/value pairs inside a loop:
+
+Copy
+const a = ["foo", "bar", "baz", "qux"];
+for (const [idx, element] of a.entries()) [
+  console.log(idx);
+  console.log(element);
+}
+Output:
