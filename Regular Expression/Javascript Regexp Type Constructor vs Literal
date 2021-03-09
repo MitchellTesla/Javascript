@@ -1,0 +1,41 @@
+Creating a regular expression using a literal is not exactly the same as creating a regular expression using the RegExp constructor.
+
+Regular-expression literals always share the same RegExp instance, while creating a new RegExp via constructor always results in a new instance.
+
+Consider the following:
+
+Copy
+let re = null;
+for (let i = 0; i < 10; i++) {
+  re = /cat/g;
+  re.test("cat dog cat");
+}
+for (let i = 0; i < 10; i++) {
+  re = new RegExp("cat", "g");
+  re.test("cat dog cat");
+}
+In the first loop, there is only one instance of RegExp created for /cat/, even though it is specified in the body of the loop.
+
+Instance properties are not reset, so calling test() fails every other time through the loop.
+
+This happens because the "cat" is found in the first call to test(), but the second call begins its search from index 3, which is the end of the last match, and can't find it.
+
+Because the end of the string is found, the subsequent call to test() starts at the beginning again.
+
+The second loop uses the RegExp constructor to create the regular expression each time through the loop.
+
+Each call to test() returns true because a new instance of RegExp is created for each iteration.
+
+ECMAScript regular-expression literals create new instances of RegExp as if the RegExp constructor were called directly.
+
+We can copy existing regular expression instances and optionally modify their flags using the constructor:
+
+Copy
+const re1 = /cat/g;
+console.log(re1);  // "/cat/g"
+
+const re2 = new RegExp(re1);
+console.log(re2);  // "/cat/g"
+
+const re3 = new RegExp(re1, "i");
+console.log(re3);  // "/cat/i"
