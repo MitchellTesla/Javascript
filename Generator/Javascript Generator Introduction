@@ -1,0 +1,51 @@
+ECMAScript 6 Generators can pause and resume code execution inside a single function block.
+
+We can use it to define custom iterators and implement coroutines.
+
+Copy
+Generator Basics
+Generators take the form of a function with an asterisk.
+
+Anywhere a function definition is valid, a generator function definition is also valid.
+
+Generator function declaration:
+
+Copy
+function* generatorFn() {}
+Generator function expression
+
+Copy
+let generatorFn = function* () {}
+Object literal method generator function
+
+Copy
+let foo = {
+  * generatorFn() {}
+}
+Class instance method generator function
+
+Copy
+class Foo {
+  * generatorFn() {}
+}
+Class static method generator function
+
+Copy
+class Bar {
+  static * generatorFn() {}
+}
+Note: Arrow functions cannot be used as generator functions.
+
+The function will be considered a generator irrespective of the whitespace surrounding the asterisk:
+
+Copy
+// Equivalent generator functions:
+function* generatorFnA() {}
+function *generatorFnB() {}
+function * generatorFnC() {}
+
+// Equivalent generator methods:
+class Foo {
+  *generatorFnD() {}
+  * generatorFnE() {}
+}
