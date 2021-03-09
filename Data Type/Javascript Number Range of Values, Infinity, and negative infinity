@@ -1,0 +1,18 @@
+The smallest number that can be represented in ECMAScript is stored in Number.MIN_VALUE and is 5e-324 on most browsers; the largest number is stored in Number.MAX_VALUE and is 1.7976931348623157e+308 on most browsers.
+
+If a calculation results in a number that cannot be represented by JavaScript's numeric range, the number automatically gets the special value of Infinity.
+
+Any negative number that can't be represented is -Infinity (negative infinity), and any positive number that can't be represented is Infinity (positive infinity).
+
+If a calculation returns either positive or negative Infinity, that value cannot be used in any further calculations.
+
+To determine if a value is finite, there is the isFinite() function.
+
+This function returns true only if the argument is between the minimum and the maximum values, as in this example:
+
+Copy
+let result = Number.MAX_VALUE + Number.MAX_VALUE;
+console.log(isFinite(result));  // false
+You can get the values of positive and negative Infinity by accessing *Number.NEGATIVE _INFINITY* and *Number.POSITIVE _INFINITY*.
+
+These properties contain the values -Infinity and Infinity, respectively.
