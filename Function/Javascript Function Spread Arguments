@@ -1,0 +1,68 @@
+ECMAScript 6 spread operator allows for a very elegant way of managing and grouping collections.
+
+The spread operator is useful both when invoking a function, as well as when defining a function's parameters.
+
+Spread Arguments
+Instead of passing an array as a single function argument, we can break apart an array of values and individually pass each value as a separate argument.
+
+Suppose you have the following function defined, which sums all the values passed as arguments:
+
+Copy
+let values = [1, 2, 3, 4];
+
+function getSum() {
+  let sum = 0;
+  for (let i = 0; i < arguments.length; ++i) {
+    sum += arguments[i];
+  }
+  return sum;
+}
+This function expects each of its arguments to be an individual number that will be iterated through to find the sum.
+
+In ECMAScript 6, we can perform this action using the spread operator.
+
+Applying the spread operator to an iterable object and passing that as a single argument to a function will break apart that iterable object of size N and pass it to the function as N separate arguments.
+
+With the spread operator, you can unpack the outer array into individual arguments directly inside the function invocation:
+
+Copy
+console.log(getSum(...values));  // 10
+Because the size of the array is known, there are no restrictions on other parameters appearing before or after the spread operator, including other spread operators:
+
+Copy
+console.log(getSum(-1, ...values));         // 9
+console.log(getSum(...values, 5));          // 15
+console.log(getSum(-1, ...values, 5));      // 14
+console.log(getSum(...values, ...[5,6,7])); // 28
+The presence of the spread operator is unknown to the arguments object; it will treat the value being broken apart as separate pieces because that is how they are passed to the function:
+
+Copy
+let values = [1,2,3,4]
+function countArguments() {
+  console.log(arguments.length);
+}
+
+countArguments(-1, ...values);         // 5
+countArguments(...values, 5);          // 5
+countArguments(-1, ...values, 5);      // 6
+countArguments(...values, ...[5,6,7]); // 7
+The arguments object is only one way to consume spread arguments.
+
+Spread arguments can be used as named parameters in both standard functions and arrow functions, as well as along side default arguments:
+
+Copy
+function getProduct(a, b, c = 1) {
+  return a * b * c;
+}
+
+let getSum = (a, b, c = 0) => {
+  return a + b + c;
+}
+
+console.log(getProduct(...[1,2]));      // 2
+console.log(getProduct(...[1,2,3]));    // 6
+console.log(getProduct(...[1,2,3,4]));  // 6
+
+console.log(getSum(...[0,1]));          // 1
+console.log(getSum(...[0,1,2]));        // 3
+console.log(getSum(...[0,1,2,3]));      // 3
