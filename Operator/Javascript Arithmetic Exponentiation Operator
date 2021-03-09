@@ -1,0 +1,18 @@
+New in ECMAScript 7, Math.pow() now gets its own ** operator, which behaves identically.
+
+Copy
+console.log(Math.pow(3, 2);     // 9
+console.log(3 ** 2);            // 9
+
+console.log(Math.pow(16, 0.5);  // 4
+console.log(16** 0.5);          // 4
+The operator also gets its own exponentiate assignment operator, **=, which performs the exponentiation and subsequent assignment of the result:
+
+Copy
+let squared = 3;
+squared **= 2;
+console.log(squared);  // 9
+
+let sqrt = 16;
+sqrt **= 0.5;
+console.log(sqrt);     // 4
