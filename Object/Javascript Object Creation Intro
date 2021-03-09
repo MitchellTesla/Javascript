@@ -1,0 +1,18 @@
+Using the Object constructor or an object literal are convenient ways to create single objects.
+
+Creating multiple objects with the same interface requires a lot of code duplication.
+
+Overview
+Through the ECMAScript 5.1 specification, there was no formal support for object-oriented constructs such as classes or inheritance.
+
+We can use prototypal inheritance to create classes and implements inheritance.
+
+With the ECMAScript 6 specification, formal support for classes and inheritance was introduced.
+
+These ES6 classes can replace the prototype-based class solutions designed in previous specifications.
+
+ES6 classes is merely a syntactical abstraction for ES5.1-style constructor functions and prototypal inheritance.
+
+A JavaScript code built upon object-oriented patterns should almost always use ECMAScript 6 classes.
+
+We should know the conventions that existed prior to ES6 classes, especially since the ES6 class definition can be imagined as a thin wrapper around existing constructs.
