@@ -1,0 +1,28 @@
+The apply() and call() can augment the this value inside of the function.
+
+Consider the following example:
+
+Copy
+window.color = 'red';
+let o = {
+  color: 'blue'
+};
+
+function sayColor() {
+  console.log(this.color);
+}
+
+sayColor();             // red
+
+sayColor.call(this);    // red
+sayColor.call(window);  // red
+sayColor.call(o);       // blue
+sayColor() is defined as a global function, and when it's called in the global scope, it displays "red" because this.color evaluates to window.color.
+
+You can then call the function explicitly in the global scope by using sayColor.call(this) and sayColor.call(window), which both display "red".
+
+Running sayColor.call(o) switches the context of the function such that this points to o, resulting in a display of "blue".
+
+The advantage of using call() or apply() to augment the scope is that the object doesn't need to know anything about the method.
+
+In the first version of this example, the sayColor() function was placed directly on the object o before it was called; in the updated example, that step is no longer necessary.
