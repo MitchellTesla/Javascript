@@ -1,0 +1,33 @@
+Even though there are only two primary types of execution contexts, global and function, there are other ways to augment the scope chain.
+
+Certain statements cause a temporary addition to the front of the scope chain that is later removed after code execution.
+
+There are two times when this occurs, specifically when execution enters either of the following:
+
+The catch block in a try-catch statement
+A with statement
+Both of these statements add a variable object to the front of the scope chain.
+
+For the with statement, the specified object is added to the scope chain; for the catch statement, a new variable object is created and contains a declaration for the thrown error object.
+
+Consider the following:
+
+Copy
+function buildUrl() {
+  let qs = "?debug=true";
+
+  with(location){
+    let url = href + qs;
+  }
+
+  return url;
+}
+In this example, the with statement is acting on the location object, so location itself is added to the front of the scope chain.
+
+There is one variable, qs, defined in the buildUrl() function.
+
+When the variable href is referenced, it's actually referring to location.href, which is in its own variable object.
+
+When the variable qs is referenced, it's referring to the variable defined in buildUrl(), which is in the function context's variable object.
+
+Inside the with statement is a variable declaration for url, which becomes part of the function's context and can, therefore, be returned as the function value.
