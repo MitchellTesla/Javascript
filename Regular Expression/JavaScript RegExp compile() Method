@@ -1,0 +1,42 @@
+Do a global search for "man" in a string, and replace it with "test" :
+
+Copy
+let str="Man woman This is a test TEST tesT!";
+let patt=/man/g;
+let str2=str.replace(patt,"test");
+
+console.log(str2);
+
+patt=/(wo)?man/g;
+patt.compile(patt);
+str2=str.replace(patt,"test");
+document.write(str2);
+Output:
+
+
+Description
+The compile() method was deprecated in JavaScript version 1.5.
+
+The compile() method can compile a regular expression during execution of a script.
+
+The compile() method can also be used to change and recompile a regular expression.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+[abc]	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+RegExpObject.compile(regexp,modifier)
+Parameter Values
+Parameter
+Description
+regexp
+A regular expression
+modifier
+
+
+
+Specifies the type of matching.
+"g" for a global match,
+"i" for a case-insensitive match and
+"gi" for a global, case-insensitive match
