@@ -1,0 +1,78 @@
+An empty WeakMap is instantiated with the new keyword:
+
+Copy
+const wm = new WeakMap();
+Keys in a WeakMap can only be of type or inherit from Object-all other attempts to set a key with a non-object will throw a TypeError.
+
+There are no restrictions on the type of the value.
+
+To populate the WeakMap when it is initialized, the constructor optionally accepts an iterable object, expecting it to contain valid key/value pair arrays.
+
+Each pair in the iterable argument will be inserted into the newly created WeakMap in the order in which they are iterated:
+
+Copy
+const key1 = {id: 1},
+      key2 = {id: 2},
+      key3 = {id: 3};
+// Initialize WeakMap with nested arrays
+const wm1 = new WeakMap([
+  [key1, "val1"],
+  [key2, "val2"],
+  [key3, "val3"]
+]);
+console.log(wm.get(key1));  // val2
+console.log(wm.get(key2));  // val2
+console.log(wm.get(key3));  // val3
+
+// Initialization is all-or-nothing, one bad key will
+// throw an error and abort the initialization
+const wm2 = new WeakMap([
+  [key1, "val1"],
+  ["BADKEY", "val2"],
+  [key3, "val3"]
+]);
+// TypeError: Invalid value used as WeakMap key
+typeof wm2;
+// ReferenceError: wm2 is not defined
+
+// Primitives can still be used with an object wrapper
+const stringKey = new String("key1");
+const wm3 = new WeakMap([
+  stringKey, "val1"
+]);
+console.log(wm3.get(stringKey));  // "val1"
+Key/value pairs can be added after initialization with set(), queried with get() and has(), and removed with delete():
+
+Copy
+const wm = new WeakMap();
+
+const key1 = {id: 1},
+      key2 = {id: 2};
+
+console.log(wm.has(key1));  // false
+console.log(wm.get(key1));  // undefined
+wm.set(key1, "HTML")
+  .set(key2, "Frisbie");
+
+console.log(wm.has(key1));  // true
+console.log(wm.get(key1));  // HTML
+
+wm.delete(key1);  // deletes only this key/value pair
+
+console.log(wm.has(key1));  // false
+console.log(wm.has(key2));  // true
+The set() method returns the WeakMap instance, so it is possible to chain multiple set operations together, including on the initial declaration:
+
+Copy
+const key1 = {id: 1},
+      key2 = {id: 2},
+      key3 = {id: 3};
+
+const wm = new WeakMap().set(key1, "val1");
+
+wm.set(key2, "val2")
+  .set(key3, "val3");
+
+console.log(wm.get(key1));  // val1
+console.log(wm.get(key2));  // val2
+console.log(wm.get(key3));  // val3
