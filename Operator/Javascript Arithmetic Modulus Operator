@@ -1,0 +1,13 @@
+The modulus (remainder) operator is represented by a percent sign (%) and is used in the following way:
+
+Copy
+let result = 26 % 5;  // equal to 1
+The modulus operator behaves differently for special values, as follows:
+
+If the operands are numbers, regular arithmetic division is performed, and the remainder of that division is returned.
+If the dividend is an infinite number and the divisor is a finite number, the result is NaN.
+If the dividend is a finite number and the divisor is 0, the result is NaN.
+If Infinity is divided by Infinity, the result is NaN.
+If the dividend is a finite number and the divisor is an infinite number, then the result is the dividend.
+If the dividend is zero and the divisor is nonzero, the result is zero.
+If either operand isn't a number, it is converted to a number behind the scenes using Number() and then the other rules are applied.
