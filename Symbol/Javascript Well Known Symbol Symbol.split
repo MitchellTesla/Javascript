@@ -1,0 +1,38 @@
+ECMAScript Well Known Symbol Symbol.split is used as a property for "A regular expression method that splits a string at the indices that match the regular expression. Called by the String .prototype.split() method".
+
+The String.prototype.split() method will use the function identified by Symbol.split to evaluate the expression.
+
+The regular expression prototype has this function defined by default, and therefore all regular expression instances are valid parameters to the String method by default:
+
+Copy
+console.log(RegExp.prototype[Symbol.split]);
+// f [Symbol.split]() { [native code] }
+
+console.log('footestbaz'.split(/test/));
+// ['foo', 'baz']
+Providing something other than a regular expression to this method will cause it to be converted to a RegExp object.
+
+This function has a single parameter which is the string instance upon which split() is invoked. The return value is unrestricted:
+
+Copy
+class FooSplitter {
+  static [Symbol.split](target) {
+    return target.split('foo');
+  }
+}
+
+console.log('testfoobaz'.split(FooSplitter));
+// ["test", "baz"]
+
+class StringSplitter {
+  constructor(str) {
+    this.str = str;
+  }
+
+   [Symbol.split](target) {
+    return target.split(this.str);
+  }
+}
+
+console.log('testfoobaz'.split(new StringSplitter('foo')));
+// ["test", "baz"]
