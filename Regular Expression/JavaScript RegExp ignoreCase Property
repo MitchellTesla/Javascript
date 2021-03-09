@@ -1,0 +1,24 @@
+Check whether or not the "i" modifier is set:
+
+Copy
+let str = "Visit Demo2s.com!";
+let patt1 = /Demo/i;
+let res = patt1.ignoreCase;
+console.log(res);
+Output:
+
+
+Description
+The ignoreCase property specifies whether or not the "i" modifier is set.
+
+This property returns true if the "i" modifier is set, otherwise it returns false.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+ignoreCase	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+RegExpObject.ignoreCase
+Return Value
+Type	Description
+Boolean	Returns true if the "i" modifier is set, false otherwise
