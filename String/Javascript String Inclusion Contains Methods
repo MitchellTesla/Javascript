@@ -1,0 +1,46 @@
+ECMAScript 6 added three additional methods for determining if a string is included inside another string: startsWith(), endsWith(), and includes().
+
+All methods search a string for a given substring and return a boolean indicating whether it is not included.
+
+startsWith() checks for a match beginning at index 0.
+
+endsWith() checks for a match beginning at index of (string.length - substring.length).
+
+includes() checks the entire string.
+
+Copy
+let message = "foobarbaz";
+
+console.log(message.startsWith("foo"));  // true
+console.log(message.startsWith("bar"));  // false
+
+console.log(message.endsWith("baz"));    // true
+console.log(message.endsWith("bar"));    // false
+
+console.log(message.includes("bar"));    // true
+console.log(message.includes("qux"));    // false
+The startsWith() and includes() methods accept an optional second argument that indicates the position to start searching from within the string.
+
+The methods will start searching from that position and go toward the end of the string, ignoring everything before the start position.
+
+Here's an example:
+
+Copy
+let message = "foobarbaz";
+
+console.log(message.startsWith("foo"));     // true
+console.log(message.startsWith("foo", 1));  // false
+
+console.log(message.includes("bar"));       // true
+console.log(message.includes("bar", 4));    // false
+The endsWith() method accepts an optional second argument that indicates the position that should be treated as the end of the string.
+
+If this value is not provided, the length of the string is used by default.
+
+When a second argument is provided, the method will treat the string as if it only has that many characters:
+
+Copy
+let message = "foobarbaz";
+
+console.log(message.endsWith("bar"));     // false
+console.log(message.endsWith("bar", 6));  // true
