@@ -1,0 +1,46 @@
+Do a global search for the numbers that are NOT 1 to 4 in a string:
+
+Copy
+let str = "123456789";
+let patt1 = /[^1-4]/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Description
+The [^0-9] expression is used to find any character that is NOT a digit.
+
+The digits inside the brackets can be any numbers or span of numbers from 0 to 9.
+
+Use the [0-9] expression to find any character between the brackets that is a digit.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+[^0-9]	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("[^0-9]") or simply: /[^0-9]/
+Syntax with modifiers
+Copy
+new RegExp("[^0-9]", "g") or simply: /\[^0-9]/g
+More Examples
+Do a global search for numbers that are NOT "1" in a string:
+
+Copy
+let str = "12121212";
+let patt1 = /[^1]/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Example
+Do a global search for numbers that are NOT 5 to 8 in a string:
+
+Copy
+let str = "123456789";
+let patt1 = /[^5-8]/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
