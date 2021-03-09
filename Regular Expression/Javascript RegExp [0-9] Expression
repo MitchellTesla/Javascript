@@ -1,0 +1,36 @@
+Do a global search for the numbers 1, 2, 3 and 4 in a string:
+
+Copy
+let str = "123456789";
+let patt1 = /[1-4]/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Description
+The [0-9] expression can find any character between the brackets.
+
+The digits inside the brackets can be any numbers or span of numbers from 0 to 9.
+
+Use the [^0-9] expression to find any character that is NOT a digit.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+[0-9]	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("[0-9]") or simply: /[0-9]/
+Syntax with modifiers
+Copy
+new RegExp("[0-9]", "g") or simply: /\[0-9]/g
+More Examples
+Do a global search for the number "1" in a string:
+
+Copy
+let str = "13131312331313313";
+let patt1 = /[1]/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
