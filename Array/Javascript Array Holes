@@ -1,0 +1,59 @@
+Initializing an array with an array literal allows you to create "holes" using sequential commas.
+
+ECMAScript will treat the value at the index between the commas as a hole.
+
+An array of holes might be created as follows:
+
+Copy
+const options = [,,,,,];  // Creates an array with 5 items
+console.log(options.length);    // 5
+console.log(options);           // [,,,,,]
+Methods and iterators introduced in ES6 behave differently than methods present in earlier ECMAScript editions.
+
+ES6 additions will universally treat the holes as an existing entry with a value of undefined:
+
+Copy
+const options = [1,,,,5];
+
+for (const option of options) {
+  console.log(option === undefined);
+}
+Output:
+
+
+Holes created from from() method
+
+Copy
+const a = Array.from([,,,]);  // Array of 3 holes 
+                              // created with ES6's Array.from()
+for (const val of a) {
+  console.log(val === undefined);
+}
+Output:
+
+
+Holes from of() method
+
+Copy
+console.log(Array.of(...[,,,]));  // [undefined, undefined, undefined]
+const options = [1,,,,5];
+for (const [index, value] of options.entries()) {
+  console.log(value);
+}
+Output:
+
+
+Conversely, methods available before ES6 will tend to ignore the holes:
+
+Copy
+const options = [1,,,,5];
+
+// map() will skip the holes entirely
+console.log(options.map(() => 6));  // [6, undefined, undefined, undefined, 6]
+
+// join() treats holes as empty strings
+console.log(options.join('-'));     // "1----5"
+Output:
+
+
+We should avoid using array holes in your code and use an explicit undefined in place of a hole.
