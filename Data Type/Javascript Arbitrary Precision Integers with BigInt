@@ -1,0 +1,45 @@
+BigInt is a numeric type whose values are integers.
+
+The type was added to JavaScript mainly to allow the representation of 64-bit integers.
+
+BigInt values can have thousands or even millions of digits.
+
+Literal
+BigInt literals are written as a string of digits followed by a lowercase letter n.
+
+By default, the are in base 10, but you can use the 0b, 0o, and 0x prefixes for binary, octal, and hexadecimal BigInts:
+
+Copy
+1234n                // A not-so-big BigInt literal
+0b111111n            // A binary BigInt
+0o7777n              // An octal BigInt
+0x8000000000000000n  // => 2n**63n: A 64-bit integer
+You can use BigInt() as a function for converting regular JavaScript numbers or strings to BigInt values:
+
+Copy
+BigInt(Number.MAX_SAFE_INTEGER)     // => 9007199254740991n
+
+//from string
+let string = "1" + "0".repeat(100); // 1 followed by 100 zeros.
+BigInt(string)                      // => 10n**100n: one googol
+Arithmetic with BigInt values works like arithmetic with regular JavaScript numbers, except that division drops any remainder and rounds down (toward zero):
+
+Copy
+1000n + 2000n  // => 3000n
+3000n - 2000n  // => 1000n
+2000n * 3000n  // => 6000000n
+3000n / 997n   // => 3n: the quotient is 3
+3000n % 997n   // => 9n: and the remainder is 9
+(2n ** 131071n) - 1n  // A Mersenne prime with 39457 decimal digits
+Although the standard +, -, *, /, %, and ** operators work with BigInt, you may not mix operands of type BigInt with regular number operands.
+
+Comparison operators, by contrast, do work with mixed numeric types:
+
+Copy
+1 < 2n     // => true
+2 > 1n     // => true
+0 == 0n    // => true
+0 === 0n   // => false: the === checks for type equality as well
+The bitwise operators work with BigInt operands.
+
+None of the functions of the Math object accept BigInt operands, however.
