@@ -1,0 +1,26 @@
+The Promise.prototype.catch() method can attach a reject handler to a promise.
+
+It only takes a single argument, the onRejected handler function.
+
+The method is the same as Promise.prototype.then(null,onRejected).
+
+The following code demonstrates this equivalence:
+
+Copy
+let p = Promise.reject();
+let onRejected = function(e) {
+    setTimeout(console.log, 0, 'rejected');
+};
+
+// These two reject handlers behave identically:
+p.then(null, onRejected);  // rejected
+p.catch(onRejected);       // rejected
+The Promise.prototype.catch() method returns a new promise instance:
+
+Copy
+let p1 = new Promise(() => {});
+let p2 = p1.catch();
+setTimeout(console.log, 0, p1);         // Promise <pending>
+setTimeout(console.log, 0, p2);         // Promise <pending>
+setTimeout(console.log, 0, p1 === p2);  // false
+With respect to creation of the new promise instance, Promise.prototype.catch() behaves identically to the onRejected handler of Promise.prototype.then().
