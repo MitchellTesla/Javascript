@@ -1,0 +1,45 @@
+The first type of view that allows you to read and write an ArrayBuffer is the DataView.
+
+This view is designed for file I/O and network I/O; the API allows for a high degree of control when manipulating buffer data, but it offers reduced performance compared to different view types as a result.
+
+A DataView does not assume anything about the buffer contents and is not iterable.
+
+A DataView must be created to read from and write to an ArrayBuffer that already exists.
+
+It can use the whole buffer or only part of it, and it maintains a reference to the buffer instance and where in the buffer the view begins.
+
+Copy
+const buf = new ArrayBuffer(16);
+
+// DataView default to use the entire ArrayBuffer
+const fullDataView = new DataView(buf);
+console.log(fullDataView.byteOffset);      // 0
+console.log(fullDataView.byteLength);      // 16
+console.log(fullDataView.buffer === buf);  // true
+Constructor takes an optional byte offset and byte length.
+
+byteOffset=0 begins the view at the start of the buffer and byteLength=8 restricts the view to the first 8 bytes.
+
+Copy
+const firstHalfDataView = new DataView(buf, 0, 8);
+console.log(firstHalfDataView.byteOffset);      // 0
+console.log(firstHalfDataView.byteLength);      // 8
+console.log(firstHalfDataView.buffer === buf);  // true
+DataView will use the remainder of the buffer unless specified.
+
+byteOffset=8 begins the view at the 9th byte of the buffer and byteLength default is the remainder of the buffer.
+
+Copy
+const secondHalfDataView = new DataView(buf, 8);
+console.log(secondHalfDataView.byteOffset);      // 8
+console.log(secondHalfDataView.byteLength);      // 8
+console.log(secondHalfDataView.buffer === buf);  // true
+To read from and write to the buffer through a DataView, you will require the use of several components:
+
+The byte offset at which you wish to read or write.
+
+This can be thought of as a sort of address within the DataView.
+
+The ElementType the DataView should use for conversion between the Number type in the JavaScript runtime and the binary format in the buffer.
+
+The endianness of the value in memory defaults to big-endian.
