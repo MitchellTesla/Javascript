@@ -1,0 +1,10 @@
+The Boolean type has only two literal values: true and false.
+
+These values are distinct from numeric values, so true is not equal to 1, and false is not equal to 0.
+
+Assignment of Boolean values to variables is as follows:
+
+Copy
+let found = true;
+let lost = false;
+The Boolean literals true and false are case-sensitive, so True and False are valid as identifiers but not as Boolean values.
