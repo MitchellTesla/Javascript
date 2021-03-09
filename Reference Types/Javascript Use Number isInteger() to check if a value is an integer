@@ -1,0 +1,9 @@
+ES6 Number.isInteger() method can test whether or not a number value is stored as an integer or not.
+
+This is useful when a trailing decimal 0 may mask whether or not the number is actually stored in floating point format:
+
+Copy
+console.log(Number.isInteger(1));     // true
+console.log(Number.isInteger(1.00));  // true
+console.log(Number.isInteger(1.01));  // false
+Output:
