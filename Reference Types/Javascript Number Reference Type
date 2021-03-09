@@ -1,0 +1,91 @@
+The Number type is the reference type for numeric values.
+
+To create a Number object, use the Number constructor and pass in any number.
+
+Here's an example:
+
+Copy
+let numberObject = new Number(10);
+The Number type overrides valueOf(), toLocaleString(), and toString().
+
+The valueOf() method returns the primitive numeric value represented by the object, whereas the other two methods return the number as a string.
+
+The toString() method optionally accepts a single argument indicating the radix in which to represent the number, as shown in the following examples:
+
+Copy
+let num = 10;
+console.log(num.toString());    // "10"
+console.log(num.toString(2));   // "1010"
+console.log(num.toString(8));   // "12"
+console.log(num.toString(10));  // "10"
+console.log(num.toString(16));  // "a"
+The Number type has several additional methods used to format numbers as strings.
+
+toFixed()
+The toFixed() method returns a string representation of a number with a specified number of decimal points, as in this example:
+
+Copy
+let num = 10;
+console.log(num.toFixed(2));  // "10.00"
+Here, the toFixed() method is given an argument of 2, which indicates how many decimal places should be displayed.
+
+As a result, the method returns the string "10.00", filling out the empty decimal places with zeros.
+
+If the number has more than the given number of decimal places, the result is rounded to the nearest decimal place, as shown here:
+
+Copy
+let num = 10.005;
+console.log(num.toFixed(2));  // "10.01"
+The rounding nature of toFixed() may be useful for applications dealing with currency.
+
+The toFixed() method can represent numbers with 0 through 20 decimal places.
+
+toExponential()
+The toExponential() method returns a string with the number formatted in exponential notation (aka e-notation).
+
+toExponential() accepts one argument, which is the number of decimal places to output.
+
+Consider this example:
+
+Copy
+let num = 10;
+console.log(num.toExponential(1));  // "1.0e+1"
+This code outputs "1.0e+1" as the result.
+
+toPrecision()
+To have the most appropriate form of the number, use the toPrecision() method.
+
+The toPrecision() method returns either the fixed or the exponential representation of a number, depending on which makes the most sense.
+
+This method takes one argument, which is the total number of digits to use to represent the number (not including exponents). Here's an example:
+
+Copy
+let num = 99;
+console.log(num.toPrecision(1));  // "1e+2"
+console.log(num.toPrecision(2));  // "99"
+console.log(num.toPrecision(3));  // "99.0"
+In this example, the first task is to represent the number 99 with a single digit, which results in "1e+2", otherwise known as 100.
+
+Because 99 cannot accurately be represented by just one digit, the method rounded up to 100, which can be represented using just one digit.
+
+Representing 99 with two digits yields "99" and with three digits returns "99.0".
+
+The toPrecision() method essentially determines whether to call toFixed() or toExponential() based on the numeric value you're working with; all three methods round up or down to accurately represent a number with the correct number of decimal places.
+
+The toPrecision() method can represent numbers with 1 through 21 decimal places.
+
+Do not instantiate it
+The Number object gives important functionality to numeric values but really should not be instantiated directly because of the same potential problems.
+
+The typeof and instanceof operators work differently when dealing with primitive numbers versus reference numbers, as shown in the following examples:
+
+Copy
+let numberObject = new Number(10);
+let numberValue = 10;
+console.log(typeof numberObject);       // "object"
+console.log(typeof numberValue);        // "number"
+console.log(numberObject instanceof Number);  // true
+console.log(numberValue instanceof Number);   // false
+Primitive numbers always return "number" when typeof is called on them, whereas Number objects return "object".
+
+A Number object is an instance of Number, but a primitive number is not.
