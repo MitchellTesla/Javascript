@@ -1,0 +1,31 @@
+The equal operator in ECMAScript is the double equal sign (==), and it returns true if the operands are equal.
+
+The not-equal operator is the exclamation point followed by an equal sign ( !=), and it returns true if two operands are not equal.
+
+Both operators do conversions to determine if two operands are equal.
+
+When performing conversions, the equal and not-equal operators follow these basic rules:
+
+If an operand is a Boolean value, convert it into a numeric value before checking for equality. A value of false converts to 0, whereas a value of true converts to 1.
+If one operand is a string and the other is a number, attempt to convert the string into a number before checking for equality.
+If one of the operands is an object and the other is not, the valueOf() method is called on the object to retrieve a primitive value to compare according to the previous rules.
+The operators also follow these rules when making comparisons:
+
+Values of null and undefined are equal.
+Values of null and undefined cannot be converted into any other values for equality checking.
+If either operand is NaN, the equal operator returns false and the not-equal operator returns true.
+If both operands are objects, then they are compared to see if they are the same object. If both operands point to the same object, then the equal operator returns true. Otherwise, the two are not equal.
+The following table lists some special cases and their results:
+
+Expression	Value
+null == undefined	true
+"NaN" == NaN	false
+5 == NaN	false
+NaN == NaN	false
+NaN != NaN	true
+false == 0	true
+true == 1	true
+true == 2	false
+undefined == 0	false
+null == 0	false
+"5" == 5	true
