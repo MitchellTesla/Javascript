@@ -1,0 +1,22 @@
+Return the text of the RegExp pattern:
+
+Copy
+let str = "Visit Demo2s.com";
+let patt1 = /Demo2s/g;
+let res = "The text of the RegExp is: " + patt1.source;
+console.log(res);
+Output:
+
+
+Description
+The source property returns the text of the RegExp pattern.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+source	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+RegExpObject.source
+Return Value
+Type	Description
+String	The text of the RegExp pattern
