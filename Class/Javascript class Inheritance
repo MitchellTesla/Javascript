@@ -1,0 +1,58 @@
+The ECMAScript 6 has native support for a class inheritance.
+
+Although it makes use of a new syntax, class inheritance still uses the prototype chain under the hood.
+
+Inheritance Basics
+ES6 classes support a single inheritance format.
+
+Using the extends keyword, you are able to inherit from anything that has a [[Construct]] property and a prototype.
+
+For the most part, this means inheriting from another class, but this also allows for backwards compatibility with function constructors:
+
+Inherit from class
+
+Copy
+class Vehicle {}
+class Bus extends Vehicle {}
+
+let b = new Bus();
+console.log(b instanceof Bus);      // true
+console.log(b instanceof Vehicle);  // true
+Inherit from function constructor
+
+Copy
+function Person() {}
+class Engineer extends Person {}
+let e = new Engineer();
+console.log(e instanceof Engineer);  // true
+console.log(e instanceof Person);    // true
+Both class and prototype methods are carried down to the derived class.
+
+The value of this reflects the class or instance that is invoking the method:
+
+Copy
+class Vehicle {
+    identifyPrototype(id) {
+        console.log(id, this);
+    }
+    static identifyClass(id) {
+        console.log(id, this);
+    }
+}
+
+class Bus extends Vehicle {}
+
+let v = new Vehicle();
+let b = new Bus();
+
+b.identifyPrototype('bus'); // bus, Bus {}
+v.identifyPrototype('vehicle'); // vehicle, Vehicle {}
+
+Bus.identifyClass('bus'); // bus, class Bus {}
+Vehicle.identifyClass('vehicle'); // vehicle, class Vehicle {}
+The extends keyword is valid inside class expressions, so
+
+Copy
+let Bar = class extends Foo {}
+is perfectly valid syntax.
+
