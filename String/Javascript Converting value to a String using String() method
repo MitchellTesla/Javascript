@@ -1,0 +1,26 @@
+If you're not sure that a value isn't null or undefined, you can use the String() casting function, which always returns a string regardless of the value type.
+
+The String() function follows these rules:
+
+If the value has a toString() method, it is called and the result is returned.
+If the value is null, "null" is returned.
+If the value is undefined, "undefined" is returned.
+Consider the following:
+
+Copy
+let value1 = 10;
+let value2 = true;
+let value3 = null;
+let value4;
+
+console.log(String(value1));   // "10"
+console.log(String(value2));   // "true"
+console.log(String(value3));   // "null"
+console.log(String(value4));   // "undefined"
+Here, four values are converted into strings: a number, a Boolean, null, and undefined.
+
+The result for the number and the Boolean are the same as if toString() were called.
+
+Because toString() isn't available on "null" and "undefined", the String() method simply returns literal text for those values.
+
+You can also convert a value to a string by adding an empty string ("") to that value using the plus operator.
