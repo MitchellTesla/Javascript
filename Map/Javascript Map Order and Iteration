@@ -1,0 +1,110 @@
+Map instances maintain the order of key/value insertion and allow you to perform iterative operations following insertion order.
+
+A Map instance can provide an Iterator that contains array pairs in the form of [key, value] in insertion order.
+
+This iterator can be retrieved using entries(), or the Symbol.iterator property, which references entries():
+
+Copy
+const m = new Map([
+  ["key1", "val1"],
+  ["key2", "val2"],
+  ["key3", "val3"]
+]);
+
+console.log(m.entries === m[Symbol.iterator]);  // true
+
+for (let pair of m.entries()) {
+  console.log(pair);
+}
+// [key1,val1]
+// [key2,val2]
+// [key3,val3]
+
+for (let pair of m[Symbol.iterator]()) {
+  console.log(pair);
+}
+// [key1,val1]
+// [key2,val2]
+// [key3,val3]
+Because entries() is the default iterator, the spread operator can be used to concisely convert a Map into an array:
+
+Copy
+const m = new Map([
+  ["key1", "val1"],
+  ["key2", "val2"],
+  ["key3", "val3"]
+]);
+
+console.log([...m]);
+Output:
+
+
+To use a callback convention instead of an iterator, forEach(callback, opt_this_Arg) invokes the callback for each key/value pair.
+
+It optionally accepts a second argument, which will override the value of this inside each callback invocation.
+
+Copy
+const m = new Map([
+  ["key1", "val1"],
+  ["key2", "val2"],
+  ["key3", "val3"]
+]);
+
+m.forEach((val, key) => console.log(`${key} -> ${val}`));
+Output:
+
+
+keys() and values() return an iterator that contains all keys or all values in the Map in insertion order:
+
+Copy
+const m = new Map([
+  ["key1", "val1"],
+  ["key2", "val2"],
+  ["key3", "val3"]
+]);
+
+for (let key of m.keys()) {
+  console.log(key);
+}
+// key1
+// key2
+// key3
+
+for (let key of m.values()) {
+  console.log(key);
+}
+// value1
+// value2
+// value3
+Keys and values exposed inside an iterator are mutable, but the references inside the Map cannot be altered.
+
+However, this does not restrict changing properties inside a key or value object.
+
+Doing so will not alter their identity with respect to the Map instance:
+
+Copy
+const m1 = new Map([
+  ["key1", "val1"]
+]);
+
+// String primitive as key is unaltered
+for (let key of m.keys()) {
+  key = "newKey";
+  console.log(key);            // newKey
+  console.log(m.get("key1"));  // val1
+}
+
+const keyObj = {id: 1};
+
+const m = new Map([
+  [keyObj, "val1"]
+]);
+
+// Key object property is altered, but the object still refers
+// to the same value inside the map
+for (let key of m.keys()) {
+  key.id = "newKey";
+  console.log(key);            // {id: "newKey"}
+  console.log(m.get(keyObj));  // val1
+}
+console.log(keyObj);           // {id: "newKey"}
