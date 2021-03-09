@@ -1,0 +1,60 @@
+Closures are functions that have access to variables from another function's scope.
+
+This is often accomplished by creating a function inside a function, as in the following example:
+
+Copy
+function createComparisonFunction(propertyName) {
+   return function(object1, object2) {
+      let value1 = object1[propertyName];
+      let value2 = object2[propertyName];
+
+      if (value1 < value2) {
+         return -1;
+      } else if (value1 > value2) {
+            return 1;
+      } else {
+            return 0;
+      }
+   };
+}
+The inner anonymous function is accessing a variable propertyName from the outer function.
+
+Even after the inner function has been returned and is being used elsewhere, it has access to that variable.
+
+This occurs because the inner function's scope chain includes the scope of createComparisonFunction().
+
+When a function is called, an execution context is created, and its scope chain is created.
+
+The activation object for the function is initialized with values for arguments and any named arguments.
+
+The outer function's activation object is the second object in the scope chain.
+
+This process continues for all containing functions until the scope chain terminates with the global execution context.
+
+As the function executes, variables are looked up in the scope chain for the reading and writing of values.
+
+Consider the following:
+
+Copy
+function compare(value1, value2) {
+  if (value1 < value2) {
+    return -1;
+  } else if (value1 > value2) {
+    return 1;
+  } else {
+    return 0;
+  }
+ }
+
+let result = compare(5, 10);
+This code defines a function named compare() that is called in the global execution context.
+
+When compare() is called for the first time, a new activation object is created that contains arguments, value1, and value2.
+
+The global execution context's variable object is next in the compare() execution context's scope chain, which contains this, result, and compare.
+
+Behind the scenes, an object represents the variables in each execution context.
+
+The global context's variable object always exists, whereas local context variable objects, such as the one for compare(), exist only while the function is being executed.
+
+In this example, that means the compare() function's execution context has two variable objects in its scope chain: the local activation object and the global variable object.
