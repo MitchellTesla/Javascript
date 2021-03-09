@@ -1,0 +1,24 @@
+Do a global search for non-word characters in a string:
+
+Copy
+let str = "Give This is a test!";
+let patt1 = /\W/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Description
+The \W metacharacter is used to find a non-word character.
+
+A word character is a character from a-z, A-Z, 0-9, including the _ (underscore) character.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+\W	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("\\W") or simply: /\W/
+Syntax with modifiers
+Copy
+new RegExp("\\W", "g") or simply: /\W/g
