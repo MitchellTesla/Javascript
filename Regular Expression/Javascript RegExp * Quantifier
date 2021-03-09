@@ -1,0 +1,31 @@
+Do a global search for an "l", followed by zero or more "o" characters:
+
+Copy
+let str = "Hellooo World! Hello Demo2s.com!";
+let patt1 = /lo*/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Description
+The n* quantifier matches any string that contains zero or more occurrences of n.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+*	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("n*") or simply: /n*/
+Syntax with modifiers
+Copy
+new RegExp("n*", "g") or simply: /\n*/g
+More Examples
+Do a global search for a "1", followed by zero or more "0" characters:
+
+Copy
+let str = "1, 100 or 1000?";
+let patt1 = /10*/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
