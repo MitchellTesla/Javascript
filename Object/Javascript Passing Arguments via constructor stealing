@@ -1,0 +1,23 @@
+The constructor stealing can pass arguments into the supertype constructor from within the subtype constructor.
+
+Consider the following:
+
+Copy
+function SuperType(name){
+  this.name = name;
+}
+
+function SubType() {
+  // inherit from SuperType passing in an argument
+  SuperType.call(this, "CSS");
+
+  // instance property
+  this.age = 19;
+}
+
+let instance = new SubType();
+console.log(instance.name);  // "CSS";
+console.log(instance.age);   // 19
+In this code, the SuperType constructor accepts a single argument, name, which is simply assigned to a property.
+
+A value can be passed into the SuperType constructor when called from within the SubType constructor, effectively setting the name property for the SubType instance.
