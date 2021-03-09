@@ -1,0 +1,124 @@
+There are several ways to create arrays.
+
+This section introduced the following four ways:
+
+Array literals
+The ... spread operator on an iterable object
+The Array() constructor
+The Array.of() and Array.from() factory methods
+Array Literals
+We can create an array with an array literal, which is simply a comma-separated list of array elements within square brackets.
+
+For example:
+
+Copy
+let empty = [];                 // An array with no elements
+let primes = [2, 3, 5, 7, 11];  // An array with 5 numeric elements
+let misc = [ 1.1, true, "a", ]; // 3 elements of various types + trailing comma
+The values in an array literal need not be constants; they may be arbitrary expressions:
+
+Copy
+let base = 1;
+let table = [base, base+1, base+2, base+3];
+Array literals can contain object literals or other array literals:
+
+Copy
+let b = [[1, {x: 1, y: 2}], [2, {x: 3, y: 4}]];
+If an array literal contains multiple commas in a row, with no value between, the array is sparse.
+
+Array elements for which values are omitted do not exist but appear to be undefined if you query them:
+
+Copy
+let count = [1,,3]; // Elements at indexes 0 and 2. No element at index 1
+let undefs = [,,];  // An array with no elements but a length of 2
+Array literal syntax allows an optional trailing comma, so [,,] has a length of 2, not 3.
+
+Spread Operator
+In ES6 and later, you can use the "spread operator" to include the elements of one array within an array literal:
+
+Copy
+let a = [1, 2, 3];
+let b = [0,  ...a, 4];  // b == [0, 1, 2, 3, 4]
+The three dots "spread" the array a so that its elements become elements within the array literal that is being created. The spread operator is a convenient way to create a shallow copy of an array:
+
+Copy
+let original = [1,2,3];
+let copy = [...original];
+copy[0] = 0;  // Modifying the copy does not change the original
+original[0]   // => 1
+The spread operator works on any iterable object.
+
+Strings are iterable, so you can use a spread operator to turn any string into an array of single-character strings:
+
+Copy
+let digits = [..."0123456789ABCDEF"];
+digits // => ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"]
+Set objects are iterable, we can remove duplicate elements from an array by converting the array to a set and then converting the set back to an array using the spread operator:
+
+Copy
+let letters = [..."hello world"];
+[...new Set(letters)]  // => ["h","e","l","o"," ","w","r","d"]
+Array() Constructor
+Another way to create an array is with the Array() constructor.
+
+You can invoke this constructor in three distinct ways:
+
+1.Call it with no arguments:
+
+Copy
+let a = new Array();
+This method creates an empty array with no elements and is equivalent to the array literal [].
+
+2. Call it with a single numeric argument, which specifies a length:
+
+Copy
+let a = new Array(10);
+This technique creates an array with the specified length.
+
+This form of the Array() constructor can be used to preallocate an array when you know in advance how many elements will be required.
+
+Note that no values are stored in the array.
+
+3. Explicitly specify two or more array elements or a single non-numeric element for the array:
+
+Copy
+let a = new Array(5, 4, 3, 2, 1, "testing, testing");
+In this form, the constructor arguments become the elements of the new array.
+
+Array.of()
+When the Array() constructor function is invoked with one numeric argument, it uses that argument as an array length.
+
+But when invoked with more than one numeric argument, it treats those arguments as elements for the array to be created.
+
+This means that the Array() constructor cannot be used to create an array with a single numeric element.
+
+Array.of() function is a factory method that creates and returns a new array, using its argument values, regardless of how many of them there are, as the array elements:
+
+Copy
+Array .of()        // => []; returns empty array with no arguments
+Array .of(10)      // => [10]; can create arrays with a single numeric argument
+Array .of(1,2,3)   // => [1, 2, 3]
+Array.from()
+Array.from is another array factory method introduced in ES6.
+
+It expects an iterable or array-like object as its first argument and returns a new array that contains the elements of that object.
+
+With an iterable argument, Array.from(iterable) works like the spread operator [.iterable] does.
+
+It is also a simple way to make a copy of an array:
+
+Copy
+let copy = Array .from(original);
+Array.from() defines a way to make a true-array copy of an array-like object.
+
+Array-like objects are non-array objects that have a numeric length property and have values stored with properties whose names happen to be integers.
+
+When working with client-side JavaScript, the return values of some web browser methods are array-like, and it can be easier to work with them if you first convert them to true arrays:
+
+Copy
+let truearray = Array .from(arraylike);
+Array.from() also accepts an optional second argument.
+
+If you pass a function as the second argument, then as the new array is being built, each element from the source object will be passed to the function you specify, and the return value of the function will be stored in the array instead of the original value.
+
+This is very much like the array map() method, but it is more efficient to perform the mapping while the array is being built than it is to build the array and then map it to another new array.
