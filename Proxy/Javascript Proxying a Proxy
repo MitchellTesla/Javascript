@@ -1,0 +1,25 @@
+Proxies are capable of intercepting Reflect API operations, and this means that we can create a proxy of a proxy.
+
+With proxy on proxy we can build multiple layers of indirection on top of a singular target object:
+
+Copy
+const target = {
+  foo: 'bar'
+};
+
+const firstProxy = new Proxy(target, {
+  get() {
+    console.log('first proxy');
+    return Reflect.get(...arguments);
+  }
+});
+
+const secondProxy = new Proxy(firstProxy, {
+  get() {
+    console.log('second proxy');
+    return Reflect.get(...arguments);
+  }
+});
+
+console.log(secondProxy.foo);
+Output:
