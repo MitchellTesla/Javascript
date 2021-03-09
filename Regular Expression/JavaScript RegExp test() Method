@@ -1,0 +1,45 @@
+Search a string for the character "e":
+
+Copy
+let str = "this is a test";
+let patt = new RegExp("e");
+let res = patt.test(str);
+console.log(res);
+Output:
+
+
+Description
+The test() method tests for a match in a string.
+
+This method returns true if it finds a match, otherwise it returns false.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+test()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+RegExpObject.test(string)
+Parameter Values
+Parameter
+string
+Description
+Required. The string to be searched
+Return Value
+Type	Description
+Boolean	Returns true if it finds a match, otherwise it returns false
+More Examples
+Do a global search, and test for "Hello" and "Demo2s.com" in a string:
+
+Copy
+let str = "Hello world!";
+
+// look for "Hello"
+let patt = /Hello/g;
+let result = patt.test(str);
+
+// look for "Demo2s.com"
+patt2 = /Demo2s.com/g;
+result2 = patt2.test(str);
+console.log(result);
+console.log(result2);
+Output:
