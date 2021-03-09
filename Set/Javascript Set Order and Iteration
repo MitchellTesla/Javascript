@@ -1,0 +1,77 @@
+Sets maintain the order of value insertion and allow you to perform iterative operations following insertion order.
+
+A Set instance can provide an Iterator that contains the set contents in insertion order.
+
+This iterator can be retrieved using values(), its alias keys(), or the Symbol.
+
+Copy
+const s = new Set(["val1", "val2", "val3"]);
+
+console.log(s.values === s[Symbol.iterator]);  // true
+console.log(s.keys === s[Symbol.iterator]);    // true
+
+for (let value of s.values()) {
+  console.log(value);
+}
+// val1
+// val2
+// val3
+
+for (let value of s[Symbol.iterator]()) {
+  console.log(value);
+}
+// val1
+// val2
+// val3
+Because values() is the default iterator, the spread operator can be used to concisely convert a set into an array:
+
+Copy
+const s = new Set(["val1", "val2", "val3"]);
+
+console.log([...s]); // [val1,val2,val3]
+entries() returns an iterator that contains a two-element array containing a duplicate of all values in the Set in insertion order:
+
+Copy
+const s = new Set(["val1", "val2", "val3"]);
+
+for (let pair of s.entries()) {
+  console.log(pair);
+}
+Output:
+
+
+To use a callback convention instead of an iterator, forEach(callback, opt_this_Arg) invokes the callback for each value.
+
+It optionally accepts a second argument, which will override the value of this inside each callback invocation.
+
+Copy
+const s = new Set(["val1", "val2", "val3"]);
+
+s.forEach((val, dupVal) => console.log(`${val} -> ${dupVal}`));
+Output:
+
+
+Changing properties of values in a Set does not alter the value's identity with respect to the Set instance:
+
+Copy
+const s1 = new Set(["val1"]);
+
+// String primitive as value is unaltered
+for (let value of m.values()) {
+  value = "newVal";
+  console.log(value);          // newVal
+  console.log(s.has("val1"));  // true
+}
+
+const valObj = {id: 1};
+
+const s2 = new Set([valObj]);
+
+// Value object property is altered, but the object still exists
+// inside the set
+for (let value of s.values()) {
+  value.id = "newVal";
+  console.log(value);          // {id: "newVal"}
+  console.log(s.has(valObj));  // true
+}
+console.log(valObj);           // {id: "newKey"}
