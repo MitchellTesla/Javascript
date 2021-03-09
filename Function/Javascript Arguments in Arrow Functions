@@ -1,0 +1,31 @@
+When a function is defined using the arrow notation, the arguments passed to the function cannot be accessed using the arguments keyword; they can only be accessed using their named token in the function definition.
+
+Copy
+function foo() {
+  console.log(arguments[0]);
+}
+foo(5);  // 5
+
+let bar = () => {
+  console.log(arguments[0]);
+};
+bar(5);
+Output:
+
+
+Although the arrow function arguments may not be available, it is possible that the arguments keyword is provided to the arrow function scope from the scope of a wrapping function being invoked:
+
+Copy
+function foo() {
+  let bar = () => {
+    console.log(arguments[0]);  // 5
+  };
+  bar();
+}
+
+foo(5);
+NOTE All arguments in ECMAScript are passed by value.
+
+It is not possible to pass arguments by reference.
+
+If an object is passed as an argument, the value is just a reference to the object.
