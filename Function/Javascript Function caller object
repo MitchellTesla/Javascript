@@ -1,0 +1,40 @@
+ECMAScript function object caller contains a reference to the function that called this function or null if the function was called from the global scope.
+
+For example:
+
+Copy
+function outer() {
+  inner();
+}
+function inner() {
+  console.log(inner.caller);
+}
+outer();
+Output:
+
+
+This code displays an alert with the source text of the outer() function.
+
+Because outer() calls inner(), inner.caller points back to outer().
+
+For looser coupling, you can also access the same information via arguments.callee.caller:
+
+Copy
+function outer() {
+   inner();
+}
+
+function inner() {
+   console.log(arguments.callee.caller);
+}
+outer();
+Output:
+
+
+When function code executes in strict mode, attempting to access arguments.callee results in an error.
+
+ECMAScript 5 also defines arguments.caller, which also results in an error in strict mode and is always undefined outside of strict mode.
+
+In strict mode you cannot assign a value to the caller property of a function.
+
+Doing so results in an error.
