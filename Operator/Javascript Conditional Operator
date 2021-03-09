@@ -1,0 +1,30 @@
+The conditional operator in ECMAScript takes on the same form as in Java, which is as follows:
+
+Copy
+variable = boolean_expression ? true_value : false_value;
+This basically allows a conditional assignment to a variable depending on the evaluation of the boolean_expression.
+
+If it's true, then true_value is assigned to the variable; if it's false, then false_value is assigned to the variable, as in this instance:
+
+Copy
+let max = (num1 > num2) ? num1 : num2;
+In this example, max is to be assigned the number with the highest value.
+
+The expression states that if num1 is greater than num2, then num1 is assigned to max.
+
+If, however, the expression is false, then num2 is assigned to max.
+
+Example
+Here is a typical usage, which checks to be sure that a variable is defined and has a meaningful, truthy value, and uses it if so or provides a default value if not:
+
+Copy
+greeting = "hello " + (username ? username  : "there");
+This is equivalent to, but more compact than, the following if statement:
+
+Copy
+greeting = "hello ";
+if (username) {
+         greeting += username;
+} else {
+         greeting += "there";
+}
