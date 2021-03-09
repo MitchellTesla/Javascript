@@ -1,0 +1,21 @@
+Do a case-insensitive search for "demo2s" in a string:
+
+Copy
+let str = "Visit Demo2s.com";
+let patt1 = /demo2s/i;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Description
+The i modifier can do case-insensitive matching.
+
+Use the ignoreCase property to check whether or not the "i" modifier is set.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+i	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("regexp", "i") or simply: /regexp/i
