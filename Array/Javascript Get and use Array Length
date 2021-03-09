@@ -1,0 +1,56 @@
+The number of items in an array is stored in the length property, which always returns 0 or more, as shown in the following example:
+
+Copy
+let colors = ["red", "blue", "green"];  // creates an array with three strings
+let names = [];                         // creates an empty array
+
+console.log(colors.length);  // 3
+console.log(names.length);   // 0
+Javascript Array length is not read-only.
+
+By setting the length property, you can remove items from or add items to the end of the array.
+
+Consider this example:
+
+Copy
+let colors = ["red", "blue", "green"];  // creates an array with three strings
+colors.length = 2;
+console.log(colors[2]);  // undefined
+Here, the array colors starts out with three values.
+
+Setting the length to 2 removes the last item in position 2, making it no longer accessible using colors[2].
+
+If the length were set to a number greater than the number of items in the array, the new items would each get filled with the value of undefined, as in this example:
+
+Copy
+let colors = ["red", "blue", "green"];  // creates an array with three strings
+colors.length = 4;
+console.log(colors[3]);  // undefined
+This code sets the length of the colors array to 4 even though it contains only three items.
+
+Position 3 does not exist in the array, so trying to access its value results in the special value undefined being returned.
+
+Adding
+The length property can also be helpful in adding items to the end of an array, as in this example:
+
+Copy
+let colors = ["red", "blue", "green"];  // creates an array with three strings
+colors[colors.length] = "black";        // add a color (position 3)
+colors[colors.length] = "brown";        // add another color (position 4)
+The last item in an array is always at position length - 1, so the next available open slot is at position length.
+
+Each time an item is added after the last one in the array, the length property is automatically updated to reflect the change.
+
+That means colors[colors.length] assigns a value to position 3 in the second line of this example and to position 4 in the last line.
+
+The new length is automatically calculated when an item is placed into a position that's outside of the current array size, which is done by adding 1 to the position, as in this example:
+
+Copy
+let colors = ["red", "blue", "green"];  // creates an array with three strings
+colors[99] = "black";                   // add a color (position 99)
+console.log(colors.length);                   // 100
+In this code, the colors array has a value inserted into position 99, resulting in a new length of 100.
+
+Each of the other items, positions 3 through 98, doesn't actually exist and so returns undefined when accessed.
+
+Arrays can contain a maximum of 4,294,967,295 items. If you try to add more than that number, an exception occurs.
