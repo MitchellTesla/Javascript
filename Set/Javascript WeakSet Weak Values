@@ -1,0 +1,42 @@
+The values in a WeakSet are "weakly held," meaning they are not counted as formal references, which would otherwise prevent garbage collection.
+
+Consider the following example:
+
+Copy
+const ws = new WeakSet();
+
+ws.add({});
+Inside add(), a fresh object is initialized and used as a value.
+
+Because there are no other references to this object, as soon as this line is finished executing, the object value will be free for garbage collection.
+
+When this occurs, the value will disappear from the WeakSet, and it will be empty.
+
+Consider a slightly different example:
+
+Copy
+const ws = new WeakSet();
+
+const container = {
+  val: {}
+ };
+
+ws.add(container.val);
+
+function removeReference()
+  container.val = null;
+}
+Here, the container object maintains a reference to the value in the WeakSet instance, so the object is ineligible for garbage collection.
+
+However, as soon as removeReference() is invoked, the last strong reference to the value object will be destroyed, and garbage collection will eventually wipe out the value.
+
+WeakSet Non-Iterable Values
+Because values in a WeakSet can be destroyed at any time, we cannot iterate through the values.
+
+clear() method is not part of the WeakSet API.
+
+We cannot retrieve a value from a WeakSet instance unless you have a reference to the value object.
+
+Even if code has access to the WeakSet instance, there is no way to inspect its contents.
+
+WeakSet instances restrict values to only objects in order to preserve the convention that values can only be retrieved from a WeakSet with a reference to the value object.
