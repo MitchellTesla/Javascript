@@ -1,0 +1,35 @@
+There are three functions to convert nonnumeric values into numbers: the Number() casting function, the parseInt() function, and the parseFloat() function.
+
+The first function, Number(), can be used on any data type; the other two functions are used specifically for converting strings to numbers.
+
+The Number() function performs conversions based on these rules:
+
+1. When applied to Boolean values, true and false get converted into 1 and 0, respectively.
+
+2. When applied to numbers, the value is returned.
+
+3. When applied to null, Number() returns 0.
+
+4. When applied to undefined, Number() returns NaN.
+
+5. When applied to strings, the following rules are applied:
+
+If the string contains only numeric characters, optionally preceded by a plus or minus sign, it is always converted to a decimal number, so Number("1") becomes 1, Number("123") becomes 123, and Number("011") becomes 11. Leading zeros are ignored.
+If the string contains a valid floating-point format, such as "1.1", it is converted into the appropriate floating-point numeric value. Leading zeros are ignored.
+If the string contains a valid hexadecimal format, such as "0xf", it is converted into an integer that matches the hexadecimal value.
+If the string is empty, it is converted to 0.
+If the string contains anything other than these previous formats, it is converted into NaN.
+6. When applied to objects, the valueOf() method is called and the returned value is converted based on the previously described rules. If that conversion results in NaN, the toString() method is called and the rules for converting strings are applied.
+
+. Here are some concrete examples:
+
+Copy
+let num1 = Number("hi!");  // NaN
+let num2 = Number("");     // 0
+let num3 = Number("00002");// 2
+let num4 = Number(true);   // 1
+In these examples, the string "hi!" is converted into NaN because it has no corresponding numeric value, and the empty string is converted into 0.
+
+The string "00002" is converted to the number 2 because the initial zeros are ignored.
+
+Last, the value true is converted to 1.
