@@ -1,0 +1,44 @@
+ECMAScript Well Known Symbol Symbol.hasInstance is used as a property for "A method that determines if a constructor object recognizes an object as one of the constructor's instances. Called by the semantics of the instanceof operator".
+
+The instanceof operator provides a way of determining if an object instance has a prototype in its prototype chain.
+
+Typical use of the instanceof is as follows:
+
+Copy
+function Demo() {}
+let f = new Demo();
+console.log(f instanceof Demo);  // true
+
+class Test {}
+let b = new Test();
+console.log(b instanceof Test);  // true
+In ES6, the instanceof operator is using a Symbol.hasInstance function to evaluate this relationship.
+
+The Symbol.hasInstance identifies a function which performs the same behavior but with the operands reversed:
+
+Copy
+function Demo() {}
+let f = new Demo();
+console.log(Demo[Symbol.hasInstance](f));  // true
+
+class Test {}
+let b = new Test();
+console.log(Test[Symbol.hasInstance](b));  // true
+This property is defined on the Function prototype, and therefore it is automatically available by default to all function and class definitions.
+
+Because the instanceof operator will seek the property definition on the prototype chain like any other property, it is possible to redefine the function on an inherited class as a static method:
+
+Copy
+class Test {}
+
+class Baz extends Test {
+  static [Symbol.hasInstance]() {
+    return false;
+  }
+}
+
+let b = new Baz();
+console.log(Test[Symbol.hasInstance](b));  // true
+console.log(b instanceof Test);            // true
+console.log(Baz[Symbol.hasInstance](b));  // false
+console.log(b instanceof Baz);            // false
