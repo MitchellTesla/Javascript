@@ -1,0 +1,101 @@
+An iterator is a single-use object that will iterate through whatever iterable it is associated with.
+
+The Iterator API uses a next() method to advance through the iterable.
+
+Each successive time next() is invoked, it will return an IteratorResult object containing the next value in the iterator.
+
+The current position the iterator is at cannot be known without invoking the next() method.
+
+The next() method returns an object with two properties: done, which is a Boolean indicating if next() can be invoked again to retrieve more values, and value, which will contain the next value in the iterable or undefined if done is true.
+
+The done:true state is termed "exhaustion."
+
+This can be demonstrated with a simple array:
+
+Copy
+// Iterable object
+let arr = ['foo', 'bar'];
+// Iterator factory
+console.log(arr[Symbol.iterator]);  // f values() { [native code] }
+
+// Iterator
+let iter = arr[Symbol.iterator]();
+console.log(iter);  // ArrayIterator {}
+
+// Performing iteration
+console.log(iter.next());  // { done: false, value: 'foo' }
+console.log(iter.next());  // { done: false, value: 'bar' }
+console.log(iter.next());  // { done: true, value: undefined }
+Arrays are iterated in order by creating an iterator and invoking next() until it ceases to produce new values.
+
+The iterator does not know how to retrieve the next values inside the iterable, and it does not know how large the iterable is.
+
+Once the iterator reaches the done:true state, invoking next() returns undefined:
+
+Copy
+let arr = ['foo'];
+let iter = arr[Symbol.iterator]();
+console.log(iter.next());  // { done: false, value: 'foo' }
+console.log(iter.next());  // { done: true, value: undefined }
+console.log(iter.next());  // { done: true, value: undefined }
+console.log(iter.next());  // { done: true, value: undefined }
+Each iterator represents a one-time ordered traversal of the iterable.
+
+Different instances are not aware of each other and will independently traverse the iterable:
+
+Copy
+let arr = ['foo', 'bar'];
+let iter1 = arr[Symbol.iterator]();
+let iter2 = arr[Symbol.iterator]();
+
+console.log(iter1.next());  // { done: false, value: 'foo' }
+console.log(iter2.next());  // { done: false, value: 'foo' }
+console.log(iter2.next());  // { done: false, value: 'bar' }
+console.log(iter1.next());  // { done: false, value: 'bar' }
+An iterator is not bound to a snapshot of the iterable; it merely uses a cursor to track its progress through the iterable.
+
+If the iterable is mutated during iteration, the iterator will incorporate the changes:
+
+Copy
+let arr = ['foo', 'baz'];
+let iter = arr[Symbol.iterator]();
+
+console.log(iter.next());  // { done: false, value: 'foo' }
+
+// Insert value in the middle of array
+arr.splice(1, 0, 'bar');
+
+console.log(iter.next());  // { done: false, value: 'bar' }
+console.log(iter.next());  // { done: false, value: 'baz' }
+console.log(iter.next());  // { done: true, value: undefined }
+An iterator maintains a reference to the iterable object, so be aware that the iterator's existence will prevent garbage collection of the iterable object.
+
+The following example compares an explicit iterator implementation and a native iterator implementation:
+
+Foo class implements the Iterable interface.
+
+Invoking the default iterator factory will return an iterator object that implements the Iterator interface.
+
+Copy
+class Foo {
+  [Symbol.iterator]() {
+    return {
+      next() {
+        return { done: false, value: 'foo' };
+      }
+    }
+  }
+}
+let f = new Foo();
+
+ // Logs an object which implements the Iterator interface
+console.log(f[Symbol.iterator]());  // { next: f() {} }
+The Array type implements the Iterable interface.
+
+Invoking the default iterator of an Array type will create an instance of ArrayIterator.
+
+Copy
+let a = new Array();
+
+// Logs an instance of ArrayIterator
+console.log(a[Symbol.iterator]());  // Array Iterator {}
