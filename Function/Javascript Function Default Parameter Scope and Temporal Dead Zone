@@ -1,0 +1,51 @@
+Because you can define objects and invoke functions on the fly when evaluating default parameter values.
+
+There is execution scope for function parameters.
+
+Defining multiple parameters with default values operates in effectively the same way as declaring variables sequentially using the let keyword.
+
+Consider the following function:
+
+Copy
+function sayHi(name = 'CSS', numerals = '3') {
+     return `Hi ${name} ${numerals}`;
+}
+console.log(sayHi());  // Hi CSS 3
+The default parameter values are initialized in the order in which they are listed in the list of parameters.
+
+You can think of it as behaving similar to the following:
+
+Copy
+function sayHi() {
+    let name = 'CSS';
+    let numerals = '3';                   
+    return `Hi ${name} ${numerals}`;
+}
+Because the parameters are initialized in order, parameters that have their default value defined later can reference an earlier parameter.
+
+The following example does exactly this:
+
+Copy
+function sayHi(name = 'CSS', numerals = name) {
+    return `Hi ${name} ${numerals}`;
+}
+console.log(sayHi());  // Hi CSS CSS
+The order of parameter initialization follows the same Temporal Dead Zone rules specifying that parameter values cannot reference other parameter values that are defined later.
+
+This would throw an error:
+
+Copy
+// Error
+function sayHi(name = numerals, numerals = '3') {
+          return `Hi ${name} ${numerals}`;
+}
+Parameters also exist inside their own scope, and therefore cannot reference the scope of the function body.
+
+This would throw an error:
+
+Copy
+// Error
+function sayHi(name = 'CSS', numerals = defaultNumeral) {
+   let defaultNumeral = '3';
+   return `Hi ${name} ${numerals}`;
+}
