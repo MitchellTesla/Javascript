@@ -1,0 +1,45 @@
+ECMAScript 6 can formally define classes using the class keyword.
+
+ECMAScript 6 classes still use prototype and constructor concepts under the hood.
+
+Class Definition Basics
+Similar to the function type, there are two primary ways of defining a class: class declarations and class expressions.
+
+Both use the class keyword and curly braces:
+
+Copy
+// class declaration
+class Person {}
+
+// class expression
+const Animal = class {};
+Like function expressions, class expressions cannot be referenced until they are evaluated in execution.
+
+Javascript function declarations are hoisted, class declarations are not:
+
+Copy
+console.log(FunctionExpression);  // undefined
+var FunctionExpression = function() {};
+console.log(FunctionExpression);  // function() {}
+
+console.log(FunctionDeclaration); // FunctionDeclaration() {}
+function FunctionDeclaration() {}
+console.log(FunctionDeclaration); // FunctionDeclaration() {}
+
+console.log(ClassExpression);     // undefined
+var ClassExpression = class {};
+console.log(ClassExpression);     // class {}
+
+console.log(ClassDeclaration);//ReferenceError:ClassDeclaration is not defined
+class ClassDeclaration {}
+console.log(ClassDeclaration);    // class ClassDeclaration {}
+function declarations are function scoped, while class declarations are block scoped:
+
+Copy
+{
+ function FunctionDeclaration() {}
+ class ClassDeclaration {}
+}
+
+console.log(FunctionDeclaration);// FunctionDeclaration() {}
+console.log(ClassDeclaration);//ReferenceError:ClassDeclaration is not defined
