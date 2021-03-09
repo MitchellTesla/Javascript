@@ -1,0 +1,47 @@
+We can get the raw template literal contents without being converted into actual character representations, such as a new line or Unicode character.
+
+This can be done by using the String.raw tag function.
+
+Unicode demo
+
+Copy
+// \u00A9 is the copyright symbol
+console.log(`\u00A9`);
+console.log(String.raw`\u00A9`);  // \u00A9
+Newline demo
+
+Copy
+console.log(`first line\nsecond line`);
+// first line
+// second line
+console.log(String.raw`first line\nsecond line`);  // "first line\nsecond line"
+This does not work for actual newline characters: they do not undergo conversion from their plaintext escaped equivalents
+
+Copy
+console.log(`first line
+second line`);
+// first line
+// second line
+
+console.log(String.raw`first line
+second line`);
+// first line
+// second line
+The raw values are available as a property on each element in the string piece collection inside the tag function:
+
+Copy
+function printRaw(strings) {
+  console.log('Actual characters:');
+  for (const string of strings) {
+    console.log(string);
+  }
+
+  console.log('Escaped characters;');
+  for (const rawString of strings.raw) {
+    console.log(rawString);
+  }
+ }
+
+printRaw`a\nb${ 'and' }\n`;
+Output:
+
