@@ -1,0 +1,111 @@
+The JavaScript execution context of a variable or function defines what other data it has access to, as well as how it should behave.
+
+Each execution context has an associated variable object upon which all of its defined variables and functions exist.
+
+This object is not accessible by code but is used behind the scenes to handle data.
+
+Global
+The global execution context is the outermost one.
+
+Depending on the host environment for an ECMAScript implementation, the object representing this context may differ.
+
+In web browsers, the global context is said to be that of the window object, so all global variables and functions defined with var are created as properties and methods on the window object.
+
+Declarations using let and const at the top level are not defined in the global context, but they are resolved identically on the scope chain.
+
+When an execution context has executed all of its code, it is destroyed.
+
+The global context isn't destroyed until the application exits, such as when a web page is closed or a web browser is shut down.
+
+Function
+Each function call has its own execution context.
+
+Whenever code execution flows into a function, the function's context is pushed onto a context stack.
+
+After the function has finished executing, the stack is popped, returning control to the previously executing context.
+
+Scope
+When code is executed in a context, a scope chain of variable objects is created.
+
+The scope chain provides ordered access to all variables and functions that an execution context has access to.
+
+The top of the scope chain is the variable object of the context whose code is executing.
+
+If the context is a function, then the activation object is used as the variable object.
+
+This pattern continues until the global context is reached; the global context's variable object is always the last of the scope chain.
+
+Identifiers are resolved by navigating the scope chain in search of the identifier name.
+
+The search always begins at the front of the chain and proceeds to the back until the identifier is found.
+
+If the identifier isn't found, typically an error occurs.
+
+Consider the following code:
+
+Copy
+var color = "blue";
+
+function changeValue() {
+  if (color === "blue") {
+    color = "red";
+  } else {
+    color = "blue";
+  }
+}
+changeValue();
+In this simple example, the function changeValue() has a scope chain with two objects in it: its own variable object, where the arguments object is defined, and the global context's variable object.
+
+The variable color is therefore accessible inside the function, because it can be found in the scope chain.
+
+Local
+The locally defined variables can be used interchangeably with global variables in a local context.
+
+Here's an example:
+
+Copy
+var color = "blue";
+
+function changeValue() {
+    let anotherValue = "red";
+
+    function swapValues() {
+        let tempValue = anotherValue;
+        anotherValue = color;
+        color = tempValue;
+        // color, anotherValue, and tempValue are all accessible here
+    }
+
+    // color and anotherValue are accessible here, but not tempValue
+    swapValues();
+}
+// only color is accessible here
+changeValue();
+There are three execution contexts in this code:
+
+global context,
+the local context of changeValue(), and
+the local context of swapValues().
+The global context has one variable, color, and one function, changeValue().
+
+The local context of changeValue() has one variable named anotherValue and one function named swapValues(), but it can also access the variable color from the global context.
+
+The local context of swapValues() has one variable, named tempValue, that is accessible only within that context.
+
+Neither the global context nor the local context of swapValues() has access to tempValue.
+
+Within swapValues(), though, the variables of the other two contexts are fully accessible because they are parent execution contexts.
+
+The connection between the contexts is linear and ordered.
+
+Each context can search up the scope chain for variables and functions, but no context can search down the scope chain into another execution context.
+
+There are three objects in the scope chain for the local context of swapValues(): the swapValues() variable object, the variable object from changeValue(), and the global variable object.
+
+The local context of swapValues() begins its search for variable and function names in its own variable object before moving along the chain.
+
+The scope chain for the changeValue() context has only two objects: its own variable object and the global variable object.
+
+This means that it cannot access the context of swapValues().
+
+NOTE Function arguments are considered to be variables and follow the same access rules as any other variable in the execution context.
