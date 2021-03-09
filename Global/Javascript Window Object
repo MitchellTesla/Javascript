@@ -1,0 +1,19 @@
+Though ECMA-262 doesn't indicate a way to access the Global object directly, web browsers implement it such that the window is the Global object's delegate.
+
+Therefore, all variables and functions declared in the global scope become properties on window.
+
+Consider this example:
+
+Copy
+let color = "red";
+
+function sayColor() {
+  console.log(window.color);
+}
+
+window.sayColor();  // "red"
+Here, a global variable named color and a global function named sayColor() are defined.
+
+Inside sayColor(), the color variable is accessed via window.color to show that the global variable became a property of window.
+
+The function is then called directly off of the window object as window.sayColor(), which pops up the console.log.
