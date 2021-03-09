@@ -1,0 +1,31 @@
+Because function names in ECMAScript are variables, functions can be used anywhere variables can be used.
+
+We can pass a function into another function as an argument, and return a function as the result of another function.
+
+Consider the following function:
+
+Copy
+function callSomeFunction(someFunction, someArgument) {
+    return someFunction(someArgument);
+}
+This function accepts two arguments.
+
+The first argument should be a function, and the second argument should be a value to pass to that function.
+
+Any function can then be passed in as follows:
+
+Copy
+function add10(num) {
+ return num + 10;
+}
+
+let result1 = callSomeFunction(add10, 10);
+console.log(result1);  // 20
+
+function getGreeting(name) {
+ return "Hello, " + name;
+}
+
+let result2 = callSomeFunction(getGreeting, "CSS");
+console.log(result2);   // "Hello, CSS"
+The callSomeFunction() function is generic, so it doesn't matter what function is passed in as the first argument-the result will always be returned from the first argument being executed.
