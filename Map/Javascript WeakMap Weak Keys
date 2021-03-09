@@ -1,0 +1,47 @@
+The keys in a WeakMap are "weakly held," meaning they are not counted as formal references that would otherwise prevent garbage collection.
+
+The WeakMap value reference is not weakly held.
+
+As long as the key exists, the key/value pair will remain in the map and count as a reference to the value-thereby preventing it from being garbage collected.
+
+Consider the following example:
+
+Copy
+const wm = new WeakMap();
+
+wm.set({}, "val");
+Inside set(), a fresh object is initialized and used as a key to a dummy string.
+
+Because there are no other references to this object, as soon as this line is finished executing, the object key will be free for garbage collection.
+
+When this occurs, the key/value pair will disappear from the WeakMap, and it will be empty.
+
+In this example, because there are no other references to the value, this key/value destruction will also mean that the value is eligible for garbage collection.
+
+Consider a slightly different example:
+
+Copy
+const wm = new WeakMap();
+
+const container = {
+  key: {}
+ };
+wm.set(container.key, "val");
+
+function removeReference()
+  container.key = null;
+}
+Here, the container object maintains a reference to the key in the WeakMap, so the object is ineligible for garbage collection.
+
+However, as soon as removeReference() is invoked, the last strong reference to the key object will be destroyed, and garbage collection will eventually wipe out the key/value pair.
+
+Non-Iterable Keys
+Because key/value pairs in a WeakMap can be destroyed at any time, it does not make sense to offer the ability to iterate through the key/value pairs.
+
+clear() method is not part of the WeakMap API.
+
+Because iteration is not possible, it is also not possible to retrieve a value from a WeakMap instance unless you have a reference to the key object.
+
+Even if code has access to the WeakMap instance, there is no way to inspect its contents.
+
+The reason that WeakMap instances restrict keys to only objects is to preserve the convention that values can only be retrieved from a WeakMap with a reference to the key object.
