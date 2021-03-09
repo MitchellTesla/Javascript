@@ -1,0 +1,14 @@
+ECMAScript features a trim() method on all strings.
+
+The trim() method creates a copy of the string, removes all leading and trailing white space, and then returns the result.
+
+For example:
+
+Copy
+let stringValue = "  hello world  ";
+let trimmedStringValue = stringValue.trim();
+console.log(stringValue);         // "  hello world  "
+console.log(trimmedStringValue);  // "hello world"
+Since trim() returns a copy of a string, the original string remains intact with leading and trailing white space in place.
+
+The trimLeft() and trimRight() methods remove white space only from the beginning or end of the string, respectively.
