@@ -1,0 +1,46 @@
+Using class keyword we can define methods on the class itself in Javascript.
+
+A static class member is designated using the static keyword as a prefix inside the class definition.
+
+Inside static members, this refers to the class itself.
+
+All other conventions are identical to prototype members:
+
+Copy
+class Person {
+   constructor() {
+      // Everything added to 'this' will 
+      // exist on each individual instance
+      this.locate = () => console.log('instance', this);
+   }
+   // Defined on the class prototype object
+   locate() {
+      console.log('prototype', this);
+   }
+   // Defined on the class
+   static locate() {
+     console.log('class', this);
+   }
+}
+
+let p = new Person();
+
+p.locate();                 // instance, Person {}
+Person.prototype.locate();  // prototype, {constructor:...}
+Person.locate();            // class, class Person {}
+The static class methods can be used as instance factories:
+
+Copy
+class Person {
+  constructor(age) {
+    this.age_ = age;
+  }
+  sayAge() {
+    console.log(this.age_);
+  }
+  static create() {
+    // Create and return a person instance with a random age
+    return new Person(Math.floor(Math.random()*100));
+  }
+}
+console.log(Person.create());  // Person { age_:... }
