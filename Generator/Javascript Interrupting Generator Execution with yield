@@ -1,0 +1,82 @@
+The yield keyword allows generators to stop and start execution, and it is what makes generators truly useful.
+
+Generator functions will proceed with normal execution until they encounter a yield keyword.
+
+Upon encountering the yield keyword, execution will be halted and the scope state of the function will be preserved.
+
+Execution will only resume when the next() method is invoked on the generator object:
+
+Copy
+function* generatorFn() {
+  yield;
+}
+
+let generatorObject = generatorFn();
+
+console.log(generatorObject.next());  // { done: false, value: undefined }
+console.log(generatorObject.next());  // { done: true, value: undefined }
+The yield keyword behaves as an intermediate function return, and the yielded value is available inside the object returned by the next() method.
+
+A generator function exiting via the yield keyword will have a done value of false; a generator function exiting via the return keyword will have a done value of true:
+
+Copy
+function* generatorFn() {
+  yield 'foo';
+  yield 'bar';
+  return 'baz';
+}
+
+let generatorObject = generatorFn();
+
+console.log(generatorObject.next());  // { done: false, value: 'foo' }
+console.log(generatorObject.next());  // { done: false, value: 'bar' }
+console.log(generatorObject.next());  // { done: true, value: 'baz' }
+Execution progress within a generator function is scoped to each generator object instance.
+
+Invoking next() on one generator object does not affect any other:
+
+Copy
+function* generatorFn() {
+  yield 'foo';
+  yield 'bar';
+  return 'baz';
+}
+
+
+let generatorObject1 = generatorFn();
+let generatorObject2 = generatorFn();
+
+console.log(generatorObject1.next());  // { done: false, value: 'foo' }
+console.log(generatorObject2.next());  // { done: false, value: 'foo' }
+console.log(generatorObject2.next());  // { done: false, value: 'bar' }
+console.log(generatorObject1.next());  // { done: false, value: 'bar' }
+The yield keyword can only be used inside a generator function; anywhere else will throw an error.
+
+Nesting further inside a non-generator function will throw a syntax error:
+
+Copy
+// valid
+function* validGeneratorFn() {
+  yield;
+ }
+
+// invalid
+function* invalidGeneratorFnA() {
+  function a() {
+    yield;
+  }
+ }
+
+// invalid
+function* invalidGeneratorFnB() {
+  const b = () => {
+    yield;
+  }
+ }
+
+// invalid
+function* invalidGeneratorFnC() {
+  (() => {
+    yield;
+  })();
+ }
