@@ -1,0 +1,56 @@
+The original behavior of the trapped method is wrapped in a method with the same name on the global Reflect object.
+
+Each trapped method inside a handler object has a corresponding Reflect API method.
+
+This method has an identical name and function signature, and performs the exact behavior.
+
+Therefore, We can define a pass through proxy using only the Reflect API:
+
+Copy
+const target = {
+  foo: 'bar'
+};
+
+const handler = {
+  get() {
+    return Reflect.get(...arguments);
+  }
+};
+const proxy = new Proxy(target, handler);
+
+console.log(proxy.foo);   // bar
+console.log(target.foo);  // bar
+Output:
+
+
+Alternately, in a more succinct format:
+
+Copy
+const target = {
+  foo: 'bar'
+};
+
+const handler = {
+  get: Reflect.get
+};
+
+const proxy = new Proxy(target, handler);
+
+console.log(proxy.foo);   // bar
+console.log(target.foo);  // bar
+Output:
+
+
+We can create a pass through proxy that traps every available method and forwards each one to its corresponding Reflect API function as follows:
+
+Copy
+const target = {
+  foo: 'bar'
+};
+
+const proxy = new Proxy(target, Reflect);
+
+console.log(proxy.foo);   // bar
+console.log(target.foo);  // bar
+Output:
+
