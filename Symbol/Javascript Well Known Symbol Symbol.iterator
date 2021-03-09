@@ -1,0 +1,47 @@
+ECMAScript Well Known Symbol Symbol.iterator is used as a property for "A method that returns the default Iterator for an object. Called by the semantics of the for-of statement".
+
+It is used to identify the function that implements the iterator API.
+
+Javascript for-of loop make use of this function to perform iteration.
+
+They will invoke the function identified by Symbol.iterator and expect it to return an object which implements the Iterator API.
+
+In many cases, this will take the form of a Generator, an object which implements this API:
+
+Copy
+class Foo {
+  *[Symbol.iterator]() {}
+ }
+
+let f = new Foo();
+
+console.log(f[Symbol.iterator]());
+// Generator {<suspended>}
+Specifically, the object produced by the Symbol.iterator function should sequentially produce values via its next() method.
+
+This can be through explicit next() method definition or implicitly through a generator function:
+
+Copy
+class Emitter {
+  constructor(max) {
+    this.max = max;
+    this.idx = 0;
+  }
+
+  *[Symbol.iterator]() {
+    while(this.idx < this.max) {
+      yield this.idx++;
+    }
+  }
+}
+
+function count() {
+  let emitter = new Emitter(5);
+
+  for (const x of emitter) {
+    console.log(x);
+  }
+}
+
+count();
+Output:
