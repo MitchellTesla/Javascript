@@ -1,0 +1,22 @@
+The Math object contains many methods aimed at performing both simple and complex mathematical calculations.
+
+The min() and max() methods determine which number is the smallest or largest in a group of numbers.
+
+These methods accept any number of parameters, as shown in the following example:
+
+Copy
+let max = Math.max(3, 5, 2, 1);
+console.log(max);  // 5
+
+let min = Math.min(3, 5, 32, 16);
+console.log(min);  // 3
+These methods are useful for avoiding extra loops and if statements to determine the maximum value out of a group of numbers.
+
+To find the maximum or the minimum value in an array, you can use the spread operator as follows:
+
+Copy
+let values = [1, 2, 3, 4, 5, 6, 7, 8];
+let max = Math.max(...values);
+console.log(max);
+Output:
+8
