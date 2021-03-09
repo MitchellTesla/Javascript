@@ -1,0 +1,77 @@
+Typed arrays are another form of an ArrayBuffer view.
+
+A typed array enforces a single ElementType and obeys the system's native endianness.
+
+In exchange, it offers a much broader API and better performance.
+
+Typed arrays are designed for efficiently exchanging binary data with native libraries like WebGL.
+
+Typed arrays can be created to read from an existing buffer, initialized with their own buffer, filled with an iterable, or filled from an existing typed array of any type.
+
+They can also be created using <ElementType>.from() and <ElementType>.of():
+
+Copy
+// Creates a buffer of 12 bytes
+const buf = new ArrayBuffer(12);
+// Creates an Int32Array that references this buffer
+const ints = new Int32Array(buf);
+// The typed array recognizes it needs 4 bytes per element,
+// and therefore will have a length of 3
+console.log(ints.length);  // 3
+Creates an Int32Array of length 6
+
+Copy
+const ints2 = new Int32Array(6);
+// Each number uses 4 bytes, so the ArrayBuffer is 24 bytes
+console.log(ints2.length);             // 6
+// Like DataView, typed arrays have a reference to their associated buffer
+console.log(ints2.buffer.byteLength);  // 24
+Creates an Int32Array containing [2, 4, 6, 8]
+
+Copy
+const ints3 = new Int32Array([2, 4, 6, 8]);
+console.log(ints3.length);             // 4
+console.log(ints3.buffer.byteLength);  // 16
+console.log(ints3[2]);                 // 6
+Creates an Int16Array with values copies from ints3
+
+Copy
+const ints4 = new Int16Array(ints3);
+// The new typed array allocates its own buffer, and each value
+// is converted to its new representation at the same index
+console.log(ints4.length);             // 4
+console.log(ints4.buffer.byteLength);  // 8
+console.log(ints4[2]);                 // 6
+Creates an Int16Array from a normal array
+
+Copy
+const ints5 = Int16Array.from([3, 5, 7, 9]);
+console.log(ints5.length);             // 4
+console.log(ints5.buffer.byteLength);  // 8
+console.log(ints5[2]);                 // 7
+Creates a Float32Array from arguments
+
+Copy
+const floats = Float32Array.of(3.14, 2.718, 1.618);
+console.log(floats.length);             // 3
+console.log(floats.buffer.byteLength);  // 12
+console.log(floats[2]);                 // 1.6180000305175781
+Both the constructor and instances expose a BYTES_PER_ELEMENT property that returns the size of each element in that type of array:
+
+Copy
+console.log(Int16Array.BYTES_PER_ELEMENT);  // 2
+console.log(Int32Array.BYTES_PER_ELEMENT);  // 4
+
+const ints = new Int32Array(1),
+floats = new Float64Array(1);
+
+console.log(ints.BYTES_PER_ELEMENT);        // 4
+console.log(floats.BYTES_PER_ELEMENT);      // 8
+Unless a typed array is initialized with values, its associated buffer is filled with zeroes:
+
+Copy
+const ints = new Int32Array(4);
+console.log(ints[0]);  // 0
+console.log(ints[1]);  // 0
+console.log(ints[2]);  // 0
+console.log(ints[3]);  // 0
