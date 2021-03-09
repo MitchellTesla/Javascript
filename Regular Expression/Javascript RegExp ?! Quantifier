@@ -1,0 +1,24 @@
+Do a global, case insensitive search for "is" not followed by " all":
+
+Copy
+let str = "is Is this all there is";
+let patt1 = /is(?! all)/gi;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Description
+The ?!n quantifier matches any string that is not followed by a specific string n.
+
+We can use the ?=n quantifier to match any string that is followed by a specific string n.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+?!	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("regexp(?!n)") or /regexp(?!n)/
+Syntax with modifiers
+Copy
+new RegExp("regexp(?!n)", "g") or simply: /\regexp(?!n)/g
