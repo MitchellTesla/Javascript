@@ -1,0 +1,24 @@
+ECMAScript 6 introduces a formal Promise reference type, allowing for elegant definition and organization of asynchronous behavior.
+
+Later editions also extended the language to support asynchronous functions with the async and await keywords.
+
+Synchronous
+Synchronous behavior is analogous to sequential processor instructions.
+
+Each instruction is executed in the order in which it appears, and each instruction can get information stored locally within the system.
+
+It is easy to get the program state at any given time.
+
+Asynchronous
+Asynchronous behavior is analogous to interrupts, where an entity external to the current process is able to trigger code execution.
+
+An asynchronous operation can avoid waiting for operations which can take a long time to finish.
+
+The following JavaScript code performs an arithmetic operation inside a timeout:
+
+Copy
+let x = 3;
+setTimeout(() => x = x + 4, 1000);
+For the value of x to become useful, this asynchronously executed function would need to signal to the rest of the program that it has updated the value of x.
+
+However, if the program does not need this value, then it is free to proceed and do other work instead of waiting for the result.
