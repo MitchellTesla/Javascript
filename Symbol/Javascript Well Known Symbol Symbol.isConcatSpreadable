@@ -1,0 +1,32 @@
+ECMAScript Well Known Symbol Symbol.isConcatSpreadable is used as a property for "A Boolean valued property that if true indicates that an object should be flattened to its array elements by Array.prototype.concat()".
+
+The Array.prototype.concat method in ES6 will select how to join an array-like object to the array instance based on the type of object it is passed.
+
+The value of Symbol.isConcatSpreadable allows you to override this behavior.
+
+Array objects by default will be flattened into the existing array; a value of false or falsy value will append the entire object to the array.
+
+Array-like objects by default will be appended to the array; a value of true or truthy value will flatten the array-like object into the array instance.
+
+Other objects which are not array-like will be ignored when Symbol.isConcatSpreadable is set to true.
+
+Copy
+let initial = ['test'];
+
+let array = ['demo'];
+console.log(array[Symbol.isConcatSpreadable]);  // undefined
+console.log(initial.concat(array));             // ['test', 'demo']
+array[Symbol.isConcatSpreadable] = false;
+console.log(initial.concat(array));             // ['test', Array(1)]
+
+let test = { length: 1, 0: 'baz' };
+console.log(test[Symbol.isConcatSpreadable]);  // undefined
+console.log(initial.concat(test));             // ['test', {...}]
+test[Symbol.isConcatSpreadable] = true;
+console.log(initial.concat(test));             // ['test', 'baz']
+
+let otherObject = new Set().add('qux');
+console.log(otherObject[Symbol.isConcatSpreadable]);  // undefined
+console.log(initial.concat(otherObject));             // ['test', Set(1)]
+otherObject[Symbol.isConcatSpreadable] = true;
+console.log(initial.concat(otherObject));             // ['test']
