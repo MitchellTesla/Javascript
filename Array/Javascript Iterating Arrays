@@ -1,0 +1,49 @@
+The easiest way to loop through each of the elements of an array or any iterable object is with the for/of loop:
+
+Copy
+let letters = [..."Hello world"];  // An array of letters
+let string = "";
+for(let letter of letters) {
+    string += letter;
+}
+string  // => "Hello world"; we reassembled the original text
+The built-in array iterator that the for/of loop uses returns the elements of an array in ascending order.
+
+It has no special behavior for sparse arrays and simply returns undefined for any array elements that do not exist.
+
+If you want to use a for/of loop for an array and need to know the index of each array element, use the entries() method of the array, along with destructuring assignment, like this:
+
+Copy
+let letters = [..."Hello world"];  // An array of letters
+let everyother = "";
+for(let [index, letter] of letters.entries()) {
+    if (index % 2 === 0) everyother += letter;  // letters at even indexes
+}
+everyother  // => "Hlowrd"
+Another good way to iterate arrays is with forEach() method from Array.
+
+It offers a functional approach to array iteration.
+
+You pass a function to the forEach() method of an array, and forEach() invokes your function once on each element of the array:
+
+Copy
+let letters = [..."Hello world"];  // An array of letters
+let uppercase = "";
+letters.forEach(letter => {  // Note arrow function syntax here
+    uppercase += letter.toUpperCase();
+});
+uppercase  // => "HELLO WORLD"
+forEach() iterates the array in order, and it actually passes the array index to your function as a second argument, which is occasionally useful.
+
+Unlike the for/of loop, the forEach() is aware of sparse arrays and does not invoke your function for elements that are not there. You can also loop through the elements of an array with a good old-fashioned for loop:
+
+Copy
+let letters = [..."Hello world"];  // An array of letters
+let vowels = "";
+for(let i = 0; i < letters.length; i++) { // For each index in the array
+    let letter = letters[i];              // Get the element at that index
+    if (/[aeiou]/.test(letter)) {         // Use a regular expression test
+        vowels += letter;                 // If it is a vowel, remember it
+    }
+}
+vowels  // => "eoo"
