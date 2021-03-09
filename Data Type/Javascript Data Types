@@ -1,0 +1,39 @@
+There are six simple data types or primitive types in ECMAScript:
+
+undefined
+null,
+Boolean,
+Number,
+String,
+Symbol.
+There is also one complex data type called Object.
+
+Object is an unordered list of name-value pairs.
+
+Copy
+let a = undefined;
+console.log(a);
+a = null;
+console.log(a);
+
+a = true;
+console.log(a);
+
+a = 123.123;
+console.log(a);
+
+a = 'string';
+console.log(a);
+
+a = Symbol();
+console.log(a);
+
+Output:
+
+
+undefined
+null
+true
+123.123
+string
+symbol()
