@@ -1,0 +1,50 @@
+The return() method will force the generator into a closed state, and the value provided to return() will be the value provided in the terminal iterator object:
+
+Copy
+function* generatorFn() {
+  for (const x of [1, 2, 3]) {
+    yield x;
+  }
+}
+
+const g = generatorFn();
+
+console.log(g);            // generatorFn {<suspended>}
+console.log(g.return(4));  // { done: true, value: 4 }
+console.log(g);            // generatorFn {<closed>}
+Unlike iterators, all generator objects have a return() method that forces it into a closed state that it cannot exit once reached.
+
+Subsequent invoking of next() will disclose the done:true state, but any provided return value is not stored or propagated:
+
+Copy
+function* generatorFn() {
+  for (const x of [1, 2, 3]) {
+    yield x;
+  }
+}
+const g = generatorFn();
+
+console.log(g.next());     // { done: false, value: 1 }
+console.log(g.return(4));  // { done: true, value: 4 }
+console.log(g.next());     // { done: true, value: undefined }
+console.log(g.next());     // { done: true, value: undefined }
+console.log(g.next());     // { done: true, value: undefined }
+Built-in language constructs such as the for...of loop will sensibly ignore any values returned inside the done:true IteratorObject.
+
+Copy
+function* generatorFn() {
+  for (const x of [1, 2, 3]) {
+    yield x;
+  }
+}
+
+const g = generatorFn();
+
+for (const x of g) {
+  if (x > 1) {
+    g.return(4);
+  }
+  console.log(x);
+}
+Output:
+
