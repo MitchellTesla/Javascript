@@ -1,0 +1,31 @@
+The prototype pattern is the pattern used to implement all of the native reference types in Javascript.
+
+Object, Array, String, and so on all have its methods defined on the constructor's prototype.
+
+For instance, the sort() method can be found on Array.prototype, and substring() can be found on String.prototype, as shown here:
+
+Copy
+console.log(typeof Array.prototype.sort);        // "function"
+console.log(typeof String.prototype.substring);  // "function"
+Through native object prototypes, we can get references to all of the default methods and to define new methods.
+
+Native object prototypes can be modified just like custom object prototypes, so methods can be added at any time.
+
+For example, the following code adds a method called startsWith() to the String primitive wrapper:
+
+Copy
+String.prototype.startsWith = function (text) {
+  return this.indexOf(text) === 0;
+};
+
+let msg = "Hello world!";
+console.log(msg.startsWith("Hello"));   // true
+The startsWith() method in this example returns true if some given text occurs at the beginning of a string.
+
+The method is assigned to String.prototype, making it available to all strings in the environment.
+
+Since msg is a string, the String primitive wrapper is created behind the scenes, making startsWith() accessible.
+
+We should not modify native object prototypes in a production environment.
+
+We should create a custom class that inherits from the native type.
