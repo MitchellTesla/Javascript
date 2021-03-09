@@ -1,0 +1,68 @@
+To define a floating-point value, you must include a decimal point and at least one number after the decimal point.
+
+Although an integer is not necessary before a decimal point, it is recommended.
+
+Here are some examples:
+
+Copy
+let floatNum1 = 1.1;
+let floatNum2 = 0.1;
+let floatNum3 = .1;   // valid, but not recommended
+You can use underscores within numeric literals to break long literals up into chunks that are easier to read:
+
+Copy
+let billion = 1_000_000_000;   // Underscore as a thousands separator.
+let bytes = 0x89_AB_CD_EF;     // As a bytes separator.
+let bits = 0b0001_1101_0111;   // As a nibble separator.
+let fraction = 0.123_456_789;  // Works in the fractional part, too.
+When there is no digit after the decimal point, the number becomes an integer.
+
+If the number being represented is a whole number (such as 1.0), it will be converted into an integer, as in this example:
+
+Copy
+let floatNum1 = 1.;    // missing digit after decimal - interpreted as integer 1
+let floatNum2 = 10.0;  // whole number - interpreted as integer 10
+E-notation
+Javascript floating-point values can be represented using e-notation.
+
+E-notation is used to indicate a number that should be multiplied by 10 raised to a given power.
+
+The format of e-notation in ECMAScript is to have a number, integer or floating-point, followed by an uppercase or lowercase letter E, followed by the power of 10 to multiply by.
+
+Consider the following:
+
+Copy
+let floatNum = 3.125e7;  // equal to 31250000
+In this example, floatNum is equal to 31,250,000 and it is represented in a more compact form using e-notation.
+
+The notation says, "Take 3.125 and multiply it by 10000000."
+
+E-notation can also be used to represent very small numbers, such as 0.00000000000000003, which can be written more succinctly as 3e-17.
+
+By default, ECMAScript converts any floating-point value with at least six zeros after the decimal point into e-notation (for example, 0.0000003 becomes 3e-7).
+
+Accuracy
+Floating-point values are accurate up to 17 decimal places but are far less accurate in arithmetic computations than whole numbers.
+
+For instance, adding 0.1 and 0.2 yields 0.30000000000000004 instead of 0.3.
+
+These small rounding errors make it difficult to test for specific floating-point values. Consider this example:
+
+Copy
+const a = 0.1;
+const b = 0.2;
+
+if (a + b == 0.3) {  // avoid!
+  console.log("You got 0.3.");
+}else{
+  console.log("not 0.3.");
+}
+Output:
+
+
+Here, the sum of two numbers is tested to see if it's equal to 0.3.
+
+You should never test for specific floating-point values.
+
+Note
+The rounding errors are caused by how the floating-point arithmetic is done in IEEE-754-based numbers and is not unique to ECMAScript. Other languages that use the same format have the same issues.
