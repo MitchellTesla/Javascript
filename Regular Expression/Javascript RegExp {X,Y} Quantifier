@@ -1,0 +1,24 @@
+Do a global search for a substring that contains a sequence of three to four digits:
+
+Copy
+let str = "100, 1000 or 10000?";
+let patt1 = /\d{3,4}/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Description
+The n{X,Y} quantifier matches any string that contains a sequence of X to Y n's.
+
+X and Y must be a number.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+{X,Y}	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("n{X,Y}") or simply: /n{X,Y}/
+Syntax with modifiers
+Copy
+new RegExp("n{X,Y}", "g") or simply: /\n{X,Y}/g
