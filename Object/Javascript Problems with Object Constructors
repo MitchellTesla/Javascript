@@ -1,0 +1,61 @@
+The major downside to constructors is that methods are created once for each instance.
+
+Suppose we have:
+
+Copy
+function Person(name, age, job){
+  this.name = name;
+  this.age = age;
+  this.job = job;
+  this.sayName = function() {
+    console.log(this.name);
+  };
+}
+
+let person1 = new Person("CSS", 29, "Style");
+let person2 = new Person("HTML", 27, "Mark up");
+Both person1 and person2 have a method called sayName(), but those methods are not the same instance of Function.
+
+Remember that functions are objects in ECMAScript, so every time a function is defined, it's actually an object being instantiated.
+
+Logically, the constructor actually looks like this:
+
+Copy
+function Person(name, age, job){
+ this.name = name;
+ this.age = age;
+ this.job = job;
+ this.sayName = new Function("console.log(this.name)");  // logical equivalent
+}
+Each instance of Person gets its own instance of Function that displays the name property.
+
+So, functions of the same name on different instances are not equivalent, as the following code proves:
+
+Copy
+console.log(person1.sayName == person2.sayName);  // false
+We can move the function definition outside of the constructor, as follows:
+
+Copy
+function Person(name, age, job){
+  this.name = name;
+  this.age = age;
+  this.job = job;
+  this.sayName = sayName;
+}
+
+function sayName() {
+  console.log(this.name);
+}
+
+let person1 = new Person("CSS", 29, "Style");
+let person2 = new Person("HTML", 27, "Mark up");
+
+person1.sayName();  // CSS
+person2.sayName();  // HTML
+In this example, the sayName() function is defined outside the constructor.
+
+Inside the constructor, the sayName property is set equal to the global sayName() function.
+
+Because the sayName property now contains just a pointer to a function, both person1 and person2 end up sharing the sayName() function that is defined in the global scope.
+
+The downside of the way is that we create many global functions.
