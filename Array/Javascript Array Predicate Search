@@ -1,0 +1,42 @@
+ECMAScript can define a predicate function that will be invoked at each index.
+
+The return value of the function determines if the element at that index is considered a match.
+
+A predicate function takes the form predicate(element, index, array), where element is the current element in the array being examined, index is the index of element inside the array, and array is the array instance.
+
+A truthy return value indicates a match.
+
+The two methods that make use of this are find() and findIndex().
+
+Both begin searching at the lowest index in the array; find() returns the first matching element, and findIndex() returns the index of the first matching element.
+
+Both methods also accept a second optional argument that allows you to specify the value of this inside the predicate.
+
+Copy
+const people = [
+  {
+    name: "HTML",
+    age: 27
+  },
+  {
+    name: "CSS",
+    age: 29
+  }
+];
+console.log(people.find((element, index, array) => element.age < 28));
+// {name: "HTML", age: 27}
+console.log(people.findIndex((element, index, array) => element.age < 28));
+// 0
+Neither method will continue searching once a match has been found.
+
+Copy
+const evens = [2, 4, 6];
+// Last element of array will never be inspected after match is found
+const a = evens.find((element, index, array) => {
+  console.log(element);
+  console.log(index);
+  console.log(array);
+  return element === 4;
+ });
+Output:
+
