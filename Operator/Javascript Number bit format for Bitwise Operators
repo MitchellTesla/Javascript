@@ -1,0 +1,72 @@
+All numbers in ECMAScript are stored in IEEE-754 64-bit format, but the bitwise operations do not work directly on the 64-bit representation.
+
+Instead, the value is converted into a 32-bit integer, the operation takes place, and the result is converted back into 64 bits.
+
+To the developer, it appears that only the 32-bit integer exists because the 64-bit storage format is transparent.
+
+Signed integers use the first 31 of the 32 bits to represent the numeric value of the integer.
+
+The 32nd bit represents the sign of the number: 0 for positive or 1 for negative. Depending on the value of that bit, called the sign bit, the format of the rest of the number is determined.
+
+Positive numbers are stored in true binary format, with each of the 31 bits representing a power of 2, starting with the first bit (called bit 0) representing 20, the second bit represents 21
+
+.
+If any bits are unused, they are filled with 0 and essentially ignored.
+
+For example, the number 18 is represented as 00000000000000000000000000010010, or more succinctly as 10010.
+
+These are the five most significant bits and can be used, by themselves, to determine the actual value.
+
+Negative numbers
+Negative numbers are also stored in binary code but in a format called two's complement.
+
+The two's complement of a number is calculated in three steps:
+
+Determine the binary representation of the absolute value (for example, to find -18, first determine the binary representation of 18).
+Find the one's complement of the number, which essentially means that every 0 must be
+replaced with a 1, and vice versa.
+Add 1 to the result.
+Using this process to determine the binary representation -18, start with the binary representation of 18, which is the following:
+
+Copy
+0000 0000 0000 0000 0000 0000 0001 0010
+Next, take the one's complement, which is the inverse of this number:
+
+Copy
+1111 1111 1111 1111 1111 1111 1110 1101
+Finally, add 1 to the one's complement as follows:
+
+Copy
+1111 1111 1111 1111 1111 1111 1110 1101
+                                      1
+---------------------------------------
+1111 1111 1111 1111 1111 1111 1110 1110
+So the binary equivalent of -18 is 11111111111111111111111111101110.
+
+Keep in mind that you have no access to bit 31 when dealing with signed integers.
+
+When outputting a negative number as a binary string, you get the binary code of the absolute value preceded by a minus sign, as in this example:
+
+Copy
+let num = -18;
+console.log(num.toString(2));  // "-10010"
+When you convert the number -18 to a binary string, the result is -10010.
+
+The conversion process interprets the two's complement and represents it in an arguably more logical form.
+
+By default, all integers are represented as signed in ECMAScript.
+
+In an unsigned integer, the 32nd bit doesn't represent the sign because there are only positive numbers.
+
+Unsigned integers can be larger, because the extra bit becomes part of the number instead of an indicator of the sign.
+
+Apply bitwise operators
+When you apply bitwise operators to numbers in ECMAScript, a conversion takes place behind the scenes: the 64-bit number is converted into a 32-bit number, the operation is performed, and then the 32-bit result is stored back into a 64-bit number.
+
+This gives the illusion that you're dealing with true 32-bit numbers, which makes the binary operations work in a way similar to the operations of other languages.
+
+NaN and Infinity both are treated as equivalent to 0 when used in bitwise operations.
+
+If a bitwise operator is applied to a nonnumeric value, the value is first converted into a number using the Number() function and then the bitwise operation is applied.
+
+The resulting value is a number.
