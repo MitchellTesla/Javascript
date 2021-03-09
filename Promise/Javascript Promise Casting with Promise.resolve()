@@ -1,0 +1,49 @@
+We can instantiate a promise in the "resolved" state by invoking the Promise.resolve() static method.
+
+The following two promise instantiations are effectively equivalent:
+
+Copy
+let p1 = new Promise((resolve, reject) => resolve());
+let p2 = Promise.resolve();
+The value of this resolved promise will become the first argument passed to Promise.resolve().
+
+This effectively allows you to "cast" any value into a promise:
+
+Copy
+setTimeout(console.log, 0, Promise.resolve());
+// Promise <resolved>: undefined
+
+setTimeout(console.log, 0, Promise.resolve(3));
+// Promise <resolved>: 3
+
+// Additional arguments are ignored
+setTimeout(console.log, 0, Promise.resolve(4, 5, 6));
+// Promise <resolved>: 4
+This static method can act as a pass through when the argument is already a promise.
+
+Calling Promise.resolve() more than once returns the same result, as demonstrated here:
+
+Copy
+let p = Promise.resolve(7);
+
+setTimeout(console.log, 0, p === Promise.resolve(p));
+// true
+
+setTimeout(console.log, 0, p === Promise.resolve(Promise.resolve(p)));
+// true
+Promise.resolve() will respect the state of the promise passed to it:
+
+Copy
+let p = new Promise(() => {});
+
+setTimeout(console.log, 0, p);                   // Promise <pending>
+setTimeout(console.log, 0, Promise.resolve(p));  // Promise <pending>
+
+setTimeout(console.log, 0, p === Promise.resolve(p));  // true
+Promise.resolve() can wrap any non-promise, including an error object, as a resolved promise, which might lead to unintended behavior:
+
+Copy
+let p = Promise.resolve(new Error('foo'));
+
+setTimeout(console.log, 0, p);
+// Promise <resolved>: Error: foo
