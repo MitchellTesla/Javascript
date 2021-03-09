@@ -1,0 +1,27 @@
+Functions are objects in ECMAScript and therefore have properties and methods.
+
+Each function has two properties: length and prototype.
+
+The length property indicates the number of named arguments that the function expects, as in this example:
+
+Copy
+function sayName(name) {
+  console.log(name);
+}
+
+function sum(num1, num2) {
+  return num1 + num2;
+}
+
+function sayHi() {
+  console.log("hi");
+}
+
+console.log(sayName.length);  // 1
+console.log(sum.length);      // 2
+console.log(sayHi.length);    // 0
+This code defines three functions, each with a different number of named arguments.
+
+The sayName() function specifies one argument, so its length property is set to 1.
+
+The sum() function specifies two arguments, so its length property is 2, and sayHi() has no named arguments, so its length is 0.
