@@ -1,0 +1,35 @@
+Javascript primitive and reference values act differently when copied from one variable to another.
+
+Primitive value
+When a primitive value is assigned from one variable to another, the value stored on the variable object is created and copied into the location for the new variable.
+
+Consider the following example:
+
+Copy
+let num1 = 5;
+let num2 = num1;
+Here, num1 contains the value of 5.
+
+When num2 is initialized to num1, it also gets the value of 5.
+
+This value is completely separate from the one that is stored in num1 because it's a copy of that value.
+
+Each of these variables can now be used separately with no side effects.
+
+Reference value
+When a reference value is assigned from one variable to another, the value stored on the variable object is copied into the location for the new variable.
+
+This value is a pointer to an object variable object after copy stored on the heap.
+
+Once the operation is complete, two variables point to exactly the same object, so changes to one are reflected on the other, as in the following example:
+
+Copy
+let obj1 = new Object();
+let obj2 = obj1;
+obj1.name = "CSS";
+console.log(obj2.name);  // "CSS"
+In this example, the variable obj1 is filled with a new instance of an object.
+
+This value is then copied into obj2, meaning that both variables are now pointing to the same object.
+
+When the property name is set on obj1, it can later be accessed from obj2 because they both point to the same object.
