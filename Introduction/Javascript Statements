@@ -1,0 +1,38 @@
+Statements in ECMAScript are terminated by a semicolon.
+
+Omitting the semicolon makes the parser determine where the end of a statement occurs.
+
+Copy
+let sum = a + b    // valid even without a semicolon - not recommended
+let diff = a - b;  // valid - preferred
+Even though a semicolon is not required at the end of statements, you should always include one.
+
+Including semicolons helps prevent errors of omission.
+
+Including semicolons also improves performance in certain situations.
+
+Multiple statements can be combined into a code block by using C-style syntax, beginning with a left curly brace { and ending with a right curly brace }:
+
+Copy
+let test = true;
+
+if (test) {
+  test = false;
+  console.log(test);
+}
+Control statements, such as if, require code blocks only when executing multiple statements.
+
+It is a best practice to always use code blocks with control statements, even if there's only one statement to be executed:
+
+Copy
+let test = true;
+
+// valid, but error-prone and should be avoided
+if (test)
+   console.log(test);
+
+// preferred
+if (test) {
+    console.log(test);
+}
+Using code blocks for control statements makes the intent clearer, and there's less chance for errors when changes need to be made.
