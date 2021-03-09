@@ -1,0 +1,94 @@
+To replace substrings, ECMAScript provides the replace() method.
+
+This method accepts two arguments.
+
+The first argument can be a RegExp object or a string which is not converted to a regular expression, and the second argument can be a string or a function.
+
+If the first argument is a string, then only the first occurrence of the substring will be replaced.
+
+The only way to replace all instances of a substring is to provide a regular expression with the global flag specified, as in this example:
+
+Copy
+let text = "cat, bat, sat, fat";
+let result = text.replace("at", "ond");
+console.log(result);  // "cond, bat, sat, fat"
+
+result = text.replace(/at/g, "ond");
+console.log(result);  // "cond, bond, sond, fond"
+In this example, the string "at" is first passed into replace() with a replacement text of "ond".
+
+The result of the operation is that "cat" is changed to "cond", but the rest of the string remains intact.
+
+By changing the first argument to a regular expression with the global flag set, each instance of "at" is replaced with "ond".
+
+When the second argument is a string, there are several special character sequences that can be used to insert values from the regular-expression operations.
+
+ECMA-262 specifies the following table of values.
+
+Sequence
+Replacement Text
+$$
+$
+$&
+The substring matching the entire pattern. Same as RegExp.lastMatch.
+$'
+
+The part of the string occurring before the matched substring.
+Same as RegExp.rightContext.
+$`
+
+The part of the string occurring after the matched substring.
+Same as RegExp.leftContext.
+$n
+
+
+The nth capture, where n is a value 0-9.
+For instance, $1 is the first capture, $2 is the second, and so on.
+If there is no capture then the empty string is used.
+$nn
+
+
+The nnth capture, where nn is a value 01-99.
+For instance, $01 is the first capture, $02 is the second, and so on.
+If there is no capture then the empty string is used.
+Using these special sequences allows replacement using information about the last match, such as in this example:
+
+Copy
+let text = "cat, bat, sat, fat";
+result = text.replace(/(.at)/g, "word ($1)");
+console.log(result);  // word (cat), word (bat), word (sat), word (fat)
+Here, each word ending with "at" is replaced with "word" followed in parentheses by what it replaces by using the $1 sequence.
+
+The second argument of replace() may also be a function.
+
+When there is a single match, the function gets passed three arguments: the string match, the position of the match within the string, and the whole string.
+
+When there are multiple capturing groups, each matched string is passed in as an argument, with the last two arguments being the position of the pattern match in the string and the original string.
+
+The function should return a string indicating what the match should be replaced with.
+
+Using a function as the second argument allows more granular control over replacement text, as in this example:
+
+Copy
+function htmlEscape(text) {
+  return text.replace(/[<>"&]/g, function(match, pos, originalText) {
+    switch(match) {
+      case "<":
+        return "&lt;";
+      case ">":
+        return "&gt;";
+      case "&":
+        return "&amp;";
+      case "\"":
+        return "&quot;";
+    }
+  });
+}
+
+console.log(htmlEscape("<p class=\"greeting\">Hello world!</p>"));
+Output:
+
+
+Here, the function htmlEscape() is defined to escape four characters for insertion into HTML: the less-than, greater-than, ampersand, and double-quote characters all must be escaped.
+
+We use a regular expression to look for those characters and then define a function that returns the specific HTML entities for each matched character.
