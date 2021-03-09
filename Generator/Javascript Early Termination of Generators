@@ -1,0 +1,16 @@
+Javascript generators also support the concept of being "closable."
+
+For an object to implement the Iterator interface, it must have a next() and, optionally, a return() method for when the iterator is terminated early.
+
+A generator object has both of these methods and an additional third method, throw().
+
+Copy
+function* generatorFn() {}
+
+const g = generatorFn();
+
+console.log(g);         // generatorFn {<suspended>}
+console.log(g.next);    // f next() { [native code] }
+console.log(g.return);  // f return() { [native code] }
+console.log(g.throw);   // f throw() { [native code] }
+The return() and throw() methods are two methods that can be used to coerce the generator into a closed state.
