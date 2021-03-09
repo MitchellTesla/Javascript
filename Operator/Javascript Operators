@@ -1,0 +1,10 @@
+ECMA-262 describes a set of operators that can be used to manipulate data values.
+
+The operators range from mathematical operations, such as addition and subtraction, and bitwise operators to relational operators and equality operators.
+
+Operators in ECMAScript can be used on a wide range of values, including strings, numbers, Booleans, and even objects.
+
+When used on objects, operators typically call the valueOf() and/or toString() method to retrieve a value they can work with.
+
+Unary Operators
+Operators that work on only one value are called unary operators. They are the simplest operators in ECMAScript.
