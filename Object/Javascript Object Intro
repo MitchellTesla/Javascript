@@ -1,0 +1,37 @@
+ECMA-262 defines an object as an unordered collection of properties.
+
+Each property or method in an object is identified by a name that is mapped to a value.
+
+We can think of ECMAScript objects as hash tables: a grouping of name-value pairs where the value may be data or a function.
+
+The canonical way of creating a custom object is to create a new instance of Object and add properties and methods to it, as in this example:
+
+Copy
+let person = new Object();
+
+person.name = "CSS";
+person.age = 19;
+person.job = "Style";
+person.sayName = function() {
+   console.log(this.name);
+};
+This example creates an object called person that has three properties:name, age, and job, and one method sayName().
+
+The sayName() method displays the value of this.name, which resolves to person.name.
+
+We can also use object literals to create objects.
+
+The previous example can be rewritten using object literal notation as follows:
+
+Copy
+let person = {
+  name: "CSS",
+  age: 19,
+  job: "Style",
+  sayName() {
+    console.log(this.name);
+  }
+};
+The person object in this example is equivalent to the person object in the prior example, with all the same properties and methods.
+
+These properties are all created with certain characteristics that define their behavior in JavaScript.
