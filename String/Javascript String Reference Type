@@ -1,0 +1,20 @@
+The String type is the object representation for strings and is created using the String constructor as follows:
+
+Copy
+let stringObject = new String("hi");
+The methods of a String object are available on all string primitives.
+
+All three of the inherited methods-valueOf(), toLocaleString(), and toString()-return the object's primitive string value.
+
+Each instance of String contains a single property, length, which indicates the number of characters in the string.
+
+Consider the following example:
+
+Copy
+let stringValue = "hello world";
+console.log(stringValue.length);   // "11"
+This example outputs "11", the number of characters in "hello world".
+
+Note that even if the string contains a double-byte character, each character is still counted as one.
+
+The String type has a large number of methods to aid in the dissection and manipulation of strings in ECMAScript.
