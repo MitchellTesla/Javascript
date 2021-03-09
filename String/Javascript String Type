@@ -1,0 +1,92 @@
+The String data type represents a sequence of zero or more 16-bit Unicode characters.
+
+Strings can be delineated by either double quotes ", single quotes ', or backticks `, so all of the following are legal:
+
+Copy
+let firstName = "css";
+let lastName = 'html';
+let lastName = `this is a test from demo2s.com`;
+A string beginning with a certain character must end with the same character.
+
+For example, the following will cause a syntax error:
+
+Copy
+let firstName = 'CSS";  // syntax error - quotes must match
+Here are some examples
+
+Copy
+const a = 'a';
+console.log(a);
+
+const b = "b";
+console.log(b);
+
+const c = `c`;
+console.log(c);
+Output:
+
+
+Operation
+To determine the length of a string-the number of 16-bit values it contains-use the length property of the string:
+
+Copy
+s.length
+JavaScript provides a rich API for working with strings:
+
+Copy
+let s = "Hello, world"; // Start with some text.
+Obtaining portions of a string
+
+Copy
+s.substring(1,4)        // => "ell": the 2nd, 3rd, and 4th characters.
+s.slice(1,4)            // => "ell": same thing
+s.slice(-3)             // => "rld": last 3 characters
+s.split(", ")           // => ["Hello", "world"]: split at delimiter string
+Searching a string
+
+Copy
+s.indexOf("l")          // => 2: position of first letter l
+s.indexOf("l", 3)       // => 3: position of first "l" at or after 3
+s.indexOf("zz")         // => -1: s does not include the substring "zz"
+s.lastIndexOf("l")      // => 10: position of last letter l
+Boolean searching functions
+
+Copy
+s.startsWith("Hell")    // => true: the string starts with these
+s.endsWith("!")         // => false: s does not end with that
+s.includes("or")        // => true: s includes substring "or"
+Creating modified versions of a string
+
+Copy
+s.replace("llo", "ya")  // => "Heya, world"
+s.toLowerCase()         // => "hello, world"
+s.toUpperCase()         // => "HELLO, WORLD"
+s.normalize()           // Unicode NFC normalization: ES6
+s.normalize("NFD")      // NFD normalization.
+Inspecting individual (16-bit) characters of a string
+
+Copy
+s.charAt(0)             // => "H": the first character
+s.charAt(s.length-1)    // => "d": the last character
+s.charCodeAt(0)         // => 72: 16-bit number at the specified position
+s.codePointAt(0)        // => 72: ES6, works for codepoints > 16 bits
+String padding functions "x".padStart(3) // => " x": add spaces on the left to a length of 3 "x".padEnd(3) // => "x ": add spaces on the right to a length of 3 "x".padStart(3, "*") // => "**x": add stars on the left to a length of 3 "x".padEnd(3, "-") // => "x--": add dashes on the right to a length of 3
+
+Space trimming functions. trim() is ES5; others ES2019
+
+Copy
+" test ".trim()         // => "test": remove spaces at start and end
+" test ".trimStart()    // => "test ": remove spaces on left. Also trimLeft
+" test ".trimEnd()      // => " test": remove spaces at right. Also trimRight
+Other string methods s.concat("!") // => "Hello, world!": just use + operator instead "<>".repeat(5) // => "<><><><><>": concatenate n copies. ES6
+
+Javascript strings are immutable.
+
+Methods like replace() and toUpperCase() return new strings: they do not modify the string on which they are invoked.
+
+Strings can also be treated like read-only arrays, and you can access individual characters (16-bit values) from a string using square brackets instead of the charAt() method:
+
+Copy
+let s = "hello, world";
+s[0]                  // => "h"
+s[s.length-1]         // => "d"
