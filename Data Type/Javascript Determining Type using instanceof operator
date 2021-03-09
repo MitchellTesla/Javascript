@@ -1,0 +1,39 @@
+The typeof operator can determine if a variable is a primitive type.
+
+We can use typeof operator to determine if a variable is a string, number, Boolean, or undefined.
+
+If the value is an object or null, then typeof returns "object", as in this example:
+
+Copy
+let s = "CSS";
+let b = true;
+let i = 2;
+let u;
+let n = null;
+let o = new Object();
+console.log(typeof s);   // string
+console.log(typeof i);   // number
+console.log(typeof b);   // boolean
+console.log(typeof u);   // undefined
+console.log(typeof n);   // object
+console.log(typeof o);   // object
+typeof operator has little use for reference values.
+
+instanceof
+instanceof operator can check object type.
+
+ECMAScript instanceof operator is used with the following syntax:
+
+Copy
+result = variable instanceof constructor
+The instanceof operator returns true if the variable is an instance of the given reference type.
+
+Consider this example:
+
+Copy
+console.log(person instanceof Object);   // is the variable person an Object?
+console.log(colors instanceof Array);    // is the variable colors an Array?
+console.log(pattern instanceof RegExp);  // is the variable pattern a RegExp?
+All reference values, by definition, are instances of Object, so the instanceof operator always returns true when used with a reference value and the Object constructor.
+
+Similarly, if instanceof is used with a primitive value, it will always return false, because primitives aren't objects.
