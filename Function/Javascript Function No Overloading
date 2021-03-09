@@ -1,0 +1,45 @@
+ECMAScript functions cannot be overloaded in the traditional sense.
+
+The functions in ECMAScript don't have signatures because the arguments are represented as an array containing zero or more values.
+
+Without function signatures, true overloading is not possible.
+
+If two functions are defined to have the same name in ECMAScript, it is the last function that becomes the owner of that name.
+
+Consider the following example:
+
+Copy
+function addSomeNumber(num) {
+ return num + 100;
+}
+
+function addSomeNumber(num) {
+ return num + 200;
+}
+
+let result = addSomeNumber(100);  // 300
+Here, the function addSomeNumber() is defined twice.
+
+The first version of the function adds 100 to the argument, and the second adds 200.
+
+When the last line is called, it returns 300 because the second function has overwritten the first.
+
+It's possible to simulate overloading of methods by checking the type and number of arguments that have been passed into a function and then reacting accordingly.
+
+In the previous example, declaring two functions with the same name always results in the last function overwriting the previous one.
+
+This code is almost exactly equivalent to the following:
+
+Copy
+let addSomeNumber = function(num) {
+   return num + 100;
+};
+
+addSomeNumber = function(num) {
+   return num + 200;
+};
+
+let result = addSomeNumber(100);   // 300
+In this rewritten code, it's much easier to see exactly what is going on.
+
+The variable addSomeNumber is simply being overwritten when the second function is created.
