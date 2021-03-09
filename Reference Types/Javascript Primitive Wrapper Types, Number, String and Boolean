@@ -1,0 +1,71 @@
+Three special reference types are designed to ease interaction with primitive values: the Boolean type, the Number type, and the String type.
+
+These types can act like the other reference types and they also have a special behavior related to their primitive-type equivalents.
+
+Every time a primitive value is read, an object of the corresponding primitive wrapper type is created behind the scenes, allowing access to any number of methods for manipulating the data.
+
+Consider the following example:
+
+Copy
+let s1 = "some text";
+let s2 = s1.substring(2);
+In this code, s1 is a variable containing a string, which is a primitive value.
+
+On the next line, the substring() method is called on s1 and stored in s2.
+
+Any time a string value is accessed in read mode, the following three steps occur:
+
+Create an instance of the String type.
+Call the specified method on the instance.
+Destroy the instance.
+You can think of these three steps as they're used in the following three lines of ECMAScript code:
+
+Copy
+let s1 = new String("some text");
+let s2 = s1.substring(2);
+s1 = null;
+This behavior allows the primitive string value to act like an object.
+
+These same three steps are repeated for Boolean and numeric values using the Boolean and Number types, respectively.
+
+For primitive wrapper types we cannot add new properties.
+
+Take this for example:
+
+Copy
+let s1 = "some text";
+s1.color = "red";
+console.log(s1.color);   // undefined
+Here, the second line attempts to add a color property to the string s1.
+
+However, when s1 is accessed on the third line, the color property is gone.
+
+This happens because the String object that was created in the second line is destroyed by the time the third line is executed.
+
+The third line creates its own String object, which doesn't have the color property.
+
+Constructor
+We can create the primitive wrapper objects explicitly using the Boolean, Number, and String constructors.
+
+This should not be done because it is confusing for developers as to whether they are dealing with a primitive or reference value.
+
+Calling typeof on an instance of a primitive wrapper type returns "object", and all primitive wrapper objects convert to the Boolean value true.
+
+Factory method
+The Object constructor also acts as a factory method and is capable of returning an instance of a primitive wrapper based on the type of value passed into the constructor.
+
+For example: let obj = new Object("some text"); console.log(obj instanceof String); // true
+
+When a string is passed into the Object constructor, an instance of String is created; a number argument results in an instance of Number, while a Boolean argument returns an instance of Boolean.
+
+Without new
+Calling a primitive wrapper constructor using new is not the same as calling the casting function of the same name. For example:
+
+Copy
+let value = "25";
+let number = Number(value);   // casting function
+console.log(typeof number);     // "number"
+
+let obj = new Number(value);  // constructor
+console.log(typeof obj);        // "object"
+In this example, the variable number is filled with a primitive number value of 25 while the variable obj is filled with an instance of Number.
