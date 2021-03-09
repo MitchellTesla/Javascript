@@ -1,0 +1,65 @@
+When invoked, generator functions produce a generator object.
+
+Generator objects begin in a state of suspended execution.
+
+The generator objects implement the Iterator interface and therefore has a next() method, which, when invoked, instructs the generator to begin or resume execution.
+
+Copy
+function* generatorFn() {}
+
+const g = generatorFn();
+
+console.log(g);       // generatorFn {<suspended>}
+console.log(g.next);  // f next() { [native code] }
+The return value of this next() method matches that of an iterator, with a done and value property.
+
+A generator function with an empty function body will act as a pass through; invoking next() a single time will result in the generator reaching the done:true state.
+
+Copy
+function* generatorFn() {}
+
+let generatorObject = generatorFn();
+
+console.log(generatorObject);         // generatorFn {<suspended>}
+console.log(generatorObject.next());  // { done: true, value: undefined }
+The value property is the return value of the generator function, which defaults to undefined and can be specified via the generator function's return value.
+
+Copy
+function* generatorFn() {
+  return 'foo';
+}
+
+let generatorObject = generatorFn();
+
+console.log(generatorObject);         // generatorFn {<suspended>}
+console.log(generatorObject.next());  // { done: true, value: 'foo' }
+Generator function execution will only begin upon the initial next() invocation, as shown here:
+
+Copy
+function* generatorFn() {
+  console.log('foobar');
+}
+
+// Nothing is logged yet when the generator function is initially invoked
+let generatorObject = generatorFn();
+
+generatorObject.next();  // foobar
+Generator objects implement the Iterable interface, and their default iterator is self-referential:
+
+Copy
+function* generatorFn() {}
+
+console.log(generatorFn);
+// f* generatorFn() {}
+console.log(generatorFn()[Symbol.iterator]);
+// f [Symbol.iterator]() {native code}
+
+console.log(generatorFn());
+// generatorFn {<suspended>}
+console.log(generatorFn()[Symbol.iterator]());
+// generatorFn {<suspended}
+
+const g = generatorFn();
+
+console.log(g === g[Symbol.iterator]());
+// true
