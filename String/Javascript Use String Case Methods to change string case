@@ -1,0 +1,17 @@
+Four methods perform case conversion: toLowerCase(), toLocaleLowerCase(), toUpperCase(), and toLocaleUpperCase().
+
+The toLowerCase() and toUpperCase() methods are the original methods.
+
+The toLocaleLowerCase() and toLocaleUpperCase() methods are intended to be implemented based on a particular locale.
+
+In many locales, the locale-specific methods are identical to the generic ones; however, a few languages (such as Turkish) apply special rules to Unicode case conversion, and this necessitates using the locale-specific methods for proper conversion.
+
+Here are some examples:
+
+Copy
+let stringValue = "hello world";
+console.log(stringValue.toLocaleUpperCase());  // "HELLO WORLD"
+console.log(stringValue.toUpperCase());        // "HELLO WORLD"
+console.log(stringValue.toLocaleLowerCase());  // "hello world"
+console.log(stringValue.toLowerCase());        // "hello world"
+This code outputs "HELLO WORLD" for both toLocaleUpperCase() and toUpperCase(), just as "hello world" is output for both toLocaleLowerCase() and toLowerCase().
