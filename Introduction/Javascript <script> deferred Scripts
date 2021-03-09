@@ -1,0 +1,29 @@
+HTML 4.01 defines an attribute named defer for the <script> element.
+
+defer indicates that a script won't be changing the structure of the page as it executes.
+
+The script can be run safely after the entire page has been parsed.
+
+Setting the defer attribute on a <script> element signals to the browser that download should begin immediately but execution should be deferred:
+
+Copy
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Example HTML Page</title>
+  <script defer src="example1.js"></script>
+  <script defer src="example2.js"></script>
+  </head>
+  <body>
+  <!-- content here -->
+  </body>
+</html>
+
+Note
+Even though the two <script> elements are included in the document <head>, they will not be executed until after the browser has received the closing </html> tag.
+
+The defer attribute is supported only for external script files.
+
+Some browsers may ignore this attribute. We should put deferred scripts at the bottom of the page.
+
+For XHTML documents, specify the defer attribute as defer="defer".
