@@ -1,0 +1,138 @@
+Whenever a property is accessed for reading on an object, a search is started to find a property with that name.
+
+The search begins on the object instance itself.
+
+If a property with the given name is found on the instance, then that value is returned; if the property is not found, then the search continues up the pointer to the prototype, and the prototype is searched for a property with the same name.
+
+If the property is found on the prototype, then that value is returned.
+
+Suppose we have
+
+Copy
+function Person() {}
+
+Person.prototype.name = "CSS";
+Person.prototype.age = 29;
+Person.prototype.job = "Style";
+Person.prototype.sayName = function() {
+     console.log(this.name);
+};
+
+let person1 = new Person();
+person1.sayName();   // "CSS"
+
+let person2 = new Person();
+person2.sayName();   // "CSS"
+So, when person1.sayName() is called, a two-step process happens.
+
+First, the JavaScript engine asks, "Does the instance person1 have a property called sayName?"
+
+The answer is no, so it continues the search and asks, "Does the person1 prototype have a property called sayName?"
+
+The answer is yes, so the function stored on the prototype is accessed.
+
+When person2.sayName() is called, the same search executes, ending with the same result.
+
+This is how prototypes are used to share properties and methods among multiple object instances.
+
+The constructor property exists only on the prototype and so is accessible from object instances.
+
+Mask
+Although it's possible to read values on the prototype from object instances, it is not possible to overwrite them.
+
+If you add a property to an instance that has the same name as a property on the prototype, you create the property on the instance, which then masks the property on the prototype.
+
+Here's an example:
+
+Copy
+function Person() {}
+
+Person.prototype.name = "CSS";
+Person.prototype.age = 29;
+Person.prototype.job = "Style";
+Person.prototype.sayName = function() {
+    console.log(this.name);
+};
+
+let person1 = new Person();
+let person2 = new Person();
+
+
+person1.name = "HTML";
+console.log(person1.name);   // "HTML" - from instance
+console.log(person2.name);   // "CSS" - from prototype
+In this example, the name property of person1 is shadowed by a new value.
+
+Both person1.name and person2.name still function appropriately, returning "HTML" (from the object instance) and "CSS" (from the prototype), respectively.
+
+When person1.name was accessed in the console.log(), its value was read, so the search began for a property called name on the instance.
+
+Because the property exists, it is used without searching the prototype.
+
+When person2.name is accessed the same way, the search doesn't find the property on the instance, so it continues to search on the prototype where the name property is found.
+
+Once a property is added to the object instance, it shadows any properties of the same name on the prototype, which means that it blocks access to the property on the prototype without altering it.
+
+Even setting the property to null only sets the property on the instance and doesn't restore the link to the prototype.
+
+The delete operator, however, completely removes the instance property and allows the prototype property to be accessed again as follows:
+
+Copy
+function Person() {}
+
+Person.prototype.name = "CSS";
+Person.prototype.age = 29;
+Person.prototype.job = "Software Engineer";
+Person.prototype.sayName = function() {
+   console.log(this.name);
+};
+
+let person1 = new Person();
+let person2 = new Person();
+
+person1.name = "HTML";
+console.log(person1.name);   // "HTML" - from instance
+console.log(person2.name);   // "CSS" - from prototype
+
+delete person1.name;
+console.log(person1.name);   // "CSS" - from the prototype
+In this modified example, delete is called on person1.name, which previously had been shadowed with the value "HTML".
+
+This restores the link to the prototype's name property, so the next time person1.name is accessed, it's the prototype property's value that is returned.
+
+The hasOwnProperty() method determines if a property exists on the instance or on the prototype.
+
+This method, which is inherited from Object, returns true only if a property of the given name exists on the object instance, as in this example:
+
+Copy
+function Person() {}
+
+Person.prototype.name = "CSS";
+Person.prototype.age = 29;
+Person.prototype.job = "Style";
+Person.prototype.sayName = function() {
+  console.log(this.name);
+};
+
+let person1 = new Person();
+let person2 = new Person();
+
+
+console.log(person1.hasOwnProperty("name"));  // false
+
+person1.name = "HTML";
+console.log(person1.name);   // "HTML" - from instance
+console.log(person1.hasOwnProperty("name"));  // true
+
+console.log(person2.name);   // "CSS" - from prototype
+console.log(person2.hasOwnProperty("name"));  // false
+
+delete person1.name;
+console.log(person1.name);   // "CSS" - from the prototype
+console.log(person1.hasOwnProperty("name"));  // false
+By injecting calls to hasOwnProperty() in this example, it becomes clear when the instance's property is being accessed and when the prototype's property is being accessed.
+
+Calling person1.hasOwnProperty("name") returns true only after name has been overwritten on person1, indicating that it now has an instance property instead of a prototype property.
+
+Copy
+The ECMAScript Object.getOwnPropertyDescriptor() method works only on instance properties; to retrieve the descriptor of a prototype property, you must call Object.getOwnPropertyDescriptor() on the prototype object directly
