@@ -1,0 +1,41 @@
+To define a variable, use the var operator followed by the variable name, like this:
+
+Copy
+var myValue;
+This code defines a variable named myValue that can be used to hold any value.
+
+ECMAScript supports variable initialization, so it's possible to define the variable and set its value at the same time, as in this example:
+
+Copy
+var myValue = "hi";
+Here, myValue is defined to hold a string value of "hi".
+
+Doing this initialization doesn't mark the variable as being a string type.
+
+It is the assignment of a value to the variable.
+
+It is still possible to not only change the value stored in the variable but also change the type of value, such as this:
+
+Copy
+var myValue = "hi";
+myValue = 100;  // legal, but not recommended
+In this example, the variable myValue is first defined as having the string value "hi" and then overwritten with the numeric value 100.
+
+Although it's not recommended to switch the data type that a variable contains, it is completely valid in ECMAScript.
+
+More than one
+If you need to define more than one variable, you can do it using a single statement, separating each variable and optional initialization with a comma like this:
+
+Copy
+var myValue = "hi",
+    found = false,
+    age = 12;
+Here, three variables are defined and initialized.
+
+Because ECMAScript is loosely typed, variable initializations using different data types may be combined into a single statement.
+
+Inserting line breaks and indenting the variables helps to improve readability.
+
+When you are running in strict mode, you cannot define variables named eval or arguments.
+
+Doing so results in a syntax error.
