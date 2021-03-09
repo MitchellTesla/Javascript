@@ -1,0 +1,67 @@
+We can use a proxy to define traps, which acts as operation interceptors inside the handler object.
+
+Each handler object is made up of zero, one, or many traps.
+
+Each trap corresponds to an operation that can be directly or indirectly called on the proxy.
+
+When these operations are called on the proxy object, before being invoked on the target object, the proxy will invoke the trap function instead, allowing you to intercept and modify its behavior.
+
+Example
+For example, we can define a get() trap that is triggered each time any ECMAScript operation performs a get() in one form or another.
+
+Such a trap can be defined as follows:
+
+Copy
+const target = {
+  foo: 'bar'
+};
+
+const handler = {
+  // Traps are keyed by method name 
+  // inside the handler object
+  get() {
+    return 'handler override';
+  }
+};
+
+const proxy = new Proxy(target, handler);
+When a get() operation is called on this proxy object, the trap function that is defined for get() will be invoked instead.
+
+get() is not a usable method on ECMAScript objects.
+
+Operations of the form
+
+Copy
+proxy[property], 
+proxy.property, or 
+Object.create(proxy)[property]
+will all use the operation get() to retrieve the property,
+
+All of these operations will invoke the trap function instead when they are used on the proxy.
+
+Only the proxy will use the trap handler functions; these operations will behave normally when used with the target object.
+
+Copy
+const target = {
+  foo: 'bar'
+};
+
+const handler = {
+  // Traps are keyed by method name inside the handler object
+  get() {
+    return 'got you';
+  }
+};
+
+const proxy = new Proxy(target, handler);
+
+console.log(target.foo);                    // bar
+console.log(proxy.foo);                     // handler override
+
+console.log(target['foo']);                 // bar
+console.log(proxy['foo']);                  // handler override
+
+console.log(Object.create(target)['foo']);  // bar
+console.log(Object.create(proxy)['foo']);   // handler override
+Output:
+
