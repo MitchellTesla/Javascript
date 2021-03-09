@@ -1,0 +1,69 @@
+Template literals can define tag functions to define custom interpolation behavior.
+
+A tag function is defined as a regular function and is applied to a template literal by being prepended to it.
+
+The tag function will be passed the template literal split into its pieces: the first argument is an array of the raw strings, and the remaining arguments are the results of the evaluated expressions.
+
+The return value of this function will be the string evaluated from the template literal.
+
+Copy
+let a = 6;
+let b = 9;
+function simpleTag(strings, aVal, bVal, sumVal) {
+  console.log(strings);
+  console.log(aVal);
+  console.log(bVal);
+  console.log(sumVal);
+
+  return 'test';
+}
+
+let untaggedResult = `${ a } + ${ b } = ${ a + b }`;
+let taggedResult = simpleTag`${ a } + ${ b } = ${ a + b }`;
+// ["", " + ", " = ", ""]
+// 6
+// 9
+// 15
+
+console.log(untaggedResult); // "6 + 9 = 15"
+console.log(taggedResult); // "test"
+Because there are a variable number of expression arguments, using the spread operator to combine them into a single collection is usually prudent:
+
+Copy
+let a = 6;
+let b = 9;
+
+function simpleTag(strings, ...expressions) {
+  console.log(strings);
+  for(const expression of expressions) {
+    console.log(expression);
+  }
+
+  return 'test';
+}
+let taggedResult = simpleTag`${ a } + ${ b } = ${ a + b }`;
+// ["", " + ", " = ", ""]
+// 6
+// 9
+// 15
+
+console.log(taggedResult);  // "test"
+For a template literal with n interpolated values, the number of expression arguments to the tag function will always be n, and the number of string pieces in the first argument will always be exactly n + 1.
+
+If you wished to zip the strings and the evaluated expressions together into the default returned string, you could do so as follows:
+
+Copy
+let a = 6;
+let b = 9;
+
+function zipTag(strings, ...expressions) {
+   return strings[0] +
+             expressions.map((e, i) => `${e}${strings[i + 1]}`)
+                                .join('');
+}
+
+let untaggedResult =     `${ a } + ${ b } = ${ a + b }`;
+let taggedResult = zipTag`${ a } + ${ b } = ${ a + b }`;
+
+console.log(untaggedResult);  // "6 + 9 = 15"
+console.log(taggedResult);    // "6 + 9 = 15"
