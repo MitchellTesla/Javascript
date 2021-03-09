@@ -1,0 +1,60 @@
+Each instance of RegExp has the following properties that allow you to get information about the pattern:
+
+Property
+Type
+Description
+global
+Boolean
+indicating whether the g flag has been set.
+ignoreCase
+Boolean
+indicating whether the i flag has been set.
+unicode
+Boolean
+indicating whether the u flag has been set.
+sticky
+Boolean
+indicating whether the y flag has been set.
+lastIndex
+
+integer
+
+indicating the character position where the next match will be attempted in the source string.
+This value always begins as 0.
+multiline
+Boolean
+indicating whether the m flag has been set.
+source
+
+string
+
+source of the regular expression.
+This is always returned as if specified in literal form (without opening and closing slashes) rather than a string pattern as passed into the constructor.
+flags
+
+string
+
+flags of the regular expression.
+This is always returned as if specified in literal form (without opening and closing slashes) rather than a string pattern as passed into the constructor.
+These properties are helpful in identifying aspects of a regular expression.
+
+Here's an example:
+
+Copy
+let pattern1 = /\[bc\]at/i;
+
+console.log(pattern1.global);     // false
+console.log(pattern1.ignoreCase); // true
+console.log(pattern1.multiline);  // false
+console.log(pattern1.lastIndex);  // 0
+console.log(pattern1.source);     // "\[bc\]at"
+console.log(pattern1.flags);      // "i"
+
+let pattern2 = new RegExp("\\[bc\\]at", "i");
+
+console.log(pattern2.global);     // false
+console.log(pattern2.ignoreCase); // true
+console.log(pattern2.multiline);  // false
+console.log(pattern2.lastIndex);  // 0
+console.log(pattern2.source);     // "\[bc\]at"
+console.log(pattern2.flags);      // "i"
