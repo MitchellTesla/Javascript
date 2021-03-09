@@ -1,0 +1,63 @@
+Because function names are simply pointers to functions, they act like any other variable containing a pointer to an object.
+
+It's possible to have multiple names for a single function, as in this example:
+
+Copy
+function sum(num1, num2) {
+  return num1 + num2;
+}
+console.log(sum(10, 10));         // 20
+
+let anotherSum = sum;
+console.log(anotherSum(10, 10));  // 20
+
+sum = null;
+console.log(anotherSum(10, 10));  // 20
+This code defines a function named sum() that adds two numbers together.
+
+A variable, anotherSum, is declared and set equal to sum.
+
+Note that using the function name without parentheses accesses the function pointer instead of executing the function.
+
+At this point, both anotherSum and sum point to the same function, meaning that anotherSum() can be called and a result returned.
+
+When sum is set to null, it stops its relationship with the function, although anotherSum() can still be called without any problems.
+
+All function objects in ECMAScript 6 expose a read-only name property that describes the function.
+
+In many cases, this will just be the function identifier, or the variable name that references the function.
+
+If a function is unnamed, it will be reported as such.
+
+If it is created using the function constructor, it will be identified as "anonymous":
+
+Copy
+function foo() {}
+let bar = function() {};
+let baz = () => {};
+
+console.log(foo.name);               // foo
+console.log(bar.name);               // bar
+console.log(baz.name);               // baz
+console.log((() => {}).name);        // (empty string)
+console.log((new Function()).name);  // anonymous
+If a function is a getter, a setter, or instantiated using bind(), a prefix will be prepended to identify it as such:
+
+Copy
+function foo() {}
+console.log(foo.bind(null).name);    // bound foo
+
+let Person = {
+  years: 1,
+  get age() {
+    return this.years;
+  },
+  set age(newAge) {
+    this.years = newAge;
+  }
+ }
+
+let propertyDescriptor = Object.getOwnPropertyDescriptor(Person, 'age');
+console.log(propertyDescriptor.get.name);  // get age
+console.log(propertyDescriptor.set.name);  // set age
+Output:
