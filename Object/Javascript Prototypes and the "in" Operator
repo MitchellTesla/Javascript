@@ -1,0 +1,40 @@
+There are two ways to use the in operator: on its own or as a for-in loop.
+
+When used on its own, the in operator returns true when a property of the given name is accessible by the object.
+
+The property may exist on the instance or on the prototype.
+
+Consider the following example:
+
+Copy
+function Person() {}
+
+Person.prototype.name = "CSS";
+Person.prototype.age = 19;
+Person.prototype.job = "Style";
+Person.prototype.sayName = function() {
+  console.log(this.name);
+};
+
+let person1 = new Person();
+let person2 = new Person();
+
+console.log(person1.hasOwnProperty("name"));  // false
+console.log("name" in person1);  // true
+
+person1.name = "HTML";
+console.log(person1.name);   // "HTML" - from instance
+console.log(person1.hasOwnProperty("name"));  // true
+console.log("name" in person1);  // true
+
+console.log(person2.name);   // "CSS" - from prototype
+console.log(person2.hasOwnProperty("name"));  // false
+console.log("name" in person2);  // true
+
+delete person1.name;
+console.log(person1.name);   // "CSS" - from the prototype
+console.log(person1.hasOwnProperty("name"));  // false
+console.log("name" in person1);  // true
+The property name is available on each object either directly or from the prototype.
+
+Therefore, calling "name" in person1 always returns true, regardless of whether the property exists on the instance.
