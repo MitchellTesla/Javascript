@@ -1,0 +1,56 @@
+The concat() method creates a new array based on all of the items in the current array.
+
+This method begins by creating a copy of the array and then appending the method arguments to the end and returning the newly constructed array.
+
+When no arguments are passed in, concat() simply clones the array and returns it.
+
+If one or more arrays are passed in, concat() appends each item in these arrays to the end of the result.
+
+If the values are not arrays, they are simply appended to the end of the resulting array.
+
+Consider this example:
+
+Copy
+let colors = ["red", "green", "blue"];
+let colors2 = colors.concat("yellow", ["black", "brown"]);
+
+console.log(colors);   // ["red", "green","blue"]
+console.log(colors2);  // ["red", "green", "blue", 
+                       //  "yellow", "black", "brown"]
+This code begins with the colors array containing three values.
+
+The concat() method is called on colors, passing in the string "yellow" and an array containing "black" and "brown".
+
+The result, stored in colors2, contains "red", "green", "blue", "yellow", "black", and "brown".
+
+The original array, colors, remains unchanged.
+
+You can override this force-flattening default behavior by specifying a special symbol on the argument array instance, Symbol.isConcatSpreadable.
+
+This will prevent the concat() method from flattening the result.
+
+Conversely, setting the value to true will force array-like objects to be flattened:
+
+Copy
+let colors = ["red", "green", "blue"];
+let newColors = ["black", "brown"];
+let moreNewColors = {
+  [Symbol.isConcatSpreadable]: true,
+  length: 2,
+  0: "pink",
+  1: "cyan"
+ };
+
+newColors[Symbol.isConcatSpreadable] = false;
+
+// Force the array to not be flattened
+let colors2 = colors.concat("yellow", newColors);
+
+// Force the array-like object to be flattened
+let colors3 = colors.concat(moreNewColors);
+
+console.log(colors);   // ["red", "green","blue"]
+console.log(colors2);  // ["red", "green", "blue", 
+                       //  "yellow",  ["black", "brown"]]
+console.log(colors3);  // ["red", "green", "blue", "pink, "cyan"]
+Output:
