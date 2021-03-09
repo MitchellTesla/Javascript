@@ -1,0 +1,55 @@
+The for statement adds capabilities of variable initialization before entering the loop and defining post loop code to be executed.
+
+Here's the syntax:
+
+Copy
+for (initialization; expression; post-loop-expression)
+   statement
+And here's an example of its usage:
+
+Copy
+let count = 10;
+for (let i = 0; i < count; i++) {
+  console.log(i);
+}
+This code defines a variable i that begins with the value 0.
+
+The for loop is entered only if the conditional expression (i < count) evaluates to true, making it possible that the body of the code might not be executed.
+
+If the body is executed, the post loop expression is also executed, iterating the variable i.
+
+This for loop is the same as the following:
+
+Copy
+let count = 10;
+let i = 0;
+while (i < count) {
+  console.log(i);
+  i++;
+}
+Nothing can be done with a for loop that can't be done using a while loop.
+
+The for loop simply encapsulates the loop-related code into a single location.
+
+The majority of the time you will find that the iterator variable is not useful after the loop completes.
+
+In these cases, the cleanest implementation is to use a let declaration inside the loop initialization to declare the iterator variable because its scope will be limited to only the loop itself.
+
+The initialization, control expression, and post loop expression are all optional.
+
+You can create an infinite loop by omitting all three, like this:
+
+Copy
+for (;;) {  // infinite loop
+  doSomething();
+}
+Including only the control expression effectively turns a for loop into a while loop, as shown here:
+
+Copy
+let count = 10;
+let i = 0;
+for (; i < count; ) {
+  console.log(i);
+  i++;
+}
+This versatility makes the for statement one of the most used in the language.
