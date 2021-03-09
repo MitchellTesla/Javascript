@@ -1,0 +1,21 @@
+ECMAScript's syntax borrows heavily from C and other C-like languages such as Java and Perl.
+
+Javascript is case-sensitive.
+
+The variables, function names, and operators are all case-sensitive.
+
+JavaScript language keywords, variables, function names, and other identifiers must always be typed with a consistent capitalization of letters.
+
+The while keyword, for example, must be typed "while," not "While" or "WHILE."
+
+A variable named test is different from a variable named Test.
+
+Copy
+let test = 'a';
+let Test = 'v';
+
+console.log(test);
+console.log(Test);
+Output
+
+
