@@ -1,0 +1,29 @@
+The with statement sets the scope of the code within a particular object.
+
+The syntax is as follows:
+
+Copy
+with (expression) statement;
+The with statement was created as a convenience for times when a single object was being coded to over and over again, as in this example:
+
+Copy
+let qs = location.search.substring(1);
+let hostName = location.hostname;
+let url = location.href;
+Here, the location object is used on every line. This code can be rewritten using the with statement as follows:
+
+Copy
+with(location) {
+  let qs = search.substring(1);
+  let hostName = hostname;
+  let url = href;
+}
+In this rewritten version of the code, the with statement is used in conjunction with the location object.
+
+This means that each variable inside the statement is first considered to be a local variable.
+
+If it's not found to be a local variable, the location object is searched to see if it has a property of the same name.
+
+If so, then the variable is evaluated as a property of location.
+
+In strict mode, the with statement is not allowed and is considered a syntax error.
