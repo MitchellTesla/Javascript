@@ -1,0 +1,50 @@
+The arguments object is an array-like object that contains all of the arguments that were passed into the function.
+
+It is only available when a function is declared using the function keyword. The arrow function does not have arguments object.
+
+Though its primary use is to represent function arguments, the arguments object also has a property named callee, which is a pointer to the function that owns the arguments object.
+
+Consider the following classic factorial function:
+
+Copy
+function factorial(num) {
+   if (num <= 1) {
+     return 1;
+   } else {
+     return num * factorial(num - 1);
+   }
+}
+Factorial functions are typically defined to be recursive, as in this example, which works fine when the name of the function is set and won't be changed.
+
+However, the proper execution of this function is tightly coupled with the function name "factorial".
+
+It can be decoupled by using arguments.callee as follows:
+
+Copy
+function factorial(num) {
+    if (num <= 1) {
+       return 1;
+    } else {
+       return num * arguments.callee(num - 1);
+    }
+}
+In this rewritten version of the factorial() function, there is no longer a reference to the name "factorial" in the function body, which ensures that the recursive call will happen on the correct function no matter how the function is referenced.
+
+Consider the following:
+
+Copy
+let trueFactorial = factorial;
+
+factorial = function() {
+   return 0;
+};
+
+console.log(trueFactorial(5));  // 120
+console.log(factorial(5));      // 0
+Here, the variable trueFactorial is assigned the value of factorial, effectively storing the function pointer in a second location.
+
+The factorial variable is then reassigned to a function that simply returns 0.
+
+Without using arguments.callee in the original factorial() function's body, the call to trueFactorial() would return 0.
+
+However, with the function decoupled from the function name, trueFactorial() correctly calculates the factorial, and factorial() is the only function that returns 0.
