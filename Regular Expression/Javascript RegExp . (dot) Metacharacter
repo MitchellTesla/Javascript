@@ -1,0 +1,22 @@
+Do a global search for "h.t" in a string:
+
+Copy
+let str = "heat hit hot!";
+let patt1 = /h.t/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Description
+The . metacharacter can find a single character, except newline or other line terminators.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+.	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("regexp.") or simply: /regexp./
+Syntax with modifiers
+Copy
+new RegExp("regexp.", "g") or simply: /regexp./g
