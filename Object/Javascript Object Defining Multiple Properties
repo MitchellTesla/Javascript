@@ -1,0 +1,35 @@
+To define more than one property on an object, ECMAScript provides the Object.defineProperties() method.
+
+This method allows you to define multiple properties using descriptors at once.
+
+There are two arguments: the object on which to add or modify the properties and an object whose property names correspond to the properties' names to add or modify.
+
+For example:
+
+Copy
+let book = {};
+Object.defineProperties(book, {
+  year_: {
+    value: 2017
+  },
+
+  edition: {
+    value: 1
+  },
+
+  year: {
+    get() {
+      return this.year_;
+    },
+
+    set(newValue) {
+      if (newValue > 2017) {
+        this.year_ = newValue;
+        this.edition += newValue - 2017;
+      }
+    }
+  }
+});
+This code defines two data properties, year_ and edition, and an accessor property called year on the book object.
+
+The only difference is that all of these properties are created at the same time.
