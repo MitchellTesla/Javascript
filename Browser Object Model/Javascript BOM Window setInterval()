@@ -1,0 +1,60 @@
+Intervals work in the same way as timeouts except that they schedule the code for execution repeatedly at specific time intervals until the interval is canceled or the page is unloaded.
+
+The setInterval() method lets you set up intervals, and it accepts the two arguments:
+
+the code to execute as string or function and
+the milliseconds to wait between addition of the callback function to the execution queue.
+Here's an example:
+
+Copy
+setInterval(() => console.log("Hello world!"), 10000);
+The time interval specified with the second argument represents the amount of time the browser will wait in between adding a new callback execution onto the queue.
+
+The browser doesn't care when the callback executes or how long it takes.
+
+The short and non-blocking callback functions are ideal for setInterval.
+
+The setInterval() method also returns an interval ID that can be used to cancel the interval at some point in the future.
+
+The clearInterval() method can be used with this ID to cancel all pending intervals.
+
+If left unchecked, they continue to execute until the page is unloaded.
+
+Here is a common example of interval usage:
+
+Copy
+let num = 0, intervalId = null;
+let max = 10;
+
+let incrementNumber = function() {
+  num++;
+  // if the max has been reached, cancel all pending executions
+  if (num == max) {
+    clearInterval(intervalId);
+    console.log("Done");
+  }
+}
+intervalId = setInterval(incrementNumber, 500);
+In this example, the variable num is incremented every half second until it finally reaches the maximum number, at which point the interval is canceled.
+
+This pattern can also be implemented using timeouts, as shown here:
+
+Copy
+let num = 0;
+let max = 10;
+
+let incrementNumber = function() {
+  num++;
+
+  //if the max has not been reached, set another timeout
+  if (num < max) {
+    setTimeout(incrementNumber, 500);
+  } else {
+    console.log("Done");
+  }
+}
+setTimeout(incrementNumber, 500);
+When you're using timeouts, it is unnecessary to track the timeout ID because the execution will stop on its own and continue only if another timeout is set.
+
+This pattern is considered a best practice for setting intervals without actually using intervals.
+
