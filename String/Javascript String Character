@@ -1,0 +1,51 @@
+JavaScript strings consist of 16 bit code units.
+
+For most characters, each 16 bit code unit will correspond to a single character.
+
+Length
+The length property indicates how many 16 bit code units occur inside the string:
+
+Copy
+let message = "abcde";
+
+console.log(message.length);  // 5
+charAt()
+The charAt() returns the character at a given index, specified by an integer argument to the method.
+
+This method finds the 16 bit code unit at the specified index and returns the character that corresponds to that code unit:
+
+Copy
+let message = "abcde";
+
+console.log(message.charAt(2));  // "c"
+charCodeAt()
+You can inspect the character encoding of a given code unit with the charCodeAt() method.
+
+This method returns the code unit value at a given index, specified by an integer argument to the method.
+
+This method is demonstrated here:
+
+Copy
+let message = "abcde";
+
+// Unicode "Latin small letter C" is U+0063
+console.log(message.charCodeAt(2));  // 99
+
+// Decimal 99 === Hexadecimal 63
+console.log(99 === 0x63);            // true
+fromCharCode()
+The fromCharCode() method is used for creating characters in a string from their UTF-16 code unit representation.
+
+This method accepts any number of numbers and returns their character equivalents concatenated into a string:
+
+Copy
+// Unicode "Latin small letter A" is U+0061 and === 97
+// Unicode "Latin small letter B" is U+0062 and === 98
+// Unicode "Latin small letter C" is U+0063 and === 99
+// Unicode "Latin small letter D" is U+0064 and === 100
+// Unicode "Latin small letter E" is U+0065 and === 101
+console.log(String.fromCharCode(0x61, 0x62, 0x63, 0x64, 0x65));  // "abcde"
+console.log(String.fromCharCode(97, 98, 99, 100, 101));          // "abcde"
+For characters in the range of U+0000 to U+FFFF, length, charAt(), charCodeAt(), and fromCharCode() all behave exactly as you would expect them to.
+
+This is because every character is represented by exactly 16 bits, and each of these methods are all operating on 16 bit code units.
