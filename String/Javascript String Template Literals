@@ -1,0 +1,60 @@
+ECMAScript can define strings using template literals.
+
+Unlike single and double quoted, template literals respect new line characters, and can be defined spanning multiple lines:
+
+Copy
+let myMultiLineString = 'first line\nsecond line';
+
+console.log(myMultiLineString);
+// first line
+// second line
+
+let myMultiLineTemplateLiteral = `first line
+second line`;
+
+console.log(myMultiLineTemplateLiteral);
+// first line
+// second line
+
+console.log(myMultiLineString === myMultiLineTemplateLiteral);   // true
+Output:
+
+
+The template literals are useful when defining templates, such as HTML:
+
+Copy
+let pageHTML = `
+<div>
+  <a href="#">
+    <span>Javascript</span>
+  </a>
+</div>`;
+Because template literals will exactly match the whitespace inside the backticks, special care will need to be applied when defining them.
+
+A correctly formatted template string may appear to have improper indentation:
+
+This template literal has 25 spaces following the line return character
+
+Copy
+let myTemplateLiteral = `A
+                         B`;
+console.log(myTemplateLiteral.length);
+Output:
+
+
+This template literal begins with a line return character
+
+Copy
+let secondTemplateLiteral = `
+A
+B`;
+console.log(secondTemplateLiteral[0] === '\n'); // true
+This template literal has no unexpected whitespace characters
+
+Copy
+let thirdTemplateLiteral = `A
+B`;
+console.log(thirdTemplateLiteral[0]);
+Output:
+
+A
