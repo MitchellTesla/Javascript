@@ -1,0 +1,52 @@
+ECMAScript offers two reduction methods for arrays: reduce() and reduceRight().
+
+Both methods iterate over all items in the array and build up a value that is ultimately returned.
+
+The reduce() method starts at the first item and travels toward the last, whereas reduceRight() starts at the last and travels toward the first.
+
+Both methods accept two arguments: a function to call on each item and an optional initial value upon which the reduction is based.
+
+The function passed into reduce() or reduceRight() accepts four arguments:
+
+the previous value,
+the current value,
+the item's index, and
+the array object.
+Any value returned from the function is automatically passed in as the first argument for the next item.
+
+The first iteration occurs on the second item in the array, so the first argument is the first item in the array and the second argument is the second item in the array.
+
+You can use the reduce() method to perform operations such as adding all numbers in an array.
+
+Here's an example:
+
+Copy
+let values = [1, 2, 3, 4, 5];
+let sum = values.reduce((prev, cur, index, array) => prev + cur);
+
+console.log(sum);  // 15
+The first time the callback function is executed, prev is 1 and cur is 2.
+
+The second time, prev is 3 which is the result of adding 1 and 2, and cur is 3 which is the third item in the array.
+
+This sequence continues until all items have been visited and the result is returned.
+
+reduceRight()
+The reduceRight() method works in the same way, just in the opposite direction.
+
+Consider the following example:
+
+Copy
+let values = [1, 2, 3, 4, 5];
+let sum = values.reduceRight(function(prev, cur, index, array){
+ return prev + cur;
+});
+console.log(sum); // 15
+In this version of the code, prev is 5 and cur is 4 the first time the callback function is executed.
+
+The result is the same, of course, because the operation is simple addition.
+
+The decision to use reduce() or reduceRight() depends solely on the direction in which the items in the array should be visited.
+
+They are exactly equal in every other way.
+
