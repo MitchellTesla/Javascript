@@ -1,0 +1,33 @@
+Do a global search for "is" at the end of a string:
+
+Copy
+let str = "Is this his this is a test";
+let patt1 = /is$/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Description
+The n$ quantifier matches any string with n at the end of it.
+
+Tip: Use the ^n quantifier to match any string with n at the BEGINNING of it.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+$	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("n$") or /n$/
+Syntax with modifiers
+Copy
+new RegExp("n$", "g") or simply: /\n$/g
+More Examples
+Do a global, multiline search for "is" at the end of each line in a string:
+
+Copy
+let str = "Is\nthis\nhis\n?";
+let patt1 = /is$/gm;
+let result = str.match(patt1);
+console.log(result);
+Output:
