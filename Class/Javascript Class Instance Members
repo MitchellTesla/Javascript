@@ -1,0 +1,37 @@
+The class definition syntax allows you to neatly define members that should exist on an object instance, members that should exist on the object prototype, and members that should exist on the class itself.
+
+Instance Members
+Each time new <classname> is invoked, the constructor function will execute.
+
+Inside this function, you are able to populate the instance with properties.
+
+Each instance is assigned unique member objects, meaning nothing is shared on the prototype:
+
+Copy
+class Person {
+   constructor() {
+      // define a string with object wrapper
+      // as to check object equality between instances below
+      this.name = new String('CSS');
+      this.sayName = () => console.log(this.name);
+      this.nicknames = ['CSS2', 'CSS3']
+   }
+}
+
+let p1 = new Person(),
+    p2 = new Person();
+
+p1.sayName(); //[String: 'CSS']
+p2.sayName(); //[String: 'CSS']
+
+console.log(p1.name === p2.name);            // false
+console.log(p1.sayName === p2.sayName);      // false
+console.log(p1.nicknames === p2.nicknames);  // false
+
+p1.name = p1.nicknames[0];
+p2.name = p2.nicknames[1];
+
+p1.sayName();  
+p2.sayName();
+Output:
+
