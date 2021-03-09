@@ -1,0 +1,26 @@
+Several methods manipulate the values of strings.
+
+concat()
+The first of these methods is concat(), which is used to concatenate one or more strings to another, returning the concatenated string as the result.
+
+Consider the following example:
+
+Copy
+let stringValue = "hello ";
+let result = stringValue.concat("world");
+
+console.log(result);       // "hello world"
+console.log(stringValue);  // "hello"
+The result of calling the concat() method on stringValue in this example is "hello world"- the value of stringValue remains unchanged.
+
+The concat() method accepts any number of arguments, so it can create a string from any number of other strings, as shown here:
+
+Copy
+let stringValue = "hello ";
+let result = stringValue.concat("world", "!");
+
+console.log(result);       // "hello world!"
+console.log(stringValue);  // "hello"
+This modified example concatenates "world" and "!" to the end of "hello".
+
+The addition operator (+) is used more often than concat() method.
