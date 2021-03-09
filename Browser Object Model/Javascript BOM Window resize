@@ -1,0 +1,19 @@
+The browser window can be resized using the resizeTo() and resizeBy() methods.
+
+Each method accepts two arguments: resizeTo() expects a new width and height, and resizeBy() expects the differences in each dimension.
+
+resize to 100 x 100.
+
+Copy
+window.resizeTo(100, 100);
+resize to 200 x 150.
+
+Copy
+window.resizeBy(100, 50);
+resize to 300 x 300.
+
+Copy
+window.resizeTo(300, 300);
+The resize methods may be disabled by the browser and are disabled by default in some browsers.
+
+These methods apply only to the topmost window object.
