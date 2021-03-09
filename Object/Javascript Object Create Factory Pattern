@@ -1,0 +1,23 @@
+The factory pattern is a well-known design pattern used in software engineering to abstract away the process of creating specific objects.
+
+One way to create objects with specific interfaces is shown in this example:
+
+Copy
+function createPerson(name, age, job) {
+  let o = new Object();
+  o.name = name;
+  o.age = age;
+  o.job = job;
+  o.sayName = function() {
+    console.log(this.name);
+  };
+  return o;
+ }
+
+let person1 = createPerson("CSS", 29, "Style");
+let person2 = createPerson("HTML", 27, "Mark up");
+Here, the function createPerson() accepts arguments with which to build an object with all of the necessary information to represent a Person object.
+
+The function can be called any number of times with different arguments and will still return an object that has three properties and one method.
+
+Though this solved the problem of creating multiple similar objects, the factory pattern didn't address the issue of object identification, aka what type of object an object is.
