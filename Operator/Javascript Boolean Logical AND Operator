@@ -1,0 +1,49 @@
+The logical AND operator is represented by the double ampersand (&&) and is applied to two values, as in this example:
+
+Copy
+let result = true && false;
+Logical AND behaves as described in the following truth table:
+
+OPERAND 1	OPERAND 2	RESULT
+true	true	true
+true	false	false
+false	true	false
+false	false	false
+Logical AND can be used with any type of operand, not just Boolean values.
+
+When either operand is not a primitive Boolean, logical AND does not always return a Boolean value; instead, it does one of the following:
+
+If the first operand is an object, then the second operand is always returned.
+If the second operand is an object, then the object is returned only if the first operand evaluates to true.
+If both operands are objects, then the second operand is returned.
+If either operand is null, then null is returned.
+If either operand is NaN, then NaN is returned.
+If either operand is undefined, then undefined is returned.
+Short-circuited
+The logical AND operator is a short-circuited operation, meaning that if the first operand determines the result, the second operand is never evaluated.
+
+In the case of logical AND, if the first operand is false, no matter what the value of the second operand, the result can't be equal to true.
+
+Consider the following example:
+
+Copy
+let found = true;
+let result = (found && someUndeclaredVariable);  // error occurs here
+console.log(result);  // this line never executes
+This code causes an error when the logical AND is evaluated, because the variable someUndeclaredVariable isn't declared.
+
+The value of the variable found is true, so the logical AND operator continued to evaluate the variable someUndeclaredVariable.
+
+When it did, an error occurred because someUndeclaredVariable is not declared and therefore cannot be used in a logical AND operation.
+
+If found is instead set to false, as in the following example, the error won't occur:
+
+Copy
+let found = false;
+let result = (found && someUndeclaredVariable);  // no error
+console.log(result);  // works
+In this code, the console.log is displayed successfully.
+
+Even though the variable someUndeclaredVariable is undefined, it is never evaluated because the first operand is false.
+
+This means that the result of the operation must be false, so there is no reason to evaluate what's to the right of the &&.
