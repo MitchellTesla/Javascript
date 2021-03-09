@@ -1,0 +1,56 @@
+"Endianness" refers to the convention of byte ordering maintained by a computing system.
+
+In Javascript DataViews, there are only two conventions supported: big-endian and little-endian.
+
+Big-endian, also referred to as "network byte order," means that the most significant byte is held in the first byte, and the least significant byte is held in the last byte.
+
+Little-endian means the least significant byte is held in the first byte, and the most significant byte is held in the last byte.
+
+The native endianness of the system executing the JavaScript runtime will determine how it reads and writes bytes, but a DataView does not obey this convention.
+
+A DataView will follow the endianness you specify.
+
+All DataView API methods default to the big-endian convention but accept an optional final Boolean argument that allows you to enable the little-endian convention by setting it to true.
+
+Copy
+// Allocate two bytes of memory and declare a DataView
+const buf = new ArrayBuffer(2);
+const view = new DataView(buf);
+
+// Fill the buffer so that the first bit and last bit are 1
+view.setUint8(0, 0x80);  // Sets leftmost bit to 1
+view.setUint8(1, 0x01);  // Sets rightmost bit to 1
+
+// Buffer contents, spaced for readability:
+// 0x8  0x0  0x0  0x1
+// 1000 0000 0000 0001
+
+// Read a big-endian Uint16
+// 0x80 is the high byte, 0x01 is the low byte
+// 0x8001 = 2^15 + 2^0 = 32768 + 1 = 32769
+console.log(view.getUint16(0));  // 32769
+
+// Read a little-endian Uint16
+// 0x01 is the high byte, 0x80 is the low byte
+// 0x0180 = 2^8 + 2^7 = 256 + 128 = 384
+console.log(view.getUint16(0, true));  // 384
+
+// Write a big-endian Uint16
+view.setUint16(0, 0x0004);
+
+// Buffer contents, spaced for readability:
+// 0x0  0x0  0x0  0x4
+// 0000 0000 0000 0100
+
+console.log(view.getUint8(0));  // 0
+console.log(view.getUint8(1));  // 4
+
+// Write a little-endian Uint16
+view.setUint16(0, 0x0002, true);
+
+// Buffer contents
+// 0x0  0x2  0x0  0x0
+// 0000 0010 0000 0000
+
+console.log(view.getUint8(0));  // 2
+console.log(view.getUint8(1));  // 0
