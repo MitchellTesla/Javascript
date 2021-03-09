@@ -1,0 +1,53 @@
+Javascript Reflect API is not limited to trap handler
+
+Most Reflect API methods have an analogue on the Object type.
+
+The Reflect methods are for fine-tuned object control and manipulation.
+
+Many Reflect methods return a Boolean, indicating if the operation they intend to perform will be successful or not.
+
+For example, you can use the Reflect API to perform the following refactor:
+
+Copy
+// Initial code
+const object1 = {};
+
+if (Object.defineProperty(object1, 'property1', { value: 42 })) {
+  console.log('property1 created!');
+  // expected output: "property1 created!"
+} else {
+  console.log('problem creating property1');
+}
+
+console.log(object1.property1);
+// expected output: 42
+Output:
+
+
+In the event of a problem with defining the new property, Reflect.defineProperty() will return false instead of throwing an error, enabling you to do the following:
+
+Copy
+// Refactored code
+
+const object1 = {};
+
+if (Reflect.defineProperty(object1, 'property1', { value: 42 })) {
+  console.log('property1 created!');
+  // expected output: "property1 created!"
+} else {
+  console.log('problem creating property1');
+}
+
+console.log(object1.property1);
+// expected output: 42
+Output:
+
+
+The following Reflect methods provide you with status flags:
+
+Copy
+Reflect.defineProperty
+Reflect.preventExtensions
+Reflect.setPrototypeOf
+Reflect.set
+Reflect.deleteProperty
