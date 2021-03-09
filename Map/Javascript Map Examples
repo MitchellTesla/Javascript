@@ -1,0 +1,42 @@
+WeakMap instances can be used to create truly private variables in JavaScript.
+
+private variables will be stored in a WeakMap with the object instance as the key and a dictionary of private members as the value.
+
+The WeakMap can be wrapped in a closure to totally hide the WeakMap instance from outside code.
+
+Copy
+const User = (() => {
+  const wm = new WeakMap();
+
+  class User {
+    constructor(id) {
+      this.idProperty = Symbol('id');
+      this.setId(id);
+    }
+
+    setPrivate(property, value) {
+      const privateMembers = wm.get(this) || {};
+      privateMembers[property] = value;
+      wm.set(this, privateMembers);
+    }
+
+    getPrivate(property) {
+      return wm.get(this)[property];
+    }
+
+    setId(id) {
+      this.setPrivate(this.idProperty, id);
+    }
+
+    getId(id) {
+      return this.getPrivate(this.idProperty);
+    }
+  }
+  return User;
+})();
+
+const user = new User(123);
+console.log(user.getId());  // 123
+user.setId(456);
+console.log(user.getId());  // 456
+Therefore, a value in a WeakMap cannot be retrieved without the key that was used to insert it.
