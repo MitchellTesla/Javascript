@@ -1,0 +1,62 @@
+ECMAScript provides three methods for creating string values from a substring: slice(), substr(), and substring().
+
+All three methods return a substring of the string they act on, and all accept either one or two arguments.
+
+The first argument is the position where capture of the substring begins; the second argument, if used, indicates where the operation should stop.
+
+For slice() and substring(), this second argument is the position before which capture is stopped. All characters up to this point are included except the character at that point.
+
+For substr(), the second argument is the number of characters to return.
+
+If the second argument is omitted in any case, it is assumed that the ending position is the length of the string.
+
+slice(), substr(), and substring() do not alter the value of the string itself-they simply return a primitive string value as the result, leaving the original unchanged.
+
+Consider this example:
+
+Copy
+let stringValue = "hello world";
+console.log(stringValue.slice(3));        // "lo world"
+console.log(stringValue.substring(3));    // "lo world"
+console.log(stringValue.substr(3));       // "lo world"
+console.log(stringValue.slice(3, 7));     // "lo w"
+console.log(stringValue.substring(3,7));  // "lo w"
+console.log(stringValue.substr(3, 7));    // "lo worl"
+In this example, slice(), substr(), and substring() are used in the same manner and, in most cases, return the same value.
+
+When given just one argument, 3, all three methods return "lo world" because the second "l" in "hello" is in position 3.
+
+When given two arguments, 3 and 7, slice() and substring() return "lo w", while substr() returns "lo worl" because the second argument specifies the number of characters to return.
+
+Negative index
+There are different behaviors for these methods when an argument is a negative number.
+
+For the slice() method, a negative argument is treated as the length of the string plus the negative argument.
+
+For the substr() method, a negative first argument is treated as the length of the string plus the number, whereas a negative second number is converted to 0.
+
+For the substring() method, all negative numbers are converted to 0.
+
+Consider this example:
+
+Copy
+let stringValue = "hello world";
+console.log(stringValue.slice(-3));         // "rld"
+console.log(stringValue.substring(-3));     // "hello world"
+console.log(stringValue.substr(-3));        // "rld"
+console.log(stringValue.slice(3, -4));      // "lo w"
+console.log(stringValue.substring(3, -4));  // "hel"
+console.log(stringValue.substr(3, -4));     // "" (empty string)
+When slice() and substr() are called with a single negative argument, they act the same.
+
+This occurs because -3 is translated into 7, which is the length plus the argument, effectively making the calls slice(7) and substr(7).
+
+The substring() method returns the entire string because -3 is translated to 0.
+
+When the second argument is negative, the three methods act differently from one another.
+
+The slice() method translates the second argument to 7, making the call equivalent to slice(3, 7) and so returning "lo w".
+
+For the substring() method, the second argument gets translated to 0, making the call equivalent to substring(3, 0), which is actually equivalent to substring(0,3) because this method expects that the smaller number is the starting position and the larger one is the ending position.
+
+For the substr() method, the second argument is also converted to 0, which means there should be zero characters in the returned string, leading to the return value of an empty string.
