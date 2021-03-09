@@ -1,0 +1,35 @@
+Determining the size of a window cross-browser is not easy.
+
+All modern browsers provide four properties: innerWidth, innerHeight, outerWidth, and outerHeight.
+
+outerWidth and outerHeight return the dimensions of the browser window itself regardless of whether it's used on the top most window object or on a frame.
+
+The innerWidth and innerHeight properties tell the size of the page viewport inside the browser window minus borders and toolbars.
+
+The document.documentElement.clientWidth and document.documentElement.clientHeight properties provide the width and height of the page viewport.
+
+There's no accurate way to get the size of the browser window itself, but we get the dimensions of the page viewport, as shown in the following example:
+
+Copy
+let pageWidth = window.innerWidth,
+    pageHeight = window.innerHeight;
+
+if (typeof pageWidth != "number") {
+  if (document.compatMode == "CSS1Compat"){
+    pageWidth = document.documentElement.clientWidth;
+    pageHeight = document.documentElement.clientHeight;
+  } else {
+    pageWidth = document.body.clientWidth;
+    pageHeight = document.body.clientHeight;
+  }
+}
+In this code, pageWidth and pageHeight are assigned initial values of window.innerWidth and window.innerHeight, respectively.
+
+For mobile devices, window.innerWidth and window.innerHeight are the dimensions of the visual viewport, which is the visible area of the page on the screen.
+
+These values change as you zoom in or out of a page.
+
+In other mobile browsers, the measurements of document.documentElement provide measurements for the layout viewport, which are the actual dimensions of the rendered page as opposed to the visual viewport, which is only a small portion of the entire page.
+
+Because of these differences from desktop browsers, you may need to first determine if the user is on a mobile device before deciding which measurements to use and honor.
+
