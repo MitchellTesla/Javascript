@@ -1,0 +1,51 @@
+The logical OR operator is represented by the double pipe ( ||) in ECMAScript, like this:
+
+Copy
+let result = true || false;
+Logical OR behaves as described in the following truth table:
+
+OPERAND 1	OPERAND 2	RESULT
+true	true	true
+true	false	true
+false	true	true
+false	false	false
+If either operand is not a Boolean, logical OR will not always return a Boolean value; instead, it does one of the following:
+
+If the first operand is an object, then the first operand is returned.
+If the first operand evaluates to false, then the second operand is returned.
+If both operands are objects, then the first operand is returned.
+If both operands are null, then null is returned.
+If both operands are NaN, then NaN is returned.
+If both operands are undefined, then undefined is returned.
+Short-circuited
+The logical OR operator is short-circuited.
+
+In this case, if the first operand evaluates to true, the second operand is not evaluated.
+
+Consider this example:
+
+Copy
+let found = true;
+let result = (found || someUndeclaredVariable);  // no error
+console.log(result);  // works
+As with the previous example, the variable someUndefinedVariable is undefined.
+
+However, because the variable found is set to true, the variable someUndefinedVariable is never evaluated and thus the output is "true".
+
+If the value of found is changed to false, an error occurs, as in the following example:
+
+Copy
+let found = false;
+let result = (found || someUndeclaredVariable);  // error occurs here
+console.log(result);  // this line never executes
+You can also use this behavior to avoid assigning a null or undefined value to a variable. Consider the following:
+
+Copy
+let myObject = preferredObject || backupObject;
+In this example, the variable myObject will be assigned one of two values.
+
+The preferredObject variable contains the value that is preferred if it's available, whereas the backupObject variable contains the backup value if the preferred one isn't available.
+
+If preferredObject isn't null, then it's assigned to myObject; if it is null, then backupObject is assigned to myObject.
+
+This pattern is used very frequently in ECMAScript for variable assignment.
