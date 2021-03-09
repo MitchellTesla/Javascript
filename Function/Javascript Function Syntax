@@ -1,0 +1,50 @@
+ECMAScript functions actually are objects.
+
+Each function is an instance of the Function type that has properties and methods just like any other reference type.
+
+Because functions are objects, function names are simply pointers to function objects and are not necessarily tied to the function itself.
+
+Function-declaration syntax
+Functions are typically defined using function-declaration syntax, as in this example:
+
+Copy
+function sum (num1, num2) {
+  return num1 + num2;
+}
+In this code, a variable sum is defined and initialized to be a function.
+
+There is no name included after the function keyword because it's not needed-the function can be referenced by the variable sum.
+
+There is no semicolon after the end of the function definition.
+
+The function-declaration syntax is almost exactly equivalent to using a function expression, such as this:
+
+Copy
+let sum = function(num1, num2) {
+  return num1 + num2;
+};
+There is a semicolon after the end of the function, just as there would be after any variable initialization.
+
+Arrow function
+We can use the "arrow" function syntax, such as this:
+
+Copy
+let sum = (num1, num2) => {
+  return num1 + num2;
+};
+Constructor
+The final way to define functions is to use the Function constructor, which accepts any number of arguments.
+
+The last argument is always considered to be the function body, and the previous arguments enumerate the new function's arguments.
+
+Consider this example:
+
+Copy
+// not recommended
+let sum = new Function("num1", "num2", "return num1 + num2");
+This syntax is not recommended because it causes a double interpretation of the code.
+
+Once for the regular ECMAScript code and once for the strings that are passed into the constructor and thus can affect performance.
+
+Note
+It's important to think of functions as objects and function names as pointers-this syntax is great at representing that concept.
