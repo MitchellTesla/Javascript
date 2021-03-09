@@ -1,0 +1,24 @@
+The behavior of the trap handler function must obey the "trap invariants" as specified in the ECMAScript specification.
+
+Trap invariants vary by method, and they all prevent the trap from running any unexpected behaviors.
+
+For example, if a target object has a non-configurable and non-writable data property, a TypeError will be thrown if you attempt to return a value from the trap that is different from the target object's property:
+
+Copy
+const target = {};
+Object.defineProperty(target, 'foo', {
+    configurable: false,
+    writable: false,
+    value: 'bar'
+});
+
+const handler = {
+    get() {
+        return 'qux';
+    }
+};
+
+const proxy = new Proxy(target, handler);
+
+console.log(proxy.foo);
+Output:
