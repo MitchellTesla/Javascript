@@ -1,0 +1,48 @@
+We can scroll around the document with a limited viewport inside window.
+
+The CSS pixel offset of the current viewport is available as an X and Y pair, representing the number of pixels the viewport is currently scrolled in that direction.
+
+The X and Y offsets are each accessible via two properties, which return identical values: window.pageXoffset / window.scrollX, and window.pageYoffset / window.scrollY.
+
+We can scroll the page by a certain amount using several different window methods.
+
+These methods are passed two coordinates indicating how far in the X and Y direction the viewport should scroll.window.scroll(x, y) will scroll the viewport by a relative amount.
+
+window.scrollBy(x, y) behaves identically.
+
+window.scrollTo(x, y) scrolls the viewport to an absolute offset.
+
+Scroll down 100px relative to the current viewport.
+
+Copy
+window.scroll(0, 100);
+Scroll right 40px relative to the current viewport.
+
+Copy
+Window.scroll(40, 0);
+Scroll to the top left corner of the page.
+
+Copy
+window.scrollTo(0, 0);
+Scroll to 100px from the top and left of the page.
+
+Copy
+window.scrollTo(100, 100);
+These methods also accept a ScrollToOptions dictionary, which in addition to holding the offset values can instruct the browser to smooth the scroll via the behavior property.
+
+normal scroll.
+
+Copy
+window.scrollTo({
+  left: 100,
+  top: 100,
+  behavior: 'auto'
+ });
+smooth scroll.
+
+Copy
+window.scrollTo({
+  left: 100,
+  top: 100,
+  behavior: 'smooth'
+});
