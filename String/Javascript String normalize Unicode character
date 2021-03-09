@@ -1,0 +1,57 @@
+Some Unicode characters can be encoded in more than one way.
+
+Sometimes, a character can be represented by either a single BMP character or a surrogate pair.
+
+For example, consider the following:
+
+Copy
+// U+00C5: Latin capital letter A with ring above
+console.log(String.fromCharCode(0x00C5));         
+
+// U+212B: Angstrom sign
+console.log(String.fromCharCode(0x212B));
+Comparison operators do not care about the visual appearance of characters, and so these three will be considered distinct:
+
+Copy
+let a1 = String.fromCharCode(0x00C5),
+a2 = String.fromCharCode(0x212B),
+
+console.log(a1, a2); 
+console.log(a1 === a2);  // false
+Normalization
+We can normalize Unicode by four normalization forms.
+
+The unicode character can be normalized into a consistent format irrespective of their character code derivation.
+
+These four normalization forms can be applied to a string using the normalize() method.
+
+Copy
+Normalization Form D (NFD), 
+Normalization Form C (NFC), 
+Normalization Form KD (NFKD), and 
+Normalization Form KC (NFKC)
+The normalize() method should be provided with a string identifier to specify which normalization form to apply: NFD, NFC, NFKD, or NFKC.
+
+It is possible to determine if a string is already normalized by checking it against the return value of normalize():
+
+Copy
+let a1 = String.fromCharCode(0x00C5),
+    a2 = String.fromCharCode(0x212B),
+
+// U+00C5 is the NFC/NFKC normalized form of 0+212B
+console.log(a1 === a1.normalize("NFD"));   // false
+console.log(a1 === a1.normalize("NFC"));   // true
+console.log(a1 === a1.normalize("NFKD"));  // false
+console.log(a1 === a1.normalize("NFKC"));  // true
+
+// U+212B is non-normalized
+console.log(a2 === a2.normalize("NFD"));   // false
+console.log(a2 === a2.normalize("NFC"));   // false
+console.log(a2 === a2.normalize("NFKD"));  // false
+console.log(a2 === a2.normalize("NFKC"));  // false
+Selecting a normal form will allow for the comparison operator to behave as expected between identical characters:
+
+Copy
+let a1 = String.fromCharCode(0x00C5),
+a2 = String.fromCharCode(0x212B),
+console.log(a1.normalize("NFD")
