@@ -1,0 +1,29 @@
+There are several Date type methods used specifically to format the date as a string.
+
+They are as follows:
+
+Method
+Description
+toDateString()
+toTimeString()
+toLocaleDateString()
+toLocaleTimeString()
+toUTCString()
+Displays the date's day of the week, month, day of the month, and year in an implementation-specific format.
+Displays the date's hours, minutes, seconds, and time zone in an implementation-specific format.
+Displays the date's day of the week, month, day of the month, and year in an implementation and locale-specific format.
+Displays the date's hours, minutes, and seconds in an implementation-specific format.
+Displays the complete UTC date in an implementation-specific format.
+The output of these methods varies widely from browser to browser and therefore can't be employed in a user interface for consistent display of a date.
+
+There is a method called toGMTString(), which is equivalent to toUTCString() and is provided for backwards compatibility.
+
+Copy
+const d = new Date();
+
+console.log(d.toDateString());
+console.log(d.toTimeString());
+console.log(d.toLocaleDateString());
+console.log(d.toLocaleTimeString());
+console.log(d.toUTCString());
+Output:
