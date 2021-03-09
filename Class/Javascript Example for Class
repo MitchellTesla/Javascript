@@ -1,0 +1,243 @@
+Here are some examples for how to define class in Javascript:
+
+Create iterable class
+Create a class that subclasses or inherits from-another class
+Create A Complex Number Class
+Add Static Methods to Class
+
+
+
+Classes have been part of JavaScript since the very first version of the language, but in ES6, they finally got their own syntax with the introduction of the class keyword.
+
+The following example shows what a Range class written with this new syntax.
+
+Copy
+class Range {
+    constructor(from, to) {
+        // Store the start and end points (state) of this new range object.
+        // These are noninherited properties that are unique to this object.
+        this.from = from;
+        this.to = to;
+    }
+
+    // Return true if x is in the range, false otherwise
+    // This method works for textual and Date ranges as well as numeric.
+    includes(x) { return this.from <= x && x <= this.to; }
+
+    // A generator function that makes instances of the class iterable.
+    // Note that it only works for numeric ranges.
+    *[Symbol.iterator]() {
+        for(let x = Math.ceil(this.from); x <= this.to; x++) yield x;
+    }
+
+    // Return a string representation of the range
+    toString() { return `(${this.from}...${this.to})`; }
+}
+// Here are example uses of this new Range class
+let r = new Range(1,3);   // Create a Range object
+console.log(r.includes(2));// => true: 2 is in the range
+console.log(r.toString());// => "(1...3)"
+console.log([...r]);    // => [1, 2, 3]; convert to an array via iterator
+Output:
+
+
+Note
+The class is declared with the class keyword, which is followed by the name of class and a class body in curly braces.
+
+The class body includes method definitions that use object literal method short hand, where the function keyword is omitted.
+
+Unlike object literals, no commas are used to separate the methods from each other.
+
+The keyword constructor is used to define the constructor function for the class.
+
+The function defined is not actually named "constructor", however. The class declaration statement defines a new variable Range and assigns the value of this special constructor function to that variable.
+
+If your class does not need to do any initialization, you can omit the constructor keyword and its body, and an empty constructor function will be implicitly created for you.
+
+
+If you want to define a class that subclasses-or inherits from-another class, you can use the extends keyword with the class keyword:
+
+Copy
+class Range {
+    constructor(from, to) {
+        // Store the start and end points (state) of this new range object.
+        // These are noninherited properties that are unique to this object.
+        this.from = from;
+        this.to = to;
+    }
+
+    // Return true if x is in the range, false otherwise
+    // This method works for textual and Date ranges as well as numeric.
+    includes(x) { return this.from <= x && x <= this.to; }
+
+    // A generator function that makes instances of the class iterable.
+    // Note that it only works for numeric ranges.
+    *[Symbol.iterator]() {
+        for(let x = Math.ceil(this.from); x <= this.to; x++) yield x;
+    }
+
+    // Return a string representation of the range
+    toString() { return `(${this.from}...${this.to})`; }
+}
+// A Span is like a Range, but instead of initializing it with
+// a start and an end, we initialize it with a start and a length
+class Span extends Range {
+    constructor(start, length) {
+        if (length >= 0) {
+            super(start, start + length);
+        } else {
+            super(start + length, start);
+        }
+    }
+}
+
+
+
+The following code defines a class to represent complex numbers.
+
+The class includes instance methods, getters methods, static methods, instance fields, and static fields.
+
+It includes some commented-out code demonstrating how we might use the not-yet-standard syntax for defining instance fields and static fields within the class body.
+
+With the Complex class, we can use the constructor, instance fields, instance methods, class fields, and class methods with code:
+
+Copy
+The following code defines a class to represent complex numbers.
+
+The class includes instance methods, getters methods, static methods, instance fields, and static fields.
+
+It includes some commented-out code demonstrating how we might use the not-yet-standard syntax for defining instance fields and static fields within the class body.
+
+With the Complex class, we can use the constructor, instance fields, instance methods, class fields, and class methods with code:
+
+Copy
+/**
+ * a complex number is the sum of a real number and an
+ * imaginary number and that the imaginary number i is the square root of -1.
+ *//*from ww  w  .d em o 2 s  .  c o m*/
+class Complex {
+    // Once class field declarations are standardized, we could declare
+    // private fields to hold the real and imaginary parts of a complex number
+    // here, with code like this:
+    //
+    // #r = 0;
+    // #i = 0;
+
+    // This constructor function defines the instance fields r and i on every
+    // instance it creates. These fields hold the real and imaginary parts of
+    // the complex number: they are the state of the object.
+    constructor(real, imaginary) {
+        this.r = real;       // holds the real part of the number.
+        this.i = imaginary;  // holds the imaginary part.
+    }
+
+    // Here are two instance methods for addition and multiplication
+    // of complex numbers. If c and d are instances of this class, we
+    // might write c.plus(d) or d.times(c)
+    plus(that) {
+        return new Complex(this.r + that.r, this.i + that.i);
+    }
+    times(that) {
+        return new Complex(this.r * that.r - this.i * that.i,
+                           this.r * that.i + this.i * that.r);
+    }
+
+    // And here are static variants of the complex arithmetic methods.
+    // We could write Complex.sum(c,d) and Complex.product(c,d)
+    static sum(c, d) { return c.plus(d); }
+    static product(c, d) { return c.times(d); }
+
+    // These are some instance methods that are defined as getters
+    // so they're used like fields. The real and imaginary getters would
+    // be useful if we were using private fields this.#r and this.#i
+    get real() { return this.r; }
+    get imaginary() { return this.i; }
+    get magnitude() { return Math.hypot(this.r, this.i); }
+
+    // Classes should almost always have a toString() method
+    toString() { return `{${this.r},${this.i}}`; }
+
+    // It is often useful to define a method for testing whether
+    // two instances of your class represent the same value
+    equals(that) {
+        return that instanceof Complex &&
+            this.r === that.r &&
+            this.i === that.i;
+    }
+
+    // Once static fields are supported inside class bodies, we could
+    // define a useful Complex.ZERO constant like this:
+    // static ZERO = new Complex(0,0);
+}
+
+// Here are some class fields that hold useful predefined complex numbers.
+Complex.ZERO = new Complex(0,0);
+Complex.ONE = new Complex(1,0);
+Complex.I = new Complex(0,1);
+
+let c = new Complex(2, 3);     // Create a new object with the constructor
+let d = new Complex(c.i, c.r); // Use instance fields of c
+c.plus(d).toString()           // => "{5,5}"; use instance methods
+c.magnitude                    // => Math.hypot(2,3); use a getter function
+Complex.product(c, d)          // => new Complex(0, 13); a static method
+Complex.ZERO.toString()        // => "{0,0}"; a static property
+
+console.log(c);
+console.log(d);
+Output:
+
+
+
+You can define a static method within a class body by prefixing the method declaration with the static keyword.
+
+Static methods are defined as properties of the constructor function rather than properties of the prototype object.
+
+For example, suppose we added the following code to Example 9-3:
+
+Copy
+class Range {
+    constructor(from, to) {
+        // Store the start and end points (state) of this new range object.
+        // These are noninherited properties that are unique to this object.
+        this.from = from;
+        this.to = to;
+    }
+
+    // Return true if x is in the range, false otherwise
+    // This method works for textual and Date ranges as well as numeric.
+    includes(x) { return this.from <= x && x <= this.to; }
+
+    // A generator function that makes instances of the class iterable.
+    // Note that it only works for numeric ranges.
+    *[Symbol.iterator]() {
+        for(let x = Math.ceil(this.from); x <= this.to; x++) yield x;
+    }
+
+    // Return a string representation of the range
+    toString() { return `(${this.from}...${this.to})`; }
+    
+    static parse(s) {
+        let matches = s.match(/^\((\d+)\.\.\.(\d+)\)$/);
+        if (!matches) {
+            throw new TypeError(`Cannot parse Range from "${s}".`)
+        }
+        return new Range(parseInt(matches[1]), parseInt(matches[2]));
+    }
+    
+}
+let r = Range.parse('(1...10)'); // Returns a new Range object
+//r.parse('(1...10)');             // TypeError: r.parse is not a function
+
+console.log(r);
+The method defined by this code is Range.parse(), not Range.prototype.parse(), and you must invoke it through the constructor, not through an instance:
+
+Copy
+let r = Range.parse('(1...10)'); // Returns a new Range object
+//r.parse('(1...10)');             // TypeError: r.parse is not a function
+Output:
+
+
+static methods are also called class methods because they are invoked using the name of the class/constructor.
+
+Because static methods are invoked on the constructor rather than on any particular instance, it almost never makes sense to use the this keyword in a static method.
+
