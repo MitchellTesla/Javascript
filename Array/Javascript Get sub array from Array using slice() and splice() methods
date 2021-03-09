@@ -1,0 +1,99 @@
+Array slice() creates an array that contains one or more items already contained in an array.
+
+The slice() method may accept one or two arguments: the starting and stopping positions of the items to return.
+
+If only one argument is present, the method returns all items between that position and the end of the array.
+
+If there are two arguments, the method returns all items between the start position and the end position, not including the item in the end position.
+
+This operation does not affect the original array in any way.
+
+Consider the following:
+
+Copy
+let colors = ["A", "B", "C", "D", "E"];
+let colors2 = colors.slice(1);
+let colors3 = colors.slice(1, 4);
+
+console.log(colors );  
+console.log(colors2);  // B,C,D,E
+console.log(colors3);  // B,C,D
+Output:
+
+
+In this example, the colors array starts out with five items.
+
+Calling slice() and passing in 1 yields an array with four items, omitting "A" because the operation began copying from position 1, which contains "B".
+
+The resulting colors2 array contains "B", "C", "D", and "E".
+
+The colors3 array is constructed by calling slice() and passing in 1 and 4, meaning that the method will begin copying from the item in position 1 and stop copying at the item in position 3.
+
+colors3 contains "B", "C", and "D".
+
+If either the start or end position of slice() is a negative number, then the number is subtracted from the length of the array to determine the appropriate locations.
+
+For example, calling slice(-2, -1) on an array with five items is the same as calling slice(3, 4).
+
+If the end position is smaller than the start, then an empty array is returned.
+
+splice()
+Array splice() can be used in a variety of ways.
+
+The main purpose of splice() is to insert items into the middle of an array, but there are three distinct ways of using this method.
+
+Deletion
+Any number of items can be deleted from the array by specifying just two arguments:
+
+the position of the first item to delete and
+the number of items to delete.
+For example,splice(0, 2) deletes the first two items.
+
+Insertion
+Items can be inserted into a specific position by providing three or more arguments:
+
+the starting position,
+0 (the number of items to delete), and
+the item to insert.
+Optionally, you can specify a fourth parameter, fifth parameter, or any number of other parameters to insert.
+
+For example, splice(2, 0, "A", "B") inserts the strings "A" and "B" into the array at position 2.
+
+Replacement
+Items can be inserted into a specific position while simultaneously deleting items, if you specify three arguments:
+
+the starting position,
+the number of items to delete, and
+any number of items to insert.
+The number of items to insert doesn't have to match the number of items to delete.
+
+For example, splice(2, 1, "A", "B") deletes one item at position 2 and then inserts the strings "A" and "B" into the array at position 2.
+
+The splice() method always returns an array that contains any items that were removed from the array or an empty array if no items were removed.
+
+These three uses are illustrated in the following code:
+
+Copy
+let colors = ["A", "B", "C"];
+let removed = colors.splice(0,1);  // remove the first item
+console.log(colors);               // B,C
+console.log(removed);              // A - one item array
+
+removed = colors.splice(1, 0, "D", "orange");  // insert two items at position 1
+console.log(colors);                                // B,D,orange,C
+console.log(removed);                               // empty array
+
+removed = colors.splice(1, 1, "A", "E");  // insert two values, remove one
+console.log(colors);                             // B,A,E,orange,C
+console.log(removed);                            // D - one item array
+This example begins with the colors array containing three items.
+
+When splice is called the first time, it simply removes the first item, leaving colors with the items "B" and "C".
+
+The second time splice() is called, it inserts two items at position 1, resulting in colors containing "B", "D", "orange", and "C".
+
+No items are removed at this point, so an empty array is returned.
+
+The last time splice() is called, it removes one item, beginning in position 1, and inserts "A" and "E".
+
+After all of this code has been executed, the colors array contains "B", "A", "E", "orange", and "C".
