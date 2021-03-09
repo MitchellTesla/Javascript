@@ -1,0 +1,38 @@
+Javascript generators are much more useful when consumed as an iterable, as shown here:
+
+Copy
+function* generatorFn() {
+  yield 1;
+  yield 2;
+  yield 3;
+ }
+
+for (const x of generatorFn()) {
+  console.log(x);
+}
+Output:
+
+
+This can be useful to define custom iterable.
+
+For example, it is often useful to define an iterable, which will produce an iterator that executes a specific number of times.
+
+With a generator, this can be accomplished simply with a loop:
+
+Copy
+function* nTimes(n) {
+  while(n--) {
+    yield;
+  }
+}
+
+for (let _ of nTimes(3)) {
+  console.log('foo');
+}
+Output:
+
+
+The single generator function parameter controls the number of loop iterations.
+
+When n reaches 0, the while condition will become falsy, the loop will exit, and the generator function will return.
+
