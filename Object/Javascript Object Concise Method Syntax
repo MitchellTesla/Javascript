@@ -1,0 +1,53 @@
+When defining function properties of an object, the format almost always takes the form of a property key referencing an anonymous function expression, as follows:
+
+Copy
+let person = {
+ sayName: function(name) {
+   console.log('My name is ${name}');
+ }
+};
+
+person.sayName('HTML');  // My name is HTML
+The new shorthand method syntax can shorten a function property.
+
+The following is behaviorally identical to the previous code:
+
+Copy
+let person = {
+   sayName(name) {
+     console.log('My name is ${name}');
+   }
+};
+
+person.sayName('HTML');  // My name is HTML
+This is also applicable to the getter and setter object conventions:
+
+Copy
+let person = {
+  name_: '',
+  get name() {
+    return this.name_;
+  },
+  set name(name) {
+    this.name_ = name;
+  },
+  sayName() {
+    console.log('My name is ${this.name_}');
+  }
+};
+
+person.name = 'HTML';
+person.sayName();  // My name is HTML
+Shorthand method syntax and computed property keys are mutually compatible:
+
+Copy
+const methodKey = 'sayName';
+
+let person = {
+   [methodKey](name) {
+    console.log('My name is ${name}');
+  }
+}
+
+person.sayName('HTML');  // My name is HTML
+You will find that the shorthand method syntax is more useful in the context of ECMAScript 6 classes.
