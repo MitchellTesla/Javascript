@@ -1,0 +1,23 @@
+Search for a form feed character in a string:
+
+Copy
+let str = "Visit Demo2s.com.\fLearn JavaScript.";
+let patt1 = /\f/;
+let result = str.search(patt1);
+console.log(result);
+Output:
+
+
+Description
+The \f metacharacter can find a form feed character.
+
+\f returns the position where the form feed character was found.
+
+If no match is found, it returns -1.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+\f	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("\\f") or simply: /\f/
