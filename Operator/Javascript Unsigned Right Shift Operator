@@ -1,0 +1,32 @@
+The unsigned right shift is represented by three greater-than signs ( >>>) and shifts all bits in a 32-bit number to the right.
+
+For numbers that are positive, the effect is the same as a signed right shift.
+
+Using the same example as for the signed-right-shift example, if 64 is shifted to the right five bits, it becomes 2:
+
+Copy
+let oldValue = 64;              // equal to binary 1000000
+let newValue = oldValue >>> 5;  // equal to binary 10 which is decimal 2
+The left most is the sign bit.
+
+Copy
+The number 64
+00000000000000000000000001000000
+The number 64 shifted to the right five bits (the number 2)
+
+Copy
+00000000000000000000000000000010
+For numbers that are negative, unlike signed right shift, the empty bits get filled with zeros regardless of the sign of the number.
+
+The unsigned-right-shift operator considers the binary representation of the negative number to be representative of a positive number instead.
+
+Because the negative number is the two's complement of its absolute value, the number becomes very large, as you can see in the following example:
+
+Copy
+let oldValue = -64; // equal to binary 11111111111111111111111111000000
+let newValue = oldValue >>> 5;  // equal to decimal 134217726
+When an unsigned right shift is used to shift -64 to the right by five bits, the result is 134217726.
+
+This happens because the binary representation of -64 is 11111111111111111111111111000000, but because the unsigned right shift treats this as a positive number, it considers the value to be 4294967232.
+
+When this value is shifted to the right by five bits, it becomes 00000111111111111111 111111111110, which is 134217726.
