@@ -1,0 +1,30 @@
+The bitwise OR operator is represented by a single pipe character (|) and also works on two numbers.
+
+Bitwise OR follows the rules in this truth table:
+
+Bit From First Number	Bit From Second Number	Result
+1	1	1
+1	0	1
+0	1	1
+0	0	0
+A bitwise OR operation returns 1 if at least one bit is 1.
+
+It returns 0 only if both bits are 0.
+
+Using the same example as for bitwise AND, if you want to OR the numbers 25 and 3 together, the code looks like this:
+
+Copy
+let result = 25 | 3;
+console.log(result);   // 27
+The result of a bitwise OR between 25 and 3 is 27:
+
+Copy
+25 = 0000 0000 0000 0000 0000 0000 0001 1001
+ 3 = 0000 0000 0000 0000 0000 0000 0000 0011
+---------------------------------------------
+OR = 0000 0000 0000 0000 0000 0000 0001 1011
+In each number, four bits are set to 1, so these are passed through to the result.
+
+The binary code 11011 is equal to 27.
+
+A bit is set in the result if the corresponding bit is set in one or both of the operands. For example, 0x1234 | 0x00FF evaluates to 0x12FF.
