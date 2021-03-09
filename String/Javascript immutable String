@@ -1,0 +1,14 @@
+Strings are immutable in ECMAScript, and once they are created, their values cannot change.
+
+To change the string held by a variable, the original string must be destroyed and the variable filled with another string containing a new value, like this:
+
+Copy
+let lang = "Java";
+lang = lang + "Script";
+Here, the variable lang is defined to contain the string "Java".
+
+On the next line, lang is redefined to combine "Java" with "Script", making its value "JavaScript".
+
+The last step in the process is to destroy the original string "Java" and the string "Script", because neither is necessary anymore.
+
+All of this happens behind the scenes.
