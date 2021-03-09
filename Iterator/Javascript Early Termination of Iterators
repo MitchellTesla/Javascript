@@ -1,0 +1,127 @@
+The optional return() method will execute only if the iterator is closed prematurely.
+
+Closing an iterator occurs when the construct performing the iteration wishes to indicate to the iterator that it does not intend to finish traversing until exhaustion.
+
+Scenarios where this might happen include the following:
+
+Copy
+A for...of loop exits early via break, continue, return, or throw.
+A destructuring operation does not consume all values.
+The return() method must return a valid IteratorResult object.
+
+A simple iterator implementation should just return { done: true }, as the return value is only used in the context of generators.
+
+As shown in the code that follows, a built-in language construct will automatically invoke the return() method once it identifies that there are further values that need to be iterated over that will not be consumed.
+
+Copy
+class Counter {
+  constructor(limit) {// w  w w  . d  e  mo  2  s .com
+      this.limit = limit;
+    }
+
+    [Symbol.iterator]() {
+      let count = 1,
+          limit = this.limit;
+      return {
+        next() {
+          if (count <= limit) {
+            return { done: false, value: count++ };
+          } else {
+            return { done: true };
+          }
+        },
+        return() {
+          console.log('Exiting early');
+          return { done: true };
+        }
+      };
+    }
+  }
+
+let counter1 = new Counter(5);
+
+for (let i of counter1) {
+  if (i > 2) {
+    break;
+  }
+  console.log(i);
+}
+// 1
+// 2
+// Exiting early
+
+let counter2 = new Counter(5);
+
+try {
+  for (let i of counter2 {
+    if (i > 2) {
+      throw 'err';
+    }
+    console.log(i);
+  }
+} catch(e) {}
+// 1
+// 2
+// Exiting early
+
+
+let counter3 = new Counter(5);
+
+let [a, b] = counter3;
+// Exiting early
+If an iterator is not closed, then you are able to pick up iteration where you left off.
+
+For example, Array Iterators are not closable:
+
+Copy
+let a = [1, 2, 3, 4, 5];
+let iter = a[Symbol.iterator]();
+
+for (let i of iter) {
+  console.log(i);
+  if (i > 2) {
+    break
+  }
+}
+// 1
+// 2
+// 3
+
+for (let i of iter) {
+  console.log(i);
+}
+// 4
+// 5
+Because the return() method is optional, not all iterators are closable.
+
+Whether or not an iterator is closable can be ascertained by testing if the return property on the iterator instance is a function object.
+
+However, merely adding the method to a non-closable iterator will not make it become closable, as invoking return() does not force the iterator into a closed state.
+
+The return() method will, however, still be invoked:
+
+Copy
+let a = [1, 2, 3, 4, 5];
+let iter = a[Symbol.iterator]();
+
+iter.return = function() {
+  console.log('Exiting early');
+  return { done: true };
+};
+
+for (let i of iter) {
+  console.log(i);
+  if (i > 2) {
+    break
+  }
+}
+// 1
+// 2
+// 3
+// Exiting early
+
+for (let i of iter) {
+  console.log(i);
+}
+// 4
+// 5
