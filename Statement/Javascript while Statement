@@ -1,0 +1,19 @@
+The while statement is a pretest loop. The escape condition is evaluated before the code inside the loop has been executed.
+
+It is possible that the body of the loop is never executed.
+
+Here's the syntax:
+
+Copy
+while(expression)
+   statement
+And here's an example of its usage:
+
+Copy
+let i = 0;
+while (i < 10) {
+   i += 2;
+}
+In this example, the variable i starts out equal to 0 and is incremented by two each time through the loop.
+
+As long as the variable is less than 10, the loop will continue.
