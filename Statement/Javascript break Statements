@@ -1,0 +1,64 @@
+The break and continue statements provide stricter control over the execution of code in a loop.
+
+The break statement exits the loop immediately, forcing execution to continue with the next statement after the loop.
+
+Here's an example:
+
+Copy
+let num = 0;
+
+for (let i = 1; i < 10; i++) {
+   if (i % 5 == 0) {
+     break;
+   }
+   num++;
+}
+console.log(num);  // 4
+In this code, the for loop increments the variable i from 1 to 10.
+
+In the body of a loop, an if statement checks to see if the value of i is evenly divisible by 5 (using the modulus operator).
+
+If so, the break statement is executed and the loop is exited.
+
+The num variable starts out at 0 and indicates the number of times the loop has been executed.
+
+After the break statement has been hit, the next line of code to be executed is the console.log, which displays 4.
+
+The number of times the loop has been executed is four because when i equals 5, the break statement causes the loop to be exited before num can be incremented.
+
+Both the break and continue statements can be used in conjunction with labeled statements to return to a particular location in the code.
+
+This is typically used when there are loops inside of loops, as in the following example:
+
+Copy
+let num = 0;
+
+outermost:
+for (let i = 0; i < 10; i++) {
+     for (let j = 0; j < 10; j++) {
+       if (i == 5 && j == 5) {
+            break outermost;
+       }
+       num++;
+     }
+}
+console.log(num);  // 55
+In this example, the outermost label indicates the first for statement.
+
+Each loop normally executes 10 times, meaning that the num++ statement is normally executed 100 times and, consequently, num should be equal to 100 when the execution is complete.
+
+The break statement here is given one argument: the label to break to.
+
+Adding the label allows the break statement to break not just out of the inner for statement (using the variable j) but also out of the outer for statement (using the variable i).
+
+Because of this, num ends up with a value of 55, because execution is halted when both i and j are equal to 5.
+
+In this example, the outermost label indicates the first for statement.
+
+Each loop normally executes 10 times, meaning that the num++ statement is normally executed 100 times and, consequently, num should be equal to 100 when the execution is complete.
+
+The break statement here is given one argument: the label to break to.
+
+Adding the label allows the break statement to break not just out of the inner for statement (using the variable j) but also out of the outer for statement (using the variable i).
+
+Because of this, num ends up with a value of 55, because execution is halted when both i and j are equal to 5.
