@@ -1,0 +1,21 @@
+When declaring variables using let in the global context, variables will not attach to the window object as they do with var.
+
+Copy
+var name = 'Javascript';
+console.log(window.name);  // 'Javascript'
+
+let age = 26;
+console.log(window.age);   // undefined
+However, let declarations will still occur inside the global block scope, which will persist for the lifetime of the page.
+
+Copy
+let age = 26;
+
+function test(){
+   console.log(age);
+}
+test();
+Output:
+
+
+You must ensure your page does not attempt duplicate declarations in order to avoid throwing a SyntaxError.
