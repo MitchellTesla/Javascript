@@ -1,0 +1,96 @@
+Limitation 1
+super can only be used in a derived class constructor or static method.
+
+Copy
+class Vehicle {
+  constructor() {
+    super();
+    // SyntaxError: 'super' keyword unexpected
+  }
+}
+Limitation 2
+The super keyword cannot be referenced by itself; it must be either invoked as a constructor or used to reference a static method.
+
+Copy
+class Vehicle {}
+
+class Bus extends Vehicle {
+  constructor() {
+    console.log(super);
+    // SyntaxError: 'super' keyword unexpected here
+  }
+}
+Limitation 3
+Calling super() will invoke the parent class constructor and assign the resulting instance to this.
+
+Copy
+class Vehicle {}
+class Bus extends Vehicle {
+  constructor() {
+    super();
+    console.log(this instanceof Vehicle);
+  }
+}
+new Bus();  // true
+Limitation 4
+super() behaves like a constructor function; you must manually pass arguments to it to pass them to the parent constructor.
+
+Copy
+class Vehicle {
+   constructor(engineModel) {
+       this.engineModel = engineModel;
+   }
+}
+class Bus extends Vehicle {
+   constructor(engineModel) {
+      super(engineModel);
+   }
+}
+console.log(new Bus('X3'));  // Bus { engineModel: 'X3' }
+If you decline to define a constructor function, super() will be invoked and all arguments passed to the derived class constructor.
+
+Copy
+class Vehicle {
+   constructor(engineModel) {
+      this.engineModel = engineModel;
+   }
+}
+class Bus extends Vehicle {}
+console.log(new Bus('1234'));  // Bus { engineModel: '1234' }
+Limitation 5
+You cannot reference this inside the constructor before invoking super().
+
+Copy
+class Vehicle {}
+
+class Bus extends Vehicle {
+   constructor() {
+      console.log(this);
+   }
+}
+
+new Bus();
+// ReferenceError: Must call super constructor in derived class
+// before accessing 'this' or returning from derived constructor
+Note
+If a class is derived from a parent class and you explicitly define a constructor, you must either invoke super() or return an object from the constructor.
+
+Copy
+class Vehicle {}
+
+class Car extends Vehicle {}
+
+class Bus extends Vehicle {
+    constructor() {
+        super();
+    }
+}
+class Van extends Vehicle {
+    constructor() {
+        return {};
+    }
+}
+
+console.log(new Car()); // Car {}
+console.log(new Bus()); // Bus {}
+console.log(new Van()); // {}
