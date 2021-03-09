@@ -1,0 +1,13 @@
+ECMAScript 6 proxies and reflection can intercept and add additional behavior into common operations.
+
+You can define a proxy object associated with a target object.
+
+Then the proxy object can be used as a target object from which you can control what happens when operations are performed before they reach the target object.
+
+By default, all operations performed on a proxy object will be transparently propagated through to the target object.
+
+We can use a proxy object in the same ways as use the target object.
+
+A proxy is created using the Proxy constructor.
+
+It requires you to provide both a target object and a handler object, without which a TypeError is thrown.
