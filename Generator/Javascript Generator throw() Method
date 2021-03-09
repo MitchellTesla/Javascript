@@ -1,0 +1,49 @@
+The throw() method will inject a provided error into the generator object at the point it is suspended.
+
+If the error is unhandled, the generator will close:
+
+Copy
+function* generatorFn() {
+  for (const x of [1, 2, 3]) {
+    yield x;
+  }
+}
+
+const g = generatorFn();
+
+console.log(g);    // generatorFn {<suspended>}
+try {
+  g.throw('foo');
+} catch (e) {
+  console.log(e);  // foo
+}
+console.log(g);    // generatorFn {<closed>}
+If, however, the error is handled inside the generator function, then it will not close and can resume execution.
+
+The error handling will skip over that yield, so in this example you will see it skip a value.
+
+Consider the following example:
+
+Copy
+function* generatorFn() {
+  for (const x of [1, 2, 3]) {
+    try {
+       yield x;
+    } catch(e) {}
+  }
+}
+
+const g = generatorFn();
+
+console.log(g.next());  // { done: false, value: 1}
+g.throw('foo');
+console.log(g.next());  // { done: false, value: 3}
+In this example, the generator suspends execution at a yield keyword inside a try/catch block.
+
+While it is suspended, throw() injects the foo error, which is thrown by the yield keyword.
+
+Because this error is thrown inside the generator's try/catch block, it is subsequently caught while still inside the generator.
+
+However, because yield threw that error, that value of 2 will not be produced by the generator.
+
+Instead, the generator function continues execution, proceeding on to the next loop iteration where it encounters the yield keyword yet again-this time, yielding the value 3.
