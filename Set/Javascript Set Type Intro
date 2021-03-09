@@ -1,0 +1,112 @@
+ECMAScript 6 Set is a new collection type that introduces set behavior into the language.
+
+An empty Set is instantiated with the new keyword:
+
+Copy
+const m = new Set();
+If you wish to populate the set when it is initialized, the constructor optionally accepts an iterable object containing elements to be added into the newly created Set instance.
+
+Copy
+// Initialize set with array
+const s1 = new Set(["val1", "val2", "val3"]);
+console.log(s1.size);  // 3
+
+// Initialize set with custom-defined iterator
+const s2 = new Set({
+  [Symbol.iterator]: function*() {
+    yield "val1";
+    yield "val2";
+    yield "val3";
+  }
+});
+console.log(s2.size);  // 3
+Values can be added after initialization with add(), queried with has(), counted with the size property, and removed with delete()and clear():
+
+Copy
+const s = new Set();
+
+console.log(s.has("HTML"));     // false
+console.log(s.size);            // 0
+
+s.add("HTML")
+ .add("CSS");
+
+console.log(s.has("HTML"));     // true
+console.log(s.size);            // 2
+
+s.delete("HTML");
+
+console.log(s.has("HTML"));     // false
+console.log(s.has("CSS"));  // true
+console.log(s.size);            // 1
+
+s.clear();  // destroys all values in this Set instance
+
+console.log(s.has("HTML"));     // false
+console.log(s.has("CSS"));  // false
+console.log(s.size);            // 0
+The add() method returns the Set instance, so it is possible to chain multiple operations together, including on the initial declaration:
+
+Copy
+const s = new Set().add("val1");
+
+s.set("val2")
+ .set("val3");
+
+console.log(s.size);  // 3
+A Set can contain any JavaScript data type as a value.
+
+It uses the SameValueZero comparison operation and is comparable to using strict object equivalence to check for a value match.
+
+There is no restriction on what is contained in the value.
+
+Copy
+const s = new Set();
+
+const functionVal = function() {};
+const symbolVal = Symbol();
+const objectVal = new Object();
+
+s.add(functionVal);
+s.add(symbolVal);
+s.add(objectVal);
+
+console.log(s.has(functionVal));    // true
+console.log(s.has(symbolVal));      // true
+console.log(s.has(objectVal));      // true
+
+// SameValueZero checks mean separate instances will not collide
+console.log(s.has(function() {}));  // false
+The objects and other "collection" types used for values remain unchanged inside a set when their contents or properties are altered:
+
+Copy
+const s = new Set();
+
+const objVal = {},
+     arrVal = [];
+
+s.add(objVal);
+.add(arrVal);
+
+objVal.bar = "bar";
+arrVal.push("bar");
+
+console.log(s.has(objVal));  // true
+console.log(s.has(arrVal));  // true
+The add() and delete() operations are idempotent.
+
+delete() returns a Boolean indicating if that value was present in the set.
+
+Copy
+const s = new Set();
+
+s.add('foo');
+console.log(s.size);  // 1
+s.add('foo');
+console.log(s.size);  // 1
+
+// Value was present in the set
+console.log(s.delete('foo'));  // true
+
+// Value was not present in the set
+console.log(s.delete('foo'));  // false
