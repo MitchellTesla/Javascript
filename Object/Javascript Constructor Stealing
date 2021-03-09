@@ -1,0 +1,25 @@
+To solve the inheritance problem with reference values on prototypes, We use constructor stealing:call the supertype constructor from within the subtype constructor.
+
+The apply() and call() methods can be used to execute a constructor on the newly created object, as in this example:
+
+Copy
+function SuperType() {
+  this.colors = ["red", "blue", "green"];
+}
+
+function SubType() {
+  // inherit from SuperType
+  SuperType.call(this);
+}
+
+let instance1 = new SubType();
+instance1.colors.push("black");
+console.log(instance1.colors);  // "red,blue,green,black"
+
+let instance2 = new SubType();
+console.log(instance2.colors);  // "red,blue,green"
+By using the call() method or alternately, apply(), the SuperType constructor is called in the context of the newly created instance of SubType.
+
+Doing this runs all of the object-initialization code in the SuperType() function on the new SubType object.
+
+The result is that each instance has its own copy of the colors property.
