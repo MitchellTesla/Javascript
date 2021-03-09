@@ -1,0 +1,32 @@
+The <noscript> element was created to provide alternate content for browsers without JavaScript.
+
+This element is useful for browsers that explicitly disable JavaScript.
+
+The <noscript> element can contain any HTML elements, aside from <script>, that can be included in the document <body>.
+
+Any content contained in a <noscript> element will be displayed under only the following two circumstances:
+
+The browser doesn't support scripting.
+The browser's scripting support is turned off.
+If either of these conditions is met, then the content inside the <noscript> element is rendered. In all other cases, the browser does not render the content of <noscript>.
+
+Here is a simple example:
+
+Copy
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Example HTML Page</title>
+  <script src="example1.js"></script>
+  <script src="example2.js"></script>
+  </head>
+  <body>
+  <noscript>
+    <p>This page requires a JavaScript-enabled browser.</p>
+  </noscript>
+  </body>
+</html>
+
+In this example, a message is displayed to the user when the scripting is not available.
+
+For scripting-enabled browsers, this message will never be seen even though it is still a part of the page.
