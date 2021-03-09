@@ -1,0 +1,35 @@
+When using var, the following is possible because variables declared using that keyword are hoisted to the top of the function scope:
+
+Copy
+function foo() {
+  console.log(age);
+  var age = 26;
+}
+foo(); // undefined
+Output:
+
+
+This does not throw an error because the ECMAScript runtime technically treats it like this:
+
+Copy
+function foo() {
+  var age;
+  console.log(age);
+  age = 26;
+}
+foo();  // undefined
+Output:
+
+
+This is "hoisting" where the interpreter pulls all variable declarations to the top of its scope.
+
+It also allows you to use redundant var declarations without penalty:
+
+Copy
+function foo() {
+     var age = 16;
+     var age = 26;
+     var age = 36;
+     console.log(age);
+}
+foo();  // 36
