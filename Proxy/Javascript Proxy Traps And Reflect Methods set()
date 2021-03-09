@@ -1,0 +1,39 @@
+The set() trap is called inside operations that assign a property value.
+
+Its corresponding Reflect API method is Reflect.set().
+
+Example
+Copy
+const myTarget = {};
+
+const proxy = new Proxy(myTarget, {
+  set(target, property, value, receiver) {
+    console.log('set()');
+    return Reflect.set(...arguments)
+  }
+});
+
+proxy.foo = 'bar';
+Output:
+
+
+Return value
+A return value of true indicates success; a return value of false indicates failure, and in strict mode will throw a TypeError.
+
+Intercepted operations
+Copy
+proxy.property = value
+proxy[property] = value
+Object.create(proxy)[property] = value
+Reflect.set(proxy, property, value, receiver)
+Trap handler parameters
+target - Target object
+property - String key property being referenced on target object
+value - The value being assigned to property
+receiver - The original assignment recipient object
+Trap Limitation
+If target.property is non-writable and non-configurable, the target property value cannot be altered.
+
+If target.property is non-configurable and has undefined as its [[Set]] attribute, the target property value cannot be altered.
+
+Returning false from the handler will throw a TypeError in strict mode.
