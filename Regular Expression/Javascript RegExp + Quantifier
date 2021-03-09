@@ -1,0 +1,31 @@
+Do a global search for at least one "o":
+
+Copy
+let str = "Hellooo World! Hello Demo2s.com!";
+let patt1 = /o+/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Description
+The n+ quantifier matches any string that contains at least one n.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
++	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("n+") or simply: /n+/
+Syntax with modifiers
+Copy
+new RegExp("n+", "g") or simply: /\n+/g
+More Examples
+Do a global search for at least one word character:
+
+Copy
+let str = "Hellooo World! Hello Demo2s.com!";
+let patt1 = /\w+/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
