@@ -1,0 +1,23 @@
+Search for a carriage return character in a string:
+
+Copy
+let str = "Visit \rDemo2s.com.\rLearn JavaScript.";
+let patt1 = /\r/;
+let result = str.search(patt1);
+console.log(result);
+Output:
+
+
+Description
+The \r metacharacter can match a carriage return character.
+
+\r returns the position where the carriage return character was found.
+
+If no match is found, it returns -1.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+\r	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("\\r") or simply: /\r/
