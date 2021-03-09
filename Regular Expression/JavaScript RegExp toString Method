@@ -1,0 +1,24 @@
+Return the string value of the regular expression:
+
+Copy
+let patt = new RegExp("Hello World", "g");
+let res = patt.toString();
+console.log(res);
+Output:
+
+
+Description
+The toString() method returns the string value of the regular expression.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+toString()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+RegExpObject.toString()
+Parameters
+None.
+
+Return Value
+Type	Description
+String	The string value of the regular expression
