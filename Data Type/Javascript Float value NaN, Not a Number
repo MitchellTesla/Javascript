@@ -1,0 +1,48 @@
+There is a special numeric value called NaN, short for Not a Number, which indicates the returned value is Not a Number.
+
+For example, in ECMAScript, dividing a number by 0 returns NaN, which allows other processing to continue.
+
+The value NaN has a couple of unique properties.
+
+First, any operation involving NaN always returns NaN, For example NaN /20.
+
+Second, NaN is not equal to any value, including NaN.
+
+For example, the following returns false:
+
+Copy
+console.log(NaN == NaN);  // false
+isNaN()
+ECMAScript provides the isNaN() function.
+
+isNaN() function accepts a single argument to determine if the value is "not a number".
+
+When a value is passed into isNaN(), an attempt is made to convert it into a number.
+
+Some nonnumerical values convert into numbers directly, such as the string "10" or a Boolean value.
+
+Any value that cannot be converted into a number causes the function to return true.
+
+Consider the following:
+
+Copy
+console.log(isNaN(NaN));     // true
+console.log(isNaN(10));      // false - 10 is a number
+console.log(isNaN("10"));    // false - can be converted to number 10
+console.log(isNaN("demo2s.com"));  // true - cannot be converted to a number
+console.log(isNaN(true));    // false - can be converted to number 1
+This example tests five different values.
+
+The first test is on the value NaN itself, which returns true.
+
+The next two tests use numeric 10 and the string "10", which both return false because the numeric value for each is 10.
+
+The string "demo2s.com" cannot be converted into a number, so the function returns true.
+
+The Boolean value of true can be converted into the number 1, so the function returns false.
+
+isNaN() can be applied to objects.
+
+In that case, the object's valueOf() method is first called to determine if the returned value can be converted into a number.
+
+If not, the toString() method is called and its returned value is tested as well.
