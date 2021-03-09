@@ -1,0 +1,18 @@
+Promise.reject() instantiates a rejected promise and throws an asynchronous error.
+
+The asynchronous error will not be caught by try/catch and can only be caught by a rejection handler.
+
+The following two promise instantiations are effectively equivalent:
+
+Copy
+let p1 = new Promise((resolve, reject) => reject());
+let p2 = Promise.reject();
+The 'reason' field of this resolved promise will be the first argument passed to Promise.reject().
+
+This will also be the error passed to the reject handler:
+
+Copy
+let p = Promise.reject(3);
+setTimeout(console.log, 0, p);  // Promise <rejected>: 3
+
+p.then(null, (e) => setTimeout(console.log, 0, e));  // 3
