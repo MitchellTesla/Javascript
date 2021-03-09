@@ -1,0 +1,50 @@
+JavaScript's primary numeric type, Number, is used to represent integers and to approximate real numbers.
+
+ECMAScript Number uses the IEEE-754 format to represent both integers and floating-point values.
+
+The JavaScript number format allows you to exactly represent all integers between -9,007,199,254,740,992 and 9,007,199,254,740,992, inclusive.
+
+To support the various types of numbers, there are several different number literal formats.
+
+Literal
+The most basic number literal format is that of a decimal integer, which can be entered directly as shown here:
+
+Copy
+let intNum = 55;  // integer
+In a JavaScript program, a base-10 integer is written as a sequence of digits. For example:
+
+Copy
+0
+3
+10000000
+Octal
+Integers can also be represented as either octal (base 8) or hexadecimal (base 16) literals.
+
+For an octal literal, the first digit must be a zero (0) followed by a sequence of octal digits (numbers 0 through 7).
+
+If a number out of this range is detected in the literal, then the leading zero is ignored and the number is treated as a decimal, as in the following examples:
+
+Copy
+let octalNum1 = 070;  // octal for 56
+let octalNum2 = 079;  // invalid octal - interpreted as 79
+let octalNum3 = 08;   // invalid octal - interpreted as 8
+Octal literals are invalid when running in strict mode and will cause the JavaScript engine to throw a syntax error.
+
+hexadecimal
+To create a hexadecimal literal, you must make the first two characters 0x (case insensitive), followed by any number of hexadecimal digits (0 through 9, and A through F).
+
+Letters may be in uppercase or lowercase.
+
+Here's an example:
+
+Copy
+let hexNum1 = 0xA;   // hexadecimal for 10
+let hexNum2 = 0x1f;  // hexadecimal for 31
+Numbers created using octal or hexadecimal format are treated as decimal numbers in all arithmetic operations.
+
+Binary
+In ES6 and later, you can also express integers in binary (base 2) or octal (base 8) using the prefixes 0b and 0o (or 0B and 0O):
+
+Copy
+0b10101  // => 21:  (1*16 + 0*8 + 1*4 + 0*2 + 1*1)
+0o377    // => 255: (3*64 
