@@ -1,0 +1,26 @@
+ECMAScript uses C-style comments for both single-line and block comments.
+
+A single-line comment begins with two forward-slash characters, such as this:
+
+Copy
+// single line comment
+A block comment begins with a forward slash and asterisk (/*) and ends with the opposite (*/), as in this example:
+
+Copy
+/* This is a multi-line
+comment */
+Example
+The following code adds some comments to a simple script.
+
+Copy
+//This is a test file
+
+let a= 'a';
+
+/*
+  The following code output message to console
+*/
+console.log(a);
+Output:
+
+a
