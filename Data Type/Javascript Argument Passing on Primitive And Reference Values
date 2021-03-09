@@ -1,0 +1,89 @@
+All function arguments in ECMAScript are passed by value.
+
+The value outside of the function is copied into an argument on the inside of the function the same way a value is copied from one variable to another.
+
+If the value is primitive, then it acts just like a primitive variable copy, and if the value is a reference, it acts just like a reference variable copy.
+
+Pass by value vs Pass by reference
+When an argument is passed by value, the value is copied into a local variable.
+
+When an argument is passed by reference, the location of the value in memory is stored into a local variable, which means that changes to the local variable are reflected outside of the function.
+
+Pass by reference is not supported by Javascript.
+
+Example
+Consider the following example:
+
+Copy
+function addTen(num) {
+  num += 10;
+  return num;
+}
+
+let count = 20;
+let result = addTen(count);
+console.log(count);   // 20 - no change
+console.log(result);  // 30
+Here, the function addTen() has an argument, num, which is essentially a local variable.
+
+When called, the variable count is passed in as an argument.
+
+This variable has a value of 20, which is copied into the argument num for use inside of addTen().
+
+Within the function, the argument num has its value changed by adding 10, but this doesn't change the original variable count that exists outside of the function.
+
+The argument num and the variable count are not related and they just have the same value.
+
+If num had been passed by reference (which cannot be done by Javascript), then the value of count would have changed to 30 to reflect the change made inside the function.
+
+Pass reference type
+For reference type value such as Javascript objects, for example:
+
+Copy
+function setName(obj) {
+  obj.name = "CSS";
+}
+
+let person = new Object();
+setName(person);
+console.log(person.name);  // "CSS"
+In this code, an object is created and stored in the variable person.
+
+This object is then passed into the setName() method, where it is copied into obj.
+
+Inside the function, obj and person both point to the same object.
+
+The result is that obj is accessing an object by reference, even though it was passed into the function by value.
+
+When the name property is set on obj inside the function, this change is reflected outside the function, because the object that it points to exists globally on the heap.
+
+NOT passed by reference
+Javascript object is NOT passed by reference.
+
+To prove that objects are passed by value, consider the following modified code:
+
+Copy
+function setName(obj) {
+  obj.name = "CSS";
+  obj = new Object();
+  obj.name = "HTML";
+}
+
+let person = new Object();
+setName(person);
+console.log(person.name);  // "CSS"
+This example added two lines to redefine obj as a new object with a different name.
+
+When person is passed into setName(), its name property is set to "CSS".
+
+Then the variable obj is set to be a new object and its name property is set to "HTML".
+
+If person were passed by reference, then person would automatically be changed to point to the object whose name is "HTML".
+
+However, when person.name is accessed again, its value is "CSS", indicating that the original reference remained intact even though the argument's value changed inside the function.
+
+When obj is overwritten inside the function, it becomes a pointer to a local object.
+
+That local object is destroyed as soon as the function finishes executing.
+
+You can think function arguments in ECMAScript as local variables.
