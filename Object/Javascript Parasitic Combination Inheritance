@@ -1,0 +1,96 @@
+In combination inheritance, the supertype constructor is always called twice: once to create the subtype's prototype, and once inside the subtype constructor.
+
+Consider the combination inheritance example:
+
+Copy
+function SuperType(name) {
+  this.name = name;
+  this.colors = ["red", "blue", "green"];
+}
+
+SuperType.prototype.sayName = function() {
+  console.log(this.name);
+};
+
+function SubType(name, age){
+  SuperType.call(this, name);      // second call to SuperType()
+
+  this.age = age;
+}
+
+SubType.prototype = new SuperType();   // first call to SuperType()
+SubType.prototype.constructor = SubType;
+SubType.prototype.sayAge = function() {
+  console.log(this.age);
+};
+When this code is executed, SubType.prototype ends up with two properties: name and colors.
+
+These are instance properties for SuperType, but they are now on the SubType's prototype.
+
+When the SubType constructor is called, the SuperType constructor is also called, which creates instance properties name and colors on the new object that mask the properties on the prototype.
+
+Parasitic combination inheritance uses constructor stealing to inherit properties but uses a hybrid form of prototype chaining to inherit methods.
+
+Instead of calling the supertype constructor to assign the subtype's prototype, all you need is a copy of the supertype's prototype.
+
+Use parasitic inheritance to inherit from the supertype's prototype and then assign the result to the subtype's prototype.
+
+The basic pattern for parasitic combination inheritance is as follows:
+
+Copy
+function inheritPrototype(subType, superType) {
+  let prototype = object(superType.prototype);  // create object
+  prototype.constructor = subType;              // augment object
+  subType.prototype = prototype;                // assign object
+}
+The inheritPrototype() function implements very basic parasitic combination inheritance.
+
+This function accepts two arguments: the subtype constructor and the supertype constructor.
+
+A call to inheritPrototype() can replace the subtype prototype assignment:
+
+Copy
+function inheritPrototype(subType, superType) {
+  let prototype = new Object(superType.prototype);  // create object
+  prototype.constructor = subType;              // augment object
+  subType.prototype = prototype;                // assign object
+}
+function SuperType(name) {
+  this.name = name;
+  this.colors = ["red", "blue", "green"];
+}
+
+SuperType.prototype.sayName = function() {
+  console.log(this.name);
+};
+
+function SubType(name, age) {
+  SuperType.call(this, name);
+
+  this.age = age;
+}
+
+inheritPrototype(SubType, SuperType);
+
+SubType.prototype.sayAge = function() {
+  console.log(this.age);
+};
+
+let instance1 = new SubType("CSS", 19);
+instance1.colors.push("black");
+console.log(instance1.colors);  // "red,blue,green,black"
+instance1.sayName();            // "CSS";
+instance1.sayAge();             // 19
+
+let instance2 = new SubType("HTML", 27);
+console.log(instance2.colors);  // "red,blue,green"
+instance2.sayName();            // "HTML";
+instance2.sayAge();             // 27
+Output:
+
+
+In this example, the SuperType constructor is being called only one time, avoiding having unnecessary and unused properties on SubType.prototype.
+
+The prototype chain is kept intact, so both instanceof and isPrototypeOf() behave as they would normally.
+
+Parasitic combination inheritance is considered the most optimal inheritance paradigm for reference types.
