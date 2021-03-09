@@ -1,0 +1,15 @@
+ECMAScript 6 introduced a collection of well-known symbols that would be used throughout the language to expose internal language behaviors for direct access, overriding, or emulating.
+
+These well-known symbols exist as string properties on the Symbol factory function.
+
+We can redefine well-known symbols to alter the behavior of the native language constructs.
+
+For example, the for-of loop will use the Symbol.iterator property, we can provide a custom definition of Symbol.iterator's value in a custom object in order to control how for-of behaves for that object.
+
+These well-known symbols are regular string properties on the Symbol global that identify an instance of a symbol.
+
+Each well-defined symbol property is non-writeable, non-enumerable, and non-configurable.
+
+The well-known symbols are referred by their specification names prefixed with @@.
+
+For example, @@iterator refers to Symbol.iterator.
