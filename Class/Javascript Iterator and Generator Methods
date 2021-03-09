@@ -1,0 +1,71 @@
+The class definition syntax allows for definition of generator methods on both the prototype and the class itself:
+
+Copy
+class Person {
+    // define generator on prototype
+    *createNicknameIterator() {
+      yield 'CSS1';
+      yield 'CSS2';
+      yield 'CSS3';
+    }
+  
+    // define generator on class
+    static *createJobIterator() {
+      yield 'Style';
+      yield 'Color';
+      yield 'Layout';
+    }
+}
+
+let jobIter = Person.createJobIterator();
+console.log(jobIter.next().value);   
+console.log(jobIter.next().value);   
+console.log(jobIter.next().value);  
+
+let p = new Person();
+let nicknameIter = p.createNicknameIterator();
+console.log(nicknameIter.next().value);   
+console.log(nicknameIter.next().value);   
+console.log(nicknameIter.next().value);
+Output:
+
+
+Because generator methods are supported, we can make a class instance iterable by adding a default iterator:
+
+Copy
+class Person {
+  constructor() {
+    this.nicknames = ['CSS1', 'CSS2', 'CSS3'];
+  }
+
+  *[Symbol.iterator]() {
+      yield *this.nicknames.entries();
+  }
+}
+
+let p = new Person();
+for (let [idx, nickname] of p) {
+  console.log(nickname);
+}
+Output:
+
+
+Alternately, to merely return the iterator instance:
+
+Copy
+class Person {
+  constructor() {
+       this.nicknames = ['CSS1', 'CSS2', 'CSS3'];
+  }
+
+   [Symbol.iterator]() {
+    return this.nicknames.entries();
+  }
+}
+
+let p = new Person();
+for (let [idx, nickname] of p) {
+  console.log(nickname);
+}
+Output:
+
