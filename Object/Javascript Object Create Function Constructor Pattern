@@ -1,0 +1,111 @@
+The constructors in ECMAScript are used to create specific types of objects.
+
+There are native constructors, such as Object and Array.
+
+We can define custom constructors, in the form of a function, that define properties and methods for your own type of object.
+
+For instance, the following code is using the function constructor pattern:
+
+Copy
+function Person(name, age, job){
+  this.name = name;
+  this.age = age;
+  this.job = job;
+  this.sayName = function() {
+    console.log(this.name);
+  };
+}
+
+let person1 = new Person("CSS", 29, "Style");
+let person2 = new Person("HTML", 27, "Mark up");
+
+person1.sayName();  // CSS
+person2.sayName();  // HTML
+In this example, the Person() function takes the place of the factory createPerson() function.
+
+Note that the code inside Person() is the same as the code inside createPerson(), with the following exceptions:
+
+There is no object being created explicitly.
+The properties and method are assigned directly onto the this object.
+There is no return statement.
+The name of the function is Person with an uppercase P.
+
+By convention, constructor functions always begin with an uppercase letter, whereas non-constructor functions begin with a lowercase letter.
+
+It helps to distinguish function use in ECMAScript because constructors are simply functions that create objects.
+
+To create a new instance of Person, use the new operator.
+
+Calling a constructor in this manner will do the following:
+
+A new object is created in memory.
+The new object's internal [[Prototype]] pointer is assigned to the constructor's prototype property.
+The this value of the constructor is assigned to the new object, so this points to the new object.
+The code inside the constructor is executed and adds properties to the new object.
+If the constructor function returns a non-null value, that object is returned. Otherwise, the new object that was just created is returned.
+At the end of the preceding example, person1 and person2 are each filled with a different instance of Person.
+
+Each of these objects has a constructor property that points back to Person, as follows:
+
+Copy
+console.log(person1.constructor == Person);  // true
+console.log(person2.constructor == Person);  // true
+The constructor property was originally intended for use in identifying the object type.
+
+However, the instanceof operator is considered to be a safer way of determining type.
+
+Each of the objects in this example is considered to be both an instance of Object and an instance of Person, as indicated by using the instanceof operator like this:
+
+Copy
+console.log(person1 instanceof Object);  // true
+console.log(person1 instanceof Person);  // true
+console.log(person2 instanceof Object);  // true
+console.log(person2 instanceof Person);  // true
+Defining your own constructors ensures that instances can be identified as a particular type later on, which is a great advantage over the factory pattern.
+
+In this example, person1 and person2 are considered to be instances of Object because all custom objects inherit from Object.
+
+Constructor functions do not have to be expressed as a function declaration.
+
+A function expression assigned to a variable behaves identically:
+
+Copy
+let Person = function(name, age, job) {
+  this.name = name;
+  this.age = age;
+  this.job = job;
+  this.sayName = function() {
+    console.log(this.name);
+  };
+}
+
+let person1 = new Person("CSS", 29, "Style");
+let person2 = new Person("HTML", 27, "Markup");
+
+person1.sayName();  // CSS
+person2.sayName();  // HTML
+
+console.log(person1 instanceof Object);  // true
+console.log(person1 instanceof Person);  // true
+console.log(person2 instanceof Object);  // true
+console.log(person2 instanceof Person);  // true
+When instantiating, the parentheses after the constructor function are optional if you do not wish to pass any arguments-the new operator will invoke the constructor function no matter what:
+
+Copy
+function Person() {
+  this.name = "Javascript";
+  this.sayName = function() {
+    console.log(this.name);
+  };
+}
+
+let person1 = new Person();
+let person2 = new Person;
+
+person1.sayName();  // Javascript
+person2.sayName();  // Javascript
+
+console.log(person1 instanceof Object);  // true
+console.log(person1 instanceof Person);  // true
+console.log(person2 instanceof Object);  // true
+console.log(person2 instanceof Person);  // true
