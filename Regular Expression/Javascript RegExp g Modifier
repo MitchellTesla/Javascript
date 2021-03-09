@@ -1,0 +1,30 @@
+Do a global search for "is":
+
+Copy
+let str = "this is a test?";
+let patt1 = /is/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Description
+The g modifier can do a global match , find all matches rather than stopping after the first match.
+
+To perform a global, case-insensitive search, use g modifier together with the "i" modifier.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+g	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("regexp", "g") or simply: /regexp/g
+More Examples
+Do a global, case-insensitive search for "is":
+
+Copy
+let str = "This is Is iS a test?";
+let patt1 = /is/gi;
+let result = str.match(patt1);
+console.log(result);
+Output:
