@@ -1,0 +1,61 @@
+ECMAScript Symbols are primitive values, and symbol instances are unique and immutable.
+
+A symbol is a unique identifier for object properties.
+
+The symbols should be used as unique tokens to identify special properties.
+
+Basic Symbol Use
+Symbols are instantiated using the Symbol function.
+
+Because it is its own primitive type, the typeof operator will identify a symbol as symbol.
+
+Copy
+let sym = Symbol();
+console.log(typeof sym);  // symbol
+When invoking the function, you can provide an optional string that can be used for identifying the symbol instance when debugging.
+
+Copy
+let genericSymbol = Symbol();
+console.log(genericSymbol);  // Symbol()
+
+let fooSymbol = Symbol('foo');
+console.log(fooSymbol);      // Symbol(foo);
+Output:
+
+
+The string you provide is totally separate from the symbol's definition or identity:
+
+Copy
+let genericSymbol = Symbol();
+let otherGenericSymbol = Symbol();
+
+let fooSymbol = Symbol('foo');
+let mySymbol = Symbol('foo');
+
+console.log(genericSymbol == otherGenericSymbol);  // false
+console.log(fooSymbol == mySymbol);          // false
+We can create a new Symbol instance and use it to key a new property on an object.
+
+In this way we can guarantee that we will not overwrite an existing object property.
+
+The Symbol function cannot be used with the new keyword.
+
+This avoids symbol object wrappers, as is possible with Boolean, String, and Number, which support constructor behavior and instantiate a primitive wrapper object:
+
+Copy
+let myBoolean = new Boolean();
+console.log(typeof myBoolean);  // "object"
+
+let myString = new String();
+console.log(typeof myString);   // "object"
+
+let myNumber = new Number();
+console.log(typeof myNumber);   // "object"
+
+let mySymbol = new Symbol();  // TypeError: Symbol is not a constructor
+To utilize an object wrapper for symbol, you can make use of the Object() function:
+
+Copy
+let mySymbol = Symbol();
+let myWrappedSymbol = Object(mySymbol);
+console.log(typeof myWrappedSymbol);  // "object"
