@@ -1,0 +1,101 @@
+Data properties contain a single location for a data value.
+
+Values are read from and written to this location.
+
+Data properties have four attributes describing their behavior:
+
+Property
+Description
+[[Configurable]]
+
+Indicates if the property may be redefined by removing the property via delete, changing the property's attributes, or changing the property into an accessor property.
+By default, this is true for all properties defined directly on an object.
+[[Enumerable]]
+
+Indicates if the property will be returned in a for-in loop.
+By default, this is true for all properties defined directly on an object.
+[[Writable]]
+
+Indicates if the property's value can be changed.
+By default, this is true for all properties defined directly on an object.
+[[Value]]
+
+
+Contains the actual data value for the property.
+This is the location from which the property's value is read and the location to which new values are saved.
+The default value for this attribute is undefined.
+When a property is explicitly added to an object, [[Configurable]], [[Enumerable]], and [[Writable]] are all set to true while the [[Value]] attribute is set to the assigned value.
+
+For example:
+
+Copy
+let person = {
+  name: "CSS"
+};
+Here, the property called name is created and a value of "CSS" is assigned.
+
+That means [[Value]] is set to "CSS", and any changes to that value are stored in this location.
+
+To change any of the default property attributes, you must use the Object.defineProperty() method.
+
+This method accepts three arguments:
+
+the object on which the property should be added or modified,
+the name of the property, and
+a descriptor object.
+The properties on the descriptor object match the attribute names: configurable, enumerable, writable, and value.
+
+You can set one or all of these values to change the corresponding attribute values.
+
+For example:
+
+Copy
+let person = {};
+Object.defineProperty(person, "name", {
+  writable: false,
+  value: "CSS"
+});
+console.log(person.name);  // "CSS"
+person.name = "HTML";
+console.log(person.name);  // "CSS"
+This example creates a property called name with a value of "CSS" that is read-only.
+
+The value of this property can't be changed, and any attempts to assign a new value are ignored in non strict mode.
+
+In strict mode, an error is thrown when an attempt is made to change the value of a read-only property.
+
+Similar rules apply to creating a non-configurable property.
+
+For example:
+
+Copy
+let person = {};
+Object.defineProperty(person, "name", {
+  configurable: false,
+  value: "CSS"
+});
+console.log(person.name);  // "CSS"
+delete person.name;
+console.log(person.name);  // "CSS"
+Here, setting configurable to false means that the property cannot be removed from the object.
+
+Calling delete on the property has no effect in non strict mode and throws an error in strict mode.
+
+Additionally, once a property has been defined as nonconfigurable, it cannot become configurable again.
+
+Any attempt to call Object.defineProperty() and change any attribute other than writable causes an error:
+
+Copy
+let person = {};
+Object.defineProperty(person, "name", {
+  configurable: false,
+  value: "CSS"
+});
+ // Throws an error
+Object.defineProperty(person, "name", {
+  configurable: true,
+  value: "CSS"
+});
+So although you can call Object.defineProperty() multiple times for the same property, there are limits once configurable has been set to false.
+
+When you are using Object.defineProperty(), the values for configurable, enumerable, and writable default to false unless otherwise specified.
