@@ -1,0 +1,27 @@
+A reference value, or object, is an instance of a specific reference type.
+
+In ECMAScript, reference types are structures used to group data and functionality together.
+
+They should not be called classes.
+
+ECMAScript lacks some basic constructs that have traditionally been associated with object-oriented programming, including classes and interfaces.
+
+Reference types are sometimes called object definitions because they describe the properties and methods that objects should have.
+
+Even though reference types are similar to classes, the two concepts are not equivalent.
+
+ECMAScript objects are considered to be instances of a particular reference type.
+
+New objects are created by using the new operator followed by a constructor.
+
+A constructor is simply a function whose purpose is to create a new object.
+
+Consider the following line of code:
+
+Copy
+let now = new Date();
+This code creates a new instance of the Date reference type and stores it in the variable now.
+
+The constructor being used is Date(), which creates a simple object with only the default properties and methods.
+
+ECMAScript provides a number of native reference types, such as Date, to help developers with common computing tasks.
