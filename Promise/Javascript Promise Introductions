@@ -1,0 +1,26 @@
+ECMAScript 6 introduced a first-class implementation of a Promise type to handle async operations.
+
+ECMAScript 6 Promise is a reference type and can be instantiated with the new operator.
+
+We need to pass an executor function parameter, which here is an empty function object:
+
+Copy
+let p = new Promise(() => {});
+setTimeout(console.log, 0, p);  // Promise <pending>
+Output:
+
+
+If an executor function is not provided, a SyntaxError will be thrown.
+
+State
+There are two primary reasons the Promise construct is useful.
+
+The first is to abstractly represent a block of asynchronous execution.
+
+The state of the promise tells whether or not the promise has yet to complete execution.
+
+The pending state indicates that execution has not yet begun or is still in progress.
+
+The fulfilled state tells that the execution has completed successfully.
+
+The rejected state tells that the execution did not complete successfully.
