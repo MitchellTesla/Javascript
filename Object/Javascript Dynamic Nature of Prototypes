@@ -1,0 +1,51 @@
+The changes made to the prototype are reflected on instances, even the instances that existed before the change was made.
+
+Here's an example:
+
+Copy
+function Person() {}
+let friend = new Person();
+
+Person.prototype.sayHi = function() {
+  console.log("hi");
+};
+
+friend.sayHi();  // "hi" - works!
+In this code, an instance of Person is created and stored in friend.
+
+The next statement adds a method called sayHi() to Person.prototype.
+
+Even though the friend instance was created prior to this change, it still has access to the new method.
+
+When friend.sayHi() is called, the instance is first searched for a property named sayHi; when it's not found, the search continues to the prototype.
+
+No Overwrite
+Although properties and methods may be added to the prototype at any time, and they are reflected instantly by all object instances, you cannot overwrite the entire prototype.
+
+The [[Prototype]] pointer is assigned when the constructor is called, so changing the prototype to a different object breaks the link between the constructor and the original prototype.
+
+The instance has a pointer to only the prototype, not to the constructor.
+
+Consider the following:
+
+Copy
+function Person() {}
+
+let friend = new Person();
+
+Person.prototype = {
+ constructor: Person,
+ name: "CSS",
+ age: 19,
+ job: "Style",
+ sayName() {
+   console.log(this.name);
+ }
+};
+
+friend.sayName();   // error
+In this example, a new instance of Person is created before the prototype object is overwritten.
+
+When friend.sayName() is called, it causes an error, because the prototype that friend points to doesn't contain a property of that name.
+
+Overwriting the prototype on the constructor means that new instances will reference the new prototype while any previously existing object instances still reference the old prototype.
