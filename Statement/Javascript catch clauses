@@ -1,0 +1,16 @@
+Sometime we use a catch clause to detect and stop the propagation of an exception, and we do not care about the type or the value of the exception.
+
+In ES2019 and later, you can omit the parentheses and the identifier and use the catch keyword bare in this case.
+
+Here is an example:
+
+Copy
+// Like JSON.parse(), but return undefined instead of throwing an error
+function parseJSON(s) {
+    try {
+        return JSON.parse(s);
+    } catch {
+        // Something went wrong but we don't care what it was
+        return undefined;
+    }
+}
