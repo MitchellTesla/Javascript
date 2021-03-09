@@ -1,0 +1,47 @@
+We can create and reuse symbols in a string-keyed global symbol registry.
+
+Copy
+let fooGlobalSymbol = Symbol.for('foo');
+console.log(typeof fooGlobalSymbol);  // "object"
+Symbol.for() is an idempotent operation for each string key.
+
+The first time it is called with a given string, it will check the global runtime registry, find that no symbol exists, generate a new symbol instance, and add it to the registry.
+
+Additional invocations with the same string key will check the global runtime registry, find that a symbol does exist for that string, and return that symbol instance instead.
+
+Copy
+let fooGlobalSymbol = Symbol.for('foo');          // creates new symbol
+let mySymbol = Symbol.for('foo');     // reuses existing symbol
+
+console.log(fooGlobalSymbol === mySymbol);  // true
+Symbols defined in the global registry are totally distinct from symbols created using Symbol(), even if they share a description:
+
+Copy
+let localSymbol = Symbol('foo');
+let globalSymbol = Symbol.for('foo');
+
+console.log(localSymbol === globalSymbol);  // false
+The global registry requires string keys, so anything you provide as an argument to Symbol.for() will be converted to a string.
+
+Additionally, the key used for the registry will also be used as the symbol description.
+
+Copy
+let emptyGlobalSymbol = Symbol.for();
+console.log(emptyGlobalSymbol);   // Symbol(undefined)
+
+let globalSymbol = Symbol.for('foo');
+console.log(globalSymbol);   // Symbol(foo)
+We can check the global registry using Symbol.keyFor(), which accepts a symbol and will return the global string key for that global symbol, or undefined if the symbol is not a global symbol.
+
+Copy
+// Create global symbol
+let s = Symbol.for('foo');
+console.log(Symbol.keyFor(s));   // foo
+
+// Create regular symbol
+let s2 = Symbol('bar');
+console.log(Symbol.keyFor(s2));  // undefined
+Using Symbol.keyFor() with a non-symbol will throw a TypeError:
+
+Copy
+Symbol.keyFor(123);  // TypeError: 123 is not a symbol
