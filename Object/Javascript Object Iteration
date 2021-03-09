@@ -1,0 +1,47 @@
+The ECMAScript 2017 introduced two static methods, Object.values() and Object.entries(), for converting an object's contents into a serialized and more iterable-format.
+
+Object.values() and Object.entries() accept an object and return its contents in an array.
+
+Object.values() returns an array of the object's values, and Object.entries() returns an array of array pairs, each representing a [key, value] pair in the object.
+
+For example
+
+Copy
+const o = {
+  foo: 'bar',
+  baz: 1,
+  qux: {}
+};
+
+console.log(Object.values(o));
+// ["bar", 1, {}]
+
+console.log(Object.entries((o)));
+// [["foo", "bar"], ["baz", 1], ["qux", {}]]
+The non-string properties are converted to strings in the output array.
+
+Furthermore, the method performs a shallow copy of the object:
+
+Copy
+const o = {
+  qux: {}
+};
+
+console.log(Object.values(o)[0] === o.qux);
+// true
+
+console.log(Object.entries(o)[0][1] === o.qux);
+// true
+Symbol-keyed properties are ignored:
+
+Copy
+const sym = Symbol();
+const o = {
+  [sym]: 'foo'
+};
+
+console.log(Object.values(o));
+// []
+
+console.log(Object.entries((o)));
+// []
