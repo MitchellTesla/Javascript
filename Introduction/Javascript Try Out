@@ -1,0 +1,67 @@
+We try out short JavaScript code in a browser with the following steps:
+
+Open up the web developer tools in your web browser (with F12, Ctrl-Shift-I, or Command-Option-I) and
+Select the Console tab.
+Type code at the prompt
+See the results as you type.
+Browser developer tools often appear as panes at the bottom or right of the browser window, but you can usually detach them as separate windows, which is often quite convenient.
+
+Node.js
+Another way to try out JavaScript code is to download and install Node from https://nodejs.org.
+
+Once Node is installed on your system, you can simply open a Terminal window and type node to begin an interactive JavaScript session like this one:
+
+Copy
+$ node
+
+Welcome to Node.js v15.2.1.
+Type ".help" for more information.
+> .help
+.break    Sometimes you get stuck, this gets you out
+.clear    Alias for .break
+.editor   Enter editor mode
+.exit     Exit the REPL
+.help     Print this help message
+.load     Load JS from a file into the REPL session
+.save     Save all evaluated commands in this REPL session to a file
+
+Press Ctrl+C to abort current expression, Ctrl+D to exit the REPL
+>
+> let x = 2, y = 3;
+undefined
+> x + y
+5
+> (x === 2) && (y === 3)
+true
+> (x > 3) || (y < 3)
+false
+Hello World
+You can write your code in a text editor.
+
+From there, you can copy and paste to the JavaScript console or into a Node session.
+
+Or you can save your code to a file with file name extension .js and then run that file of JavaScript code with Node:
+
+Copy
+$ node yourFileName.js
+If you use Node in a non interactive manner like this, it won't automatically print out the value of all the code you run.
+
+You can use the function console.log() to display text and other JavaScript values in your terminal window or in a browser's developer tools console.
+
+So, for example, if you create a hello.js file containing this line of code:
+
+Copy
+console.log("Hello World!");
+and execute the file with node hello.js, you'll see the message "Hello World!" printed out.
+
+If you want to see that same message printed out in the JavaScript console of a web browser, create a new file named hello.html, and put this text in it:
+
+Copy
+<script src="hello.js"></script>
+Then load hello.html into your web browser using a file:// URL like this one:
+
+Copy
+file:///Users/username/javascript/hello.html
+Open the developer tools window to see the greeting in the console.
+
+You can drag and drop your html file to browser.
