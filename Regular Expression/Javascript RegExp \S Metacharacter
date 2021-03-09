@@ -1,0 +1,30 @@
+Do a global search for non-whitespace characters in a string:
+
+Copy
+let str = "Is this all there is?";
+let patt1 = /\S/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Description
+The \S metacharacter can find a non-whitespace character.
+
+A whitespace character can be:
+
+A space character
+A tab character
+A carriage return character
+A new line character
+A vertical tab character
+A form feed character
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+\S	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("\\S") or simply: /\S/
+Syntax with modifiers
+Copy
+new RegExp("\\S", "g") or simply: /\S/g
