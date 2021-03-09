@@ -1,0 +1,45 @@
+Formatting and parsing numbers are common tasks in computer programs.
+
+JavaScript has specialized functions and methods that provide more precise control over number-to-string and string-to-number conversions.
+
+The toString() method defined by the Number class accepts an optional argument that specifies a radix, or base, for the conversion.
+
+If you do not specify the argument, the conversion is done in base 10.
+
+However, you can also convert numbers in other bases (between 2 and 36).
+
+For example:
+
+Copy
+let n = 17;
+let binary = "0b" + n.toString(2);  // binary == "0b10001"
+let octal = "0o" + n.toString(8);   // octal == "0o21"
+let hex = "0x" + n.toString(16);    // hex == "0x11"
+You may want to convert numbers to strings in ways that give you control over the number of decimal places or the number of significant digits in the output, or you may want to control whether exponential notation is used.
+
+The Number class defines three methods for these kinds of number-to-string conversions.
+
+toFixed() converts a number to a string with a specified number of digits after the decimal point.
+
+It never uses exponential notation.
+
+toExponential() converts a number to a string using exponential notation, with one digit before the decimal point and a specified number of digits after the decimal point.
+
+toPrecision() converts a number to a string with the number of significant digits you specify.
+
+It uses exponential notation if the number of significant digits is not large enough to display the entire integer portion of the number.
+
+Note that all three methods round the trailing digits or pad with zeros as appropriate.
+
+Consider the following examples:
+
+Copy
+let n = 123456.789;
+n.toFixed(0)         // => "123457"
+n.toFixed(2)         // => "123456.79"
+n.toFixed(5)         // => "123456.78900"
+n.toExponential(1)   // => "1.2e+5"
+n.toExponential(3)   // => "1.235e+5"
+n.toPrecision(4)     // => "1.235e+5"
+n.toPrecision(7)     // => "123456.8"
+n.toPrecision(10)    // => "123456.7890"
