@@ -1,0 +1,35 @@
+ECMAScript variables are loosely typed. A variable can hold any type of data.
+
+Every variable is a named placeholder for a value.
+
+There are three keywords that can be used to declare a variable:
+
+var
+const
+let
+var is supported for all versions and let and const were introduced in ECMAScript 6.
+
+Copy
+var a = 'a';
+console.log(a);
+
+let b = 'b';
+console.log(b);
+
+const c = 'c'
+console.log(c);
+Output:
+
+
+Note
+The introduction of let and const in ECMAScript 6 bring better tooling to the Javascript language.
+
+It increases precision of declaration scope and semantics.
+
+Don't Use var
+With let and const, we no longer need to use var in our code base.
+
+Prefer const Over let
+Using const declarations allows the browser runtime to enforce constant variables.
+
+We should declare variables as const unless they know they will need to reassign its value at some point.
