@@ -1,0 +1,25 @@
+The string prototype exposes an @@iterator method on each string, which allows for iteration through individual characters.
+
+Manual use of the iterator works as follows:
+
+Copy
+let message = "abc";
+let stringIterator = message[Symbol.iterator]();
+
+console.log(stringIterator.next());  // {value: "a", done: false}
+console.log(stringIterator.next());  // {value: "b", done: false}
+console.log(stringIterator.next());  // {value: "c", done: false}
+console.log(stringIterator.next());  // {value: undefined, done: true}
+When used in a for of loop, the loop will use this iterator to visit each character in order:
+
+Copy
+for (const c of "abcde") {
+    console.log(c);
+}
+Output:
+
+a
+b
+c
+d
+e
