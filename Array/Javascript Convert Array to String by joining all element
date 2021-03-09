@@ -1,0 +1,19 @@
+We can construct a string with a different separator using the join() method.
+
+The join() method accepts one argument, which is the string separator to use, and returns a string containing all items.
+
+Consider this example:
+
+Copy
+let colors = ["red", "green", "blue"];
+console.log(colors.join(","));    // red,green,blue
+console.log(colors.join("||"));   // red||green||blue
+Here, the join() method is used on the colors array to duplicate the output of toString().
+
+By passing in a comma, the result is a comma-separated list of values.
+
+On the last line, double pipes are passed in, resulting in the string "red||green||blue".
+
+If no value or undefined is passed into the join() method, then a comma is used as the separator.
+
+If an item in the array is null or undefined, it is represented by an empty string in the result of join(), toLocaleString(), toString(), and valueOf().
