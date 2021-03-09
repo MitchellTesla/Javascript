@@ -1,0 +1,89 @@
+The try/catch/finally statement is JavaScript's exception handling mechanism.
+
+The try clause defines the block of code whose exceptions are to be handled.
+
+The try block is followed by a catch clause, which is a block of statements that are invoked when an exception occurs within the try block.
+
+The catch clause is followed by a finally block containing cleanup code that is guaranteed to be executed, regardless of what happens in the try block.
+
+Both the catch and finally blocks are optional, but a try block must be accompanied by at least one of these blocks.
+
+The try, catch, and finally blocks all begin and end with curly braces.
+
+These braces are a required part of the syntax and cannot be omitted, even if a clause contains only a single statement.
+
+The following code illustrates the syntax and purpose of the try/catch/finally statement:
+
+Copy
+try {
+     statement;
+     statement;
+     ...
+}
+catch(e) {
+    handler;
+    handler;
+    ...
+}
+finally {
+    clean up;
+    ...
+}
+Note that the catch keyword is generally followed by an identifier in parentheses.
+
+This identifier is like a function parameter.
+
+When an exception is caught, the value associated with the exception, which could be an Error object, for example, is assigned to this parameter.
+
+The identifier associated with a catch clause has block scope-it is only defined within the catch block.
+
+Example
+Here is a realistic example of the try/catch statement.
+
+It uses the factorial() method and the client-side JavaScript methods prompt() and alert() for input and output:
+
+Copy
+try {
+   
+    let n = -1;
+    // Compute the factorial of the number, assuming the input is valid
+    let f = factorial(n);
+    // Display the result
+    console.log(n + "! = " + f);
+}
+catch(ex) {     // If the user's input was not valid, we end up here
+    console.log(ex);  // Tell the user what the error is
+}
+function factorial(x) {
+         // If the input argument is invalid, throw an exception!
+         if (x < 0) throw new Error("x must not be negative");
+         // Otherwise, compute a value and return normally
+         let f;
+         for(f = 1; x > 1; f *= x, x--) /* empty */ ;
+         return f;
+}
+This example is a try/catch statement with no finally clause.
+
+Although finally is not used as often as catch, it can be useful.
+
+The finally clause is guaranteed to be executed if any portion of the try block is executed, regardless of how the code in the try block completes.
+
+It is generally used to clean up after the code in the try clause.
+
+In the normal case, the JavaScript interpreter reaches the end of the try block and then proceeds to the finally block, which performs any necessary cleanup.
+
+If the interpreter left the try block because of a return, continue, or break statement, the finally block is executed before the interpreter jumps to its new destination.
+
+If an exception occurs in the try block and there is an associated catch block to han dle the exception, the interpreter first executes the catch block and then the finally block.
+
+If there is no local catch block to handle the exception, the interpreter first executes the finally block and then jumps to the nearest containing catch clause.
+
+If a finally block itself causes a jump with a return, continue, break, or throw statement, or by calling a method that throws an exception, the interpreter abandons whatever jump was pending and performs the new jump.
+
+For example, if a finally clause throws an exception, that exception replaces any exception that was in the process of being thrown.
+
+If a finally clause issues a return statement, the method returns normally, even if an exception has been thrown and has not yet been handled.
+
+try and finally can be used together without a catch clause.
+
+In this case, the finally block is simply cleanup code that is guaranteed to be executed, regardless of what happens in the try block.
