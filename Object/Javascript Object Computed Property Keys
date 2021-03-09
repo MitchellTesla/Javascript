@@ -1,0 +1,51 @@
+The following code use constant value as key for object.
+
+For example:
+
+Copy
+const nameKey = 'name';
+const ageKey = 'age';
+const jobKey = 'job';
+
+let person = {};
+person[nameKey] = 'HTML';
+person[ageKey] = 27;
+person[jobKey] = 'Mark up';
+
+console.log(person);  // { name: 'HTML', age: 27, job: 'Mark up' }
+With computed properties, the property assignment can occur inside the object literal's initial definition.
+
+Square brackets around the object property key instruct the runtime to evaluate its contents as a JavaScript expression instead of a string:
+
+Copy
+const nameKey = 'name';
+const ageKey = 'age';
+const jobKey = 'job';
+
+let person = {
+  [nameKey]: 'HTML',
+  [ageKey]: 27,
+  [jobKey]: 'Mark up'
+};
+
+console.log(person);  // { name: 'HTML', age: 27, job: 'Mark up' }
+Because the contents are evaluated as a JavaScript expression, We can use the contents of the computed property complex expressions on instantiation:
+
+Copy
+const nameKey = 'name';
+const ageKey = 'age';
+const jobKey = 'job';
+let uniqueToken = 0;
+
+function getUniqueKey(key) {
+ return '${key}_${uniqueToken++}';
+}
+
+let person = {
+ [getUniqueKey(nameKey)]: 'HTML',
+ [getUniqueKey(ageKey)]: 27,
+ [getUniqueKey(jobKey)]: 'Mark up'
+};
+
+console.log(person);  // { name_0: 'HTML', age_1: 27, job_2: 'Mark up' }
+Any errors thrown in a computed property key expression will abort the creation of the object.
