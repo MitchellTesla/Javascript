@@ -1,0 +1,102 @@
+ECMAScript 6 introduced object destructuring, which allows you to perform one or many operations using nested data within a single statement.
+
+We can perform assignments from object properties using syntax that matches the structure of an object.
+
+The following is an example of two equivalent code snippets, first without object destructuring:
+
+Copy
+// Without object destructuring
+let person = {
+  name: 'HTML',
+  age: 27
+};
+
+let personName = person.name,
+    personAge = person.age;
+
+console.log(personName);  // HTML
+console.log(personAge);   // 27
+Second, using object destructuring:
+
+Copy
+// With object destructuring
+let person = {
+  name: 'HTML',
+  age: 27
+};
+
+let { name: personName, age: personAge } = person;
+
+console.log(personName);  // HTML
+console.log(personAge);   // 27
+Destructuring allows you to declare multiple variables and simultaneously perform multiple assignments all inside a single object literal-like syntax.
+
+If you want to reuse the property name as a local variable name, you can use a shorthand syntax, as follows:
+
+Copy
+let person = {
+  name: 'HTML',
+  age: 27
+};
+
+let { name, age } = person;
+
+console.log(name);  // HTML
+console.log(age);   // 27
+Destructuring assignments do not have to match what is inside the object.
+
+You are able to ignore properties when performing an assignment; conversely, if you reference a property that does not exist, undefined will be assigned:
+
+Copy
+let person = {
+  name: 'HTML',
+  age: 27
+};
+
+let { name, job } = person;
+
+console.log(name);  // HTML
+console.log(job);   // undefined
+We can define default values, which will be applied in the event that a property does not exist in the source object:
+
+Copy
+let person = {
+  name: 'HTML',
+  age: 27
+};
+
+let { name, job='Mark up' } = person;
+
+console.log(name);  // HTML
+console.log(job);   // Mark up
+Destructuring uses the internal function ToObject(), which is not directly accessible in the runtime, to coerce a source into an object.
+
+The primitive values will be treated as objects when used in a destructuring operation.
+
+By definition in the ToObject() specification, null and undefined cannot be destructured and will throw an error.
+
+Copy
+let { length } = 'foobar';
+console.log(length);        // 6
+
+let { constructor: c } = 4;
+console.log(c === Number);  // true
+
+let { _ } = null;           // TypeError
+
+let { _ } = undefined;      // TypeError
+Destructuring does not demand that variable declarations occur inside the destructuring expression.
+
+However, doing so requires the assignment expression to be contained inside parentheses:
+
+Copy
+let personName, personAge;
+
+let person = {
+  name: 'HTML',
+  age: 27
+};
+
+({name: personName, age: personAge} = person);
+
+console.log(personName, personAge);  // HTML, 27
