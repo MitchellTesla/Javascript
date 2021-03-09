@@ -1,0 +1,44 @@
+The Null type has only one value: the special value null.
+
+Logically, a null value is an empty object pointer, which is why typeof returns "object" when it's passed a null value in the following example:
+
+Copy
+let myValue = null;
+console.log(typeof myValue);   // "object"
+When defining a variable that is meant to later hold an object, we should initialize the variable to null as opposed to anything else.
+
+You can explicitly check for the value null to determine if the variable has been filled with an object reference at a later time, such as in this example:
+
+Copy
+let myValue = null;
+if (myValue != null) {
+  // do something with myValue
+}
+The value undefined is a derivative of null, so ECMA-262 defines them to be superficially equal as follows:
+
+Copy
+console.log(null == undefined);   // true
+Using the equality operator (==) between null and undefined always returns true.
+
+falsy
+The null type is falsy; therefore, you can use if statement to check it.
+
+Copy
+let myValue = null;
+let age;
+
+if (myValue) {
+  // This block will not execute
+}
+
+if (!myValue) {
+  // This block will execute
+}
+
+if (age) {
+  // This block will not execute
+}
+
+if (!age) {
+  // This block will execute
+}
