@@ -1,0 +1,96 @@
+Object type is one of the most commonly used types in ECMAScript.
+
+Instances of Object are suited to storing and transmitting data around an application.
+
+There are two ways to explicitly create an instance of Object.
+
+Object constructor
+The first is to use the new operator with the Object constructor like this:
+
+Copy
+let person = new Object();
+person.name = "CSS";
+person.age = 19;
+Object literal
+The other way is to use object literal notation.
+
+Object literal notation is a shorthand form of object definition designed to simplify creating an object with numerous properties.
+
+For example, the following defines the same person object from the previous example using object literal notation:
+
+Copy
+let person = {
+  name: "CSS",
+  age: 19
+};
+In this example, the left curly brace ( {) signifies the beginning of an object literal because it occurs in an expression context.
+
+A comma is used to separate properties in an object literal, so there's a comma after the string "CSS" but not after the value 19 because age is the last property in the object.
+
+Property names
+Property names can also be specified as strings or numbers when using object literal notation, such as in this example:
+
+Copy
+let person = {
+  "name": "CSS",
+  "age": 29,
+  5: true
+};
+This example produces an object with a name property, an age property, and a property 5.
+
+The numeric property names are automatically converted to strings.
+
+Empty object
+It's also possible to create an object with only the default properties and methods using object literal notation by leaving the space between the curly braces empty, such as this:
+
+Copy
+let person = {};  // same as new Object()
+person.name = "CSS";
+person.age = 29;
+Prefer to use object literal notation only when you're going to specify properties for readability.
+
+When defining an object via object literal notation, the Object constructor is never actually called.
+
+We should use object literal notation because it requires less code and visually encapsulates all related data.
+
+The object literals are a preferred way of passing a large number of optional arguments to a function, such as in this example:
+
+Copy
+function displayInfo(args) {
+  let output = "";
+
+  if (typeof args.name == "string"){
+    output += "Name: " + args.name + "\n";
+  }
+
+  if (typeof args.age == "number") {
+    output += "Age: " + args.age + "\n";
+  }
+
+  console.log(output);
+}
+
+displayInfo({
+  name: "CSS",
+  age: 19
+});
+
+displayInfo({
+  name: "HTML"
+});
+Output:
+
+
+Here, the function displayInfo() accepts a single argument named args.
+
+The argument may come in with a property called name or age or both or neither of those.
+
+The function tests for the existence of each property using the typeof operator and then to construct a message to display based on availability.
+
+This function is then called twice, each time with different data specified in an object literal.
+
+The function works correctly in both cases.
+
+This pattern for argument passing is best used when there are a large number of optional arguments that can be passed into the function.
+
+The best approach is to use named arguments for those that are required and an object literal to encompass multiple optional arguments.
