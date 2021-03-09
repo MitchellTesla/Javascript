@@ -1,0 +1,38 @@
+An identifier is the name of a variable, function, property, or function argument.
+
+Identifiers may be one or more characters in the following format:
+
+The first character must be a letter, an underscore _, or a dollar sign $.
+All other characters may be letters, underscores, dollar signs, or numbers.
+Letters in an identifier may include extended ASCII or Unicode letter characters.
+
+JavaScript identifiers are used to name constants, variables, properties, functions, and classes and to provide labels for certain loops in JavaScript code.
+
+A JavaScript identifier must begin with a letter, an underscore (_), or a dollar sign ($).
+
+Subsequent characters can be letters, digits, underscores, or dollar signs.
+
+Digits are not allowed as the first character.
+
+By convention, ECMAScript identifiers use camel case, meaning that the first letter is lowercase and each additional word is offset by a capital letter, like this:
+
+Copy
+firstSecondThird
+myCarIsGood
+doSomethingImportantAnd
+These are all legal identifiers:
+
+Copy
+x
+my_variable_name
+v13
+_dummy
+$string
+$$abc
+Keywords, reserved words, true, false, and null cannot be used as identifiers.
+
+Copy
+let firstSecondThird = 'a';
+
+console.log(firstSecondThird);
+Output: a
