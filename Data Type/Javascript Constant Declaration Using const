@@ -1,0 +1,51 @@
+ES6 introduces const as companion to let.
+
+A variable declared using const must be initialized to some value.
+
+Once declared, it cannot be reassigned to a new value at any point in its lifetime.
+
+Copy
+const a;  // SyntaxError: Missing initializer in const declaration
+
+const b = 3;
+console.log(b);  // 3
+b = 4;  // TypeError: Assignment to a constant variable
+Apart from its const rule enforcement, const variables behave identically to let variables:
+
+Copy
+if (true) {
+  const a = 0;
+}
+console.log(a);  // ReferenceError: a is not defined
+
+while (true) {
+  const b = 1;
+}
+console.log(b);  // ReferenceError: b is not defined
+
+function foo() {
+  const c = 2;
+}
+console.log(c);  // ReferenceError: c is not defined
+
+{
+  const d = 3;
+}
+console.log(d);  // ReferenceError: d is not defined
+The const declaration only applies to the top-level primitive or object.
+
+A const variable assigned to an object cannot be reassigned to another reference value, but the keys inside that object are not protected.
+
+Copy
+const o1 = {};
+o1 = {};  // TypeError: Assignment to a constant variable;
+
+const o2 = {};
+o2.name = 'css';
+console.log(o2.name);  // 'css'
+If you wish to make the entire object immutable, you can use Object.freeze(), although attempted property assignment will not raise errors; it will just silently fail:
+
+Copy
+const o3 = Object.freeze({});
+o3.name = 'css';
+console.log(o3.name);  // un
