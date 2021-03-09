@@ -1,0 +1,69 @@
+Array objects have toLocaleString(), toString(), and valueOf() methods.
+
+The toString() and valueOf() methods return the same value when called on an array.
+
+The result is a comma-separated string that contains the string equivalents of each value in the array, each item has its toString() method called to create the final string.
+
+Take a look at this example:
+
+Copy
+let colors = ["red", "blue", "green"];  // creates an array with three strings
+console.log(colors.toString());  // red,blue,green
+console.log(colors.valueOf());   // red,blue,green
+console.log(colors);             // red,blue,green
+Output:
+
+
+In this code, the toString() and valueOf() methods are first called explicitly to return the string representation of the array, which combines the strings, separating them by commas.
+
+The last line passes the array directly into console.log().
+
+Because console.log() expects a string, it calls toString() behind the scenes to get the same result as when toString() is called directly.
+
+The toLocaleString() method may end up returning the same value as toString() and valueOf(), but not always.
+
+When toLocaleString() is called on an array, it creates a comma delimited string of the array values.
+
+toLocaleString() calls each item's toLocaleString() instead of toString() to get its string value.
+
+Consider the following example:
+
+Copy
+let person1 = {
+  toLocaleString() {
+    return "Javascript";
+  },
+
+  toString() {
+    return "CSS";
+  }
+};
+
+let person2 = {
+  toLocaleString() {
+    return "SQL";
+  },
+
+  toString() {
+    return "HTML";
+  }
+};
+
+let people = [person1, person2];
+console.log(people);                   // CSS,HTML
+console.log(people.toString());        // CSS,HTML
+console.log(people.toLocaleString());  // Javascript,SQL
+Output:
+
+
+Here, two objects are defined, person1 and person2.
+
+Each object defines both a toString() method and a toLocaleString() method that return different values.
+
+An array, people, is created to contain both objects.
+
+When passed into console.log(), the output is "CSS,HTML" because the toString() method is called on each item in the array (the same as when toString() is called explicitly on the next line).
+
+When toLocaleString() is called on the array, the result is "Javascript,SQL" because this calls toLocaleString() on each array item.
+
+The inherited methods toLocaleString(), toString(), and valueOf() each return the array items as a comma-separated string.
