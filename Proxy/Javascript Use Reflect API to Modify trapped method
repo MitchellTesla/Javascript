@@ -1,0 +1,30 @@
+The Reflect API allows you to modify the trapped method with minimal code.
+
+For example, the following decorates the return value whenever a certain property is accessed:
+
+Copy
+const target = {
+  foo: 'CSS',
+  baz: 'HTML'
+};
+
+const handler = {
+  get(trapTarget, property, receiver) {
+    let decoration = '';
+    if (property === 'foo') {
+      decoration = '!!!';
+    }
+
+    return Reflect.get(...arguments) + decoration;
+  }
+};
+
+const proxy = new Proxy(target, handler);
+
+console.log(proxy.foo);   
+console.log(target.foo);
+
+console.log(proxy.baz);  
+console.log(target.baz);
+Output:
+
