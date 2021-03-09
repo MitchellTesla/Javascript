@@ -1,0 +1,25 @@
+ECMAScript variables has two different types of data: primitive values and reference values.
+
+Primitive values
+Primitive values are simple atomic pieces of data, while reference values are objects that may be made up of multiple values.
+
+When a value is assigned to a variable, the JavaScript engine must determine if it's a primitive or a reference value.
+
+The six primitive types are:
+
+undefined,
+null,
+Boolean,
+Number,
+String, and
+Symbol.
+These variables are accessed by value, because you are manipulating the actual value stored in the variable.
+
+Reference values
+Reference values are objects stored in memory.
+
+JavaScript does not permit direct access of memory locations, so direct manipulation of the object's memory space is not allowed.
+
+When you manipulate an object, you're really working on a reference to that object rather than the actual object itself.
+
+For this reason, such values are said to be accessed by reference.
