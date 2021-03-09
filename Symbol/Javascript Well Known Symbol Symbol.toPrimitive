@@ -1,0 +1,36 @@
+ECMAScript Well Known Symbol Symbol.toPrimitive is used as a property for "A method that converts an object to a corresponding primitive value. Called by the ToPrimitive abstract operation".
+
+There are a number of built-in operations which will attempt to coerce an object into a primitive value: a string, a number, or an unspecified primitive type.
+
+For a custom object instance, it is possible to divert this behavior by defining a function on the instance's Symbol.toPrimitive property.
+
+Based on a string parameter provided to the function, you are able to control the returned primitive:
+
+Copy
+class Foo {}
+let foo = new Foo();
+
+console.log(3 + foo); // "3[object Object]"
+console.log(3 - foo); // NaN
+console.log(String(foo)); // "[object Object]"
+
+class Bar {
+    constructor() {
+        this[Symbol.toPrimitive] = function(hint) {
+            switch (hint) {
+                case 'number':
+                    return 3;
+                case 'string':
+                    return 'string test';
+                case 'default':
+                default:
+                    return 'default test';
+            }
+        }
+    }
+}
+let test = new Bar();
+
+console.log(3 + test); // "3default test"
+console.log(3 - test); // 0
+console.log(String(test));
