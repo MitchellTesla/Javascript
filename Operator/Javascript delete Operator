@@ -1,0 +1,43 @@
+delete is a unary operator that attempts to delete the object property or array ele ment specified as its operand.
+
+delete is typically used for its property deletion.
+
+Delete property:
+
+Copy
+let o = { x: 1, y: 2}; // Start with an object
+delete o.x;            // Delete one of its properties
+"x" in o               // => false: the property does not exist anymore
+Delete array element
+
+Copy
+let a = [1,2,3];     // Start with an array
+delete a[2];         // Delete the last element of the array
+2 in a               // => false: array element 2 doesn't exist anymore
+a.length               // => 3: note that array length doesn't change, though
+A deleted property or array element is not merely set to the undefined value.
+
+When a property is deleted, the property ceases to exist.
+
+Attempting to read a nonexistent property returns undefined, but you can test for the actual existence of a property with the in operator.
+
+Deleting an array element leaves a "hole" in the array and does not change the array's length.
+
+The resulting array is sparse.
+
+Here are some example uses of the delete operator:
+
+Copy
+let o = {x: 1, y: 2};
+delete o.x;   // Delete one of the object properties; returns true.
+typeof o.x;   // Property does not exist; returns "undefined".
+delete o.x;   // Delete a nonexistent property; returns true.
+delete 1;     // This makes no sense, but it just returns true.
+Can't delete a variable; returns false, or SyntaxError in strict mode.
+
+Copy
+delete o;
+Undeletable property: returns false, or TypeError in strict mode.
+
+Copy
+delete Object.prototype;
