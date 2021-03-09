@@ -1,0 +1,48 @@
+ECMAScript eval() method works like an entire ECMAScript interpreter and accepts one argument, a string of ECMAScript to execute.
+
+Here's an example:
+
+Copy
+eval("console.log('hi')");
+This line is functionally equivalent to the following:
+
+Copy
+console.log("hi");
+When the interpreter finds an eval() call, it interprets the argument into actual ECMAScript statements and then inserts it into place.
+
+Code executed by eval() is considered to be part of the execution context in which the call is made, and the executed code has the same scope chain as that context.
+
+This means variables that are defined in the containing context can be referenced inside an eval() call, such as in this example:
+
+Copy
+let msg = "hello world";
+eval("console.log(msg)");  // "hello world"
+Here, the variable msg is defined outside the context of the eval() call, yet the call to console.log() still displays the text "hello world" because the second line is replaced with a real line of code.
+
+Likewise, you can define a function or variables inside an eval() call that can be referenced by the code outside, as follows:
+
+Copy
+eval("function sayHi() { console.log('hi'); }");
+sayHi();
+Here, the sayHi() function is defined inside an eval() call.
+
+Because that call is replaced with the actual function, it is possible to call sayHi() on the following line.
+
+This works the same for variables:
+
+Copy
+eval("let msg = 'hello world';");
+console.log(msg);  // "hello world"
+Any variables or functions created inside of eval() will not be hoisted, as they are contained within a string when the code is being parsed.
+
+They are created only at the time of eval() execution.
+
+In strict mode, variables and functions created inside of eval() are not accessible outside.
+
+Also, in strict mode, assigning a value to eval causes an error:
+
+Copy
+"use strict";
+eval = "hi";  // causes error
+Note
+eval() might compromise your site or application security.
