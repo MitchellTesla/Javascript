@@ -1,0 +1,112 @@
+The for-of statement is a strict iterative statement.
+
+It is used to loop through elements in an iterable object.
+
+Here's the syntax:
+
+Copy
+for (property of expression)
+    statement
+And here's an example of its usage:
+
+Copy
+for (const el in [2,4,6,8) {
+    document.write(el);
+}
+Here, the for-of statement is used to display all the elements inside the four-element array.
+
+This continues until each element in the array has been looped over.
+
+The const operator in the control statement is not necessary but is recommended for ensuring the use of a local variable that will not be altered.
+
+The for-of loop will iterate in the order that the iterable produces values via its next() method.
+
+The for-of statement will throw an error if the entity that it is attempting to iterate over does not support iteration.
+
+In ES2018, the for-of statement is extended as a for-await-of loop to support async iterable which produce promises.
+
+for-of on object
+Objects are not (by default) iterable.
+
+Attempting to use for/of on a regular object throws a TypeError at runtime:
+
+Copy
+let o = { x: 1, y: 2, z: 3 };
+for(let element of o) { // Throws TypeError because o is not iterable
+      console.log(element);
+}
+If you want to iterate through the properties of an object, you can use the for/in loop, or use for/of with the Object.keys() method:
+
+Copy
+let o = { x: 1, y: 2, z: 3 };
+let keys = "";
+for(let k of Object.keys(o)) {
+         keys += k;
+}
+keys  // => "xyz"
+This works because Object.keys() returns an array of property names for an object, and arrays are iterable with for/of.
+
+This iteration of the keys of an object is not live as the array example above was.
+
+Your changes to the object o made in the loop body will have no effect on the iteration.
+
+If you don't care about the keys of an object, you can also iterate through their corresponding values like this:
+
+Copy
+let sum = 0;
+for(let v of Object.values(o)) {
+         sum += v;
+}
+sum // => 6
+And if you are interested in both the keys and the values of an object's properties, you can use for/of with Object.entries() and destructuring assignment:
+
+Copy
+let pairs = "";
+for(let [k, v] of Object.entries(o)) {
+         pairs += k + v;
+}
+pairs  // => "x1y2z3"
+Object.entries() returns an array of arrays, where each inner array represents a key/value pair for one property of the object.
+
+We use destructuring assignment in this code example to unpack those inner arrays into two individual variables.
+
+for-of on String
+Strings are iterable character-by-character in ES6:
+
+Copy
+let frequency = {};
+for(let letter of "mississippi") {
+         if (frequency[letter]) {
+             frequency[letter]++;
+         } else {
+             frequency[letter] = 1;
+         }
+}
+frequency   // => {m: 1, i: 4, s: 4, p: 2}
+for/of with Set and Map
+The built-in ES6 Set and Map classes are iterable.
+
+When you iterate a Set with for/of, the loop body runs once for each element of the set.
+
+You could use code like this to print the unique words in a string of text:
+
+Copy
+let text = "Na na na na na na na na Batman!";
+let wordSet = new Set(text.split(" "));
+let unique = [];
+for(let word of wordSet) {
+         unique.push(word);
+}
+unique // => ["Na", "na", "Batman!"]
+The iterator for a Map object does not iterate the Map keys, or the Map values, but key/value pairs.
+
+Each time through the iteration, the iterator returns an array whose first element is a key and whose second element is the corresponding value.
+
+Given a Map m, you could iterate and destructure its key/value pairs like this:
+
+Copy
+let m = new Map([[1, "one"]]);
+for(let [key, value] of m) {
+         key    // => 1
+         value  // => "one"
+}
