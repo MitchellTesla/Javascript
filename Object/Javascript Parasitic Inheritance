@@ -1,0 +1,37 @@
+The concept of parasitic inheritance is created by Crockford.
+
+It creates a function that does the inheritance, augments the object in some way, and then returns the object as if it did all the work.
+
+The basic parasitic inheritance pattern looks like this:
+
+Copy
+function createAnother(original){
+  let clone = object(original);  // create a new object by calling a function
+  clone.sayHi = function() {     // augment the object in some way
+    console.log("hi");
+  };
+  return clone;           // return the object
+ }
+In this code, the createAnother() function accepts a single argument, which is the object to base a new object on.
+
+This object, original, is passed into the object() function, and the result is assigned to clone.
+
+Next, the clone object is changed to have a new method called sayHi().
+
+The last step is to return the object.
+
+The createAnother() function can be used in the following way:
+
+Copy
+let person = {
+  name: "CSS",
+  friends: ["HTML", "Javascript", "Browser"]
+};
+
+let anotherPerson = createAnother(person);
+anotherPerson.sayHi();  // "hi"
+The code in this example returns a new object based on person.
+
+The anotherPerson object has all of the properties and methods of person but adds a new method called sayHi().
+
+The object() method is not required for parasitic inheritance; any function that returns a new object fits the pattern.
