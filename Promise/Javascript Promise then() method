@@ -1,0 +1,162 @@
+The method Promise.prototype.then() is used to attach handlers to a promise instance.
+
+The then() method accepts up to two arguments: an optional onResolved handler function, and an optional onRejected handler function.
+
+Each will execute only when the promise upon which they are defined reaches its respective "fulfilled" or "rejected" state.
+
+Copy
+function onResolved(id) {
+  setTimeout(console.log, 0, id, 'resolved');
+}
+function onRejected(id) {
+  setTimeout(console.log, 0, id, 'rejected');
+}
+
+let p1 = new Promise((resolve, reject) => setTimeout(resolve, 3000));
+let p2 = new Promise((resolve, reject) => setTimeout(reject, 3000));
+
+p1.then(() => onResolved('p1'),
+         () => onRejected('p1'));
+p2.then(() => onResolved('p2'),
+         () => onRejected('p2'));
+Output:
+
+
+Because a promise can only transition to a final state a single time, you are guaranteed that execution of these handlers is mutually exclusive.
+
+Both handler arguments are completely optional.
+
+Any non-function type provided as an argument to then() will be ignored.
+
+If you wish to explicitly provide only an onRejected handler, providing undefined as the onResolved argument is the canonical choice.
+
+Copy
+function onResolved(id) {
+  setTimeout(console.log, 0, id, 'resolved');
+}
+function onRejected(id) {
+  setTimeout(console.log, 0, id, 'rejected');
+}
+
+let p1 = new Promise((resolve, reject) => setTimeout(resolve, 3000));
+let p2 = new Promise((resolve, reject) => setTimeout(reject, 3000));
+
+// Non-function handlers are ignored, not recommended
+p1.then('do this');
+
+// Canonical form of explicit onResolved handler skipping
+p2.then(null, () => onRejected('p2'));
+
+// p2 rejected (after 3s)
+The Promise.prototype.then() method returns a new promise instance:
+
+Copy
+let p1 = new Promise(() => {});
+let p2 = p1.then();
+setTimeout(console.log, 0, p1);         // Promise <pending>
+setTimeout(console.log, 0, p2);         // Promise <pending>
+setTimeout(console.log, 0, p1 === p2);  // false
+This new promise instance is derived from the return value of the onResolved handler.
+
+The return value of the handler is wrapped in Promise.resolve() to generate a new promise.
+
+If no handler function is provided, the method acts as a pass through for the initial promise's resolved value.
+
+If there is no explicit return statement, the default return value is undefined and wrapped in a Promise.resolve().
+
+Copy
+let p1 = Promise.resolve('foo');
+
+// Calling then() with no handler function acts as a pass through
+let p2 = p1.then();
+setTimeout(console.log, 0, p2);  // Promise <resolved>: foo
+
+// These are equivalent
+let p3 = p1.then(() => undefined);
+let p4 = p1.then(() => {});
+let p5 = p1.then(() => Promise.resolve());
+
+setTimeout(console.log, 0, p3);  // Promise <resolved>: undefined
+setTimeout(console.log, 0, p4);  // Promise <resolved>: undefined
+setTimeout(console.log, 0, p5);  // Promise <resolved>: undefined
+These are equivalent:
+
+Copy
+let p6 = p1.then(() => 'bar');
+let p7 = p1.then(() => Promise.resolve('bar'));
+
+setTimeout(console.log, 0, p6);  // Promise <resolved>: bar
+setTimeout(console.log, 0, p7);  // Promise <resolved>: bar
+Promise.resolve() preserves the returned promise
+
+Copy
+let p8 = p1.then(() => new Promise(() => {}));
+let p9 = p1.then(() => Promise.reject());
+// Uncaught (in promise): undefined
+
+setTimeout(console.log, 0, p8);  // Promise <pending>
+setTimeout(console.log, 0, p9);  // Promise <rejected>: undefined
+Throwing an exception will return a rejected promise:
+
+Copy
+let p10 = p1.then(() => { throw 'baz'; });
+// Uncaught (in promise) baz
+
+setTimeout(console.log, 0, p10);  // Promise <rejected> baz
+Returning an error will not trigger the same rejection behavior, and will instead wrap the error object in a resolved promise:
+
+Copy
+let p11 = p1.then(() => Error('qux'));
+
+setTimeout(console.log, 0, p11);  // Promise <resolved>: Error: qux
+The onRejected handler behaves in the same way: values returned from the onRejected handler are wrapped in Promise.resolve().
+
+The onRejected handler is doing its job to catch an asynchronous error.
+
+This rejection handler completing execution without throwing an additional error should be considered expected promise behavior and therefore return a resolved promise.
+
+Using Promise.resolve()
+Copy
+let p1 = Promise.reject('foo');
+Calling then() with no handler function acts as a pass through
+
+Copy
+let p2 = p1.then();
+// Uncaught (in promise) foo
+
+setTimeout(console.log, 0, p2);  // Promise <rejected>: foo
+These are equivalent
+
+Copy
+let p3 = p1.then(null, () => undefined);
+let p4 = p1.then(null, () => {});
+let p5 = p1.then(null, () => Promise.resolve());
+
+setTimeout(console.log, 0, p3);  // Promise <resolved>: undefined
+setTimeout(console.log, 0, p4);  // Promise <resolved>: undefined
+setTimeout(console.log, 0, p5);  // Promise <resolved>: undefined
+These are equivalent
+
+Copy
+let p6 = p1.then(null, () => 'bar');
+let p7 = p1.then(null, () => Promise.resolve('bar'));
+
+setTimeout(console.log, 0, p6);  // Promise <resolved>: bar
+setTimeout(console.log, 0, p7);  // Promise <resolved>: bar
+Promise.resolve() preserves the returned promise
+
+Copy
+let p8 = p1.then(null, () => new Promise(() => {}));
+let p9 = p1.then(null, () => Promise.reject());
+// Uncaught (in promise): undefined
+
+setTimeout(console.log, 0, p8);  // Promise <pending>
+setTimeout(console.log, 0, p9);  // Promise <rejected>: undefined
+let p10 = p1.then(null, () => { throw 'baz'; });
+// Uncaught (in promise) baz
+
+setTimeout(console.log, 0, p10);  // Promise <rejected>: baz
+
+let p11 = p1.then(null, () => Error('qux'));
+
+setTimeout(console.log, 0, p11);  // Promise <resolved>: Error: qux
