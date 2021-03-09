@@ -1,0 +1,26 @@
+The Proxy get() and set() can provide insight into when object properties are being accessed and inspected.
+
+If you provide a trapped proxy to an object throughout your application, you will be able to see exactly when and where this object is accessed:
+
+Copy
+const user = {
+  name: 'CSS'
+};
+
+const proxy = new Proxy(user, {
+  get(target, property, receiver) {
+    console.log(`Getting roperty`);
+
+    return Reflect.get(...arguments);
+  },
+  set(target, property, value, receiver) {
+    console.log(`Setting ${property}=${value}`);
+
+    return Reflect.set(...arguments);
+  }
+});
+
+proxy.name;      // Getting name
+proxy.age = 27;  // Setting age=27
+Output:
+
