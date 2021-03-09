@@ -1,0 +1,109 @@
+The increment and decrement operators are taken directly from C and come in two versions: prefix and postfix.
+
+The prefix versions of the operators are placed before the variable they work on; the postfix ones are placed after the variable.
+
+To use a prefix increment, which adds 1 to a numeric value, you place two plus signs (++) in front of a variable like this:
+
+Copy
+let myValue = 29;
+++myValue;
+In this example, the prefix increment changes the value of myValue to 30 by adding 1 to its previous value of 29.
+
+This is effectively equal to the following:
+
+Copy
+let myValue = 29;
+myValue = myValue + 1;
+The prefix decrement acts in a similar manner, subtracting 1 from a numeric value.
+
+To use a prefix decrement, place two minus signs (--) before a variable, as shown here:
+
+Copy
+let myValue = 29;
+--myValue;
+Here the myValue variable is decremented to 28 by subtracting 1 from 29.
+
+When using either a prefix increment or a prefix decrement, the variable's value is converted before the statement is evaluated.
+
+Consider the following:
+
+Copy
+let myValue = 29;
+let otherValue = --myValue + 2;
+
+console.log(myValue);         // 28
+console.log(otherValue);  // 30
+In this example, the variable otherValue is initialized with the decremented value of myValue plus 2.
+
+Because the decrement happens first, myValue is set to 28, and then 2 is added, resulting in 30.
+
+The prefix increment and decrement are equal in terms of order of precedence in a statement and are therefore evaluated left to right.
+
+Consider this example:
+
+Copy
+let num1 = 2;
+let num2 = 20;
+let num3 = --num1 + num2;
+let num4 = num1 + num2;
+console.log(num3);  // 21
+console.log(num4);  // 21
+Here, num3 is equal to 21 because num1 is decremented to 1 before the addition occurs.
+
+The variable num4 also contains 21, because the addition is also done using the changed values.
+
+The postfix versions of increment and decrement use the same syntax (++ and --, respectively) but are placed after the variable instead of before it.
+
+Postfix increment and decrement differ from the prefix versions in one important way: the increment or decrement doesn't occur until after the containing statement has been evaluated.
+
+In certain circumstances, this difference doesn't matter, as in this example:
+
+Copy
+let myValue = 29;
+myValue++;
+Moving the increment operator after the variable doesn't change what these statements do, because the increment is the only operation occurring.
+
+However, when mixed together with other operations, the difference becomes apparent, as in the following example:
+
+Copy
+let num1 = 2;
+let num2 = 20;
+let num3 = num1-- + num2;
+let num4 = num1 + num2;
+console.log(num3);  // 22
+console.log(num4);  // 21
+With just one simple change in this example, using postfix decrement instead of prefix, you can see the difference.
+
+In the prefix example, num3 and num4 both ended up equal to 21, whereas this example ends with num3 equal to 22 and num4 equal to 21.
+
+The difference is that the calculation for num3 uses the original value of num1 (2) to complete the addition, whereas num4 is using the decremented value (1).
+
+Converting Rules
+All four of these operators work on any values, meaning not just integers but strings, Booleans, floating-point values, and objects.
+
+The increment and decrement operators follow these rules regarding values:
+
+When used on a string that is a valid representation of a number, convert to a number and apply the change. The variable is converted from a string to a number.
+When used on a string that is not a valid number, the variable's value is set to NaN. The variable is converted from a string to a number.
+When used on a Boolean value that is false, convert to 0 and apply the change. The variable is converted from a Boolean to a number.
+When used on a Boolean value that is true, convert to 1 and apply the change. The variable is converted from a Boolean to a number.
+When used on a floating-point value, apply the change by adding or subtracting 1.
+When used on an object, call its valueOf() method to get a value to work with. Apply the other rules. If the result is NaN, then call toString() and apply the other rules again. The variable is converted from an object to a number.
+The following example demonstrates some of these rules:
+
+Copy
+let s1 = "2";
+let s2 = "z";
+let b = false;
+let f = 1.1;
+let o = {
+  valueOf() {
+    return -2;
+  }
+};
+
+s1++;  // value becomes numeric 3
+s2++;  // value becomes NaN
+b++;   // value becomes numeric 1
+f--;   // value becomes 0.10000000000000009 (due to floating-point inaccuracies)
+o--;   // value becomes numeric -3
