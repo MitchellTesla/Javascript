@@ -1,0 +1,91 @@
+Two methods deal directly with the reordering of items already in the array: reverse() and sort().
+
+reverse()
+The reverse() method reverses the order of items in an array.
+
+Consider the following example:
+
+Copy
+let values = [1, 2, 3, 4, 5];
+values.reverse();
+console.log(values);  // 5,4,3,2,1
+Here, the array's values are initially set to 1, 2, 3, 4, and 5, in that order.
+
+Calling reverse() on the array reverses the order to 5, 4, 3, 2, 1.
+
+sort()
+By default, the sort() method puts the items in ascending order-with the smallest value first and the largest value last.
+
+To do this, the sort() method calls the String() casting function on every item and then compares the strings to determine the correct order.
+
+This occurs even if all items in an array are numbers, as in this example:
+
+Copy
+let values = [0, 1, 5, 10, 15];
+values.sort();
+console.log(values);  // 0,1,10,15,5
+The sort() method changes that order based on their string equivalents.
+
+So even though 5 is less than 10, the string "10" comes before "5" when doing a string comparison, so the array is updated accordingly.
+
+The sort() method allows you to pass in a comparison function that indicates which value should come before which.
+
+A comparison function accepts two arguments and returns a negative number if the first argument should come before the second, a zero if the arguments are equal, or a positive number if the first argument should come after the second.
+
+Here's an example of a simple comparison function:
+
+Copy
+function compare(value1, value2) {
+    if (value1 < value2) {
+        return -1;
+    } else if (value1 > value2) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+This comparison function works for most data types and can be used by passing it as an argument to the sort() method, as in the following example:
+
+Copy
+let values = [0, 1, 5, 10, 15];
+values.sort(compare);
+console.log(values);  // 0,1,5,10,15
+When the comparison function is passed to the sort() method, the numbers remain in the correct order.
+
+Of course, the comparison function could produce results in descending order if you simply switch the return values like this:
+
+Copy
+function compare(value1, value2) {
+  if (value1 < value2) {
+    return 1;
+  } else if (value1 > value2) {
+    return -1;
+  } else {
+    return 0;
+  }
+}
+
+let values = [0, 1, 5, 10, 15];
+values.sort(compare);
+console.log(values);  // 15,10,5,1,0
+Alternately, the compare function can be shortened and defined as an inline arrow function:
+
+Copy
+let values = [0, 1, 5, 10, 15];
+values.sort((a, b) => a < b ? a > b ? -1 : 0);
+console.log(values);  // 15,10,5,1,0
+In this modified example, the comparison function returns 1 if the first value should come after the second and -1 if the first value should come before the second.
+
+Swapping these means the larger value will come first and the array will be sorted in descending order.
+
+Both reverse() and sort() return a reference to the array on which they were applied.
+
+We can code the comparison function with numeric types and objects whose valueOf() method returns numeric values, such as the Date object.
+
+In either case, you can simply subtract the second value from the first as shown here:
+
+Copy
+function compare(value1, value2){
+  return value2 - value1;
+}
+Because comparison functions work by returning a number less than zero, zero, or a number greater than zero, the subtraction operation handles all of the cases appropriately.
