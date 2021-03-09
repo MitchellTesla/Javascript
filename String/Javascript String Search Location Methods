@@ -1,0 +1,57 @@
+There are two methods for locating substrings within another string: indexOf() and lastIndexOf().
+
+Both methods search a string for a given substring and return the position or -1 if the substring isn't found.
+
+The indexOf() method begins looking for the substring at the beginning of the string, whereas the lastIndexOf() method begins looking from the end of the string.
+
+Consider this example:
+
+Copy
+let stringValue = "hello world";
+console.log(stringValue.indexOf("o"));      // 4
+console.log(stringValue.lastIndexOf("o"));  // 7
+Here, the first occurrence of the string "o" is at position 4, which is the "o" in "hello".
+
+The last occurrence of the string "o" is in the word "world", at position 7.
+
+If there is only one occurrence of "o" in the string, then indexOf() and lastIndexOf() return the same position.
+
+Each method accepts an optional second argument that indicates the position to start searching from within the string.
+
+The indexOf() method will start searching from that position and go toward the end of the string, ignoring everything before the start position.
+
+The last IndexOf() starts searching from the given position and continues searching toward the beginning of the string, ignoring everything between the given position and the end of the string.
+
+Here's an example:
+
+Copy
+let stringValue = "hello world";
+console.log(stringValue.indexOf("o", 6));      // 7
+console.log(stringValue.lastIndexOf("o", 6));  // 4
+When the second argument of 6 is passed into each method, the results are the opposite from the previous example.
+
+indexOf() returns 7 because it starts searching the string from position 6 (the letter "w") and continues to position 7, where "o" is found.
+
+The lastIndexOf() method returns 4 because the search starts from position 6 and continues back toward the beginning of the string, where it encounters the "o" in "hello".
+
+Using this second argument allows you to locate all instances of a substring by looping callings to indexOf() or lastIndexOf(), as in the following example:
+
+Copy
+let stringValue = "Cate Kate Jane Jason Joe";
+let positions = new Array();
+let pos = stringValue.indexOf("e");
+
+while(pos > -1) {
+  positions.push(pos);
+  pos = stringValue.indexOf("e", pos + 1);
+}
+
+console.log(positions);
+Output:
+
+
+This example works through a string by constantly increasing the position at which indexOf() should begin.
+
+It begins by getting the initial position of "e" in the string and then enters a loop that continually passes in the last position plus one to indexOf(), ensuring that the search continues after the last substring instance.
+
+Each position is stored in the positions array so the data can be used later.
