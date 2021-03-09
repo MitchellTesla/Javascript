@@ -1,0 +1,41 @@
+For a simple pass through proxy, using a simple object literal for the handler object will allow all operations to reach the target object.
+
+In the following example, all operations performed on the proxy will be applied to the target object instead.
+
+Copy
+const target = {
+   id: 'target'
+};
+
+const handler = {};
+
+const proxy = new Proxy(target, handler);
+The 'id' property will access the same value
+
+Copy
+console.log(target.id);  // target
+console.log(proxy.id);   // target
+Assignment to a target property changes both since both are accessing the same value.
+
+Copy
+target.id = 'foo';
+console.log(target.id);  // foo
+console.log(proxy.id);   // foo
+Assignment to a proxy property changes both since this assignment is conferred to the target object.
+
+Copy
+proxy.id = 'bar';
+console.log(target.id);  // bar
+console.log(proxy.id);   // bar
+The hasOwnProperty() method is effectively applied to the target in both cases.
+
+Copy
+console.log(target.hasOwnProperty('id'));  // false
+console.log(proxy.hasOwnProperty('id'));   // false
+The instanceof operator is effectively applied to the target in both cases.
+
+Copy
+console.log(target instanceof Proxy);  // false
+console.log(proxy instanceof Proxy);   // false
+Strict object equality can still be used to differentiate proxy from target. console.log(target === proxy); // false
+
