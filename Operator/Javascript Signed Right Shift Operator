@@ -1,0 +1,14 @@
+The signed right shift is represented by two greater-than signs ( >>) and shifts all bits in a 32-bit number to the right while preserving the sign (positive or negative).
+
+A signed right shift is the exact opposite of a left shift.
+
+For example, if 64 is shifted to the right five bits, it becomes 2:
+
+Copy
+let oldValue = 64;             // equal to binary 1000000
+let newValue = oldValue >> 5;  // equal to binary 10 which is decimal 2
+Once again, when bits are shifted, the shift creates empty bits.
+
+This time, the empty bits occur at the left of the number but after the sign bit.
+
+ECMAScript fills these empty bits with the value in the sign bit to create a complete number.
