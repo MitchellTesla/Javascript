@@ -1,0 +1,40 @@
+Traditionally, all <script> elements were placed within the <head> element on a page, as in this example:
+
+Copy
+<!DOCTYPE html>
+<html>
+    <head>
+         <title>Example HTML Page</title>
+         <script src="example1.js"></script>
+         <script src="example2.js"></script>
+    </head>
+<body>
+<!-- content here -->
+</body>
+</html>
+
+Including all JavaScript files in the <head> of a document means that all of the JavaScript code must be downloaded, parsed, and interpreted before the page begins rendering.
+
+The rendering begins when the browser receives the opening <body> tag.
+
+This may cause a noticeable delay in page rendering.
+
+For this reason, modern web applications typically include all JavaScript references in the <body> element, after the page content, as shown in this example:
+
+Copy
+<!DOCTYPE html>
+<html>
+ <head>
+ <title>Example HTML Page</title>
+ </head>
+ <body>
+ <!-- content here -->
+ <!-- content here -->
+ <!-- content here -->
+ <script src="example1.js"></script>
+ <script src="example2.js"></script>
+ </body>
+</html>
+
+
+Using this approach, the page is completely rendered in the browser before the JavaScript code is processed.
