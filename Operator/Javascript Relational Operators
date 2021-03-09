@@ -1,0 +1,57 @@
+The less-than (<), greater-than (>), less-than-or-equal-to (<=), and greater-than-or-equal-to (>=) relational operators perform comparisons between values in the same way that you learned in math class.
+
+Each of these operators returns a Boolean value, as in this example:
+
+Copy
+let result1 = 5 > 3;  // true
+let result2 = 5 < 3;  // false
+There are some conversions when using different data types. They are as follows:
+
+If the operands are numbers, perform a numeric comparison.
+If the operands are strings, compare the character codes of each corresponding character in the string.
+If one operand is a number, convert the other operand to a number and perform a numeric comparison.
+If an operand is an object, call valueOf() and use its result to perform the comparison according to the previous rules. If valueOf() is not available, call toString() and use that value according to the previous rules.
+If an operand is a Boolean, convert it to a number and perform the comparison.
+Compare String
+When a relational operator is used on two strings, each of the first string's character codes is numerically compared against the character codes in a corresponding location in the second string.
+
+After this comparison is complete, a Boolean value is returned.
+
+The character codes of uppercase letters are all lower than the character codes of lowercase letters, meaning that you can run into situations like this:
+
+Copy
+let result = "Bad" < "abc";  // true
+In this example, the string "Bad" is considered to be less than the string "abc" because the letter B has a character code of 66 and the letter a has a character code of 97.
+
+To force a true alphabetic result, you must convert both operands into a common case (upper or lower) and then compare like this:
+
+Copy
+let result = "Bad".toLowerCase() < "abc".toLowerCase();  // false
+Another sticky situation occurs when comparing numbers that are strings, such as in this example:
+
+Copy
+let result = "23" < "3";  // true
+This code returns true when comparing the string "23" to "3".
+
+Because both operands are strings, they are compared by their character codes (the character code for "2" is 50; the character code for "3" is 51).
+
+If, however, one of the operands is changed to a number as in the following example, the result makes more sense:
+
+Copy
+let result = "23" < 3;  // false
+Here, the string "23" is converted into the number 23 and then compared to 3, giving the expected result.
+
+Whenever a number is compared to a string, the string is converted into a number and then numerically compared to the other number.
+
+Consider this example:
+
+Copy
+let result = "a" < 3;  // false because "a" becomes NaN
+The letter "a" can't be meaningfully converted into a number, so it becomes NaN.
+
+The result of any relational operation with NaN is false, which is interesting when considering the following:
+
+Copy
+let result1 = NaN < 3;   // false
+let result2 = NaN >= 3;  // false
+In most comparisons, if a value is not less than another, it is always greater than or equal to it. When using NaN, however, both comparisons return false.
