@@ -1,0 +1,75 @@
+The undefined type has only one value, which is the special value undefined.
+
+When a variable is declared using var or let but not initialized, it is assigned the value of undefined as follows:
+
+Copy
+let message;
+console.log(message == undefined);  // true
+In this example, the variable message is declared without initializing it.
+
+When compared with the literal value of undefined, the two are equal.
+
+This example is identical to the following:
+
+Copy
+let message = undefined;
+console.log(message == undefined);  // true
+Here the variable message is explicitly initialized to be undefined.
+
+This is unnecessary because, by default, any uninitialized variable gets the value of undefined.
+
+You should never explicitly set a variable to be undefined.
+
+The literal undefined value is provided for comparison.
+
+A variable containing the value of undefined is different from a variable that hasn't been defined at all.
+
+Consider the following:
+
+Copy
+let message;   // this variable is declared
+               // but has a value of undefined
+
+console.log(message);  // "undefined"
+console.log(age);      // causes an error
+In this example, the first console.log displays the variable message, which is "undefined".
+
+In the second console.log, an undeclared variable called age is passed into the console.log() function, which causes an error because the variable hasn't been declared.
+
+The typeof operator returns "undefined" when called on an uninitialized variable, but it also returns "undefined" when called on an undeclared variable, which can be a bit confusing.
+
+Consider this example:
+
+Copy
+let message;   // this variable is declared but has a value of undefined
+
+console.log(typeof message);  // "undefined"
+console.log(typeof age);      // "undefined"
+In both cases, calling typeof on the variable returns the string "undefined".
+
+Logically, this makes sense because no real operations can be performed with either variable even though they are technically different.
+
+We should always initialize variables.
+
+That way, when typeof returns "undefined", you'll know that it's because a given variable hasn't been declared rather than was simply not initialized.
+
+falsy
+The value undefined is falsy and you can use if to check it.
+
+There are many other possible values as falsy, so be careful when using if statement to test undefined:
+
+Copy
+let message;   // this variable is declared but has a value of undefined
+// 'age' is not declared
+
+if (message) {
+  // This block will not execute
+}
+
+if (!message) {
+  // This block will execute
+}
+
+if (age) {
+  // This will throw an error
+}
