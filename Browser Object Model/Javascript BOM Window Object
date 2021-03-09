@@ -1,0 +1,41 @@
+The Browser Object Model (BOM) is the core of using JavaScript on the web.
+
+The BOM provides objects that expose browser functionality independent of any web page content.
+
+Window Object
+At the core of the BOM is the window object, which represents an instance of the browser.
+
+The window object acts as the JavaScript interface to the browser window and the ECMAScript Global object.
+
+Every object, variable, and function defined in a web page uses window as its Global object and has access to methods like parseInt().
+
+Global Scope
+Because the window object doubles as the ECMAScript Global object, all variables and functions declared globally with var become properties and methods of the window object.
+
+Consider this example:
+
+Copy
+var age = 9;
+var sayAge = () => console.log(this.age);
+
+console.log(window.age);  // 9
+sayAge();           // 9
+window.sayAge();    // 9
+Output:
+
+
+Here, a variable named age and a function named sayAge() are defined in the global scope, which automatically places them on the window object.
+
+Thus, the variable age is also accessible as window.age, and the function sayAge() is also accessible via window.sayAge().
+
+Because sayAge() exists in the global scope, this.age maps to window.age, and the correct result is displayed.
+
+If let or const is substituted for var, the default attachment to the global object does not occur:
+
+Copy
+let age = 29;
+const sayAge = () => console.log(this.age);
+
+console.log(window.age);  // undefined
+sayAge();           // undefined
+window.sayAge();    // TypeError: window.sayAge is not a function
