@@ -1,0 +1,96 @@
+Many built-in types implement the Iterable interface:
+
+Strings
+Arrays
+Maps
+Sets
+The arguments object
+DOM collection types like NodeList
+Checking for the existence of this default iterator property will expose the factory function:
+
+Copy
+let num = 1;
+let obj = {};
+
+// These types do not have iterator factories
+console.log(num[Symbol.iterator]);  // undefined
+console.log(obj[Symbol.iterator]);  // undefined
+
+let str = 'abc';
+let arr = ['a', 'b', 'c'];
+let map = new Map().set('a', 1).set('b', 2).set('c', 3);
+let set = new Set().add('a').add('b').add('c');
+let els = document.querySelectorAll('div');
+
+// These types all have iterator factories
+console.log(str[Symbol.iterator]);  // f values() { [native code] }
+console.log(arr[Symbol.iterator]);  // f values() { [native code] }
+console.log(map[Symbol.iterator]);  // f values() { [native code] }
+console.log(set[Symbol.iterator]);  // f values() { [native code] }
+console.log(els[Symbol.iterator]);  // f values() { [native code] }
+
+// Invoking the factory function produces an Iterator
+console.log(str[Symbol.iterator]());  // StringIterator {}
+console.log(arr[Symbol.iterator]());  // ArrayIterator {}
+console.log(map[Symbol.iterator]());  // MapIterator {}
+console.log(set[Symbol.iterator]());  // SetIterator {}
+console.log(els[Symbol.iterator]());  // ArrayIterator {}
+Value that implements this protocol is compatible with any language features that accept an iterable.
+
+These native language constructs include:
+
+for...of loop
+Array destructuring
+The spread operator
+Array.from()
+Set construction
+Map construction
+Promise.all(), which expects an iterable of promises
+Promise.race(), which expects an iterable of promises
+yield* operator in generators
+Behind the scenes, these native language constructs are invoking the factory function of the provided iterable to create an iterator:
+
+Copy
+let arr = ['foo', 'bar', 'baz'];
+
+// for...of loops
+for (let el of arr) {
+  console.log(el);
+
+}
+// foo
+// bar
+// baz
+
+// Array destructuring
+let [a, b, c] = arr;
+console.log(a, b, c);  // foo, bar, baz
+
+// Spread operator
+let arr2 = [...arr];
+console.log(arr2);  // ['foo', 'bar', 'baz']
+
+// Array.from()
+let arr3 = Array.from(arr);
+console.log(arr3);  // ['foo', 'bar', 'baz']
+
+// Set constructor
+let set = new Set(arr);
+console.log(set);  // Set(3) {'foo', 'bar', 'baz'}
+
+// Map constructor
+let pairs = arr.map((x, i) => [x, i]);
+console.log(pairs);  // [['foo', 0], ['bar', 1], ['baz', 2]]
+let map = new Map(pairs);
+console.log(map);  // Map(3) { 'foo'=>0, 'bar'=>1, 'baz'=>2 }
+An object still implements the Iterable interface if a parent class up the prototype chain implements the interface:
+
+Copy
+class FooArray extends Array {}
+let fooArr = new FooArray('foo', 'bar', 'baz');
+
+for (let el of fooArr) {
+  console.log(el);
+}
+Output:
+
