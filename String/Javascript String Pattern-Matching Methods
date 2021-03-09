@@ -1,0 +1,38 @@
+The String type has several methods designed to pattern-match within the string.
+
+match()
+String match() is the same as calling a RegExp object's exec() method.
+
+The match() method accepts a single argument, which is either a regular-expression string or a RegExp object.
+
+Consider this example:
+
+Copy
+let text = "cat, bat, sat, fat";
+let pattern = /.at/;
+
+// same as pattern.exec(text)
+let matches = text.match(pattern);
+console.log(matches.index);      // 0
+console.log(matches[0]);         // "cat"
+console.log(pattern.lastIndex);  // 0
+The array returned from match() is the same array that is returned when the RegExp object's exec() method is called with the string as an argument:
+
+the first item is the string that matches the entire pattern, and
+each other item (if applicable) represents capturing groups in the expression.
+search()
+String search() finds patterns.
+
+String search() method accepts a regular expression specified by either a string or a RegExp object as its parameter.
+
+The search() method returns the index of the first pattern occurrence in the string or -1 if it's not found.
+
+search() always begins looking for the pattern at the beginning of the string.
+
+Consider this example:
+
+Copy
+let text = "cat, bat, sat, fat";
+let pos = text.search(/at/);
+console.log(pos);  // 1
+Here, search(/at/) returns 1, which is the first position of "at" in the string.
