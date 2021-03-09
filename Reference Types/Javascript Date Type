@@ -1,0 +1,92 @@
+The ECMAScript Date type stores dates as the number of milliseconds that have passed since midnight on January 1, 1970 UTC (Universal Time Code).
+
+To create a date object, use the new operator along with the Date constructor, like this:
+
+Copy
+let now = new Date();
+When the Date constructor is used without any arguments, the created object is assigned the current date and time.
+
+To create a date based on another date or time, you must pass in the millisecond representation of the date, the number of milliseconds after midnight, January 1, 1970 UTC, the Unix epoch.
+
+To aid in this process, ECMAScript provides two methods: Date.parse() and Date.UTC().
+
+The Date.parse() method accepts a string argument representing a date.
+
+It attempts to convert the string into a millisecond representation of a date.
+
+The following date formats are supported:
+
+Format	Example
+month/date/year	5/24/2020
+month_name date, year	May 24, 2020
+day_of_week month_name date year hours:minutes:seconds time_zone	Tue May 23 2020 00:00:00 GMT-0700
+ISO 8601 extended format YYYY-MM-DDTHH:mm:ss.sssZ	2020-05-23T00:00:00
+For instance, to create a date object for May 23, 2020, you can use the following code:
+
+Copy
+let someDate = new Date(Date.parse("May 23, 2020"));
+If the string passed into Date.parse() doesn't represent a date, then it returns NaN.
+
+The Date constructor will call Date.parse() behind the scenes if a string is passed in directly, meaning that the following code is identical to the previous example:
+
+Copy
+let someDate = new Date("May 23, 2020");
+This code produces the same result as the previous example.
+
+The Date.UTC() method returns the millisecond representation of a date but constructs that value using different information than Date.parse().
+
+The arguments for Date.UTC() are
+
+the year,
+the zero-based month (January is 0, February is 1, and so on),
+the day of the month (1 through 31), and
+the hours (0 through 23),
+minutes,
+seconds, and
+milliseconds of the time.
+Of these arguments, only the first two (year and month) are required.
+
+If the day of the month isn't supplied, it's assumed to be 1, while all other omitted arguments are assumed to be 0.
+
+Here are two examples of Date.UTC() in action:
+
+Copy
+// January 1, 2000 at midnight GMT
+let y2k = new Date(Date.UTC(2000, 0));
+
+// May 5, 2020 at 5:55:55 PM GMT
+let allFives = new Date(Date.UTC(2020, 4, 5, 17, 55, 55));
+Two dates are created in this example. The first date is for midnight (GMT) on January 1, 2000, which is represented by the year 2000 and the month 0 (which is January).
+
+Because the other arguments are filled in (the day of the month as 1 and everything else as 0), the result is the first day of the month at midnight.
+
+The second date represents May 5, 2020, at 5:55:55 PM GMT.
+
+Date.UTC() is mimicked by the Date constructor but with one major difference: the date and time created are in the local time zone, not in GMT.
+
+However, the Date constructor takes the same arguments as Date.UTC(), so if the first argument is a number, the constructor assumes that it is the year of a date, the second argument is the month, and so on.
+
+The preceding example can then be rewritten as this:
+
+Copy
+// January 1, 2000 at midnight in local time
+let y2k = new Date(2000, 0);
+
+// May 5, 2020 at 5:55:55 PM local time
+let allFives = new Date(2020, 4, 5, 17, 55, 55);
+This code creates the same two dates as the previous example, but this time both dates are in the local time zone as determined by the system settings.
+
+ECMAScript offers Date.now(), which returns the millisecond representation of the date and time at which the method is executed.
+
+This method can be used for code profiling, such as:
+
+Copy
+// get start time
+let start = Date.now();
+
+// call a function
+doSomething();
+
+// get stop time
+let stop = Date.now(),
+result = stop - start;
