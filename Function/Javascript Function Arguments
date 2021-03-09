@@ -1,0 +1,123 @@
+Function arguments in ECMAScript don't behave in the same way as function arguments in most other languages.
+
+An ECMAScript function doesn't care how many arguments are passed in, nor does it care about the data types of those arguments.
+
+Just because you define a function to accept two arguments doesn't mean you can pass in only two arguments.
+
+You could pass in one or three or none, and the interpreter won't complain.
+
+The function arguments in ECMAScript are represented as an array internally.
+
+The array is always passed to the function, but the function doesn't care what is in the array.
+
+In fact, when a function is defined using the function keyword, not arrow function, there actually is an arguments object that can be accessed while inside a function to retrieve the values of each argument that was passed in.
+
+The arguments object acts like an array in that you can access each argument using bracket notation, the first argument is arguments[0], the second is arguments[1], and so on,
+
+We can also determine how many arguments were passed in by using the length property.
+
+In the following example, the sayHi() function's first argument is named name.
+
+Copy
+function sayHi(name, message) {
+  console.log("Hello " + name + ", " + message);
+}
+The same value can be accessed by referencing arguments[0].
+
+Therefore, the function can be rewritten without naming the arguments explicitly, like this:
+
+Copy
+function sayHi() {
+  console.log("Hello " + arguments[0] + ", " + arguments[1]);
+}
+In this rewritten version, there are no named arguments.
+
+The name and message arguments have been removed, yet the function will behave appropriately.
+
+This illustrates an important point about functions in ECMAScript: named arguments are a convenience, not a necessity.
+
+Naming your arguments in ECMAScript does not create a function signature that must be matched later on and there is no validation against named arguments.
+
+Length
+The arguments object can also be used to check the number of arguments passed into the function via the length property.
+
+The following example outputs the number of arguments passed into the function each time it is called:
+
+Copy
+function howManyArgs() {
+  console.log(arguments.length);
+}
+
+howManyArgs("string", 45);    // 2
+howManyArgs();                // 0
+howManyArgs(12);              // 1
+This example shows alerts displaying 2, 0, and 1.
+
+In this way, developers have the freedom to let functions accept any number of arguments and behave appropriately.
+
+Consider the following:
+
+Copy
+function doAdd() {
+  if (arguments.length === 1) {
+    console.log(arguments[0] + 10);
+  } else if (arguments.length === 2) {
+    console.log(arguments[0] + arguments[1]);
+  }
+}
+
+doAdd(10);        // 20
+doAdd(30, 20);    // 50
+The function doAdd() adds 10 to a number only if there is one argument; if there are two arguments, they are simply added together and returned.
+
+So doAdd(10) returns 20, whereas doAdd(30,20) returns 50.
+
+It's not quite as good as overloading, but it is a sufficient workaround for this ECMAScript limitation.
+
+The arguments object can be used in conjunction with named arguments, such as the following:
+
+Copy
+function doAdd(num1, num2) {
+  if (arguments.length === 1) {
+    console.log(num1 + 10);
+  } else if (arguments.length === 2) {
+    console.log(arguments[0] + num2);
+  }
+}
+In this rewrite of the doAdd() function, two-named arguments are used in conjunction with the arguments object.
+
+The named argument num1 holds the same value as arguments[0], so they can be used interchangeably. The same is true for num2 and arguments[1].
+
+The values of arguments always stay in sync with the values of the corresponding named parameters.
+
+For example:
+
+Copy
+function doAdd(num1, num2) {
+  arguments[1] = 10;
+  console.log(arguments[0] + num2);
+}
+This version of doAdd() always overwrites the second argument with a value of 10.
+
+Because values in the arguments object are automatically reflected by the corresponding named arguments, the change to arguments[1] also changes the value of num2, so both have a value of 10.
+
+This doesn't mean that both access the same memory space, however; their memory spaces are separate but happen to be kept in sync.
+
+This effect goes only one way: changing the named argument does not result in a change to the corresponding value in arguments.
+
+If only one argument is passed in, then setting arguments[1] to a value will not be reflected by the named argument because the length of the arguments object is set based on the number of arguments passed in, not the number of named arguments listed for the function.
+
+Any named argument that is not passed into the function is automatically assigned the value undefined.
+
+This is the same as defining a variable without initializing it.
+
+For example, if only one argument is passed into the doAdd() function, then num2 has a value of undefined.
+
+Strict mode
+Strict mode makes several changes to how the arguments object can be used.
+
+First, assignment like arguments[1] = 10; no longer works.
+
+The value of num2 remains undefined even though arguments[1] has been assigned to 10.
+
+Second, trying to overwrite the value of arguments is a syntax error.
