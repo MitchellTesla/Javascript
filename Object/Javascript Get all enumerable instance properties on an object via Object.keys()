@@ -1,0 +1,53 @@
+When using a for-in loop, all properties that are accessible by the object and can be enumerated will be returned, which includes properties both on the instance and on the prototype.
+
+Instance properties that shadow a non-enumerable prototype property, where a property that has [[Enumerable]] set to false, will be returned in the for-in loop because all developer-defined properties are enumerable by default.
+
+To retrieve a list of all enumerable instance properties on an object, you can use the Object.keys() method, which accepts an object as its argument and returns an array of strings containing the names of all enumerable properties.
+
+For example:
+
+Copy
+function Person() {}
+
+Person.prototype.name = "CSS";
+Person.prototype.age = 19;
+Person.prototype.job = "Style";
+Person.prototype.sayName = function() {
+  console.log(this.name);
+ };
+
+let keys = Object.keys(Person.prototype);
+console.log(keys);    // "name,age,job,sayName"
+let p1 = new Person();
+p1.name = "Rob";
+p1.age = 31;
+let p1keys = Object.keys(p1);
+console.log(p1keys);  // "name,age"
+Here, the keys variable is filled with an array containing "name", "age", "job", and sayName.
+
+This is the order in which they would normally appear using for-in.
+
+When called on an instance of Person, Object.keys() returns an array of name and age, the only two instance properties.
+
+If you'd like a list of all instance properties, whether enumerable or not, you can use Object.getOwnPropertyNames() in the same way:
+
+Copy
+let keys = Object.getOwnPropertyNames(Person.prototype);
+console.log(keys);   // "constructor,name,age,job,sayName"
+It contains the non-enumerable constructor property in the list of results.
+
+Both Object.keys() and Object.getOwnPropertyNames() may be suitable replacements for using for-in.
+
+With the introduction of symbols in ECMAScript 6, Object.getOwnPropertySymbols() was introduced, which offers the same behavior as Object.getOwnPropertyNames() but with respect to symbols:
+
+Copy
+let k1 = Symbol('k1'),
+   k2 = Symbol('k2');
+
+let o = {
+ [k1]: 'k1',
+ [k2]: 'k2'
+};
+
+console.log(Object.getOwnPropertySymbols(o));
+// [Symbol(k1), Symbol(k2)]
