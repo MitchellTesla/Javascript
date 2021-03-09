@@ -1,0 +1,38 @@
+Do a search for "LO" at the beginning of a word in a string:
+
+Copy
+let str = "HELLO, Look Lo LO";
+let patt1 = /\bLO/;
+let result = str.search(patt1);
+console.log(result);
+Output:
+
+
+Description
+The \b metacharacter can match the beginning or end of a word.
+
+We can search for the pattern at the beginning of a word like this: \bLO
+
+We can search for the pattern at the end of a word like this: LO\b
+
+If no match is found, it returns null.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+\b	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("\\bregexp") or simply: /\bregexp/
+Syntax with modifiers
+Copy
+new RegExp("\\bregexp", "g") or simply: /\bregexp/g
+More Examples
+Do a search for "LO" at the END of a word in a string:
+
+Copy
+let str = "HELLO, LOOK lo LOW";
+let patt1 = /LO\b/;
+let result = str.search(patt1);
+console.log(result);
+Output:
+3
