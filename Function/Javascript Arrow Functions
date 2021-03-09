@@ -1,0 +1,79 @@
+ECMAScript 6 can define a function expression using the fat-arrow syntax.
+
+For the most part, arrow functions instantiate function objects that behave in the same manner as their formal function expression counterparts.
+
+Anywhere a function expression can be used, an arrow function can also be used:
+
+Copy
+let arrowSum = (a, b) => {
+   return a + b;
+};
+
+let functionExpressionSum = function(a, b) {
+   return a + b;
+};
+
+console.log(arrowSum(5, 8));  // 13
+console.log(functionExpressionSum(5, 8));  // 13
+Output:
+
+
+Arrow functions are useful in inline situations where they offer a more succinct syntax:
+
+Copy
+let ints = [1, 2, 3];
+
+console.log(ints.map(function(i) { return i + 1; }));  // [2, 3, 4]
+console.log(ints.map((i) => { return i + 1 }));        // [2, 3, 4]
+Output:
+
+
+Arrow functions do not require the parentheses if you only want to use a single parameter.
+
+If you want to have zero parameters, or more than one parameter, parentheses are required:
+
+Both of the following are valid
+
+Copy
+let double = (x) => { return 2 * x; };
+let triple = x => { return 3 * x; };
+Zero parameters require an empty pair of parentheses
+
+Copy
+let getRandom = () => { return Math.random(); };
+Multiple parameters require parentheses
+
+Copy
+let sum = (a, b) => { return a + b; };
+Invalid syntax:
+
+Copy
+let multiply = a, b => { return a * b; };//error
+Curly braces
+Arrow functions also do not require curly braces, but choosing to not use them changes the behavior of the function.
+
+Using the curly braces is called the "block body" syntax.
+
+It behaves in the same way as a normal function expression in that multiple lines of code can exist inside the arrow function.
+
+If you omit the curly braces, you are using the "concise body" syntax and are limited to a single line of code, such as an assignment or expression.
+
+The value of this line will implicitly return, as demonstrated here:
+
+// Both are valid and will return the value
+
+Copy
+let double = (x) => { return 2 * x; };
+let triple = (x) => 3 * x;
+Assignment is allowed let value = {}; let setName = (x) => x.name = "HTML"; setName(value); console.log(value.name); // "HTML"
+
+Invalid syntax:
+
+Copy
+let multiply = (a, b) => return a * b;//error
+Note
+Arrow functions are not suited in several situations.
+
+They do not allow the use of arguments, super, or new.target, and cannot be used as a constructor.
+
+Additionally, function objects created with the arrow syntax do not have a prototype defined.
