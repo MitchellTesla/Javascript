@@ -1,0 +1,28 @@
+The padStart() and padEnd() methods will copy a string and, if the length of the string is less than the specified length, add padding to either side of a string to extend it to a certain length.
+
+The first argument is the desired length, and the second is the optional string to add as a pad.
+
+If not provided, the U+0020 'space' character will be used.
+
+Copy
+let stringValue = "foo";
+
+console.log(stringValue.padStart(6));       // "   foo"
+console.log(stringValue.padStart(9, "."));  // "......foo"
+
+console.log(stringValue.padEnd(6));         // "foo   "
+console.log(stringValue.padEnd(9, "."));    // "foo......"
+The optional argument is not limited to a single character.
+
+If provided a multiple-character string, the method will use the concatenated padding and truncate it to the exact length.
+
+Additionally, if the length is less than or equal to the string length, the operation is effectively a no-op.
+
+Copy
+let stringValue = "foo";
+
+console.log(stringValue.padStart(8, "bar"));  // "barbafoo"
+console.log(stringValue.padStart(2));         // "foo"
+
+console.log(stringValue.padEnd(8, "bar"));    // "foobarba"
+console.log(stringValue.padEnd(2));           // "foo"
