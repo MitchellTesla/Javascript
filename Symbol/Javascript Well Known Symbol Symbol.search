@@ -1,0 +1,41 @@
+ECMAScript Well Known Symbol Symbol.search is used as a property for "A regular expression method that returns the index within a string that matches the regular expression. Called by the String .prototype.search() method".
+
+The String.prototype.search() method will use the function identified by Symbol.search to evaluate the expression.
+
+The regular expression prototype has this function defined by default, and therefore all regular expression instances are valid parameters to the String method by default:
+
+Copy
+console.log(RegExp.prototype[Symbol.search]);
+// f [Symbol.search]() { [native code] }
+
+console.log('foobar'.search(/bar/));
+// 3
+Providing something other than a regular expression to this method will cause it to be converted to a RegExp object.
+
+This function has a single parameter which is the string instance upon which search() is invoked.
+
+The return value is unrestricted:
+
+Copy
+class FooSearcher {
+    static[Symbol.search](target) {
+        return target.indexOf('foo');
+    }
+}
+
+console.log('foobar'.search(FooSearcher)); // 0
+console.log('barfoo'.search(FooSearcher)); // 3
+console.log('barbaz'.search(FooSearcher)); // -1
+
+class StringSearcher {
+    constructor(str) {
+            this.str = str;
+        }
+        [Symbol.search](target) {
+            return target.indexOf(this.str);
+        }
+}
+
+console.log('foobar'.search(new StringSearcher('foo'))); // 0
+console.log('barfoo'.search(new StringSearcher('foo'))); // 3
+console.log('barbaz'.search(new StringSearcher('qux'))); // -1
