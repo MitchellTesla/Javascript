@@ -1,0 +1,35 @@
+Four methods-Math.ceil(), Math.floor(), Math.round(), and Math.fround()-handle rounding in different ways as described here:
+
+Method
+Description
+Math.ceil()
+rounds numbers up to the nearest integer value.
+Math.floor()
+always rounds numbers down to the nearest integer value.
+Math.round()
+rounds up if the number is at least halfway to the next integer value (0.5 or higher) and rounds down if not.
+Math.fround()
+returns the nearest single precision (32 bits) floating point representation of the number.
+The following example illustrates how these methods work:
+
+Copy
+console.log(Math.ceil(25.9));   // 26
+console.log(Math.ceil(25.5));   // 26
+console.log(Math.ceil(25.1));   // 26
+
+console.log(Math.round(25.9));  // 26
+console.log(Math.round(25.5));  // 26
+console.log(Math.round(25.1));  // 25
+
+console.log(Math.fround(0.4));   // 0.4000000059604645
+console.log(Math.fround(0.5));   // 0.5
+console.log(Math.fround(25.9));  // 25.899999618530273
+
+console.log(Math.floor(25.9));  // 25
+console.log(Math.floor(25.5));  // 25
+console.log(Math.floor(25.1));  // 25
+For all values between 25 and 26 (exclusive), Math.ceil() always returns 26 because it will always round up.
+
+The Math.round() method returns 26 only if the number is 25.5 or greater; otherwise it returns 25.
+
+Last, Math.floor() returns 25 for all numbers between 25 and 26 (exclusive).
