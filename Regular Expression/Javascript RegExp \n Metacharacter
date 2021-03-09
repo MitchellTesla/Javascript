@@ -1,0 +1,23 @@
+Search for a newline character in a string:
+
+Copy
+let str = "Visit Demo2s.com.\nLearn JavaScript.";
+let patt1 = /\n/;
+let result = str.search(patt1);
+console.log(result);
+Output:
+
+
+Description
+The \n character can find a newline character.
+
+\n returns the position where the newline character was found.
+
+If no match is found, it returns -1.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+\n	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("\\n") or simply: /\n/
