@@ -1,0 +1,51 @@
+Javascript array can be used as a Queue data structure.
+
+The queues restrict access in a first-in-first-out (FIFO) data structure.
+
+A queue adds items to the end of a list and retrieves items from the front of the list.
+
+Because the push() method adds items to the end of an array, all that is needed to emulate a queue is a method to retrieve the first item in the array.
+
+The array method for this is called shift(), which removes the first item in the array and returns it, decrementing the length of the array by one.
+
+Using shift() in combination with push() allows arrays to be used as queues:
+
+Copy
+let colors = new Array();                 // create an array
+let count = colors.push("red", "green");  // push two items
+console.log(count);                       // 2
+
+count = colors.push("black");  // push another item on
+console.log(count);            // 3
+
+let item = colors.shift();  // get the first item
+console.log(item);          // "red"
+console.log(colors.length); // 2
+This example creates an array of three colors using the push() method.
+
+The shift() method is used to retrieve the first item in the array, which is "red".
+
+With that item removed, "green" is moved into the first position and "black" is moved into the second, leaving the array with two items.
+
+ECMAScript also provides an unshift() method for arrays.
+
+it adds any number of items to the front of an array and returns the new array length.
+
+By using unshift() in combination with pop(), it's possible to emulate a queue in the opposite direction, where new values are added to the front of the array and values are retrieved off the back, as in this example:
+
+Copy
+let colors = new Array();                    // create an array
+let count = colors.unshift("red", "green");  // push two items
+console.log(count);                          // 2
+
+count = colors.unshift("black");  // push another item on
+console.log(count);               // 3
+
+let item = colors.pop();  // get the first item
+console.log(item);        // "green"
+console.log(colors.length);// 2
+In this code, an array is created and then populated by using unshift().
+
+First "red" and "green" are added to the array, and then "black" is added, resulting in an order of "black", "red", "green".
+
+When pop() is called, it removes the last item, "green", and returns it.
