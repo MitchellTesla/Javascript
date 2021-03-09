@@ -1,0 +1,73 @@
+When a variable is declared using var, it is automatically added to the most immediate context available.
+
+In a function, the most immediate one is the function's local context; in a with statement, the most immediate is the function context.
+
+If a variable is initialized without first being declared, it gets added to the global context automatically, as in this example:
+
+Copy
+function add(num1, num2) {
+  var sum = num1 + num2;
+  return sum;
+}
+
+let result = add(10, 20);  // 30
+console.log(sum);          // causes an error: sum is not a valid variable
+Here, the function add() defines a local variable named sum that contains the result of an addition operation.
+
+This value is returned as the function value, but the variable sum isn't accessible outside the function.
+
+If the var keyword is omitted from this example, sum becomes accessible after add() has been called, as shown here:
+
+Copy
+function add(num1, num2) {
+ sum = num1 + num2;
+ return sum;
+}
+
+let result = add(10, 20);  // 30
+console.log(sum);        // 30
+Here, the variable sum is initialized to a value without ever having been declared using var.
+
+When add() is called, sum is created in the global context and continues to exist even after the function has completed, allowing you to access it later.
+
+It's advisable to always declare variables before initializing them.
+
+In strict mode, initializing variables without declaration causes an error.
+
+A var declaration will be brought to the top of the function or global scope and before any existing code inside it.
+
+This is referred to as "hoisting".
+
+This allows you to safely use a hoisted variable anywhere in the same scope without consideration for whether or not it was declared yet.
+
+Here is an example of two equivalent code in the global scope:
+
+Copy
+var name = "css";
+
+// This is equivalent to:
+name = 'css';
+var name;
+Here is an example of two equivalent functions:
+
+Copy
+function fn1() {
+ var name = 'css';
+}
+
+// This is equivalent to:
+function fn2() {
+ var name;
+ name = 'css';
+}
+You can prove to yourself that a variable is hoisted by inspecting it before its declaration.
+
+The hoisting of the declaration means you will see undefined instead of ReferenceError:
+
+Copy
+console.log(name);  // undefined
+var name = 'css';
+function() {
+    console.log(name);  // undefined
+    var name = 'css';
+}
