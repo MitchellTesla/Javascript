@@ -1,0 +1,38 @@
+ECMAScript Well Known Symbol Symbol.match is used as a property for "A regular expression method that matches the regular expression against a string. Called by the String.prototype.match() method".
+
+The String.prototype.match() method will use the function identified by Symbol.match to evaluate the expression.
+
+The regular expression prototype has this function defined by default, and therefore all regular expression instances are valid parameters to the String method by default:
+
+Copy
+console.log(RegExp.prototype[Symbol.match]);
+//f [Symbol.match]() { [native code] }
+
+console.log('foobar'.match(/bar/));
+//  ["bar", index: 3, input: "foobar", groups: undefined]
+Providing something other than a regular expression to this method will cause it to be converted to a RegExp object.
+
+This function has a single parameter which is the string instance upon which match() is invoked. The return value is unrestricted:
+
+Copy
+class FooMatcher {
+  static [Symbol.match](target) {
+    return target.includes('foo');
+  }
+ }
+
+console.log('foobar'.match(FooMatcher));  // true
+console.log('barbaz'.match(FooMatcher));  // false
+
+class StringMatcher {
+  constructor(str) {
+    this.str = str;
+  }
+
+   [Symbol.match](target) {
+    return target.includes(this.str);
+  }
+ }
+
+console.log('foobar'.match(new StringMatcher('foo')));  // true
+console.log('barbaz'.match(new StringMatcher('qux')));  // false
