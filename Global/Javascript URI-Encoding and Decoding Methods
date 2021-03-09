@@ -1,0 +1,61 @@
+The encodeURI() and encodeURIComponent() methods are used to encode URIs (Uniform Resource Identifiers) to be passed to the browser.
+
+To be valid, a URI cannot contain certain characters, such as spaces.
+
+The URI-encoding methods encode the URIs so that a browser can still accept and understand them.
+
+It replaces all invalid characters with a special UTF-8 encoding.
+
+The encodeURI() method works on an entire URI.
+
+The encodeURI() does not encode special characters that are part of a URI, such as the colon, forward slash, question mark, and pound sign.
+
+The encodeURIComponent() methods work on a segment of a URI.
+
+encodeURIComponent() encodes every non-standard character it finds.
+
+Consider this example:
+
+Copy
+let uri = "https://www.demo2s.com/index page.html#start";
+
+console.log(encodeURI(uri));
+console.log(encodeURIComponent(uri));
+Output:
+
+
+Here, using encodeURI() left the value completely intact except for the space, which was replaced with %20.
+
+The encodeURIComponent() method replaced all non-alphanumeric characters with their encoded equivalents.
+
+This is why encodeURI() can be used on full URIs, whereas encodeURIComponent() can be used only on strings that are appended to the end of an existing URI.
+
+You'll use encodeURIComponent() much more frequently than encodeURI() because it's more common to encode query string arguments separately from the base URI.
+
+Decode URL
+The two counterparts to encodeURI() and encodeURIComponent() are decodeURI() and decodeURIComponent().
+
+The decodeURI() method decodes only characters that would have been replaced by using encodeURI().
+
+For instance, %20 is replaced with a space, but %23 is not replaced because it represents a pound sign (#), which encodeURI() does not replace.
+
+decodeURIComponent() decodes all characters encoded by encodeURIComponent(), essentially meaning it decodes all special values.
+
+Consider this example:
+
+Copy
+let uri = "https%3A%2F%2Fwww.demo2s.com%2Findex%20page.html%23start";
+console.log(decodeURI(uri));
+console.log(decodeURIComponent(uri));
+Output:
+
+
+Here, the uri variable contains a string that is encoded using encodeURIComponent().
+
+The first value output is the result of decodeURI(), which replaced only the %20 with a space.
+
+The second value is the output of decodeURIComponent(), which replaces all the special characters and outputs a string that has no escaping in it.
+
+The URI methods encodeURI(), encodeURIComponent(), decodeURI(), and decodeURIComponent() replace the escape() and unescape() methods, which are deprecated in the ECMA-262 third edition.
+
+Avoid using escape() and unescape() in production code.
