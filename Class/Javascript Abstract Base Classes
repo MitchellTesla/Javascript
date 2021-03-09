@@ -1,0 +1,52 @@
+You may find a need to define a class that should be inherited from but not directly instantiated.
+
+Although ECMAScript does not explicitly support this, we can implement using new.target.
+
+You can prevent direct instantiation by checking that new.target is never the abstract base class:
+
+Copy
+// Abstract base class
+class Vehicle {
+  constructor() {
+    console.log(new.target);
+    if (new.target === Vehicle) {
+      throw new Error('Vehicle cannot be directly instantiated');
+    }
+  }
+}
+
+// Derived class
+class Bus extends Vehicle {}
+
+new Bus();      // class Bus {}
+new Vehicle();  // class Vehicle {}
+// Error: Vehicle cannot be directly instantiated
+We can require that a method be defined on a derived class by checking for it in the abstract base class constructor.
+
+Because prototype methods exist before the constructor is invoked, you can check for them on the this keyword:
+
+Copy
+// Abstract base class
+class Vehicle {
+    constructor() {
+        if (new.target === Vehicle) {
+            throw new Error('Vehicle cannot be directly instantiated');
+        }
+
+        if (!this.foo) {
+            throw new Error('Inheriting class must define foo()');
+        }
+
+        console.log('success!');
+    }
+}
+// Derived class
+class Bus extends Vehicle {
+    foo() {}
+}
+
+// Derived class
+class Van extends Vehicle {}
+
+new Bus(); // success!
+new Van(); // Error: Inheriting class must define foo()
