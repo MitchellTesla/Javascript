@@ -1,0 +1,30 @@
+The bitwise XOR operator is represented by a caret (^) and also works on two values.
+
+Here is the truth table for bitwise XOR:
+
+Bit From First Number	Bit From Second Number	Result
+1	1	0
+1	0	1
+0	1	1
+0	0	0
+Bitwise XOR is different from bitwise OR in that it returns 1 only when exactly one bit has a value of 1. If both bits contain 1, it returns 0.
+
+To XOR the numbers 25 and 3 together, use the following code:
+
+Copy
+let result = 25 ^ 3;
+console.log(result);  // 26
+The result of a bitwise XOR between 25 and 3 is 26, as shown here:
+
+Copy
+25 = 0000 0000 0000 0000 0000 0000 0001 1001
+ 3 = 0000 0000 0000 0000 0000 0000 0000 0011
+---------------------------------------------
+XOR= 0000 0000 0000 0000 0000 0000 0001 1010
+Four bits in each number are set to 1; however, the first bit in both numbers is 1, so that becomes 0 in the result.
+
+All of the other 1s have no corresponding 1 in the other number, so they are passed directly through to the result.
+
+The binary code 11010 is equal to 26.
+
+A bit is set in this operation's result if a corresponding bit is set in one of the two operands. For example, 0xFF00 ^ 0xF0F0 evaluates to 0x0FF0.
