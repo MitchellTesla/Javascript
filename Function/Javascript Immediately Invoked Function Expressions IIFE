@@ -1,0 +1,49 @@
+An anonymous function that is called immediately is most often called an immediately invoked function expression (IIFE).
+
+It resembles a function declaration, but because it is enclosed in parentheses it is interpreted as a function expression.
+
+This function is then called via the second set of parentheses at the end.
+
+The basic syntax is as follows:
+
+Copy
+(function() {
+     // block code here
+})();
+The use of an IIFE to simulate block scope uses values defined inside a function expression that is executed immediately, thereby offering a block scope-like behavior using function scoped variables.
+
+The utility of the IIFE was much greater in previous versions of ECMAScript 6 where block scoped variables were not supported.
+
+Consider the following example:
+
+Copy
+// IIFE
+(function () {
+ for (var i = 0; i < count; i++) {
+   console.log(i);
+ }
+})();
+
+console.log(i);  // Throws an error
+The preceding code will error when the console.log() outside the IIFE attempts to execute because the variable defined inside the IIFE is not scoped to be accessible from outside the function expression.
+
+With ECMAScript 6, the IIFE is no longer required for emulating block scope, as block scoped variables will offer the exact same behavior without the need for an IIFE:
+
+Inline block scope
+
+Copy
+{
+    let i;
+    for (i = 0; i < count; i++) {
+        console.log(i);
+    }
+}
+console.log(i); // Throws an error
+Function block scope
+
+Copy
+for (let i = 0; i < count; i++) {
+    console.log(i);
+}
+
+console.log(i); // Throws an error
