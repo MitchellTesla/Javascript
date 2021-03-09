@@ -1,0 +1,28 @@
+The bitwise AND operator is indicated by the ampersand character (&) and works on two values.
+
+The bitwise AND operator lines up the bits in each number and use the rules in the following truth table, performs an AND operation between the two bits in the same position.
+
+Bit From First Number	Bit From Second Number	Result
+1	1	1
+1	0	0
+0	1	0
+0	0	0
+A bitwise AND operation returns 1 if both bits are 1. It returns 0 if any bits are 0.
+
+As an example, to AND the numbers 25 and 3 together, use the following code:
+
+Copy
+let result = 25 & 3;
+console.log(result);  // 1
+The result of a bitwise AND between 25 and 3 is 1. Here is how it is done:
+
+Copy
+25 = 0000 0000 0000 0000 0000 0000 0001 1001
+ 3 = 0000 0000 0000 0000 0000 0000 0000 0011
+---------------------------------------------
+AND = 0000 0000 0000 0000 0000 0000 0000 0001
+Only one bit (bit 0) contains a 1 in both 25 and 3.
+
+Because of this, every other bit of the resulting number is set to 0, making the result equal to 1.
+
+A bit is set in the result only if the corresponding bit is set in both operands. For example, 0x1234 & 0x00FF evaluates to 0x0034.
