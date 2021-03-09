@@ -1,0 +1,42 @@
+The logical NOT operator is represented by an exclamation point ( !) and may be applied to any value in ECMAScript.
+
+This operator always returns a Boolean value, regardless of the data type it's used on.
+
+The logical NOT operator first converts the operand to a Boolean value and then negates it.
+
+The logical NOT behaves in the following ways:
+
+If the operand is an object, false is returned.
+If the operand is an empty string, true is returned.
+If the operand is a nonempty string, false is returned.
+If the operand is the number 0, true is returned.
+If the operand is any number other than 0 (including Infinity), false is returned.
+If the operand is null, true is returned.
+If the operand is NaN, true is returned.
+If the operand is undefined, true is returned.
+The following example illustrates this behavior:
+
+Copy
+console.log(!false);   // true
+console.log(!"blue");  // false
+console.log(!0);       // true
+console.log(!NaN);     // true
+console.log(!"");      // true
+console.log(!12345);   // false
+Convert
+The logical NOT operator can also be used to convert a value into its Boolean equivalent.
+
+By using two NOT operators in a row, you can effectively simulate the behavior of the Boolean() casting function.
+
+The first NOT returns a Boolean value no matter what operand it is given.
+
+The second NOT negates that Boolean value and so gives the true Boolean value of a variable.
+
+The end result is the same as using the Boolean() function on a value, as shown here:
+
+Copy
+console.log(!!"blue");  // true
+console.log(!!0);       // false
+console.log(!!NaN);     // false
+console.log(!!"");      // false
+console.log(!!12345);   // true
