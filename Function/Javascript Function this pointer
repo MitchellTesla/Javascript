@@ -1,0 +1,73 @@
+The function this pointer behaves differently when used inside a standard function and an arrow function.
+
+Inside a standard function, it is a reference to the context object that the function is operating on-often called the this value.
+
+When a function is called in the global scope of a web page, the this object points to window.
+
+Consider the following:
+
+Copy
+window.color = 'red';
+let o = {
+  color: 'blue'
+};
+
+function sayColor() {
+  console.log(this.color);
+}
+
+sayColor();     // 'red'
+
+o.sayColor = sayColor;
+o.sayColor();   // 'blue'
+The function sayColor() is defined globally but references the this object.
+
+The value of this is not determined until the function is called, so its value may not be consistent throughout the code execution.
+
+When sayColor() is called in the global scope, it outputs "red" because this is pointing to window, which means this.color evaluates to window.color.
+
+By assigning the function to the object o and then calling o.sayColor(), the this object points to o, so this.color evaluates to o.color and "blue" is displayed.
+
+Arrow function
+Inside an arrow function, this references the context in which the arrow function expression is defined.
+
+This is demonstrated in the following example, where two different invocations of sayColor() both reference the property of the window object, which is the context inside which the arrow function was initially defined:
+
+Copy
+window.color = 'red';
+let o = {
+  color: 'blue'
+};
+
+let sayColor = () => console.log(this.color);
+
+sayColor();     // 'red'
+
+o.sayColor = sayColor;
+o.sayColor();   // 'red'
+This is especially useful in situations where events or timeouts will invoke a function inside a callback where the invoking object is not the intended object.
+
+When an arrow function is used in these situations, the context referenced by this is preserved:
+
+Copy
+function Person() {
+   this.myName = 'CSS';
+   // 'this' will be the Person instance
+   setTimeout(() => console.log(this.myName), 1000);
+}
+
+function Friend() {
+   this.myName = 'HTML';
+
+   // 'this' will be the window object
+   setTimeout(function() { 
+                   console.log(this.myName); 
+               }, 1000);
+}
+
+new Person();   // CSS
+new Friend();  // undefined
+Output:
+
+
+The function names are variables containing pointers, so the global sayColor() function and o.sayColor() point to the same function even though they execute in different contexts.
