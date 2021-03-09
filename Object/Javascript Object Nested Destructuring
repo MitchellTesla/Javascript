@@ -1,0 +1,74 @@
+There are no restrictions on referencing nested properties or assignment targets.
+
+This allows you to do things like perform copies of object properties:
+
+Copy
+let person = {
+  name: 'HTML',
+  age: 27,
+  job: {
+    title: 'Mark up'
+  }
+};
+let personCopy = {};
+
+
+({
+  name: personCopy.name,
+  age: personCopy.age,
+  job: personCopy.job
+} = person);
+Because an object reference was assigned into personCopy, changing a property inside the person.job object will be propagated to personCopy:
+
+Copy
+person.job.title = 'Hacker'
+
+console.log(person);
+// { name: 'HTML', age: 27, job: { title: 'Hacker' } }
+
+console.log(personCopy);
+// { name: 'HTML', age: 27, job: { title: 'Hacker' } }
+Destructuring assignments can be nested to match nested property references:
+
+Copy
+let person = {
+  name: 'HTML',
+  age: 27,
+  job: {
+    title: 'Mark up'
+  }
+ };
+Declares 'title' variable and assigns person.job.title as its value
+
+Copy
+let { job: { title }} = person;
+
+console.log(title);  // Mark up
+You cannot use nested property references when an outer property is undefined.
+
+This is true for both source objects and destination objects:
+
+Copy
+let person = {
+  job: {
+    title: 'Mark up'
+  }
+ };
+let personCopy = {};
+
+// 'foo' is undefined on the source object
+({
+  foo: {
+    bar: personCopy.bar
+  }
+} = person);
+TypeError: Cannot destructure property 'bar' of 'undefined' or 'null'.
+
+Copy
+// 'job' is undefined on the destination object
+({
+  job: {
+    title: personCopy.job.title
+  }
+} = person);
+TypeError: Cannot set property 'title' of undefined
