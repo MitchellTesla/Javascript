@@ -1,0 +1,88 @@
+Functions in ECMAScript are declared using the function keyword, followed by a set of arguments and then the body of the function.
+
+The basic function syntax is as follows:
+
+Copy
+function functionName(arg0, arg1,...,argN) {
+    statements
+}
+Here's an example:
+
+Copy
+function sayHi(name, message) {
+    console.log("Hello " + name + ", " + message);
+}
+This function can then be called by using the function name, followed by the function arguments enclosed in parentheses and separated by commas, if there are multiple arguments.
+
+The code to call the sayHi() function looks like this:
+
+Copy
+sayHi("CSS", "how are you today?");
+The output of this function call is, "Hello CSS, how are you today?"
+
+The named arguments name and message are used as part of a string concatenation that is ultimately displayed in an console.log.
+
+Functions in ECMAScript need not specify whether they return a value.
+
+Any function can return a value at any time by using the return statement followed by the value to return.
+
+Consider this example:
+
+Copy
+function sum(num1, num2) {
+  return num1 + num2;
+}
+The sum() function adds two values together and returns the result.
+
+Aside from the return statement, there is no special declaration indicating that the function returns a value.
+
+This function can be called using the following:
+
+Copy
+const result = sum(5, 10);
+A function stops executing and exits immediately when it encounters the return statement.
+
+Any code that comes after a return statement will never be executed.
+
+For example:
+
+Copy
+function sum(num1, num2) {
+  return num1 + num2;
+  console.log("Hello world");  // never executed
+}
+In this example, the console.log will never be displayed because it appears after the return statement.
+
+It's also possible to have more than one return statement in a function, like this:
+
+Copy
+function diff(num1, num2) {
+  if (num1 < num2) {
+    return num2 - num1;
+  } else {
+    return num1 - num2;
+  }
+}
+Here, the diff() function determines the difference between two numbers.
+
+If the first number is less than the second, it subtracts the first from the second; otherwise it subtracts the second from the first.
+
+Each branch of the code has its own return statement that does the correct calculation.
+
+The return statement can also be used without specifying a return value.
+
+When used in this way, the function stops executing immediately and returns undefined as its value.
+
+This is typically used in functions that don't return a value to stop function execution early, as in the following example, where the console.log won't be displayed:
+
+Copy
+function sayHi(name, message) {
+  return;
+  console.log("Hello " + name + ", " + message);  // never called
+}
+Strict mode places several restrictions on functions:
+
+No function can be named eval or arguments.
+No named parameter can be named eval or arguments.
+No two named parameters can have the same name.
+If any of these occur, it's considered a syntax error and the code will not execute.
