@@ -1,0 +1,14 @@
+The multiply operator is represented by an asterisk (*) and is used, as one might suspect, to multiply two numbers.
+
+The syntax is the same as in C, as shown here:
+
+Copy
+let result = 3 * 5;
+The multiply operator has the following unique behaviors when dealing with special values:
+
+If the operands are numbers, regular arithmetic multiplication is performed. If the result cannot be represented by ECMAScript, either Infinity or -Infinity is returned.
+If either operand is NaN, the result is NaN.
+If Infinity is multiplied by 0, the result is NaN.
+If Infinity is multiplied by any finite number other than 0, the result is either Infinity or -Infinity, depending on the sign of the second operand.
+If Infinity is multiplied by Infinity, the result is Infinity.
+If either operand isn't a number, it is converted to a number behind the scenes using Number() and then the other rules are applied.
