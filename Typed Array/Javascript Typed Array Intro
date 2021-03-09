@@ -1,0 +1,40 @@
+ECMAScript 6 typed array is designed for efficiently passing binary data to native libraries.
+
+Typed Array type refers to a collection of specialized arrays that contain numeric types.
+
+ArrayBuffers
+The ArrayBuffer is the fundamental unit referred to by all typed arrays and views.
+
+For example, Float32Array is one type of "view" that allows the JavaScript runtime to access a block of allocated memory called an ArrayBuffer.
+
+The TypedArrayBuffer is a variant of the ArrayBuffer that can be passed between execution contexts without performing a copy.
+
+ArrayBuffer is a normal JavaScript constructor that can be used to allocate a specific number of bytes in memory.
+
+Copy
+const buf = new ArrayBuffer(16);  // Allocates 16 bytes of memory
+console.log(buf.byteLength);            // 16
+An ArrayBuffer can never be resized once it is created.
+
+However, you are able to copy all or part of an existing ArrayBuffer into a new instance using slice():
+
+Copy
+const buf1 = new ArrayBuffer(16);
+const buf2 = buf1.slice(4, 12);
+console.log(buf2.byteLength);  // 8
+Note
+ArrayBuffer is similar to the C++ malloc().
+
+If ArrayBuffer allocation fails, it throws an error.
+
+ArrayBuffer allocation cannot exceed Number.MAX_SAFE_INTEGER (2 ^ 53) bytes.
+
+Declaring an ArrayBuffer initializes all the bits to 0s.
+
+Heap memory allocated by ArrayBuffer is garbage collected.
+
+The contents of an ArrayBuffer cannot be read or written with only a reference to the buffer instance.
+
+To read or write data inside, you must do so with a view.
+
+There are different types of views, but they all refer to binary data stored in an ArrayBuffer.
