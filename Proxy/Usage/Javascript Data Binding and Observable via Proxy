@@ -1,0 +1,52 @@
+Proxying can use the existence of various parts of the runtime that would otherwise be disparate.
+
+For example, a proxied class can be bound to a global collection of instances so that every created instance is added to that collection:
+
+Copy
+const userList = [];
+
+class User {
+  constructor(name) {
+    this.name_ = name;
+  }
+ }
+
+const proxy = new Proxy(User, {
+  construct() {
+    const newUser = Reflect.construct(...arguments);
+    userList.push(newUser);
+    return newUser;
+  }
+ });
+
+new proxy('CSS1');
+new proxy('CSS2');
+new proxy('CSS3');
+
+console.log(userList); // [User {}, User {}, User{}]
+Output:
+
+
+Alternately, a collection can be bound to an emitter, which will fire each time a new instance is inserted:
+
+Copy
+const userList = [];
+
+function emit(newValue) {
+  console.log(newValue);
+ }
+
+const proxy = new Proxy(userList, {
+  set(target, property, value, receiver) {
+    const result = Reflect.set(...arguments);
+    if (result) {
+      emit(Reflect.get(target, property, receiver));
+    }
+    return result;
+  }
+ });
+
+proxy.push('CSS1');
+
+proxy.push('CSS2');
+Output:
