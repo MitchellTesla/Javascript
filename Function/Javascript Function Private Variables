@@ -1,0 +1,87 @@
+Strictly speaking, JavaScript has no concept of private members; all object properties are public.
+
+There is a concept of private variables.
+
+Any variable defined inside a function or block is considered private because it is inaccessible outside that function.
+
+This includes function arguments, local variables, and functions defined inside other functions.
+
+Consider the following:
+
+Copy
+function add(num1, num2) {
+   let sum = num1 + num2;
+   return sum;
+}
+In this function, there are three private variables: num1, num2, and sum.
+
+These variables are accessible inside the function but can't be accessed outside it.
+
+If a closure were to be created inside this function, it would have access to these variables through its scope chain.
+
+Using this knowledge, you can create public methods that have access to private variables.
+
+A privileged method is a public method that has access to private variables and/or private functions.
+
+There are two ways to create privileged methods on objects.
+
+The first is to do so inside a constructor, as in this example:
+
+Copy
+function MyObject() {
+ // private variables and functions
+ let privateVariable = 10;
+
+ function privateFunction() {
+   return false;
+ }
+
+ // privileged methods
+ this.publicMethod = function() {
+   privateVariable++;
+   return privateFunction();
+ };
+}
+This pattern defines all private variables and functions inside the constructor.
+
+Then privileged methods can be created to access those private members.
+
+This works because the privileged methods, when defined in the constructor, become closures with full access to all variables and functions defined inside the constructor's scope.
+
+In this example, the variable privateVariable and the function privateFunction() are accessed only by publicMethod().
+
+Once an instance of MyObject is created, there is no way to access privateVariable and privateFunction() directly; you can do so only by way of publicMethod().
+
+You can define private and privileged members to hide data that should not be changed directly, as in this example:
+
+Copy
+function Person(name) {
+  this.getName = function() {
+    return name;
+  };
+
+  this.setName = function (value) {
+    name = value;
+  };
+}
+
+let person = new Person('CSS');
+console.log(person.getName());   // 'CSS'
+person.setName('HTML');
+console.log(person.getName());   // 'HTML'
+The constructor in this code defines two privileged methods: getName() and setName().
+
+Each method is accessible outside the constructor and accesses the private name variable.
+
+Outside the Person constructor, there is no way to access name.
+
+Because both methods are defined inside the constructor, they are closures and have access to name through the scope chain.
+
+The private variable name is unique to each instance of Person because the methods are being re-created each time the constructor is called.
+
+Note
+You must use the constructor pattern to accomplish this result.
+
+The constructor pattern has issues since new methods are created for each instance.
+
+Using static private variables to achieve privileged methods enables the user to avoid this problem.
