@@ -1,0 +1,23 @@
+Search for a vertical tab character in a string:
+
+Copy
+let str = "Visit Demo2s.com.\vLearn JavaScript.";
+let patt1 = /\v/;
+let result = str.search(patt1);
+console.log(result);
+Output:
+
+
+Description
+The \v metacharacter can find a vertical tab character.
+
+\v returns the position where the vertical tab character was found.
+
+If no match is found, it returns -1.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+\v	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("\\v") or simply: /\v/
