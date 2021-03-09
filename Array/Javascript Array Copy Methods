@@ -1,0 +1,87 @@
+copyWithin() performs an iterative shallow copy of some of the array and overwrites existing values beginning at the provided index.
+
+It uses the same conventions with respect to start and end indices.
+
+Copy the contents of ints beginning at index 0 to the values beginning at index 5.
+
+Stops when it reaches the end of the array either in the source indices or the destination indices.
+
+Copy
+let ints = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+ints.copyWithin(5);
+console.log(ints);
+Output:
+
+
+Copy the contents of ints beginning at index 5 to the values beginning at index 0.
+
+Copy
+let ints = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+ints.copyWithin(0, 5);
+console.log(ints);
+Output:
+
+
+Copy the contents of ints beginning at index 0 and ending at index 3 to values beginning at index 4.
+
+Copy
+let ints = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+ints.copyWithin(4, 0, 3);
+console.log(ints);
+Output:
+
+
+The JS engine will perform a full copy of the range of values before inserting, so there is no danger of overwrite during the copy.
+
+Copy
+let ints = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+ints.copyWithin(2, 0, 6);
+console.log(ints);
+Output:
+
+
+Support for negative indexing behaves identically to fill() in that negative indices are calculated relative to the end of the array
+
+Copy
+let ints = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+ints.copyWithin(-4, -7, -3);
+console.log(ints);
+Output:
+
+
+copyWithin() silently ignores ranges that exceed the boundaries of the array, are zero length, or go backwards:
+
+Copy with too low indices is noop
+
+Copy
+let ints = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+ints.copyWithin(1, -15, -12);
+console.log(ints);
+Output:
+
+
+Copy with too high indices is noop
+
+Copy
+let ints = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+ints.copyWithin(1, 12, 15);
+console.log(ints);
+Output:
+
+
+Copy with reversed indices is noop
+
+Copy
+let ints = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+ints.copyWithin(2, 4, 2);
+console.log(ints);
+Output:
+
+
+Copy with partial index overlap is best effort
+
+Copy
+let ints = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+ints.copyWithin(4, 7, 10)
+console.log(ints);
+Output:
