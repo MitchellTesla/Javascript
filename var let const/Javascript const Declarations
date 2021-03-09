@@ -1,0 +1,64 @@
+const must be initialized with a value, and that value cannot be redefined after declaration.
+
+Attempting to modify a const variable will result in a runtime error.
+
+Copy
+const age = 26;
+age = 36;  // TypeError: assignment to a constant
+const still disallows redundant declaration
+
+Copy
+const name = 'Javascript';
+const name = 'CSS';  // SyntaxError
+const is still scoped to blocks
+
+Copy
+const name = 'Javascript';
+if (true) {
+   const name = 'CSS';
+}
+console.log(name);  // Javascript
+The const declaration is only enforced with respect to the reference to the variable that it points to.
+
+If a const variable references an object, it does not violate the const constraints to modify properties inside that object.
+
+Copy
+const person = {};
+person.name = 'Javascript';  // ok
+You cannot use const to declare for loop iterators:
+
+Copy
+for (const i = 0; i < 10; ++i) {}
+   // TypeError: assignment to constant variable
+You can use const to declare a for loop variable that is not modified.
+
+This is especially relevant in the case of for-of and for-in loops:
+
+Define j as constant inside for loop
+
+Copy
+let i = 0;
+for (const j = 7; i < 5; ++i) {
+  console.log(j);
+}
+Output:
+
+
+Use const in for-in loop
+
+Copy
+for (const key in {a: 1, b: 2}) {
+  console.log(key);
+}
+Output:
+
+
+
+Use const in for-of loop
+
+Copy
+for (const value of [1,2,3,4,5]) {
+  console.log(value);
+}
+Output:
+12345
