@@ -1,0 +1,27 @@
+Although object properties are typically accessed using dot notation, which is common to many object-oriented languages, it's also possible to access properties via bracket notation.
+
+When you use bracket notation, a string containing the property name is placed between the brackets, as in this example:
+
+Copy
+let person = {
+  name: "CSS",
+  age: 19
+};
+console.log(person["name"]);  // "CSS"
+console.log(person.name);     // "CSS"
+Functionally, there is no difference between the two approaches.
+
+The main advantage of bracket notation is that it allows you to use variables for property access, as in this example:
+
+Copy
+let propertyName = "name";
+console.log(person[propertyName]);  // "CSS"
+You can also use bracket notation when the property name contains characters that would be either a syntax error or a keyword/reserved word. For example:
+
+Copy
+person["first name"] = "CSS";
+Because the name "first name" contains a space, you can't use dot notation to access it.
+
+The property names can contain non alphanumeric characters-you just need to use bracket notation to access them.
+
+Generally speaking, dot notation is preferred unless variables are necessary to access properties by name.
