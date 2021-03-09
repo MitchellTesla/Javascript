@@ -1,0 +1,58 @@
+ES6 added two methods, fill() and copyWithin(), to respectively allow for batch fill and copy inside an array.
+
+Both methods have a similar function signature.
+
+We can specify a range within an existing array instance using an inclusive start and exclusive end index.
+
+Arrays that use this method will never be resized.
+
+The fill() method allows you to insert the same value into all or part of an existing array.
+
+Specifying the optional start index instructs the fill to begin at that index, and the fill will continue to the end of the array unless an end index is provided.
+
+Negative indices are interpreted from the end of the array:
+
+Copy
+const zeroes = [0, 0, 0, 0, 0];
+
+// Fill the entire array with 5
+zeroes.fill(5);
+console.log(zeroes);   // [5, 5, 5, 5, 5]
+zeroes.fill(0);  // reset
+
+// Fill all indices >=3 with 6
+zeroes.fill(6, 3);
+console.log(zeroes);   // [0, 0, 0, 6, 6]
+zeroes.fill(0);  // reset
+
+// Fill all indices >= 1 and < 3 with 7
+zeroes.fill(7, 1, 3);
+console.log(zeroes);   // [0, 7, 7, 0, 0];
+zeroes.fill(0);  // reset
+
+// Fill all indices >=1 and < 4 with 8
+// (-4 + zeroes.length = 1)
+// (-1 + zeroes.length = 4)
+zeroes.fill(8, -4, -1);
+console.log(zeroes);
+Output:
+
+
+fill() silently ignores ranges that exceed the boundaries of the array, are zero length, or go backwards:
+
+Copy
+const zeroes = [0, 0, 0, 0, 0];
+
+// Fill with too low indices is noop
+zeroes.fill(1, -10, -6);
+console.log(zeroes);
+Output:
+
+
+Output:
+
+
+Output:
+
+
+Output:
