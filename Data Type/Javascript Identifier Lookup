@@ -1,0 +1,66 @@
+When an identifier is referenced for reading or writing, Javascript need to determine what identifier it represents.
+
+The search starts at the front of the scope chain, looking for an identifier with the given name.
+
+If it finds that identifier name in the local context, then the search stops and the variable is set; if the search doesn't find the variable name, it continues along the scope chain.
+
+This process continues until the search reaches the global context's variable object.
+
+If the identifier isn't found there, it hasn't been declared.
+
+Consider the following example:
+
+Copy
+var color = 'blue';
+
+function getColor() {
+  return color;
+}
+
+console.log(getColor());  // 'blue'
+When the function getColor() is called in this example, the variable color is referenced.
+
+At that point, a two-step search begins.
+
+First getColor()'s variable object is searched for an identifier named color.
+
+When it isn't found, the search goes to the next variable object, the global context, and then searches for an identifier named color.
+
+Because color is defined in that variable object, the search ends.
+
+Referencing local variables automatically stops the search from going into another variable object.
+
+The identifiers in a parent context cannot be referenced if an identifier in the local context has the same name, as in this example:
+
+Copy
+var color = 'blue';
+
+function getColor() {
+  let color = 'red';
+  return color;
+}
+
+console.log(getColor());  // 'red'
+Using block scoped declarations does not change the search process, but it can add extra levels to the lexical hierarchy:
+
+Copy
+var color = 'blue';
+
+function getColor() {
+    let color = 'red';
+    {
+          let color = 'green';
+          return color;
+    }
+}
+
+console.log(getColor());  // 'green'
+In this modified code, a local variable named color is declared inside the getColor() function.
+
+When the function is called, the variable is declared.
+
+When the second line of the function is executed, it knows that a variable named color must be used.
+
+The search begins in the local context, where it finds a variable named color with a value of 'green'.
+
+Because the variable was found, the search stops and the local variable is used, meaning that the function returns 'green'.
