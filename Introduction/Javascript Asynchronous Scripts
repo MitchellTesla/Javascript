@@ -1,0 +1,26 @@
+HTML5 adds the async attribute for <script> elements.
+
+The async attribute changes the way the script is processed.
+
+async applies only to external scripts and signals the browser to begin downloading the file immediately.
+
+Unlike defer, scripts marked as async are not guaranteed to execute in the order in which they are specified. For example:
+
+Copy
+<!DOCTYPE html>
+<html>
+  <head>
+     <title>Example HTML Page</title>
+     <script async src="example1.js"></script>
+     <script async src="example2.js"></script>
+  </head>
+  <body>
+     <!-- content here -->
+  </body>
+</html>
+
+In this code, the second script file might execute before the first.
+
+There should be no dependencies between the two script files.
+
+For XHTML documents, specify the async attribute as async="async".
