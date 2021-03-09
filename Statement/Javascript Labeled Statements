@@ -1,0 +1,13 @@
+It is possible to label statements for later use with the following syntax:
+
+Copy
+label: statement
+Here's an example:
+
+Copy
+start: for (let i = 0; i < count; i++) {
+     console.log(i);
+}
+In this example, the label start can be referenced later by using the break or continue statement.
+
+Labeled statements are typically used with nested loops.
