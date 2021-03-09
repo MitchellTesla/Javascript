@@ -1,0 +1,22 @@
+Because all assignments must go through the set() trap, you can allow or reject assignments based on the content of the intended value:
+
+Copy
+const target = {
+  MyNumber: 0
+};
+
+const proxy = new Proxy(target, {
+  set(target, property, value) {
+    if (typeof value !== 'number') {
+      return false;
+    } else {
+      return Reflect.set(...arguments);
+    }
+  }
+});
+proxy.MyNumber = 1;
+console.log(proxy.MyNumber);  // 1
+proxy.MyNumber = '2';
+console.log(proxy.MyNumber);  // 1
+Output:
+
