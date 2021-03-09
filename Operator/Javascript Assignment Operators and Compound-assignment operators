@@ -1,0 +1,71 @@
+Simple assignment is done with the equal sign (=) and assigns the value on the right to the variable on the left, as shown in the following example:
+
+Copy
+let num = 10;
+Compound assignment is done with one of the multiplicative, additive, or bitwise-shift operators followed by an equal sign (=).
+
+These assignments are designed as shorthand for such common situations as this:
+
+Copy
+let num = 10;
+num = num + 10;
+The second line of code can be replaced with a compound assignment:
+
+Copy
+let num = 10;
+num += 10;
+Compound-assignment operators exist for each of the major mathematical operations and a few others as well.
+
+They are as follows:
+
+Operation	Compound-assignment operators
+Multiply/assign	*=
+Divide/assign	/=
+Modulus/assign	%=
+Add/assign	+=
+Subtract/assign	-=
+Left shift/assign	<<=
+Signed right shift/assign	>>=
+Unsigned right shift/assign	>>>=
+Examples:
+
+Operator
+Example
+Equivalent
++=
+a += b
+a = a + b
+-=
+a -= b
+a = a - b
+*=
+a *= b
+a = a * b
+/=
+a /= b
+a = a / b
+%=
+a %= b
+a = a % b
+**=
+a **= b
+a = a ** b
+<<=
+a <<= b
+a = a << b
+>>=
+a >>= b
+a = a >> b
+>>>=
+a >>>= b
+a = a >>> b
+&=
+a &= b
+a = a & b
+|=
+a |= b
+a = a | b
+^=
+a ^= b
+a = a ^ b
+These operators are designed specifically as shorthand ways of achieving operations.
