@@ -1,0 +1,77 @@
+During inheritance a subtype will need to either override a supertype method or introduce new methods that don't exist on the supertype.
+
+To accomplish this, the methods must be added to the prototype after the prototype has been assigned.
+
+Consider this example:
+
+Copy
+function SuperType() {
+    this.property = true;
+}
+
+SuperType.prototype.getSuperValue = function() {
+    return this.property;
+};
+
+function SubType() {
+    this.subproperty = false;
+}
+// inherit from SuperType
+SubType.prototype = new SuperType();
+
+// new method
+SubType.prototype.getSubValue = function() {
+    return this.subproperty;
+};
+
+// override existing method
+SubType.prototype.getSuperValue = function() {
+    return false;
+};
+
+let instance = new SubType();
+console.log(instance.getSuperValue()); // false
+The first is getSubValue(), which is a new method on the SubType.
+
+The second is getSuperValue(), which already exists in the prototype chain but is being shadowed here.
+
+When getSuperValue() is called on an instance of SubType, it will call this one, but instances of SuperType will still call the original.
+
+Both of the methods are defined after the prototype has been assigned as an instance of SuperType.
+
+The object literal approach to creating prototype methods cannot be used with prototype chaining because you end up overwriting the chain.
+
+Here's an example:
+
+Copy
+function SuperType() {
+  this.property = true;
+}
+
+SuperType.prototype.getSuperValue = function() {
+  return this.property;
+};
+
+function SubType() {
+  this.subproperty = false;
+}
+
+// inherit from SuperType
+SubType.prototype = new SuperType();
+
+// try to add new methods - this nullifies the previous line
+SubType.prototype = {
+  getSubValue() {
+    return this.subproperty;
+  },
+
+  someOtherMethod() {
+    return false;
+  }
+};
+
+let instance = new SubType();
+console.log(instance.getSuperValue());   // error!
+In this code, the prototype is reassigned to be an object literal after it was already assigned to be an instance of SuperType.
+
+The prototype now contains a new instance of Object instead of an instance of SuperType, so the prototype chain has been broken.
