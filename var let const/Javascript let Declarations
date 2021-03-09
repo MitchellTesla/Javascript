@@ -1,0 +1,58 @@
+let keyword works like var with some important differences.
+
+let is block scoped, but var is function scoped.
+
+Copy
+if (true) {
+  var name = 'Javascript';
+  console.log(name);  // Javascript
+}
+console.log(name);    // Javascript
+
+if (true) {
+  let age = 11;
+  console.log(age);   // 11
+}
+console.log(age);     // ReferenceError: age is not defined
+Here, the age variable cannot be referenced outside the if block because its scope does not extend outside the block.
+
+Block scope is a subset of function scope, so any scope limitations that apply to var declarations will also apply to let declarations.
+
+A let declaration does not allow for any redundant declarations within a block scope.
+
+Doing so will result in an error:
+
+Copy
+var name;
+var name;  //no error
+
+let age;
+let age;  // SyntaxError; identifier 'age' has already been declared
+The JavaScript engine keeps track of identifiers used for variable declarations.
+
+Nesting identifiers behaves as you would expect with no errors because no redeclaration is occurring:
+
+Copy
+var name = 'CSS';
+console.log(name);  // 'CSS'
+if (true) {
+  var name = 'Javascript';
+  console.log(name);  // 'Javascript'
+}
+
+let age = 12;
+console.log(age);  // 12
+if (true) {
+  let age = 11;
+  console.log(age);  // 11
+}
+The declaration redundancy errors are not a function of order, and are not affected if let is mixed with var.
+
+The two keywords specify how the variables exist inside the relevant scope.
+
+Copy
+var name;
+let name;  // SyntaxError
+
+let age;
+var age;   // SyntaxError
