@@ -1,0 +1,34 @@
+The web browser vendors recognized a need early on to format HTML dynamically using JavaScript.
+
+As a result, they extended the specification to include several methods specifically designed to aid in common HTML formatting tasks.
+
+The following table enumerates the HTML methods.
+
+Typically these methods aren't used, because they tend to create non-semantic markup.
+
+Method
+Output
+anchor(name)
+<a name="name ">string</a>
+big()
+<big>string</big>
+bold()
+<b>string</b>
+fixed()
+<tt>string</tt>
+fontcolor(color)
+<font color="color">string</font>
+fontsize(size)
+<font size="size">string</font>
+italics()
+<i>string</i>
+link(url)
+<a href="url">string</a>
+small()
+<small>string</small>
+strike()
+<strike>string</strike>
+sub()
+<sub>string</sub>
+sup()
+<sup>string</sup>
