@@ -1,0 +1,20 @@
+ECMAScript strict mode is a different parsing and execution model for JavaScript.
+
+To enable strict mode for an entire script, include the following at the top:
+
+Copy
+"use strict";
+This is a pragma that tells supporting JavaScript engines to change into strict mode.
+
+You may also specify just a function to execute in strict mode by including the pragma at the top of the function body:
+
+Copy
+function doSomething() {
+  "use strict";
+  // function body
+}
+Strict mode changes how JavaScript is executed. All modern browsers support strict mode.
+
+"use strict" does not include any language keywords: the directive is just an expression statement that consists of a special string literal (in single or double quotes).
+
+"use strict" can appear only at the start of a script or at the start of a function body, before any real statements have appeared.
