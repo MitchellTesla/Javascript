@@ -1,0 +1,22 @@
+ECMAScript 5 defines an additional method called bind().
+
+The bind() method creates a new function instance whose this value is bound to the value that was passed into bind().
+
+For example:
+
+Copy
+window.color = 'red';
+var o = {
+  color: 'blue'
+};
+
+function sayColor() {
+  console.log(this.color);
+}
+let objectSayColor = sayColor.bind(o);
+objectSayColor();  // blue
+Here, a new function called objectSayColor() is created from sayColor() by calling bind() and passing in the object o.
+
+The objectSayColor() function has a this value equivalent to o, so calling the function, even as a global call, results in the string "blue" being displayed.
+
+For functions, the inherited methods toLocaleString() and toString() always return the function's code.
