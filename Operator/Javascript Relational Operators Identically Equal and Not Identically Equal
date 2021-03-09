@@ -1,0 +1,40 @@
+The identically equal and not identically equal operators do the same thing as equal and not equal, except that they do not convert operands before testing for equality.
+
+The strict equality operator === evaluates its operands, then compares the two values as follows, performing no type conversion:
+
+If the two values have different types, they are not equal.
+If both values are null or both values are undefined, they are equal.
+If both values are the boolean value true or both are the boolean value false, they are equal.
+If one or both values is NaN, they are not equal.
+If both values are numbers and have the same value, they are equal. If one value is 0 and the other is -0, they are also equal.
+If both values are strings and contain exactly the same 16-bit values in the same positions, they are equal. If the strings differ in length or content, they are not equal.
+If both values refer to the same object, array, or function, they are equal. If they refer to different objects, they are not equal, even if both objects have identical properties.
+The identically equal operator is represented by three equal signs (===) and returns true only if the operands are equal without conversion, as in this example:
+
+Copy
+let result1 = ("55" == 55);   // true - equal because of conversion
+let result2 = ("55" === 55);  // false - not equal because different data types
+In this code, the first comparison uses the equal operator to compare the string "55" and the number 55, which returns true.
+
+This happens because the string "55" is converted to the number 55 and then compared with the other number 55.
+
+The second comparison uses the identically equal operator to compare the string and the number without conversion, and of course, a string isn't equal to a number, so this outputs false.
+
+The not identically equal operator is represented by an exclamation point followed by two equal signs (!==) and returns true only if the operands are not equal without conversion.
+
+For example:
+
+Copy
+let result1 = ("55" != 55);  // false - equal because of conversion
+let result2 = ("55" !== 55);   // true - not equal because different data types
+Here, the first comparison uses the not-equal operator, which converts the string "55" to the number 55, making it equal to the second operand, also the number 55.
+
+Therefore, this evaluates to false because the two are considered equal.
+
+The second comparison uses the not identically equal operator.
+
+While null == undefined is true because they are similar values, null === undefined is false because they are not the same type.
+
+Because of the type conversion issues with the equal and not-equal operators, it is recommended to use identically equal and not identically equal instead.
+
+This helps to maintain data type integrity throughout your code
