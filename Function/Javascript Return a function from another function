@@ -1,0 +1,51 @@
+In Javascript returning a function from a function is possible.
+
+For instance, suppose that you have an array of objects and want to sort the array on an arbitrary object property.
+
+A comparison function for the array's sort() method accepts only two arguments, which are the values to compare, but really you need a way to indicate which property to sort by.
+
+This problem can be addressed by defining a function to create a comparison function based on a property name, as in the following example:
+
+Copy
+function createComparisonFunction(propertyName) {
+  return function(object1, object2) {
+    let value1 = object1[propertyName];
+    let value2 = object2[propertyName];
+
+    if (value1 < value2) {
+      return -1;
+    } else if (value1 > value2) {
+      return 1;
+    } else {
+      return 0;
+    }
+  };
+}
+This function is a function inside of a function, preceded by the return operator.
+
+The propertyName argument is accessible from the inner function and is used with bracket notation to retrieve the value of the given property.
+
+Once the property values are retrieved, a simple comparison can be done.
+
+This function can be used as in the following example:
+
+Copy
+let data = [
+  {name: "HTML", age: 18},
+  {name: "CSS", age: 19}
+];
+
+data.sort(createComparisonFunction("name"));
+console.log(data[0].name);  // CSS
+
+data.sort(createComparisonFunction("age"));
+console.log(data[0].name);  // HTML
+In this code, an array called data is created with two objects.
+
+Each object has a name property and an age property.
+
+By default, the sort() method would call toString() on each object to determine the sort order, which wouldn't give logical results in this case.
+
+Calling createComparisonFunction("name") creates a comparison function that sorts based on the name property, which means the first item will have the name "CSS" and an age of 19.
+
+When createComparisonFunction("age") is called, it creates a comparison function that sorts based on the age property, meaning the first item will be the one with its name equal to "HTML" and age equal to 28.
