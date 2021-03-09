@@ -1,0 +1,27 @@
+We can perform a destructured assignment inside a function parameter list.
+
+It does not affect the arguments object, but it allows you to declare variables inside the function signature that are immediately available inside the function body:
+
+Copy
+let person = {
+  name: 'HTML',
+  age: 27
+};
+
+function printPerson(foo, {name, age}, bar) {
+  console.log(arguments);
+  console.log(name, age);
+}
+
+function printPerson2(foo, {name: personName, age: personAge}, bar) {
+  console.log(arguments);
+  console.log(personName, personAge);
+}
+
+printPerson('1st', person, '2nd');
+// ['1st', { name: 'HTML', age: 27 }, '2nd']
+// 'HTML', 27
+
+printPerson2('1st', person, '2nd');
+// ['1st', { name: 'HTML', age: 27 }, '2nd']
+// 'HTML', 27
