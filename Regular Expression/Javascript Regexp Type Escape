@@ -1,0 +1,18 @@
+All metacharacters must be double-escaped, as must characters that are already escaped, such as \n.
+
+The \ character, which is normally escaped in strings as \\ becomes \\\\ when used in a regular-expression string.
+
+The following table shows some patterns in their literal form and the equivalent string that would be necessary to use the RegExp constructor.
+
+Literal Pattern
+String Equivalent
+/\[bc\]at/
+"\\[bc\\]at"
+/\.at/
+"\\.at"
+/name\/age/
+"name\\/age"
+/\d.\d{1,2}/
+"\\d.\\d{1,2}"
+/\w\\hello\\123/
+"\\w\\\\hello\\\\123"
