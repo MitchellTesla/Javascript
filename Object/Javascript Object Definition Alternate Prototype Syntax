@@ -1,0 +1,72 @@
+We can overwrite the prototype with an object literal that contains all of the properties and methods, as in this example:
+
+Copy
+function Person() {}
+
+Person.prototype = {
+  name: "CSS",
+  age: 19,
+  job: "Style",
+  sayName() {
+    console.log(this.name);
+  }
+};
+In this example, the Person.prototype property is set equal to a new object created with an object literal.
+
+In this way the constructor property no longer points to Person.
+
+When a function is created, its prototype object is created and the constructor is automatically assigned.
+
+This syntax overwrites the default prototype object completely/
+
+The constructor property is equal to that of a new Object constructor instead of the function itself.
+
+Although the instanceof operator still works reliably, you cannot rely on the constructor to indicate the type of object, as this example shows:
+
+Copy
+let friend = new Person();
+
+console.log(friend instanceof Object);      // true
+console.log(friend instanceof Person);      // true
+console.log(friend.constructor == Person);  // false
+console.log(friend.constructor == Object);  // true
+Here, instanceof still returns true for both Object and Person, but the constructor property is now equal to Object instead of Person.
+
+If the constructor's value is important, you can set it specifically back to the appropriate value, as shown here:
+
+Copy
+function Person() {
+}
+
+Person.prototype = {
+  constructor: Person,
+  name: "CSS",
+  age: 19,
+  job: "Style",
+  sayName() {
+    console.log(this.name);
+  }
+};
+This code includes a constructor property and sets it equal to Person, ensuring that the property contains the appropriate value.
+
+Keep in mind that restoring the constructor in this manner creates a property with [[Enumerable]] set to true.
+
+Native constructor properties are not enumerable by default, so if you're using an ECMAScript-compliant JavaScript engine, you may wish to use Object.defineProperty() instead:
+
+Copy
+function Person() {}
+
+Person.prototype = {
+  name: "CSS",
+  age: 19,
+  job: "Style",
+  sayName() {
+    console.log(this.name);
+  }
+};
+
+// restore the constructor
+Object.defineProperty(Person.prototype, "constructor", {
+  enumerable: false,
+  value: Person
+});
