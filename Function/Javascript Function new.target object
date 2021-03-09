@@ -1,0 +1,18 @@
+Functions have always been able to behave as both a constructor to instantiate a new object, and as a normal callable function.
+
+ECMAScript 6 can determine if a function was invoked with the new keyword using new.target.
+
+If a function is called normally, new.target will be undefined.
+
+If a function is called using the new keyword, new.target will reference the constructor or function.
+
+Copy
+function Person() {
+   if (!new.target) {
+      throw 'Person must be instantiated using "new"'
+   }
+   console.log('Person instantiated using "new"';
+}
+
+new Person();  // Person instantiated using "new"
+Person();      // Error: Person must be instantiated using "new"
