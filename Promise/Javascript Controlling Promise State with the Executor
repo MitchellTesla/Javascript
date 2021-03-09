@@ -1,0 +1,68 @@
+Because the state of a promise is private, it can only be manipulated internally.
+
+This internal manipulation is performed inside the promise's executor function.
+
+The executor function has two primary duties: initializing the asynchronous behavior of the promise, and controlling any eventual state transition.
+
+Control of the state transition is accomplished by invoking one of its two function parameters, typically named resolve and reject.
+
+Invoking resolve will change the state to fulfilled; invoking reject will change the state to rejected.
+
+Invoking rejected() will also throw an error.
+
+Copy
+let p1 = new Promise((resolve, reject) => resolve());
+setTimeout(console.log, 0, p1);  // Promise <resolved>
+
+let p2 = new Promise((resolve, reject) => reject());
+setTimeout(console.log, 0, p2);  // Promise <rejected>
+// Uncaught error (in promise)
+The executor function will execute synchronously, as it acts as the initializer for the promise.
+
+This order of execution is demonstrated here:
+
+Copy
+new Promise(() => setTimeout(console.log, 0, 'executor'));
+setTimeout(console.log, 0, 'promise initialized');
+Output:
+
+
+You can delay the state transition by adding a setTimeout:
+
+Copy
+let p = new Promise((resolve, reject) => setTimeout(resolve, 1000));
+
+// When this console.log executes, 
+// the timeout callback has not yet executed:
+setTimeout(console.log, 0, p);  // Promise <pending>
+Once either resolve or reject is invoked, the state transition cannot be undone.
+
+Attempts to further mutate the state will silently be ignored.
+
+This is demonstrated here:
+
+Copy
+let p = new Promise((resolve, reject) => {
+   resolve();
+   reject();  // No effect
+});
+
+setTimeout(console.log, 0, p);  // Promise <resolved>
+You can avoid promises getting stuck in a pending state by adding timed exit behavior.
+
+For example, you can set a timeout to reject the promise after 10 seconds:
+
+Copy
+let p = new Promise((resolve, reject) => {
+    setTimeout(reject, 10000);  // After 10 seconds, invoke reject()
+    // Do executor things
+});
+
+setTimeout(console.log, 0, p);      // Promise <pending>
+setTimeout(console.log, 11000, p);  // Check state after 11 seconds
+Output:
+
+
+Because a promise can only change state a single time, this timeout behavior allows you to safely set a maximum on the amount of time a promise can remain in the pending state.
+
+If the code inside the executor were to resolve or reject prior to the timeout, the timeout handler's attempt to reject the promise will be silently ignored.
