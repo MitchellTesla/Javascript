@@ -1,0 +1,63 @@
+There are two ways to use the <script> element:
+
+embed JavaScript code directly into the page or
+include JavaScript from an external file.
+
+To include inline JavaScript code, place JavaScript code inside the <script> element directly, as follows:
+
+Copy
+<script>
+function test() {
+    console.log("Hi!");
+}
+</script>
+
+The JavaScript code contained inside a <script> element is interpreted from top to bottom.
+
+In the case of this example, a function definition is interpreted and stored inside the interpreter environment.
+
+The rest of the page content is not loaded and/or displayed until after all of the code inside the <script> element has been evaluated.
+
+When using inline JavaScript code, you cannot have the string "</script>" anywhere in your code.
+
+For example, the following code causes an error when loaded into a browser:
+
+Copy
+<script>
+function test() {
+    console.log("</script>");
+}
+</script>
+
+You can escape the "/" character, as follows:
+
+Copy
+<script>
+function test() {
+   console.log("<\/script>");
+}
+</script>
+
+To include JavaScript from an external file, the src attribute is required.
+
+The value of src is a URL linked to a file containing JavaScript code, like this:
+
+Copy
+<script src="example.js"></script>
+
+In this example, an external file named example.js is loaded into the page.
+
+The file need only contain the JavaScript code that would occur between the opening <script> and closing </script> tags.
+
+Processing of the page is halted while the external file is interpreted.
+
+In XHTML documents, you can omit the closing tag, as in this example:
+
+Copy
+<script src="example.js"/>
+
+By convention, external JavaScript files have a .js extension.
+
+If you don't use a .js extension, double-check that your server is returning the correct MIME type.
+
+The <script> elements are interpreted in the order in which they appear in the page so long as the defer and async attributes are not present.
