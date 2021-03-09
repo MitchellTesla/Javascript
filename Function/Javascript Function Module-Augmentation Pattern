@@ -1,0 +1,63 @@
+The module augmentation pattern is useful when the singleton object needs to be an instance of a particular type but must be augmented with additional properties and/or methods.
+
+Consider the following example:
+
+Copy
+let singleton = function() {
+  // private variables and functions
+  let privateVariable = 10;
+
+  function privateFunction() {
+    return false;
+  }
+
+  // create object
+  let object = new CustomType();
+
+  // add privileged/public properties and methods
+  object.publicProperty = true;
+
+  object.publicMethod = function() {
+    privateVariable++;
+    return privateFunction();
+  };
+
+  // return the object
+  return object;
+ }();
+If the application object in the module pattern example had to be an instance of BaseComponent, the following code could be used:
+
+Copy
+let application = function() {
+  // private variables and functions
+  let components = new Array();
+
+  // initialization
+  components.push(new BaseComponent());
+
+  // create a local copy of application
+  let app = new BaseComponent();
+
+  // public interface
+  app.getComponentCount = function() {
+    return components.length;
+  };
+
+  app.registerComponent = function(component) {
+    if (typeof component == "object") {
+      components.push(component);
+    }
+  };
+
+  // return it
+  return app;
+}();
+In the application singleton, the private variables are defined first, as in the previous example.
+
+The main difference is the creation of a variable named app that is a new instance of BaseComponent.
+
+This is the local version of what will become the application object.
+
+Public methods are then added onto the app object to access the private variables.
+
+The last step is to return the app object, which assigns it to application.
