@@ -1,0 +1,22 @@
+Do a global search for digits:
+
+Copy
+let str = "this is a 123 321 100%!";
+let patt1 = /\d/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Description
+The \d metacharacter is used to find a digit from 0-9.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+\d	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("\\d") or simply: /\d/
+Syntax with modifiers
+Copy
+new RegExp("\\d", "g") or simply: /\d/g
