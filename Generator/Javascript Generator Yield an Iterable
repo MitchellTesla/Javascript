@@ -1,0 +1,96 @@
+We can use yield to iterate through an iterable and yield its contents one at a time.
+
+This can be done using an asterisk, as shown here:
+
+Copy
+// generatorFn is equivalent to:
+// function* generatorFn() {
+//   for (const x of [1, 2, 3]) {
+//     yield x;
+//   }
+// }
+function* generatorFn() {
+  yield* [1, 2, 3];
+}
+
+let generatorObject = generatorFn();
+
+for (const x of generatorFn()) {
+  console.log(x);
+}
+Output:
+
+
+Like the generator function asterisk, whitespace around the yield asterisk will not alter its behavior:
+
+Copy
+function* generatorFn() {
+  yield* [1, 2];
+  yield *[3, 4];
+  yield * [5, 6];
+}
+
+for (const x of generatorFn()) {
+  console.log(x);
+}
+Output:
+
+
+Because yield* is effectively serializing an iterable into sequential yielded values, using it isn't any different than placing yield inside a loop.
+
+These two generator functions are equivalent in behavior:
+
+Copy
+function* generatorFnA() {
+  for (const x of [1, 2, 3]) {
+    yield x;
+  }
+}
+
+for (const x of generatorFnA()) {
+  console.log(x);
+}
+// 1
+// 2
+// 3
+
+function* generatorFnB() {
+  yield* [1, 2, 3];
+}
+
+for (const x of generatorFnB()) {
+  console.log(x);
+}
+// 1
+// 2
+// 3
+The value of yield* is the value property accompanying done:true of the associated iterator.
+
+For vanilla iterators, this value will be undefined:
+
+Copy
+function* generatorFn() {
+  console.log('iter value:', yield* [1, 2, 3]);
+}
+
+for (const x of generatorFn()) {
+  console.log('value:', x);
+}
+Output:
+
+
+For iterators produced from a generator function, this value will take the form of whatever value is returned from the generator function:
+
+Copy
+function* innerGeneratorFn() {
+  yield 'foo';
+  return 'bar';
+}
+function* outerGeneratorFn(genObj) {
+  console.log('iter value:', yield* innerGeneratorFn());
+}
+
+for (const x of outerGeneratorFn()) {
+  console.log('value:', x);
+}
+Output:
