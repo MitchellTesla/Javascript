@@ -1,0 +1,11 @@
+The string iterator allows for interoperability with the destructuring operator.
+
+This allows you to easily split a string by its characters:
+
+Copy
+let message = "abcde";
+
+console.log([...message]);
+Output:
+
+
