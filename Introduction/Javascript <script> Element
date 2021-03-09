@@ -1,0 +1,58 @@
+The primary method of inserting JavaScript into an HTML page is via the <script> element.
+
+There are six attributes for the <script> element:
+
+Attribute
+Optional
+Description
+async
+
+
+Optional
+
+
+The script should begin downloading immediately.
+Should not prevent other actions on the page such as downloading resources or waiting for other scripts to load.
+Valid only for external script files.
+charset
+
+Optional
+
+The character set of the code specified using the src attribute.
+This attribute is rarely used.
+crossorigin
+
+
+Optional
+
+
+Configures the settings for the associated request.
+crossorigin="anonymous" will configure the request for the file to not have the credentials flag set.
+crossorigin="use-credentials" will set the credentials flag, meaning the outgoing request will include credentials.
+defer
+
+Optional
+
+Indicates that the execution of the script can safely be deferred until after the document's content has been completely parsed and displayed.
+Valid only for external scripts.
+integrity
+
+Optional
+
+Allows for verification of Sub resource Integrity (SRI) by checking the retrieved resource against a provided cryptographic signature.
+If the signature of the retrieved resource does not match that specified by this attribute, the page will error and the script will not execute.
+language
+Deprecated
+Originally indicated the scripting language being used by the code block
+src
+Optional
+Indicates an external file that contains code to be executed.
+type
+
+
+Optional
+
+
+Replaces language attribute.
+indicates the content type, also called MIME type of the scripting language.
+If the value is module, the code is treated as an ES6 module and only then is eligible to use the import and export keywords.
