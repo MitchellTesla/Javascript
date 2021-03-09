@@ -1,0 +1,30 @@
+Do a global search for "is" in a string, and output the index after a match is found:
+
+Copy
+let str = "This is a Test is this is a test";
+let patt1 = /is/g;
+
+while (patt1.test(str)==true)  {
+  console.log("Index now at: "+patt1.lastIndex);
+}
+Output:
+
+
+Description
+The lastIndex property specifies the index where to start the next match.
+
+This property only works if the "g" modifier is set.
+
+This property returns an integer that specifies the character position immediately after the last match found by exec() or test() methods.
+
+exec( ) and test( ) reset lastIndex to 0 if they do not get a match.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+lastIndex	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+RegExpObject.lastIndex
+Return Value
+Type	Description
+Number	An integer that specifies the character position immediately after the last match found by exec( ) or test( ) methods
