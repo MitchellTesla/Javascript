@@ -1,0 +1,80 @@
+Typed arrays still use array buffers as their storage, and array buffers cannot be resized.
+
+Therefore, the following methods are not supported by typed arrays:
+
+concat()
+pop()
+push()
+shift()
+splice()
+unshift()
+Javascript typed arrays do offer two new methods that allow you to copy values in and out of arrays quickly: set() and subarray().
+
+set() copies the values from a provided array or typed array into the current typed array at the specified index:
+
+Copy
+// Create an int16 array of length 8
+const container = new Int16Array(8);
+// Copy in typed array into first four values
+// Offset default to an index of 0
+container.set(Int8Array.of(1, 2, 3, 4));
+console.log(container);  // [1,2,3,4,0,0,0,0]
+
+// Copy in normal array into last four values
+// Offset of 4 means begin inserting at the index 4
+container.set([5,6,7,8], 4);
+console.log(container);  // [1,2,3,4,5,6,7,8]
+
+// An overflow will throw an error
+container.set([5,6,7,8], 7);
+// RangeError
+subarray() performs the opposite operation of set(), returning a new typed array with values copied out of the original.
+
+Providing the start and end indices is optional:
+
+Copy
+const source = Int16Array.of(2, 4, 6, 8);
+
+// Copies the entire array into a new array of the same type
+const fullCopy = source.subarray();
+console.log(fullCopy);  // [2, 4, 6, 8]
+
+// Copy the array from index 2 on
+const halfCopy = source.subarray(2);
+console.log(halfCopy);  // [6, 8]
+
+// Copy the array from index 1 up until 3
+const partialCopy = source.subarray(1, 3);
+console.log(partialCopy);  // [4, 6]
+Concatenate
+Typed arrays don't have a native ability to concatenate.
+
+The following code creates a function to append two typed arrays together:
+
+Copy
+// First argument is the type of array that should be returned
+// Remaining arguments are all the typed arrays that should be concatenated
+function typedArrayConcat(typedArrayConstructor, ...typedArrays) {
+  // Count the total elements in all arrays
+  const numElements = typedArrays.reduce((x,y) => (x.length || x) + y.length);
+
+  // Create an array of the provided type with space for all elements
+  const resultArray = new typedArrayConstructor(numElements);
+
+  // Perform the successive array transfer
+  let currentOffset = 0;
+  typedArrays.map(x => {
+    resultArray.set(x, currentOffset);
+    currentOffset += x.length;
+  });
+
+  return resultArray;
+}
+
+const concatArray =  typedArrayConcat(Int32Array,
+                                      Int8Array.of(1, 2, 3),
+                                      Int16Array.of(4, 5, 6),
+                                      Float32Array.of(7, 8, 9));
+
+console.log(concatArray);  // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+console.log(concatArray instanceof Int32Array);  // true
