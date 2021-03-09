@@ -1,0 +1,38 @@
+Find the first occurrence of "LO" where it is NOT at the beginning of a word:
+
+Copy
+let str = "HELLO, HELLo LO LOW!";
+let patt1 = /\BLO/;
+let result = str.search(patt1);
+console.log(result);
+Output:
+
+
+Description
+The \B metacharacter can match "NOT at the beginning/end" of a word.
+
+We can search for the pattern NOT at the beginning of a word like this: \BLO
+
+We can search for the pattern NOT at the end of a word like this: LO\B
+
+If no match is found, it returns null.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+\B	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("\\Bregexp") or simply: /\Bregexp/
+Syntax with modifiers
+Copy
+new RegExp("\\Bregexp", "g") or simply: /\Bregexp/g
+More Examples
+Find the first occurrence of "LO" where it is NOT at the END of a word:
+
+Copy
+let str = "HELLO, LOOK LOW LO lo!";
+let patt1 = /LO\B/;
+let result = str.search(patt1);
+console.log(result);
+Output:
+7
