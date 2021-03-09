@@ -1,0 +1,106 @@
+Any object that implements the Iterator interface can be used as an iterator.
+
+Consider the following example where a Counter class is defined to iterate a specific number of times:
+
+Copy
+class Counter {
+  // Counter instance should iterate <limit> times
+  constructor(limit) {
+    this.count = 1;
+    this.limit = limit;
+  }
+
+  next() {
+    if (this.count <= this.limit) {
+      return { done: false, value: this.count++ };
+    } else {
+      return { done: true, value: undefined };
+    }
+  }
+  [Symbol.iterator]() {
+        return this;
+  }
+}
+
+let counter = new Counter(3);
+
+for (let i of counter) {
+  console.log(i);
+}
+Output:
+
+
+This satisfies the Iterator interface, but this implementation isn't optimal because each class instance can be iterated only once:
+
+Copy
+for (let i of counter) { console.log(i); }
+// 1
+// 2
+// 3
+
+for (let i of counter) { console.log(i); }
+// (nothing logged)
+In order to allow for creating multiple iterators from a single iterable, the counter must be created on a per-iterator basis.
+
+To address this, you can return an iterator object with the counter variables available through a closure:
+
+Copy
+class Counter {
+  constructor(limit) {
+    this.limit = limit;
+  }
+
+  [Symbol.iterator]() {
+    let count = 1,
+        limit = this.limit;
+    return {
+      next() {
+        if (count <= limit) {
+          return { done: false, value: count++ };
+        } else {
+          return { done: true, value: undefined };
+        }
+      }
+    };
+  }
+}
+
+let counter = new Counter(3);
+
+for (let i of counter) { console.log(i); }
+// 1
+// 2
+// 3
+
+for (let i of counter) { console.log(i); }
+// 1
+// 2
+// 3
+Every iterator created in this way also implements the Iterable interface.
+
+The Symbol.iterator property refers to a factory that will return the same iterator:
+
+Copy
+let arr = ['foo', 'bar', 'baz'];
+let iter1 = arr[Symbol.iterator]();
+
+console.log(iter1[Symbol.iterator]);  // f values() { [native code] }
+
+let iter2 = iter1[Symbol.iterator]();
+
+console.log(iter1 === iter2);         // true
+Because every iterator also implements the Iterable interface, they can be used everywhere an iterable is expected, such as a for-of loop:
+
+Copy
+let arr = [3, 1, 4];
+let iter = arr[Symbol.iterator]();
+
+for (let item of arr) { console.log(item); }
+// 3
+// 1
+// 4
+
+for (let item of iter) { console.log(item); }
+// 3
+// 1
+// 4
