@@ -1,0 +1,77 @@
+ECMAScript provides the Math object as a common location for mathematical formulas, information, and computation.
+
+The Math object offers a number of properties and methods to help these computations.
+
+Math Object Properties
+The Math object has several properties, consisting mostly of special values in the world of mathematics.
+
+The following table describes these properties.
+
+Property
+Description
+Math.E
+The value of e, the base of the natural logarithms
+Math.LN10
+The natural logarithm of 10
+Math.LN2
+The natural logarithm of 2
+Math.LOG2E
+The base 2 logarithm of e
+Math.LOG10E
+The base 10 logarithm of e
+Math.PI
+The value of p
+Math.SQRT1_2
+The square root of 0.5
+Math.SQRT2
+The square root of 2
+The Math object has a lot of methods related to various simple and higher-level mathematical operations.
+
+The following table enumerates some methods of the Math object.
+
+Method
+Description
+Math.abs(x)
+Returns the absolute value of x
+Math.exp(x)
+Returns Math.E raised to the power of x
+Math.expm1(x)
+Equivalent to Math.exp(x) - 1
+Math.log(x)
+Returns the natural logarithm of x
+Math.log1p(x)
+Equivalent to 1 + Math.log(x)
+Math.pow(x, power)
+Returns x raised to the power of power
+Math.pow (...numbers)
+Returns the square root of the sum of the squares of each number in numbers
+Math.clz32 (x)
+Returns the number of leading zeroes of a 32-bit integer x
+Math.sign(x)
+Returns 1, 0, -0, or -1 indicating the sign of x
+Math.trunc(x)
+Returns the integer component of x, removing any decimals
+Math.sqrt(x)
+Returns the square root of x
+Math.cbrt(x)
+Returns the cubic root of x
+Math.acos(x)
+Returns the arc cosine of x
+Math.acosh(x)
+Returns the hyperbolic arc cosine of x
+Math.asin(x )
+Returns the arc sine of x
+Math.asin(x )
+Returns the hyperbolic arc sine of x
+Math.atan(x )
+Returns the arc tangent of x
+Math.atanh(x )
+Returns the hyperbolic arc tangent of x
+Math.atan2(y, x )
+Returns the arc tangent of y/x
+Math.cos(x )
+Returns the cosine of x
+Math.sin(x )
+Returns the sine of x
+Math.tan(x )
+Returns the tangent of x
