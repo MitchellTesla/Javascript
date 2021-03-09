@@ -1,0 +1,46 @@
+Derived class methods have a reference to their prototype via the super keyword.
+
+This is only available for derived classes, and only available inside the constructor or inside static methods.
+
+super()
+super is used inside the constructor to control when to invoke the parent class constructor.
+
+Copy
+class Vehicle {
+ constructor() {
+   this.hasEngine = true;
+ }
+}
+
+class Bus extends Vehicle {
+ constructor() {
+   // Cannot reference 'this' before super(), will throw ReferenceError
+
+   super();  // same as super.constructor()
+
+   console.log(this instanceof Vehicle);  // true
+   console.log(this);                     // Bus { hasEngine: true }
+ }
+}
+new Bus();
+super.static
+super can be used inside static methods to invoke static methods defined on the inherited class:
+
+Copy
+class Vehicle {
+    static identify() {
+        console.log('vehicle');
+    }
+}
+
+class Bus extends Vehicle {
+    static identify() {
+        super.identify();
+    }
+}
+Bus.identify();  // vehicle
+ES6 gives the constructor and static methods a reference to the internal [[HomeObject]], which points to the object where the method is defined.
+
+This pointer is assigned automatically and is only accessible internally inside the JavaScript engine.
+
+super will always be defined as the prototype of [[HomeObject]].
