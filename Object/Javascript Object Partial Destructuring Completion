@@ -1,0 +1,18 @@
+A destructured assignment involving multiple properties is a sequential operation with independent outcomes.
+
+If the initial assignments succeed but a later one throws an error, the destructured assignment will exit having only partially completed:
+
+Copy
+let person = {
+  name: 'HTML',
+  age: 27
+ };
+
+let personName, personBar, personAge;
+try {
+    // person.foo is undefined, so this will throw an error
+  ({name: personName, foo: { bar: personBar }, age: personAge} = person);
+} catch(e) {}
+
+console.log(personName, personBar, personAge);
+// HTML, undefined, undefined
