@@ -1,0 +1,34 @@
+All modern browsers have pop-up-blocking software built in.
+
+Most unexpected pop-ups are blocked.
+
+When a pop-up is blocked, one of two things happens.
+
+If the browser's built-in pop-up blocker stopped the pop-up, then window.open() will most likely return null.
+
+In that case, you can tell if a pop-up was blocked by checking the return value, as shown in the following example:
+
+Copy
+let myWin = window.open("https://www.demo2s.com", "_blank");
+if (myWin == null){
+  console.log("The popup was blocked!");
+}
+When a browser add-on or other program blocks a pop-up, window.open() typically throws an error.
+
+So to accurately detect when a pop-up has been blocked, you must check the return value and wrap the call to window.open() in a try-catch block, as in this example:
+
+Copy
+let blocked = false;
+
+try {
+  let myWin = window.open("https://www.demo2s.com", "_blank");
+  if (myWin == null){
+    blocked = true;
+  }
+} catch (ex){
+  blocked = true;
+}
+if (blocked){
+  console.log("The popup was blocked!");
+}
+This code accurately detects if a pop-up blocker has blocked the call to window.open(), regardless of the method being used.
