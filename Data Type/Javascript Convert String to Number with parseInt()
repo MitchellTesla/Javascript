@@ -1,0 +1,70 @@
+parseInt() function is usually used when you are dealing with integers.
+
+The parseInt() function examines the string to see if it matches a number pattern.
+
+Leading white space in the string is ignored until the first non-white space character is found.
+
+If this first character isn't a number, the minus sign, or the plus sign, parseInt() always returns NaN, which means the empty string returns NaN.
+
+If the first character is a number, plus, or minus, then the conversion goes on to the second character and continues on until either the end of the string is reached or a nonnumeric character is found.
+
+For instance, "1234demo" is converted to 1234 because "demo" is completely ignored.
+
+"22.5" will be converted to 22 because the decimal is not a valid integer character.
+
+If the first character in the string is a number, the parseInt() function also recognizes the various integer formats: decimal, octal, and hexadecimal.
+
+The string begins with "0x" is interpreted as a hexadecimal integer; if it begins with "0" followed by a number, it is interpreted as an octal value.
+
+Here are some conversion examples to illustrate what happens:
+
+Copy
+let num1 = parseInt("1234demo");  // 1234
+let num2 = parseInt("");          // NaN
+let num3 = parseInt("0xA");       // 10 - hexadecimal
+let num4 = parseInt(2.5);         // 2
+let num5 = parseInt("70");        // 70 - decimal
+let num6 = parseInt("0xf");       // 15 - hexadecimal
+
+parseInt("3 asdf ")     // => 3
+parseFloat(" 3.14 meters")   // => 3.14
+parseInt("-12.34")           // => -12
+parseInt("0xFF")             // => 255
+parseInt("0xff")             // => 255
+parseInt("-0XFF")            // => -255
+parseFloat(".1")             // => 0.1
+parseInt("0.1")              // => 0
+parseInt(".1")               // => NaN: integers can't start with "."
+parseFloat("$72.47")         // => NaN: numbers can't start with "$"
+radix
+parseInt() provides a second argument: the radix.
+
+If you know that the value you're parsing is in hexadecimal format, you can pass in the radix 16 as a second argument and ensure that the correct parsing will occur, as shown here:
+
+Copy
+let num = parseInt("0xAF", 16);     // 175
+In fact, by providing the hexadecimal radix, you can leave off the leading "0x" and the conversion will work as follows:
+
+Copy
+let num1 = parseInt("AF", 16);  // 175
+let num2 = parseInt("AF");      // NaN
+In this example, the first conversion occurs correctly, but the second conversion fails.
+
+The radix is passed in on the first line, telling parseInt() that it will be passed a hexadecimal string; the second line sees that the first character is not a number and stops automatically.
+
+Passing in a radix can change the outcome of the conversion. Consider the following:
+
+Copy
+let num1 = parseInt("10", 2);   // 2 - parsed as binary
+let num2 = parseInt("10", 8);   // 8 - parsed as octal
+let num3 = parseInt("10", 10);  // 10 - parsed as decimal
+let num4 = parseInt("10", 16);  // 16 - parsed as hexadecimal
+
+parseInt("11", 2)     // => 3: (1*2 + 1)
+parseInt("ff", 16)    // => 255: (15*16 + 15)
+parseInt("zz", 36)    // => 1295: (35*36 + 35)
+parseInt("077", 8)    // => 63: (7*8 + 7)
+parseInt("077", 10)   // => 77: (7*10 + 7)
+We should always include a radix to avoid errors.
+
+Most of the time you'll be parsing decimal numbers, so it's good to always include 10 as the second argument.
