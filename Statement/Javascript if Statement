@@ -1,0 +1,44 @@
+The Javascript if statement has the following syntax:
+
+Copy
+if (condition)
+   statement1
+else
+   statement2
+The condition can be any expression; it doesn't even have to evaluate to an actual Boolean value.
+
+ECMAScript automatically converts the result of the expression into a Boolean by calling the Boolean() casting function on it.
+
+If the condition evaluates to true, statement1 is executed; if the condition evaluates to false, statement2 is executed.
+
+Each of the statements can be either a single line or a code block.
+
+Consider this example:
+
+Copy
+if (i > 25)
+  console.log("Greater than 25.");  // one-line statement
+else {
+  console.log("Less than or equal to 25.");  // block statement
+}
+It's the best coding practice to always use block statements, even if only one line of code is to be executed.
+
+You can also chain if statements together like so:
+
+Copy
+if (condition1)
+     statement1
+else if (condition2)
+     statement2
+else
+    statement3
+Here's an example:
+
+Copy
+if (i > 25) {
+ console.log("Greater than 25.");
+} else if (i < 0) {
+ console.log("Less than 0.");
+} else {
+ console.log("Between 0 and 25, inclusive.");
+}
