@@ -1,0 +1,76 @@
+We can create methods which can access private variables by using a private scope to define the private variables or functions.
+
+The pattern is as follows:
+
+Copy
+(function() {
+  // private variables and functions
+  let privateVariable = 10;
+
+  function privateFunction() {
+    return false;
+  }
+
+  // constructor
+  MyObject = function() {};
+
+  // public and privileged methods
+  MyObject.prototype.publicMethod = function() {
+    privateVariable++;
+    return privateFunction();
+  };
+})();
+In this pattern, a private scope is created to enclose the constructor and its methods.
+
+The private variables and functions are defined first, followed by the constructor and the public methods.
+
+Public methods are defined on the prototype, as in the typical prototype pattern.
+
+This pattern defines the constructor not by using a function declaration but instead by using a function expression.
+
+Function declarations always create local functions, which is undesirable in this case.
+
+A variable declaration keyword is not used with MyObject.
+
+Initializing an undeclared variable always creates a global variable, so MyObject becomes global and available outside the private scope.
+
+Assigning to an undeclared variable in strict mode causes an error.
+
+The privileged method, being a closure, always holds a reference to the containing scope.
+
+Consider the following:
+
+Copy
+(function() {
+  let name = '';
+
+  Person = function(value) {
+    name = value;
+  };
+
+  Person.prototype.getName = function() {
+    return name;
+  };
+
+  Person.prototype.setName = function(value) {
+    name = value;
+  };
+})();
+
+let person1 = new Person('CSS');
+console.log(person1.getName());   // 'CSS'
+person1.setName('HTML');
+console.log(person1.getName());   // 'HTML'
+
+let person2 = new Person('Michael');
+console.log(person1.getName());   // 'Michael'
+console.log(person2.getName());   // 'Michael'
+The Person constructor in this example has access to the private variable name, as do the getName() and setName() methods.
+
+Using this pattern, the name variable becomes static and will be used among all instances.
+
+This means calling setName() on one instance affects all other instances.
+
+Calling setName() or creating a new Person instance sets the name variable to a new value.
+
+This causes all instances to return the same value.
