@@ -1,0 +1,11 @@
+The comma operator allows execution of more than one operation in a single statement, as illustrated here:
+
+Copy
+let num1 = 1, num2 = 2, num3 = 3;
+Most often, the comma operator is used in the declaration of variables; however, it can also be used to assign values.
+
+When used in this way, the comma operator always returns the last item in the expression, as in the following example:
+
+Copy
+let num = (123, 1321, 4123, 1238, 0);  // num becomes 0
+In this example, num is assigned the value of 0 because it is the last item in the expression.
