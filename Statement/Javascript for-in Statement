@@ -1,0 +1,37 @@
+The for-in statement is a strict iterative statement.
+
+It is used to enumerate the non-symbol keyed properties of an object.
+
+Here's the syntax:
+
+Copy
+for (property in expression) statement
+You might use a for/in loop like this:
+
+Copy
+for(let p in o) {      // Assign property names of o to variable p
+    console.log(o[p]); // Print the value of each property
+}
+To execute a for/in statement, the JavaScript interpreter first evaluates the object expression.
+
+If it evaluates to null or undefined, the interpreter skips the loop and moves on to the next statement.
+
+And here's an example of its usage:
+
+Copy
+for (const propName in window) {
+   document.write(propName);
+}
+Here, the for-in statement is used to display all the properties of the BOM window object.
+
+Each time through the loop, the propName variable is filled with the name of a property that exists on the window object.
+
+This continues until all of the available properties have been enumerated.
+
+The const operator in the control statement is not necessary but is recommended for ensuring the use of a local variable that will not be altered.
+
+Object properties in ECMAScript are unordered, so the order in which property names are returned in a for-in statement cannot necessarily be predicted.
+
+All enumerable properties will be returned once, but the order may differ across browsers.
+
+The for-in statement doesn't execute the body of the loop if the variable representing the object to iterate over is null or undefined.
