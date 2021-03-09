@@ -1,0 +1,86 @@
+Javascript supports a kind of compound declaration and assignment syntax known as destructuring assignment.
+
+In a destructuring assignment, the value on the right hand side of the equals sign is an array or object, and the left hand side specifies one or more variable names using a syntax that mimics array and object literal syntax.
+
+When a destructuring assignment occurs, one or more values are extracted from the value on the right and stored into the variables named on the left.
+
+Destructuring assignment is perhaps most commonly used to initialize variables as part of a const, let, or var declaration statement, but it can also be done in regular assignment expressions with variables that have already been declared.
+
+Here are simple destructuring assignments using arrays of values:
+
+Copy
+let [x,y] = [1,2];  // Same as let x=1, y=2
+[x,y] = [x+1,y+1];  // Same as x = x + 1, y = y + 1
+[x,y] = [y,x];      // Swap the value of the two variables
+[x,y]               // => [3,2]: the incremented and swapped values
+The destructuring assignment makes it easy to work with functions that return arrays of values:
+
+Copy
+// Convert [x,y] coordinates to [r,theta] polar coordinates
+function toPolar(x, y) {
+    return [Math.sqrt(x*x+y*y), Math.atan2(y,x)];
+}
+let [r,theta] = toPolar(1.0, 1.0);  // r == Math.sqrt(2); theta == Math.PI/4
+The variables and constants can be declared as part of JavaScript's various for loops.
+
+We can use variable destructuring in this context as well.
+
+Here is a code that loops over the name/value pairs of all properties of an object and uses destructuring assignment to convert those pairs from two-element arrays into individual variables:
+
+Copy
+let o = { x: 1, y: 2 }; // The object we'll loop over
+for(const [name, value] of Object.entries(o)) {
+    console.log(name, value); // Prints "x 1" and "y 2"
+}
+The number of variables on the left of a destructuring assignment does not have to match the number of array elements on the right.
+
+Extra variables on the left are set to undefined, and extra values on the right are ignored.
+
+The list of variables on the left can include extra commas to skip certain values on the right:
+
+Copy
+let [x,y] = [1];     // x == 1; y == undefined
+[x,y] = [1,2,3];     // x == 1; y == 2
+[,x,,y] = [1,2,3,4]; // x == 2; y == 4
+To collect all unused or remaining values into a single variable when destructuring an array, use three dots ( ...) before the last variable name on the left-hand side:
+
+Copy
+let [x,  ...y] = [1,2,3,4];  // y == [2,3,4]
+Destructuring assignment can be used with nested arrays.
+
+In this case, the left hand side of the assignment should look like a nested array literal:
+
+Copy
+let [a, [b, c]] = [1, [2,2.5], 3]; // a == 1; b == 2; c == 2.5
+You can use any iterable object on the righthand side of the assignment; any object that can be used with a for/of loop can also be destructured:
+
+Copy
+let [first,  ...rest] = "Hello"; // first == "H"; rest == ["e","l","l","o"]
+Destructuring assignment can also be performed when the righthand side is an object value.
+
+In this case, the left hand side of the assignment looks something like an object literal: a comma-separated list of variable names within curly braces:
+
+Copy
+let transparent = {r: 0.0, g: 0.0, b: 0.0, a: 1.0}; // A RGBA color
+let {r, g, b} = transparent;  // r == 0.0; g == 0.0; b == 0.0
+The next example copies global functions of the Math object into variables, which might simplify code that does a lot of trigonometry:
+
+Copy
+// Same as const sin=Math.sin, cos=Math.cos, tan=Math.tan
+const {sin, cos, tan} = Math;
+Notice in the code here that the Math object has many properties other than the three that are destructured into individual variables.
+
+Those that are not named are ignored.
+
+If the left hand side of this assignment had included a variable whose name was not a property of Math, that variable would simply be assigned undefined.
+
+In each of these object destructuring examples, we have chosen variable names that match the property names of the object we're destructuring.
+
+This keeps the syntax simple and easy to understand, but it is not required.
+
+Each of the identifiers on the left hand side of an object destructuring assignment can also be a colon-separated pair of identifiers, where the first is the name of the property whose value is to be assigned and the second is the name of the variable to assign it to:
+
+Copy
+// Same as const cosine = Math.cos, tangent = Math.tan;
+const { cos: cosine, tan: tangent } = Math;
+Remember that property names are always on the left of the colon, in both object literals and on the left of an object destructuring assignment.
