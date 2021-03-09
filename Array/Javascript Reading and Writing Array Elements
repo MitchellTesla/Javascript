@@ -1,0 +1,28 @@
+You access an element of an array using the [] operator.
+
+A reference to the array should appear to the left of the brackets.
+
+An arbitrary expression that has a non-negative integer value should be inside the brackets.
+
+You can use this syntax to both read and write the value of an element of an array.
+
+Thus, the following are all legal JavaScript statements:
+
+Copy
+let a = ["world"];     // Start with a one-element array
+let value = a[0];      // Read element 0
+a[1] = 3.14;           // Write element 1
+let i = 2;
+a[i] = 3;              // Write element 2
+a[i + 1] = "hello";    // Write element 3
+a[a[i]] = a[0];        // Read elements 0 and 2, write element 3
+Array maintains the value of the length property for you.
+
+In the preceding, for example, we created an array a with a single element.
+
+We then assigned values at indexes 1, 2, and 3.
+
+The length property of the array changed as we did, so:
+
+Copy
+a.length       // => 4
