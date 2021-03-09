@@ -1,0 +1,24 @@
+Because generator objects implement the Iterable interface, and because both generator functions and the default iterator are invoked to produce an iterator, generators are suited to be used as default iterators.
+
+The following is a simple example where the default iterator can yield the class's contents in a single line:
+
+Copy
+class Foo {
+    constructor() {
+            this.values = [1, 2, 3];
+        }
+        *[Symbol.iterator]() {
+            yield* this.values;
+        }
+}
+
+const f = new Foo();
+for (const x of f) {
+    console.log(x);
+}
+Output:
+
+
+Here, the for...of loop invokes the default iterator-which happens to be a generator function and produces a generator object.
+
+The generator object is an iterable and therefore compatible for use in iteration.
