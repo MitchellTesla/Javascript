@@ -1,0 +1,46 @@
+We can use Proxy to validate function and constructor parameters.
+
+For example, a function can ensure that it is only provided values of a certain type:
+
+Copy
+function median(...nums) {
+  return nums.sort()[Math.floor(nums.length / 2)];
+}
+
+const proxy = new Proxy(median, {
+  apply(target, thisArg, ...argumentsList) {
+    console.log('parameter is');
+    console.log(argumentsList);
+   
+    return Reflect.apply(...arguments);
+  }
+});
+
+console.log(proxy(4, 7, 1));    
+console.log(proxy(4, '7', 1));
+Output:
+
+
+Similarly, a constructor can enforce the presence of constructor parameters:
+
+Copy
+class User {
+  constructor(id) {
+    this.id_ = id;
+  }
+}
+
+const proxy = new Proxy(User, {
+  construct(target, argumentsList, newTarget) {
+    if (argumentsList[0] === undefined) {
+      throw 'User cannot be instantiated without id';
+    } else {
+      return Reflect.construct(...arguments);
+    }
+  }
+});
+
+new proxy(1);
+new proxy();
+Output:
+
