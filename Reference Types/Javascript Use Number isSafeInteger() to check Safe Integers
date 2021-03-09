@@ -1,0 +1,15 @@
+The IEEE 754 number format has a numerical range inside which a binary value can represent exactly one integer value.
+
+This numerical range extends from Number.MIN_SAFE_INTEGER, or -2^53 + 1, to Number.MAX_SAFE_INTEGER, or 2^53 - 1.
+
+Outside this range, you may attempt to store an integer, but the IEEE 754 encoding format means that this binary value may also alias to a completely different number.
+
+To tell if an integer is inside this range, the Number.isSafeInteger() method allows you to check this:
+
+Copy
+console.log(Number.isSafeInteger(-1 * (2 ** 53)));      // false
+console.log(Number.isSafeInteger(-1 * (2 ** 53) + 1));  // true
+
+console.log(Number.isSafeInteger(2 ** 53));             // false
+console.log(Number.isSafeInteger((2 ** 53) - 1));       // true
+Output:
