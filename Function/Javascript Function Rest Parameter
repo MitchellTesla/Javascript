@@ -1,0 +1,45 @@
+When composing a function definition, instead of handling parameters individually, We can use the spread operator to combine ranges of parameters of variable length into a single array.
+
+The rest parameter becomes a formal Array object.
+
+Copy
+function getSum(...values) {
+  // Sequentially sum all elements in 'values'
+  // Initial total = 0
+  return values.reduce((x, y) => x + y, 0);
+}
+
+console.log(getSum(1,2,3));  // 6
+If there are named parameters preceding the rest parameter, it will assume the size of the remaining parameters that remain unnamed, or an empty array if there are none.
+
+Because the rest parameter is variable in size, you are only able to use it as the last formal parameter:
+
+Copy
+// Error
+function getProduct(...values, lastValue) {}
+
+// OK
+function myFunc(firstValue, ...values) {
+    console.log(values);
+}
+myFunc();       // []
+myFunc(1);      // []
+myFunc(1,2);    // [2]
+myFunc(1,2,3);  // [2, 3]
+The arrow functions support rest parameters, which affords you behavior that is extremely similar to arguments:
+
+Copy
+let getSum = (...values) => {
+  return values.reduce((x, y) => x + y, 0);
+}
+console.log(getSum(1,2,3));  // 6
+Using a rest parameter does not affect the arguments object-it will still exactly reflect what was passed to the function:
+
+Copy
+function getSum(...values) {
+  console.log(arguments.length);  // 3
+  console.log(arguments);         // [1, 2, 3]
+  console.log(values);            // [1, 2, 3]
+}
+
+console.log(getSum(1,2,3));
