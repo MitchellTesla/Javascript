@@ -1,0 +1,28 @@
+String split() separates the string into an array of substrings based on a separator.
+
+The separator may be a string or a RegExp object.
+
+The string is not converted to a regular expression for this method.
+
+An optional second argument, the array limit, ensures that the returned array will be no larger than a certain size.
+
+Consider this example:
+
+Copy
+let sText = "A,B,C,D,E";
+let s1 = sText.split(",");       
+let s2 = sText.split(",", 2);    
+let s3 = sText.split(/[^\,]+/);  
+console.log(s1);
+console.log(s2);
+console.log(s3);
+Output:
+
+
+In this example, the string sText is a comma-separated string of letters.
+
+The call to split(",") retrieves an array of those letters, splitting the string on the comma character.
+
+To truncate the results to only two items, a second argument of 2 is specified.
+
+Last, using a regular expression, it's possible to get an array of the comma characters.
