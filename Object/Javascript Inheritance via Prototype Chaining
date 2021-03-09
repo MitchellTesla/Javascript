@@ -1,0 +1,94 @@
+ECMA-262 describes prototype chaining as the primary method of inheritance in ECMAScript.
+
+It uses prototypes to inherit properties and methods between two reference types.
+
+Each constructor has a prototype object that points back to the constructor, and instances have an internal pointer to the prototype.
+
+If the prototype is an instance of another type, the prototype itself will have a pointer to a different prototype that, in turn, would have a pointer to another constructor.
+
+If that prototype were also an instance of another type, then the pattern would continue, forming a chain between instances and prototypes.
+
+This is the basic idea behind prototype chaining.
+
+Implementing prototype chaining involves the following code pattern:
+
+Copy
+function SuperType() {
+  this.property = true;
+}
+
+SuperType.prototype.getSuperValue = function() {
+  return this.property;
+};
+
+function SubType() {
+  this.subproperty = false;
+}
+
+// inherit from SuperType
+SubType.prototype = new SuperType();
+
+SubType.prototype.getSubValue = function () {
+  return this.subproperty;
+};
+
+let instance = new SubType();
+console.log(instance.getSuperValue());  // true
+
+console.log(instance instanceof Object);     // true
+console.log(instance instanceof SuperType);  // true
+console.log(instance instanceof SubType);    // true
+console.log(Object.prototype.isPrototypeOf(instance));     // true
+console.log(SuperType.prototype.isPrototypeOf(instance));  // true
+console.log(SubType.prototype.isPrototypeOf(instance));    // true
+This code defines two types: SuperType and SubType.
+
+Each type has a single property and a single method.
+
+SubType inherits from SuperType by creating a new instance of SuperType and assigning it to SubType.prototype.
+
+This overwrites the original prototype and replaces it with a new object, which means that all properties and methods that typically exist on an instance of SuperType now also exist on SubType.prototype.
+
+After the inheritance takes place, a method is assigned to SubType.prototype, adding a new method on top of what was inherited from SuperType.
+
+Instead of using the default prototype of SubType, a new prototype is assigned.
+
+The new prototype is an instance of SuperType, so it not only gets the properties and methods of a SuperType instance but also points back to the SuperType's prototype.
+
+So instance points to SubType.prototype and SubType.prototype points to SuperType.prototype.
+
+The getSuperValue() method remains on the SuperType.prototype object, but property ends up on SubType.prototype.
+
+That's because getSuperValue() is a prototype method, and property is an instance property.
+
+SubType.prototype is now an instance of SuperType so property is stored there.
+
+The instance.constructor points to SuperType because the constructor property on the SubType.prototype was overwritten.
+
+When a property is accessed in read mode on an instance, the property is first searched for on the instance.
+
+If the property is not found, then the search continues to the prototype.
+
+When inheritance has been implemented via prototype chaining, that search can continue up the prototype chain.
+
+A call to instance.getSuperValue() results in a three-step search:
+
+the instance,
+SubType.prototype, and
+SuperType.prototype
+The method is found in SuperType.prototype.
+
+The search for properties and methods always continues until the end of the prototype chain is reached.
+
+Object prototype
+All reference types inherit from Object by default, which is accomplished through prototype chaining.
+
+The default prototype for any function is an instance of Object, meaning that its internal prototype pointer points to Object.prototype.
+
+This is how custom types inherit all of the default methods such as toString() and valueOf().
+
+So the previous example has an extra layer of inheritance.
+
+SubType inherits from SuperType, and SuperType inherits from Object.
+
+When instance.toString() is called, the method being called actually exists on Object.prototype.
