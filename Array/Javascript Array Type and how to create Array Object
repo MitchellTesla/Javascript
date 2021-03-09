@@ -1,0 +1,47 @@
+Arrays can be created in several basic ways. One is to use the Array constructor, as in this line:
+
+Copy
+let colors = new Array();
+If you know the number of items that will be in the array, you can pass the count into the constructor, and the length property will automatically be created with that value.
+
+For example, the following creates an array with an initial length value of 20:
+
+Copy
+let colors = new Array(20);
+The Array constructor can also be passed items that should be included in the array.
+
+The following creates an array with three string values:
+
+Copy
+let colors = new Array("red", "blue", "green");
+An array can be created with a single value by passing it into the constructor.
+
+Important: Providing a single argument that is a number always creates an array with the given number of items, whereas an argument of any other type creates a one-item array that contains the specified value.
+
+Here's an example:
+
+Copy
+let colors = new Array(3);      // create an array with three items
+let names = new Array("HTML");  // create an array with 
+                                // one item, the string "HTML"
+It's possible to omit the new operator when using the Array constructor. It has the same result, as you can see here:
+
+Copy
+let colors = Array(3);      // create an array with three items
+let names = Array("HTML");  // create an array with one item, 
+                            // the string "HTML"
+A second way to create an array is by using array literal notation.
+
+An array literal is specified by using square brackets and placing a comma-separated list of items between them, as in this example:
+
+Copy
+let colors = ["red", "blue", "green"];  // Creates an array with three strings
+let names = [];                         // Creates an empty array
+let values = [1,2,];                    // Creates an array with 2 items
+In this code, the first line creates an array with three string values.
+
+The second line creates an empty array by using empty square brackets.
+
+The third line shows the effects of leaving a comma after the last value in an array literal: values is a two-item array containing the values 1 and 2.
+
+The Array constructor isn't called when an array is created using array literal notation.
