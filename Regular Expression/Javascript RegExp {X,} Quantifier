@@ -1,0 +1,24 @@
+Do a global search for a substring that contains a sequence of at least three digits:
+
+Copy
+let str = "100, 1000 or 10000?";
+let patt1 = /\d{3,}/g;
+let result = str.match(patt1);
+console.log(result);
+Output:
+
+
+Description
+The n{X,} quantifier matches any string that contains a sequence of at least X n's.
+
+X must be a number.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+{X,}	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+new RegExp("n{X,}") or simply: /n{X,}/
+Syntax with modifiers
+Copy
+new RegExp("n{X,}", "g") or simply: /\n{X,}/g
