@@ -1,0 +1,65 @@
+The Promise.prototype.finally() method can be used to attach an onFinally handler, which executes when the promise reaches either a resolved or a rejected state.
+
+This is useful for avoiding code duplication between onResolved and onRejected handlers.
+
+The handler cannot determine if the promise was resolved or rejected, so this method is used for things like cleanup.
+
+Copy
+let p1 = Promise.resolve();
+let p2 = Promise.reject();
+let onFinally = function() {
+    setTimeout(console.log, 0, 'Finally!')
+}
+
+p1.finally(onFinally);  // Finally
+p2.finally(onFinally);  // Finally
+The Promise.prototype.finally() method returns a new promise instance:
+
+Copy
+let p1 = new Promise(() => {});
+let p2 = p1.finally();
+setTimeout(console.log, 0, p1);         // Promise <pending>
+setTimeout(console.log, 0, p2);         // Promise <pending>
+setTimeout(console.log, 0, p1 === p2);  // false
+This new promise instance is derived in a different manner than then() or catch().
+
+Because onFinally is intended to be a state-agnostic method, in most cases it will behave as a pass through for the parent promise.
+
+This is true for both the resolved and rejected states.
+
+Copy
+let p1 = Promise.resolve('foo');
+
+// These all act as a pass through
+let p2 = p1.finally();
+let p3 = p1.finally(() => undefined);
+let p4 = p1.finally(() => {});
+let p5 = p1.finally(() => Promise.resolve());
+let p6 = p1.finally(() => 'bar');
+let p7 = p1.finally(() => Promise.resolve('bar'));
+let p8 = p1.finally(() => Error('qux'));
+
+setTimeout(console.log, 0, p2);  // Promise <resolved>: foo
+setTimeout(console.log, 0, p3);  // Promise <resolved>: foo
+setTimeout(console.log, 0, p4);  // Promise <resolved>: foo
+setTimeout(console.log, 0, p5);  // Promise <resolved>: foo
+setTimeout(console.log, 0, p6);  // Promise <resolved>: foo
+setTimeout(console.log, 0, p7);  // Promise <resolved>: foo
+setTimeout(console.log, 0, p8);  // Promise <resolved>: foo
+The only exceptions are when it returns a pending promise, or an error is thrown via an explicit throw or returning a rejected promise.
+
+In these cases, the corresponding promise is returned pending or rejected, as shown here:
+
+Copy
+// Promise.resolve() preserves the returned promise
+let p9 = p1.finally(() => new Promise(() => {}));
+let p10 = p1.finally(() => Promise.reject());
+// Uncaught (in promise): undefined
+
+setTimeout(console.log, 0, p9);  // Promise <pending>
+setTimeout(console.log, 0, p10);  // Promise <rejected>: undefined
+
+let p11 = p1.finally(() => { throw 'baz';});
+// Uncaught (in promise) baz
+
+setTimeout(console.log, 0, p11);  // Promise <rejected>: baz
