@@ -1,0 +1,49 @@
+The String data type includes several character literals to represent nonprintable useful characters, as listed in the following table:
+
+LITERAL
+MEANING
+\n
+New line
+\t
+Tab
+\b
+Backspace
+\r
+Carriage return
+\f
+Form feed
+\\
+Backslash (\)
+\'
+
+Single quote '-used when the string is delineated by single quotes.
+Example: 'He said, \'hi.\''.
+\"
+
+Double quote (")-used when the string is delineated by double quotes.
+Example: "He said, \"hi.\"".
+\`
+
+Backtick (`)-used when the string is delineated by backticks.
+Example: `He said, \`hi.\``.
+\xnn
+
+A character represented by hexadecimal code nn (where n is a hexadecimal digit 0-F).
+Example: \x41 is equivalent to "A".
+\unnnn
+
+A Unicode character represented by the hexadecimal code nnnn (where n is a hexadecimal digit 0-F).
+Example: \u03a3 is equivalent to the Greek character S.
+These character literals can be included anywhere with a string and will be interpreted as if they were a single character, as shown here:
+
+Copy
+let text = "This is the letter sigma: \u03a3.";
+The entire escape sequence represents a single character, so it is counted as such.
+
+The length of any string can be returned by using the length property, as follows:
+
+Copy
+console.log("asdf".length); //4
+This property returns the number of 16-bit characters in the string.
+
+If a string contains double-byte characters, the length property may not accurately return the number of characters in the string.
