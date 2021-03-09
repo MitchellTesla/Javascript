@@ -1,0 +1,19 @@
+The bitwise NOT is represented by a tilde (~) and simply returns the one's complement of the number.
+
+Consider this example:
+
+Copy
+let num1 = 25;       // binary 00000000000000000000000000011001
+let num2 = ~num1;    // binary 11111111111111111111111111100110
+console.log(num2);   // -26
+Here, the bitwise NOT operator is used on 25, producing -26 as the result.
+
+This is the effect of the bitwise NOT: it negates the number and subtracts 1.
+
+The same outcome is produced with the following code:
+
+Copy
+let num1 = 25;
+let num2 = -num1 - 1;
+console.log(num2);     // "-26"
+The bitwise operation is much faster than the math operator because it works at the very lowest level of numeric representation.
