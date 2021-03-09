@@ -1,0 +1,93 @@
+ECMAScript defines five iterative methods for arrays.
+
+Each of the methods accepts two arguments: a function to run on each item and an optional scope object in which to run the function which will affect the value of this.
+
+The function passed into one of these methods will receive three arguments: the array item value, the position of the item in the array, and the array object itself.
+
+Depending on the method, the results of this function's execution may or may not affect the method's return value.
+
+The iterative methods are as follows:
+
+Method
+Description
+every()
+Runs the given function on every item in the array and returns true if the function returns true for every item.
+filter()
+Runs the given function on every item in the array and returns an array of all items for which the function returns true.
+forEach()
+
+Runs the given function on every item in the array.
+This method has no return value.
+map()
+Runs the given function on every item in the array and returns the result of each function call in an array.
+some()
+Runs the given function on every item in the array and returns true if the function returns true for any one item.
+These methods do not change the values contained in the array.
+
+every() and some() both query the array for items matching some criteria.
+
+every() and some()
+For every(), the passed-in function must return true for every item in order for the method to return true; otherwise, it returns false.
+
+The some() method, on the other hand, returns true if even one of the items causes the passed-in function to return true.
+
+Here is an example:
+
+Copy
+let numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+
+let everyResult = numbers.every((item, index, array) => item > 2);
+console.log(everyResult);  // false
+
+let someResult = numbers.some((item, index, array) => item > 2);
+console.log(someResult);   // true
+This code calls both every() and some() with a function that returns true if the given item is greater than 2.
+
+For every(), the result is false because only some of the items fit the criteria.
+
+For some(), the result is true because at least one of the items is greater than 2.
+
+filter()
+filter() uses the given function to determine if an item should be included in the array that it returns.
+
+For example, to return an array of all numbers greater than 2, the following code can be used:
+
+Copy
+let numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+
+let filterResult = numbers.filter((item, index, array) => item > 2);
+console.log(filterResult);   // [3,4,5,4,3]
+Here, an array containing the values 3, 4, 5, 4, and 3 is created and returned by the call to filter() because the passed-in function returns true for each of those items.
+
+This method is very helpful when querying an array for all items matching some criteria.
+
+map()
+The map() method also returns an array.
+
+Each item in the array is the result of running the passed-in function on the original array item in the same location.
+
+For example, you can multiply every number in an array by two and are returned an array of those numbers, as shown here:
+
+Copy
+let numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+
+let mapResult = numbers.map((item, index, array) => item * 2);
+
+console.log(mapResult);   // [2,4,6,8,10,8,6,4,2]
+The code in this example returns an array containing the result of multiplying each number by two.
+
+This method is helpful when creating arrays whose items correspond to one another.
+
+forEach()
+forEach() runs the given function on every item in an array.
+
+There is no return value and it is essentially the same as iterating over an array using a for loop.
+
+Here's an example:
+
+Copy
+let numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+
+numbers.forEach((item, index, array) => {
+  // do something here
+});
