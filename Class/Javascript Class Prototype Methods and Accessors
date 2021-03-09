@@ -1,0 +1,50 @@
+To allow for sharing of methods between instances, the class definition syntax allows for definition of methods on the prototype object inside the class body.
+
+Copy
+class Person {
+  constructor() {
+    // Everything added to 'this' will 
+    // exist on each individual instance
+    this.locate = () => console.log('instance');
+  }
+
+  // Everything defined in the class body is 
+  // defined on the class prototype object
+  locate() {
+    console.log('prototype');
+  }
+}
+
+let p = new Person();
+
+p.locate();                 // instance
+Person.prototype.locate();  // prototype
+Methods can be defined in either location, but member data such as primitives and objects cannot be added to the prototype inside the class body:
+
+Copy
+class Person {
+  name: 'CSS'
+}
+// Uncaught SyntaxError: Unexpected token :
+Class methods behave identically to object properties, meaning they can be keyed with strings, symbols, or computed values:
+
+Copy
+const symbolKey = Symbol('symbolKey');
+
+class Person {
+    stringKey() {
+       console.log('invoked stringKey');
+    }
+    [symbolKey]() {
+       console.log('invoked symbolKey');
+    }
+    ['computed' + 'Key']() {
+       console.log('invoked computedKey');
+    }
+}
+
+let p = new Person();
+
+p.stringKey(); // invoked stringKey
+p[symbolKey](); // invoked symbolKey
+p.computedKey(); // invoked computedKey
