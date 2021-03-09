@@ -1,0 +1,7 @@
+An ECMAScript array is very different from arrays in most other programming languages.
+
+ECMAScript arrays are ordered lists of data, and they can hold any type of data in each slot.
+
+We can create an array that has a string in the first position, a number in the second, an object in the third, and so on.
+
+ECMAScript arrays are also dynamically sized, automatically growing to accommodate any data that is added to them.
