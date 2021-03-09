@@ -1,0 +1,53 @@
+Javascript template literals supports for interpolation.
+
+We can insert values at one or more places inside a String template.
+
+Javascript String Templates are special JavaScript syntactical expressions that evaluate into strings.
+
+Template literals are evaluated immediately when they are defined and converted into a string instance, and any interpolated variables will be drawn from its immediate scope.
+
+This can be accomplished using a JavaScript expression inside ${}:
+
+Copy
+let name = "Bill";
+let greeting = `Hello ${ name }.`;  // greeting == "Hello Bill."
+
+
+
+let value = 5;
+let exponent = '2';
+
+let interpolatedTemplateLiteral =
+`${ value } to the ${ exponent } power is ${ value * value }`;
+
+console.log(interpolatedTemplateLiteral);  // 5 to the 2 power is 25
+The value being interpolated will eventually be coerced into a string using toString(), but any JavaScript expression can safely be interpolated.
+
+Nesting template strings is safe with no escaping required:
+
+Copy
+console.log(`Hello, ${ `World` }!`);  // Hello, World!
+toString() is invoked to coerce expression result into string:
+
+Copy
+let foo = { toString: () => 'World' };
+console.log(`Hello, ${ foo }!`);      // Hello, World!
+Invoking functions and methods inside interpolated expressions is allowed:
+
+Copy
+function capitalize(word) {
+  return `${ word[0].toUpperCase() }${ word.slice(1) }`;
+}
+console.log(`${ capitalize('hello') }, ${ capitalize('world') }!`);  
+// Hello, World!
+Additionally, templates can safely interpolate their previous value:
+
+Copy
+let value = '';
+function append() {
+  value = `${value}a`
+  console.log(value);
+}
+append();  // a
+append();  // aa
+append();  // aaa
