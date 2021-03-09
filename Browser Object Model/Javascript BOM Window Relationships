@@ -1,0 +1,13 @@
+The top object always points to the very top outer most window, which is the browser window itself.
+
+Another window object is called parent.
+
+The parent object always points to the current window's immediate parent window.
+
+For the top most browser window, parent is equal to top and both are equal to window.
+
+The top most window has no value name unless the window was opened using window.open().
+
+window property self always points to window.
+
+We can chain window objects together, such as window.parent.parent.
