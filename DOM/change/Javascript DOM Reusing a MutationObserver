@@ -1,0 +1,28 @@
+After calling disconnect() from MutationObserver, we can reattach the same instance to a node.
+
+The following example demonstrates this behavior by disconnecting and then reconnecting in two consecutive async blocks:
+
+Copy
+let observer = new MutationObserver(() => 
+               console.log('<body> attributes changed'));
+
+observer.observe(document.body, { attributes: true });
+// This will register as a mutation
+document.body.setAttribute('foo', 'bar');
+
+setTimeout(() => {
+  observer.disconnect();
+
+   // This will not register as a mutation
+   document.body.setAttribute('bar', 'baz');
+}, 0);
+
+setTimeout(() => {
+ // Reattach
+ observer.observe(document.body, { attributes: true });
+
+ // This will register as a mutation
+ document.body.setAttribute('baz', 'qux');
+}, 0);
+Output:
+
