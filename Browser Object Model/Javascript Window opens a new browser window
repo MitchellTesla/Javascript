@@ -1,0 +1,177 @@
+Example
+Open "www.demo2s.com" in a new browser tab:
+
+Copy
+window.open("https://www.demo2s.com");
+
+Description
+The open() method opens a new browser window, or a new tab, depending on your browser settings and the parameter values.
+
+Use the close() method to close the window.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+open()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+window.open(URL, name, specs, replace)
+Parameter Values
+Parameter
+Description
+URL
+
+
+Optional.
+the URL of the page to open.
+If no URL is specified, a new window/tab with about:blank is opened
+name
+
+Optional.
+the target attribute or the name of the window.
+specs
+
+Optional.
+A comma-separated list of items, no white spaces.
+height=pixels
+
+The height of the window.
+Min value is 100
+left=pixels
+
+The left position of the window.
+Negative values not allowed
+menubar=yes|no|1|0
+Whether or not to display the menu bar
+status=yes|no|1|0
+Whether or not to add a status bar
+titlebar=yes|no|1|0
+
+Whether or not to display the title bar.
+Ignored unless the calling application is an HTML Application or a trusted dialog box
+top=pixels
+
+The top position of the window.
+Negative values not allowed
+width=pixels
+
+The width of the window.
+Min value is 100
+replace
+
+
+
+
+Optional.
+whether the URL creates a new entry or replaces the current entry in the history list.
+The following values are supported:
+true - URL replaces the current document in the history list
+false - URL creates a new entry in the history list
+name
+The name is Optional.
+
+It sets the target attribute or the name of the window.
+
+The following values are supported:
+
+Value
+_blank
+
+Meaning
+URL is loaded into a new window, or tab.
+This is default
+_parent
+URL is loaded into the parent frame
+_self
+URL replaces the current page
+_top
+URL replaces any frameset that may be loaded
+name
+
+The name of the window
+The name does not specify the title of the new window
+specs in details
+specs is Optional.
+
+A comma-separated list of items, no white spaces.
+
+The following values are supported:
+
+Copy
+channelmode=yes|no|1|0 
+Whether or not to display the window in theater mode. 
+Default is no.
+Return Value
+A reference to the newly created window, or null if the call failed
+
+More Examples
+Open an about:blank page in a new window/tab:
+
+Copy
+let myWindow = window.open("", "", "width=200,height=100");
+
+Example
+Open a new window called MsgWindow, and write some text into it:
+
+Copy
+function myFunction() {
+  let myWindow = window.open("", "MsgWindow", "width=200,height=100");
+  myWindow.document.write(`<p>This is 'MsgWindow'. 
+  I am 200px wide and 100px tall!</p>`);
+}
+
+Example
+Replace the current window with a new window:
+
+Copy
+let myWindow = window.open("", "_self"); 
+myWindow.document.write("<p>I replaced the current window.</p>");
+
+Example
+Open a new window and control its appearance:
+
+Copy
+window.open("https://www.demo2s.com", 
+            "_blank", 
+`toolbar=yes,scrollbars=yes,resizable=yes,
+top=500,left=500,width=400,height=400`);
+
+Example
+Open multiple tabs:
+
+Copy
+window.open("http://www.google.com/"); 
+window.open("https://www.demo2s.com/");
+
+Example
+Open a new window. Use close() to close the new window:
+
+Copy
+let myWindow;
+
+function openWin() {
+  myWindow = window.open("", "myWindow", "width=200,height=100");
+  myWindow.document.write("<p>This is 'myWindow'</p>");
+}
+
+function closeWin() {
+  myWindow.close();
+}
+
+Example
+Open a new window.
+
+Use the name property to return the name of the new window:
+
+Copy
+let myWindow = window.open("", "MsgWindow", "width=200,height=100"); 
+myWindow.document.write("<p>This window's name is: " + myWindow.name + "</p>");
+
+Example
+Using the opener property to return a reference to the window that created the new window:
+
+Copy
+function myFunction() {
+  let myWindow = window.open("", "myWindow", "width=200,height=100");
+  myWindow.document.write("<p>This is 'myWindow'</p>");
+  myWindow.opener.document.write("<p>This is the source window!</p>");
+}
