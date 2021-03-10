@@ -1,0 +1,39 @@
+A range can be used to select a section of a document regardless of node boundaries.
+
+A DOM range can be created using createRange() from Document type, as shown here:
+
+Copy
+let range = document.createRange();
+The newly created range is linked to the document on which it was created and cannot be used on other documents.
+
+This range can then be used to select specific parts of the document behind the scenes.
+
+Once a range has been created and its position set, a number of different operations can be performed on the range.
+
+Each range is represented by an instance of the Range type, which has a number of properties and methods.
+
+The following properties provide information about the range:
+
+Property
+Meaning
+startContainer
+
+The node within which the range starts.
+The parent of the first node in the selection.
+startOffset
+
+
+The offset within the startContainer where the range starts.
+If startContainer is a text node, comment node, or CData node, the startOffset is the number of characters skipped before the range starts;
+otherwise, the offset is the index of the first child node in the range.
+endContainer
+
+The node within which the range ends.
+The parent of the last node in the selection.
+endOffset
+
+The offset within the endContainer where the range ends.
+It follows the same rules as startOffset.
+commonAncestorContainer
+The deepest node in the document that has both startContainer and endContainer as descendants.
+These properties are filled when the range is placed into a specific position in the document.
