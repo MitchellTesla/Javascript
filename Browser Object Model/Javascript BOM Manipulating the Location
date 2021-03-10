@@ -1,0 +1,17 @@
+The browser location can be changed in a number of ways using the location object.
+
+The first we use the assign() method and pass in a URL, as in the following example:
+
+Copy
+location.assign("https://www.demo2s.com");
+This immediately starts the process of navigating to the new URL and makes an entry in the browser's history stack.
+
+If location.href or window.location is set to a URL, the assign() method is called with the value.
+
+For example, both of the following perform the same behavior as calling assign() explicitly:
+
+Copy
+window.location = "http://www.demo2s.com";
+location.href = "http://www.demo2s.com";
+Of these three approaches to changing the browser location, setting location.href is most often used.
+
