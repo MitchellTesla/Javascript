@@ -1,0 +1,25 @@
+Example
+Get the number of URLs in the history list:
+
+Copy
+let x = history.length;
+
+Description
+The length property returns the number of URLs in the history list of the current browser window.
+
+The property returns at least 1, because the list includes the currently loaded page.
+
+This property can return page count the user has visited in the current browsing session.
+
+Maximum length is 50.
+
+This property is read-only.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+length	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+let a = history.length;
+Return Value
+A Number, representing the number of entries in the session history
