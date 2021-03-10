@@ -1,0 +1,45 @@
+A MutationObserver can monitor changes when a textual node, such as Text, Comment, or ProcessingInstruction nodes, has its character data added, removed, or changed.
+
+This is accomplished by setting the characterData property inside the MutationObserverInit object to true, as demonstrated here:
+
+Copy
+let observer = new MutationObserver(
+    (mutationRecords) => console.log(mutationRecords));
+
+// Create an initial text node to observe
+document.body.innerText = 'foo';
+
+observer.observe(document.body.firstChild, { characterData: true });
+
+// Identical string assignment
+document.body.innerText = 'foo';
+
+// New string assignment
+
+document.body.innerText = 'bar';
+
+ // Node setter assignment
+document.body.firstChild.textContent = 'baz';
+
+// All three are recorded as mutations
+Output:
+
+
+The default behavior is to not record the old value inside the MutationRecord.
+
+To preserve the old value inside the mutation record, the attributeOldValue can be set to true:
+
+Copy
+let observer = new MutationObserver(
+   (mutationRecords) => console.log(mutationRecords .map((x) => x.oldValue)));
+
+document.body.innerText = 'foo';
+
+observer.observe(document.body.firstChild, { characterDataOldValue: true });
+
+document.body.innerText = 'foo';
+document.body.innerText = 'bar';
+document.body.firstChild.textContent = 'baz';
+Each mutation records the previous value
+
+Output:
