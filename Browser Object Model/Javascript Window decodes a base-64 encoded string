@@ -1,0 +1,30 @@
+Example
+Decode a base-64 encoded string:
+
+Copy
+let str = "Hello World!"; 
+let enc = window.btoa(str); 
+let dec = window.atob(enc); 
+let res = "Encoded String: " + enc + "<br>" 
+           + "Decoded String: " + dec;
+
+Description
+The atob() method decodes a base-64 encoded string.
+
+This method decodes a string of data which has been encoded by the btoa() method.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+atob()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+window.atob(encoded_Str)
+Parameter Values
+Parameter
+Description
+encoded_Str
+
+Required.
+The string which has been encoded by the btoa() method
+Return Value
+A String, representing the decoded string
