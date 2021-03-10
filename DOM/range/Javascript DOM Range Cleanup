@@ -1,0 +1,29 @@
+When you are done using a range, we should call the detach() method, which detaches the range from the document on which it was created.
+
+After calling detach(), the range can be safely dereferenced, so the memory can be reclaimed through garbage collection.
+
+For example, consider the following HTML:
+
+Copy
+<!DOCTYPE html>
+<html>
+  <body>
+    <p id="p1"><b>Hello</b> world!</p>
+  </body>
+</html>
+Here is an example:
+
+Copy
+let p1 = document.getElementById("p1"),
+   helloNode = p1.firstChild.firstChild,
+   worldNode = p1.lastChild,
+   range = document.createRange();
+
+range.setStart(helloNode, 2);
+range.setEnd(worldNode, 3);
+
+range.detach();  // detach from document
+range = null;        //  dereferenced
+Following these two steps is the most appropriate way to finish using a range.
+
+Once it is detached, a range can no longer be used.
