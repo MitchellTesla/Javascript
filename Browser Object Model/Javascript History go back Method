@@ -1,0 +1,32 @@
+Example
+Create a back button on a page:
+
+Copy
+function goBack() {
+  window.history.back();
+}
+The output of the code above will be:
+
+
+Description
+The back() method loads the previous URL in the history list.
+
+This is the same as clicking the "Back button" in your browser.
+
+This method will not work if the previous page does not exist in the history list.
+
+To load the next URL in the history list, use the history.forward() method.
+
+You can also use the history.go() method to load the previous (or next) URL in the history list.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+back()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+history.back()
+Parameters
+None
+
+Return Value
+No return value
