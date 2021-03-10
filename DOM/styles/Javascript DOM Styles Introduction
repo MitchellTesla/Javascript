@@ -1,0 +1,62 @@
+Styles are defined in HTML in three ways:
+
+including an external style sheet via the <link> element,
+defining inline styles using the <style> element, and
+defining element-specific styles using the style attribute.
+DOM Styles provides an API around all three of these styling mechanisms.
+
+Accessing Element Styles
+Any HTML element that supports the style attribute also has a style property exposed in JavaScript.
+
+The style object is an instance of CSSStyleDeclaration and contains all stylistic information specified by the HTML style attribute but no information about styles that have cascaded from either included or inline style sheets.
+
+Any CSS property specified in the style attribute are represented as properties on the style object.
+
+Because CSS property names use dash case, such as background-image, the names must be converted into camel case in order to be used in JavaScript.
+
+The following table lists some common CSS properties and the equivalent property names on the style object.
+
+Css Property	Javascript Property
+background-image	style.backgroundImage
+color	style.color
+display	style.display
+font-family	style.fontFamily
+The one CSS property float, which is a reserved word in JavaScript, is converted to be cssFloat.
+
+Styles can be set using JavaScript at any time as long as a valid DOM element reference is available.
+
+Here are some examples:
+
+Copy
+let myDiv = document.getElementById("myDiv");
+
+// set the background color
+myDiv.style.backgroundColor = "red";
+
+// change the dimensions
+myDiv.style.width = "100px";
+myDiv.style.height = "200px";
+
+// assign a border
+myDiv.style.border = "1px solid black";
+When styles are changed in this manner, the display of the element is automatically updated.
+
+When in standards mode, all measurements have to include a unit of measure.
+
+In quirks mode, you can set style.width to be "20" and it will assume that you mean "20px"; in standards mode, setting style.width to "20" will be ignored because it has no unit of measure.
+
+In practice, it's best to always include the unit of measurement.
+
+Styles specified in the style attribute can also be retrieved using the style object.
+
+Consider the following HTML:
+
+Copy
+<div id="myDiv" style="background-color: blue; width: 10px; height: 25px"></div>
+The information from this element's style attribute can be retrieved via the following code:
+
+Copy
+console.log(myDiv.style.backgroundColor);   // "blue"
+console.log(myDiv.style.width);             // "10px"
+console.log(myDiv.style.height);            // "25px"
+If no style attribute is specified on an element, the style object will contain empty values for all possible CSS properties.
