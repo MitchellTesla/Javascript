@@ -1,0 +1,67 @@
+Example
+Scroll the document by 100px horizontally:
+
+Copy
+window.scrollBy(100, 0); // Scroll 100px to the right
+
+Description
+The scrollBy() method scrolls the document by the specified number of pixels.
+
+For this method to work, the visible property of the window's scrollbar must be set to true!
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+scrollBy()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+window.scrollBy(x_num, y_num)
+Parameter Values
+Parameter
+Type
+Description
+x_num
+
+
+
+Number
+
+
+
+Required.
+How many pixels to scroll horizontally.
+Positive values will scroll to the right,
+while negative values will scroll to the left
+y_num
+
+
+
+Number
+
+
+
+Required.
+How many pixels to scroll vertically.
+Positive values will scroll down,
+while negative values scroll up
+Return Value
+No return value
+
+More Examples
+Scroll the document by 100px vertically:
+
+Copy
+window.scrollBy(0, 100); // Scroll 100px downwards
+
+Example
+Scroll the document horizontally and vertically:
+
+Copy
+<button onclick="scrollWin(0, 50)">Scroll down</button> 
+<button onclick="scrollWin(0, -50)">Scroll up</button> 
+<button onclick="scrollWin(100, 0)">Scroll right</button> 
+<button onclick="scrollWin(-100, 0)">Scroll left</button> 
+<script> 
+function scrollWin(x, y) { 
+    window.scrollBy(x, y); 
+} 
+</script>
