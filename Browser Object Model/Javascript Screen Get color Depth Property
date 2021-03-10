@@ -1,0 +1,38 @@
+Example
+Get the bit depth of the color palette:
+
+Copy
+let x = "Color Depth: " + screen.colorDepth;
+
+Description
+The colorDepth property returns the bit depth of the color palette for displaying images in bits per pixel.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+colorDepth	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+let a = screen.colorDepth;
+Return Value
+A Number, representing the bit depth of the color palette for displaying images, in bits per pixel.
+
+Possible values:
+
+1 bit per pixel
+4 bits per pixel
+8 bits per pixel
+15 bits per pixel
+16 bits per pixel
+24 bits per pixel
+32 bits per pixel
+48 bits per pixel
+More Examples
+Display an alternate background color for 8 bit screens to avoid that 8 bit screens:
+
+Copy
+if (screen.colorDepth <= 8)
+  //simple blue background color for 8 bit screens
+  document.body.style.background = "#0000FF"
+else
+  //fancy blue background color for modern screens
+  document.body.style.background = "#87CEFA"
