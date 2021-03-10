@@ -1,0 +1,73 @@
+Example
+Open a new window, and move the new window to the top left corner of the screen:
+
+Copy
+let myWindow;
+
+function openWin() {
+  myWindow=window.open("", "myWindow", "width=200, height=100");
+  myWindow.document.write("<p>This is 'myWindow'</p>");
+}
+
+function moveWin() {
+  myWindow.moveTo(500, 100);
+  myWindow.focus();
+}
+
+Description
+The moveTo() method moves a window's left and top edge to the specified coordinates.
+
+Related methods:
+
+Method	Description
+moveBy()	Moves a window relative to its current position
+resizeBy()	Resizes the window by the specified pixels
+resizeTo()	Resizes the window to the specified width and height
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+moveTo()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+window.moveTo(x, y)
+Parameter Values
+Parameter
+Type
+Description
+x
+
+
+Number
+
+
+Required.
+A positive or negative number
+sets the horizontal coordinate to be moved to
+y
+
+
+Number
+
+
+Required.
+A positive or negative number
+sets the vertical coordinate to be moved to
+Return Value
+No return value
+
+More Examples
+Copy
+let myWindow;
+
+function openWin() {
+  myWindow = window.open("", "", "width=250, height=250");
+}
+
+function moveWinTo() {
+  myWindow.moveTo(150, 150);
+  myWindow.focus();
+}
+
+function moveWinBy() {
+  myWindow.moveBy(75, 50);
+  myWindow.focus();
+}
