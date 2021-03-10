@@ -1,0 +1,41 @@
+Example
+Scroll the document to the horizontal position "500":
+
+Copy
+window.scrollTo(500, 0);
+
+Description
+The scrollTo() method scrolls the document to the specified coordinates.
+
+Use the scrollBy() method to scroll a specified distance multiple times.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+scrollTo()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+window.scrollTo(x_pos, y_pos)
+Parameter Values
+Parameter
+Type
+Description
+x_pos
+
+Number
+
+Required.
+The coordinate to scroll to horizontally, in pixels
+y_pos
+
+Number
+
+Required.
+The coordinate to scroll to vertically, in pixels
+Return Value
+No return value
+
+More Examples
+Scroll the document to position "300" horizontally and "500" vertically:
+
+Copy
+window.scrollTo(300, 500);
