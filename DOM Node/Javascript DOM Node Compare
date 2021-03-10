@@ -1,0 +1,23 @@
+We can use Node isSameNode() and isEqualNode() to help compare nodes.
+
+Both methods accept a single node as an argument and return true if that node is the same as or equal to the reference node.
+
+Two nodes are the same when they reference the same object.
+
+Two nodes are equal when they are of the same type and have properties that are equal (nodeName, nodeValue, and so on), and their attributes and childNodes properties are equivalent.
+
+Here is an example:
+
+Copy
+let div1 = document.createElement("div");
+div1.setAttribute("class", "box");
+
+let div2 = document.createElement("div");
+div2.setAttribute("class", "box");
+
+console.log(div1.isSameNode(div1));   // true
+console.log(div1.isEqualNode(div2));  // true
+console.log(div1.isSameNode(div2));   // false
+Here, two <div> elements are created with the same attributes.
+
+The two elements are equivalent to one another but are not the same.
