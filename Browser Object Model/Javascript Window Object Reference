@@ -1,0 +1,50 @@
+The window object represents an open window in a browser.
+
+If a document contain frames (<iframe> tags), the browser creates one window object for the HTML document, and one additional window object for each frame.
+
+Note: There is no public standard that applies to the Window object, but all major browsers support it.
+
+Method List
+Method	Description
+alert()	displays an alert box with a specified message and an OK button
+atob()	decodes a base-64 encoded string
+blur()	removes focus from the current window
+btoa()	encodes a string in base-64
+clearInterval()	clears a timer set with the setInterval method
+clearTimeout()	clears a timer set with the setTimeout method
+close()	closes the current window
+confirm()	displays a dialog box with a specified message
+focus()	sets focus to the current window
+matchMedia()	match media query
+moveBy()	moves a window relative to its current coordinates
+moveTo()	moves a window's left and top edge to the specified coordinates
+open()	opens a new browser window
+print()	prints the contents of the current window
+prompt()	displays a dialog box that prompts the user for input
+resizeBy()	resizes a window by the specified amount
+resizeTo()	resizes a window to the specified width and height
+scrollBy()	scrolls the document by the specified number of pixels
+scrollTo()	scrolls the document to the specified coordinates
+setInterval()	calls a function at specified intervals in milliseconds
+setTimeout()	calls a function after a specified number of milliseconds
+stop()	stops window loading
+Property List
+Property	Description
+closed	checks whether a window is closed
+defaultStatus	Get and Set default Status text
+frameElement	returns the <iframe> element where current window is inserted
+frames	get all iframe elements
+innerWidth and innerHeight	innerWidth and innerHeight get client size
+length	get the number of iframe elements
+localStorage	Get local Storage Property
+name	Get and Set name Property
+opener	Get the window that created current window
+outerWidth and outerHeight	Get size
+pageXOffset and pageYOffset	Get the scrolled offset
+parent	get the parent window of the current window.
+screenLeft and screenTop	Get coordinates of the window relative to the screen
+screenX and screenY	Get coordinates of the window relative to the screen.
+self	returns the current window
+sessionStorage	Get session Storage Property
+status	Get and Set status text
+top	Get the topmost browser window of the current window
