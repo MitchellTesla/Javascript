@@ -1,0 +1,95 @@
+Several methods are available to manipulate nodes.
+
+Append
+The appendChild() method adds a node to the end of the childNodes list.
+
+Doing so updates all of the relationship pointers in the newly added node, the parent node, and the previous last child in the childNodes list.
+
+When complete, appendChild() returns the newly added node.
+
+Here is an example:
+
+Copy
+let returnedNode = someNode.appendChild(newNode);
+console.log(returnedNode == newNode);         // true
+console.log(someNode.lastChild == newNode);   // true
+If the node passed into appendChild() is already part of the document, it is removed from its previous location and placed at the new location.
+
+No DOM node may exist in more than one location in a document.
+
+If you call appendChild() and pass in the first child of a parent, it will end up as the last child:
+
+Copy
+// assume multiple children for someNode
+let returnedNode = someNode.appendChild(someNode.firstChild);
+console.log(returnedNode == someNode.firstChild);  // false
+console.log(returnedNode == someNode.lastChild);   // true
+Insert
+When a node needs to be placed in a specific location within the childNodes list, use the insertBefore() method.
+
+The insertBefore() method accepts two arguments:
+
+the node to insert and
+a reference node.
+The node to insert becomes the previous sibling of the reference node and is ultimately returned by the method.
+
+If the reference node is null, then insertBefore() acts the same as appendChild(), as this example shows:
+
+insert as last child
+
+Copy
+returnedNode = someNode.insertBefore(newNode, null);
+console.log(newNode == someNode.lastChild);   // true
+insert as the new first child.
+
+Copy
+returnedNode = someNode.insertBefore(newNode, someNode.firstChild);
+console.log(returnedNode == newNode);         // true
+console.log(newNode == someNode.firstChild);  // true
+insert before last child.
+
+Copy
+returnedNode = someNode.insertBefore(newNode, someNode.lastChild);
+console.log(newNode == someNode.childNodes[someNode.childNodes.length - 2]);
+// true
+Both appendChild() and insertBefore() insert nodes without removing any.
+
+Replace
+The replaceChild() method accepts two arguments:
+
+the node to insert and
+the node to replace.
+The node to replace is returned by the function and is removed from the document tree completely while the inserted node takes its place.
+
+Here is an example:replace first child
+
+Copy
+let returnedNode = someNode.replaceChild(newNode, someNode.firstChild);
+replace last child
+
+Copy
+returnedNode = someNode.replaceChild(newNode, someNode.lastChild);
+When a node is inserted using replaceChild(), all of its relationship pointers are duplicated from the node it is replacing.
+
+The replaced node no longer has a specific location in the document.
+
+Remove
+To remove a node without replacing it, you can use the removeChild() method.
+
+This method accepts a single argument, which is the node to remove.
+
+The removed node is then returned as the function value, as this example shows:
+
+Remove first child
+
+Copy
+let formerFirstChild = someNode.removeChild(someNode.firstChild);
+remove last child.
+
+Copy
+let formerLastChild = someNode.removeChild(someNode.lastChild);
+A node removed via removeChild() is still owned by the document but doesn't have a specific location in the document.
+
+To use the above method you must know the immediate parent node, which is accessible via the parentNode property.
+
+Not all node types can have child nodes, and these methods will throw errors if you attempt to use them on nodes that don't support children.
