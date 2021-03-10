@@ -1,0 +1,13 @@
+We can add new rules to existing style sheets using the insertRule() method.
+
+This method expects two arguments: the text of the rule and the index at which to insert the rule.
+
+Here is an example:
+
+Copy
+sheet.insertRule("body { background-color: silver }", 0);  // DOM method
+This example inserts a rule that changes the document's background color.
+
+The rule is inserted as the first rule in the style sheet (position 0).
+
+The order is important in determining how the rule cascades into the document.
