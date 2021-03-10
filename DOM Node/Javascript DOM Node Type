@@ -1,0 +1,49 @@
+DOM Level 1 describes an interface called Node that is to be implemented by all node types in the DOM.
+
+The Node interface is implemented in JavaScript as the Node type, which is accessible in all browsers.
+
+All node types inherit from Node in JavaScript, so all node types share the same basic properties and methods.
+
+Every node has a nodeType property that indicates the type of node that it is.
+
+Node types are represented by one of the following 12 numeric constants on the Node type:
+
+Type
+Number Value
+Node.ELEMENT_NODE
+1
+Node.ATTRIBUTE_NODE
+2
+Node.TEXT_NODE
+3
+Node.CDATA_SECTION_NODE
+4
+Node.ENTITY_REFERENCE_NODE
+5
+Node.ENTITY_NODE
+6
+Node.PROCESSING_INSTRUCTION_NODE
+7
+Node.COMMENT_NODE
+8
+Node.DOCUMENT_NODE
+9
+Node.DOCUMENT_TYPE_NODE
+10
+Node.DOCUMENT_FRAGMENT_NODE
+11
+Node.NOTATION_NODE
+12
+A node's type is easy to determine by comparing against one of these constants, as shown here:
+
+Copy
+if (someNode.nodeType == Node.ELEMENT_NODE){
+  console.log("Node is an element.");
+}
+This example compares the someNode.nodeType to the Node.ELEMENT_NODE constant.
+
+If they're equal, it means someNode is actually an element.
+
+Not all node types are supported in web browsers.
+
+Developers most often work with element and text nodes.
