@@ -1,0 +1,18 @@
+Modern browsers formally support the registerProtocolHandler() method to the navigator object.
+
+These methods allow a website to indicate that it can handle specific types of information.
+
+We can handle protocols by using registerProtocolHandler(), which accepts three arguments:
+
+the protocol to handle (i.e., "mailto" or "ftp"),
+the URL of the page that handles the protocol, and
+the name of the application.
+For example, to register a web application as the default mail client, you can use the following:
+
+Copy
+navigator.registerProtocolHandler("mailto",
+                                  "http://www.example.com?cmd=%s",
+                                  "Some Mail Client");
+In this example, a handler is registered for the mailto protocol, which will now point to a web-based e-mail client.
+
+Once again, the second argument is the URL that should handle the request, and %s represents the original request.
