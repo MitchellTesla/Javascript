@@ -1,0 +1,26 @@
+Example
+Return the path name of the current URL:
+
+Copy
+let x = location.pathname;
+
+Description
+The pathname property gets and sets the path name of a URL.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+pathname	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Return the pathname property:
+
+Copy
+let a = location.pathname;
+Set the pathname property:
+
+Copy
+location.pathname = path;
+Property Values
+Value	Type	Description
+path	String	the pathname of the URL
+Return Value
+A String, representing the pathname
