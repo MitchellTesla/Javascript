@@ -1,0 +1,19 @@
+Example
+Get the total height of your screen:
+
+Copy
+let x = "Total Height: " + screen.height;
+
+Description
+The height property returns the total height of the user's screen, in pixels.
+
+We can use the width property to get the total width of the user's screen.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+height	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+let a = screen.height;
+Return Value
+A Number, representing the total height of the user's screen, in pixels
