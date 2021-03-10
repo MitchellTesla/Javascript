@@ -1,0 +1,42 @@
+Example
+Click on the button to go back two pages:
+
+Copy
+function goBack() {
+  window.history.go(-2);
+}
+The output of the code above will be:
+
+
+Description
+The go() method loads a specific URL from the history list.
+
+You can also use the back() or forward() method to load the previous or next URL in the history list.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+go()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+history.go(number|URL)
+Parameter Values
+Parameter	Description
+number|URL	Required.
+The parameter can either be a number which goes to the URL within the specific position.
+
+-1 goes back one page, 1 goes forward one page.
+
+The parameter can also be a string.
+
+The string must be a partial or full URL, and the function will go to the first URL that matches the string.
+
+Return Value
+No return value
+
+More Examples
+Go forward one page.
+
+This example will not work if the next page does not exist in the history list:
+
+Copy
+window.history.go(1);
