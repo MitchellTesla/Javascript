@@ -1,0 +1,42 @@
+Example
+Change the location of the first <iframe> element (index 0) in the current window:
+
+Copy
+window.frames[0].location = "https://www.demo2s.com/java/java.html";
+
+Description
+The frames property returns an array-like object, which represents all <iframe> elements in the current window.
+
+The <iframe> elements can be accessed by index numbers.
+
+The index starts at 0.
+
+We can use frames.length to find the number of frames.
+
+This property will also work for <frame> elements.
+
+However, the <frame> element is not supported in HTML5.
+
+This property is read-only.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+frames	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+window.frames
+Return Value
+Returns a reference to the Window object, representing all frames in the current window
+
+More Examples
+Loop through all frames on a page, and change the location of all frames to "demo2s.com":
+
+Copy
+function myFunction() {
+  let frames = window.frames;
+
+  for (let i = 0; i < frames.length; i++) {
+    frames[i].location = "https://www.demo2s.com";
+  }
+}
+
