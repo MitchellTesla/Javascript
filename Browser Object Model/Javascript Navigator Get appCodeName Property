@@ -1,0 +1,21 @@
+Example
+Get the code name of your browser:
+
+Copy
+let x = "Browser CodeName: " + navigator.appCodeName;
+
+Description
+The appCodeName property returns the code name of the browser.
+
+All modern browsers returns "Mozilla", for compatibility reasons.
+
+This property is read-only.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+appCodeName	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+let a = navigator.appCodeName;
+Return Value
+A String, representing the code name of the browser
