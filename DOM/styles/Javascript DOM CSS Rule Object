@@ -1,0 +1,75 @@
+A CSSRule object represents each rule in a style sheet.
+
+The CSSRule type is a base type from which several other types inherit, but the most often used is CSSStyleRule, which represents styling information.
+
+The following properties are available on a CSSStyleRule object:
+
+Property
+Meaning
+cssText
+
+
+Returns the text for the entire rule.
+This text may be different from the actual text in the style sheet because of the way that browsers handle style sheets internally;
+Safari always converts everything to all lowercase.
+parentRule
+
+If this rule is imported, this is the import rule;
+otherwise, this is null.
+parentStyleSheet
+The style sheet that this rule is a part of.
+selectorText
+
+
+
+Returns the selector text for the rule.
+This text may be different from the actual text in the style sheet because of the way that browsers handle style sheets internally.
+This property is read-only in Firefox, Safari, Chrome, and Internet Explorer (where it throws an error).
+Opera allows selectorText to be changed.
+style
+A CSSStyleDeclaration object that allows the setting and getting of specific style values for the rule.
+type
+A constant indicating the type of rule. For style rules, this is always 1.
+The three most frequently used properties are cssText, selectorText, and style.
+
+The cssText property is similar to the style.cssText property but not exactly the same.
+
+The former includes the selector text and the braces around the style information; the latter contains only the style information, similar to style.cssText on an element.
+
+cssText is read-only, whereas style.cssText may be overwritten.
+
+The style property is all that is required to manipulate style rules.
+
+This object can be used just like the one on each element to read or change the style information for a rule.
+
+Consider the following CSS rule:
+
+Copy
+div.box {
+   background-color: blue;
+   width: 100px;
+   height: 200px;
+}
+Assuming that this rule is in the first style sheet on the page and is the only style in that style sheet, the following code can be used to retrieve all of its information:
+
+Copy
+let sheet = document.styleSheets[0];
+let rules = sheet.cssRules || sheet.rules;  // get rules list
+let rule = rules[0];              // get first rule
+console.log(rule.selectorText);           // "div.box"
+console.log(rule.style.cssText);          // complete CSS code
+console.log(rule.style.backgroundColor);  // "blue"
+console.log(rule.style.width);            // "100px"
+console.log(rule.style.height);           // "200px"
+Using this technique, we can determine the style information related to a rule in the same way you can determine the inline style information for an element.
+
+As with elements, we can change the style information, as shown in the following example:
+
+Copy
+let sheet = document.styleSheets[0];
+let rules = sheet.cssRules || sheet.rules;  // get rules list
+let rule = rules[0];                        // get first rule
+rule.style.backgroundColor = "red"
+Changing a rule in this way affects all elements on the page for which the rule applies.
+
+If there are two <div> elements that have the box class, they will both be affected by this change.
