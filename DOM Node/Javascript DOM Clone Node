@@ -1,0 +1,41 @@
+DOM cloneNode() method creates an exact clone of the node on which it's called.
+
+The cloneNode() method accepts a single Boolean argument indicating whether to do a deep copy.
+
+When the argument is true, a deep copy is used, cloning the node and its entire subtree; when false, only the initial node is cloned.
+
+The cloned node that is returned is owned by the document but has no parent node assigned.
+
+The cloned node is an orphan and doesn't exist in the document until added via appendChild(), insertBefore(), or replaceChild().
+
+For example, consider the following HTML:
+
+Copy
+<ul>
+  <li>item 1</li>
+  <li>item 2</li>
+  <li>item 3</li>
+</ul>
+If a reference to this <ul> element is stored in a variable named myList, the following code shows the two modes of the cloneNode() method:
+
+Deep clone:
+
+Copy
+let deepList = myList.cloneNode(true);
+console.log(deepList.childNodes.length);
+Shallow clone:
+
+Copy
+let shallowList = myList.cloneNode(false);
+console.log(shallowList.childNodes.length);
+In this example, deepList is filled with a deep copy of myList.
+
+This means deepList has three list items, each of which contains text.
+
+The variable shallowList contains a shallow copy of myList, so it has no child nodes.
+
+The cloneNode() method doesn't copy JavaScript properties that you add to DOM nodes, such as event handlers.
+
+This method copies only attributes and, optionally, child nodes.
+
+Everything else is lost.
