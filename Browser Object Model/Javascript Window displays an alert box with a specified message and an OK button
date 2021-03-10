@@ -1,0 +1,46 @@
+Example
+Display an alert box:
+
+Copy
+alert("Hello! I am an alert box!!");
+
+Description
+The alert() method displays an alert box with a specified message and an OK button.
+
+The alert box takes the focus away from the current window.
+
+It forces the browser to read the message.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+alert()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+alert(message)
+Parameter Values
+Parameter
+Type
+Description
+message
+
+
+String
+
+
+Optional.
+the text to display in the alert box, or
+an object converted into a string and displayed
+Return Value
+No return value
+
+More Examples
+Alert box with line-breaks:
+
+Copy
+alert("Hello\nHow are you?");
+
+Example
+Alert the hostname of the current URL:
+
+Copy
+alert(location.hostname);
