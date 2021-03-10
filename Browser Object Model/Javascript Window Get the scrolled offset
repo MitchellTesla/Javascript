@@ -1,0 +1,39 @@
+Example
+Scroll the content by 100 pixels, and alert the pageXOffset and pageYOffset:
+
+Copy
+window.scrollBy(100, 100); 
+console.log(window.pageXOffset + window.pageYOffset);
+
+Description
+The pageXOffset and pageYOffset properties returns the pixels the current document has been scrolled from the upper left corner of the window, horizontally and vertically.
+
+The pageXOffset and pageYOffset properties are equal to the scrollX and scrollY properties.
+
+These properties are read-only.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+pageXOffset pageYOffset	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+window.pageXOffset 
+window.pageYOffset
+Return Value
+A Number, representing the number of pixels that the document has already been scrolled from the upper left corner of the window, horizontally and vertically.
+
+Example
+Create a sticky navigation bar:
+
+Copy
+let navbar = document.getElementById("navbar");
+let sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+
