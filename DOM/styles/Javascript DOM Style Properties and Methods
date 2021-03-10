@@ -1,0 +1,94 @@
+The DOM Style specification defines several properties and methods on the style object.
+
+These properties and methods provide information about the contents of the element's style attribute and enabling changes.
+
+They are as follows:
+
+Name
+cssText
+Description
+provides access to the CSS code of the style attribute.
+length
+The number of CSS properties applied to the element.
+parentRule
+The CSSRule object representing the CSS information.
+getPropertyCSSValue(propertyName)
+Returns a CSSValue object containing the value of the given property.
+getPropertyPriority(propertyName)
+Returns "important" if the given property is set using !important; otherwise, it returns an empty string.
+getPropertyValue(propertyName)
+Returns the string value of the given property.
+item(index)
+Returns the name of the CSS property at the given position.
+removeProperty(propertyName)
+Removes the given property from the style.
+setProperty(propertyName, value, priority)
+Sets the given property to the given value with a priority (either "important" or an empty string).
+cssText
+The cssText property allows access to the CSS code of the style.
+
+When used in read mode, cssText returns the browser's internal representation of the CSS code in the style attribute.
+
+When used in write mode, the value assigned to cssText overwrites the entire value of the style attribute, meaning that all previous style information specified using the attribute is lost.
+
+For instance, if the element has a border specified via the style attribute and you overwrite cssText with rules that don't include the border, it is removed from the element.
+
+The cssText property is used as follows:
+
+Copy
+myDiv.style.cssText = "width: 25px; height: 100px; background-color: red";
+console.log(myDiv.style.cssText);
+Setting the cssText property is the fastest way to make multiple changes to an element's style.
+
+Length
+The length property is designed for use in conjunction with the item() method for iterating over the CSS properties defined on an element.
+
+With these, the style object effectively becomes a collection, and bracket notation can be used in place of item() to retrieve the CSS property name in the given position, as shown in the following example:
+
+Copy
+for (let i = 0, len = myDiv.style.length; i < len; i++) {
+  console.log(myDiv.style[i]);   // alternately, myDiv.style.item(i)
+}
+Using either bracket notation or item(), you can retrieve the CSS property name ( "background-color", not "backgroundColor").
+
+This property name can then be used in getPropertyValue() to retrieve the actual value of the property, as shown in the following example:
+
+Copy
+let prop, value, i, len;
+for (i = 0, len = myDiv.style.length; i < len; i++) {
+   prop = myDiv.style[i];   // alternately, myDiv.style.item(i)
+   value = myDiv.style.getPropertyValue(prop);
+   console.log('prop: ${value}');
+}
+The getPropertyValue() method always retrieves the string representation of the CSS property value.
+
+If you need more information, getPropertyCSSValue() returns a CSSValue object that has two properties: cssText and cssValueType.
+
+The cssText property is the same as the value returned from getPropertyValue().
+
+The cssValueType property is a numeric constant indicating the type of value being represented:
+
+0 for an inherited value,
+1 for a primitive value,
+2 for a list, or
+3 for a custom value.
+The following code outputs the CSS property value and the value type:
+
+Copy
+let prop, value, i, len;
+for (i = 0, len = myDiv.style.length; i < len; i++) {
+   prop = myDiv.style[i];   // alternately, myDiv.style.item(i)
+   value = myDiv.style.getPropertyCSSValue(prop);
+   console.log(`prop: ${value.cssText} (${value.cssValueType})`);
+}
+The removeProperty() method is used to remove a specific CSS property from the element's styling.
+
+Removing a property using this method means that any default styling for that property cascading from other style sheets will be applied.
+
+For instance, to remove a border property that was set in the style attribute, you can use the following code:
+
+Copy
+myDiv.style.removeProperty("border");
+This method is helpful when you're not sure what the default value for a given css property is.
+
+Simply removing the property allows the default value to be used.
