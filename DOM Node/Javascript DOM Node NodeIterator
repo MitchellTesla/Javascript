@@ -1,0 +1,169 @@
+The NodeIterator type can be created using the document.createNodeIterator() method.
+
+This method accepts the following four arguments:
+
+Parameter
+Description
+root
+The node in the tree that you want to start searching from.
+whatToShow
+A numerical code indicating which nodes should be visited.
+filter
+A NodeFilter object or a function indicating whether a particular node should be accepted or rejected.
+entityReferenceExpansion
+
+A Boolean value indicating whether entity references should be expanded.
+This has no effect in HTML pages because entity references are never expanded.
+The whatToShow argument is a bit mask that determines which nodes to visit by applying one or more filters.
+
+Possible values for this argument are included as constants on the NodeFilter type as follows:
+
+Value
+Meaning
+NodeFilter.SHOW_ALL
+Show all node types.
+NodeFilter.SHOW_ELEMENT
+Show element nodes.
+NodeFilter.SHOW_ATTRIBUTE
+
+Show attribute nodes.
+This can't actually be used because of the DOM structure.
+NodeFilter.SHOW_TEXT
+Show text nodes.
+NodeFilter.SHOW_CDATA_SECTION
+
+Show CData section nodes.
+This is not used in HTML pages.
+NodeFilter.SHOW_ENTITY_REFERENCE
+
+Show entity reference nodes.
+This is not used in HTML pages.
+NodeFilter.SHOW_ENTITY
+
+Show entity nodes.
+This is not used in HTML pages.
+NodeFilter.SHOW_PROCESSING_INSTRUCTION
+
+Show PI nodes.
+This is not used in HTML pages.
+NodeFilter.SHOW_COMMENT
+Show comment nodes.
+NodeFilter.SHOW_DOCUMENT
+Show document nodes.
+NodeFilter.SHOW_DOCUMENT_TYPE
+Show document type nodes.
+NodeFilter.SHOW_DOCUMENT_FRAGMENT
+
+Show document fragment nodes.
+This is not used in HTML pages.
+NodeFilter.SHOW_NOTATION
+
+Show notation nodes.
+This is not used in HTML pages.
+With the exception of NodeFilter.SHOW_ALL, you can combine multiple options using the bitwise OR operator, as shown in the following example:
+
+Copy
+let whatToShow = NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT;
+The filter argument of createNodeIterator() can be used to specify a custom NodeFilter object or a function that acts as a node filter.
+
+A NodeFilter object has only one method, acceptNode(), which returns NodeFilter.FILTER_ACCEPT if the given node should be visited or NodeFilter.FILTER_SKIP if the given node should not be visited.
+
+Because NodeFilter is an abstract type, it's not possible to create an instance of it.
+
+Instead, just create an object with an acceptNode() method and pass the object into createNodeIterator().
+
+The following code accepts only <p> elements:
+
+Copy
+let filter = {
+  acceptNode(node) {
+    return node.tagName.toLowerCase() == "p" ?
+         NodeFilter.FILTER_ACCEPT :
+         NodeFilter.FILTER_SKIP;
+  }
+ };
+
+let iterator = document.createNodeIterator(root, NodeFilter.SHOW_ELEMENT,
+                                           filter, false);
+The third argument can also be a function that takes the form of the acceptNode() method, as shown in this example:
+
+Copy
+let filter = function(node) {
+    return node.tagName.toLowerCase() == "p" ?
+         NodeFilter.FILTER_ACCEPT :
+         NodeFilter.FILTER_SKIP;
+};
+
+let iterator = document.createNodeIterator(root, NodeFilter.SHOW_ELEMENT,
+                                           filter, false);
+If no filter is required, the third argument should be set to null.
+
+To create a simple NodeIterator that visits all node types, use the following code:
+
+Copy
+let iterator = document.createNodeIterator(document, NodeFilter.SHOW_ALL,
+                                           null, false);
+The two primary methods of NodeIterator are nextNode() and previousNode().
+
+The nextNode() method moves one step forward in the depth-first traversal of the DOM subtree, and previousNode() moves one step backward in the traversal.
+
+When the NodeIterator is first created, an internal pointer points to the root, so the first call to nextNode() returns the root.
+
+When the traversal has reached the last node in the DOM subtree, nextNode() returns null.
+
+The previousNode() method works in a similar way.
+
+When the traversal has reached the last node in the DOM subtree, after previousNode() has returned the root of the traversal, it will return null.
+
+Consider the following HTML fragment:
+
+Copy
+<div id="div1">
+  <p><b>Hello</b> world!</p>
+  <ul>
+    <li>List item 1</li>
+    <li>List item 2</li>
+    <li>List item 3</li>
+  </ul>
+</div>
+Suppose that you would like to traverse all elements inside of the <div> element.
+
+This can be accomplished using the following code:
+
+Copy
+let div = document.getElementById("div1");
+let iterator = document.createNodeIterator(div, NodeFilter.SHOW_ELEMENT,
+                                           null, false);
+let node = iterator.nextNode();
+while (node !== null) {
+  console.log(node.tagName);     // output the tag name
+  node = iterator.nextNode();
+}
+The first call to nextNode() in this example returns the <p> element.
+
+Because nextNode() returns null when it has reached the end of the DOM subtree, a while loop checks to see when null has been returned as it calls nextNode() each time through.
+
+When this code is executed, logs are displayed with the following tag names:
+
+
+This can be accomplished by using a filter, as shown in the following example:
+
+Copy
+let div = document.getElementById("div1");
+let filter = function(node) {
+ return node.tagName.toLowerCase() == "li" ?
+   NodeFilter.FILTER_ACCEPT :
+   NodeFilter.FILTER_SKIP;
+};
+
+let iterator = document.createNodeIterator(div, NodeFilter.SHOW_ELEMENT,
+      filter, false);
+
+let node = iterator.nextNode();
+while (node !== null) {
+    console.log(node.tagName);     // output the tag name
+    node = iterator.nextNode();
+}
+In this example, only <li> elements will be returned from the iterator.
+
+The nextNode() and previousNode() methods work with NodeIterator's internal pointer in the DOM structure, so changes to the structure are represented appropriately in the traversal.
