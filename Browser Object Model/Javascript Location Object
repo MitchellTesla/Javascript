@@ -1,0 +1,22 @@
+The location object contains information about the current URL.
+
+The location object is part of the window object and is accessed through the window.location property.
+
+There is no public standard that applies to the location object, but all major browsers support it.
+
+Method List
+Method	Description
+assign()	Location assign new value Method
+reload()	Location reload url Method
+replace()	Location replace url Method
+Property List
+Property	Description
+hash	Location Get and Set url hash Property
+host	Location Get and Set host Property
+hostname	Location Get and Set host name Property
+href	Location Get and Set href URL Property
+origin	Location Get and Set URL origin Property
+pathname	Location Get and Set URL path name Property
+port	Location Get and Set URL port Property
+protocol	Location Get and Set URL protocol Property
+search	Location Get and Set URL search part Property
