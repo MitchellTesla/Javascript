@@ -1,0 +1,95 @@
+You access the Document object through the global document variable; this is one of the key objects that the browser creates for us.
+
+The Document object provides you with information about the document as a whole and gives you access to the individual objects in the model.
+
+The following example demonstrates some basic DOM features.
+
+Copy
+<p id="myId">
+    test<span id="mySpan">mySpan</span>test
+</p>
+<p id="LEGO">
+    This is a test.
+</p>
+<script>
+    document.writeln("<pre>URL: " + document.URL);
+    let elems = document.getElementsByTagName("p");
+    for (let i = 0; i < elems.length; i++) {
+        document.writeln("Element ID: " + elems[i].id);
+        elems[i].style.border = "medium double black";
+        elems[i].style.padding = "4px";
+    }
+    document.write("</pre>");
+</script>
+
+The Document object captures information about the HTML document that we are working with.
+
+The first line in the script does just that:
+
+Copy
+document.writeln("<pre>URL: " + document.URL);
+In this case, we have read the value of the document.URL property, which returns the URL of the current document.
+
+This is the URL that the browser used to load the document in which the script is running.
+
+The statement also calls the writeln method:
+
+Copy
+document.writeln("<pre>URL: " + document.URL);
+This method appends content to the end of the HTML document.
+
+In this case, we have written the opening tag of a pre element and the value of the URL property.
+
+This is a very simple example of modifying the DOM, meaning that I have changed the structure of the document.
+
+Next, we select some elements from the document:
+
+Copy
+let elems = document.getElementsByTagName("p");
+There is a range of methods for selecting elements.
+
+The getElementsByTagName selects all of the elements of a given type, in this case, <p> elements.
+
+Any <p> elements that are contained in the document are returned from the method and placed in the variable called elems.
+
+All elements are represented by the HTMLElement object, which provides the basic functionality to represent HTML elements.
+
+The result from the getElementsByTagName method is a collection of HTMLElement objects.
+
+Now that we have a collection of HTMLElement objects to work with, we use a for loop to enumerate the contents of the collection and process each <p> element that the browser has found in the HTML document:
+
+Copy
+for (let i = 0; i < elems.length; i++) {
+    document.writeln("Element ID: " + elems[i].id);
+    elems[i].style.border = "medium double black";
+    elems[i].style.padding = "4px";
+}
+For each HTMLElement in the collection, we read the id property to get the value of the id attribute and use the document.writeln method to append the result to the contents of the pre element that we started earlier:
+
+Copy
+for (let i = 0; i < elems.length; i++) {
+    document.writeln("Element ID: " + elems[i].id);
+    elems[i].style.border = "medium double black";
+    elems[i].style.padding = "4px";
+}
+The id property is one of a number of properties defined by HTMLElement.
+
+You can use these properties to obtain information about an element or to modify it.
+
+In this case, we have used the style property to change the value of the CSS border and padding properties:
+
+Copy
+for (let i = 0; i < elems.length; i++) {
+    document.writeln("Element ID: " + elems[i].id);
+    elems[i].style.border = "medium double black";
+    elems[i].style.padding = "4px";
+}
+These changes create an inline style for each of the elements that you found using the getElementsByTagName earlier.
+
+When you change an object, the browser applies the change to the corresponding element immediately, in this case, by adding padding and a border to the <p> elements.
+
+The last line of the script writes the end tag for the <pre> element that we opened back at the start of the script.
+
+We use the write method to do this, which is just like writeln but doesn't append end-of-line characters to the string that is added to the document.
+
+The use of the <pre> element means that the end-of-line characters added by the writeln method will be used to structure the content.
