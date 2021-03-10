@@ -1,0 +1,12 @@
+The location reload() method reloads the currently displayed page.
+
+When reload() is called with no argument, the page is reloaded in the most efficient way possible, which is to say that the page may be reloaded from the browser cache if it hasn't changed since the last request.
+
+To force a reload from the server, pass in true as an argument like this:
+
+Copy
+location.reload();      // reload - possibly from cache
+location.reload(true);  // reload - go back to the server
+Any code located after a reload() call may or may not be executed, depending on factors such as network latency and system resources.
+
+We should have reload() as the last line of code.
