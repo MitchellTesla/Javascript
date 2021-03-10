@@ -1,0 +1,29 @@
+extractContents() is similar to deleteContents() since it removes the range selection from the document.
+
+The extractContents() returns the range's document fragment to the caller. This allows you to insert the contents of the range somewhere else.
+
+For example, consider the following HTML:
+
+Copy
+<!DOCTYPE html>
+<html>
+  <body>
+    <p id="p1"><b>Hello</b> world!</p>
+  </body>
+</html>
+Here is an example:
+
+Copy
+let p1 = document.getElementById("p1"),
+    helloNode = p1.firstChild.firstChild,
+    worldNode = p1.lastChild,
+    range = document.createRange();
+
+range.setStart(helloNode, 2);
+range.setEnd(worldNode, 3);
+
+let fragment = range.extractContents();
+p1.parentNode.appendChild(fragment);
+In this example, the fragment is extracted and added to the end of the document's <body> element.
+
+When a document fragment is passed into appendChild(), only the fragment's children are added, not the fragment itself.
