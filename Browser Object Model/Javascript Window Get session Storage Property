@@ -1,0 +1,71 @@
+Example
+Create a sessionStorage name/value pair with name="lastname" and value="Smith", then retrieve the value of "lastname" and insert it into the element with id="result":
+
+Copy
+// Check browser support
+if (typeof(Storage) !== "undefined") {
+  // Store
+  sessionStorage.setItem("lastname", "Smith");
+  // Retrieve
+  document.getElementById("result").innerHTML = 
+     sessionStorage.getItem("lastname");
+} else {
+  document.getElementById("result").innerHTML = 
+     "Sorry, your browser does not support Web Storage...";
+}
+
+Description
+The localStorage and sessionStorage properties allow to save key/value pairs in a web browser.
+
+The sessionStorage object stores data for only one session.
+
+The data is deleted when the browser tab is closed.
+
+The localStorage property stores data with no expiration date.
+
+The data will not be deleted when the browser is closed.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+sessionStorage	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+window.sessionStorage
+Syntax for saving data to sessionStorage:
+
+Copy
+sessionStorage.setItem("key", "value");
+Syntax for reading data from sessionStorage:
+
+Copy
+let lastname = sessionStorage.getItem("key");
+Syntax for removing saved data from sessionStorage:
+
+Copy
+sessionStorage.removeItem("key");
+Syntax for removing all saved data from sessionStorage:
+
+Copy
+sessionStorage.clear();
+Return Value
+A Storage object
+
+More Examples
+The following example counts the number of times a user has clicked a button, in the current session:
+
+Copy
+function clickCounter() {
+  if(typeof(Storage) !== "undefined") {
+    if (sessionStorage.clickcount) {
+      sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
+    } else {
+      sessionStorage.clickcount = 1;
+    }
+    document.getElementById("result").innerHTML = 
+      "You have clicked the button " + 
+      sessionStorage.clickcount + " time(s) in this session.";
+  } else {
+    document.getElementById("result").innerHTML = 
+      "Sorry, your browser does not support web storage...";
+  }
+}
