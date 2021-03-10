@@ -1,0 +1,23 @@
+Example
+Return the x and y coordinates of the new window relative to the screen:
+
+Copy
+let myWindow = window.open("", "myWin"); 
+myWindow.document.write("<p>This is 'myWin'"); 
+myWindow.document.write("<br>ScreenLeft: " + myWindow.screenLeft); 
+myWindow.document.write("<br>ScreenTop: " + myWindow.screenTop + "</p>");
+
+Description
+The screenLeft and screenTop properties returns the x and y coordinates of the window relative to the screen.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+screenLeft	Yes	Yes	Yes	Yes	Yes	Yes
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+screenTop	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+window.screenLeft 
+window.screenTop
+Return Value
+A Number, representing the horizontal and vertical distance of the window relative to the screen, in pixels.
