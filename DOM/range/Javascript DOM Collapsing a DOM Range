@@ -1,0 +1,30 @@
+When a range isn't selecting any part of a document, it is said to be collapsed.
+
+When you collapse a range, its location is set between parts of a document, either at the beginning of the range selection or at the end.
+
+You can collapse a range by using the collapse() method, which accepts a single argument: a Boolean value indicating which end of the range to collapse to.
+
+If the argument is true, then the range is collapsed to its starting point; if it is false, the range is collapsed to its ending point.
+
+To determine if a range is already collapsed, you can use the collapsed property as follows:
+
+Copy
+range.collapse(true);    // collapse to the starting point
+console.log(range.collapsed);  // outputs "true"
+We can find out if two tags are next to each other by testing whether a range is collapsed.
+
+For example, consider this HTML code:
+
+Copy
+<p id="p1">Paragraph 1</p>
+<p id="p2">Paragraph 2</p>
+We can create the following range:
+
+Copy
+let p1 = document.getElementById("p1"),
+p2 = document.getElementById("p2"),                          
+range = document.createRange();
+range.setStartAfter(p1);
+range.setStartBefore(p2);
+console.log(range.collapsed);  // true
+Since the the created range is collapsed then we know that there is nothing between the end of p1 and the beginning of p2.
