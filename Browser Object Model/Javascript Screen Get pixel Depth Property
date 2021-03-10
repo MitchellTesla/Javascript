@@ -1,0 +1,28 @@
+Example
+Get the color resolution of your screen:
+
+Copy
+let x = "Color Resolution: " + screen.pixelDepth;
+
+Description
+The pixelDepth property returns the color resolution in bits per pixel of the visitor's screen.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+pixelDepth	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+let a = screen.pixelDepth;
+Return Value
+A Number, representing the color resolution, in bits per pixel.
+
+Possible values:
+
+1 bit per pixel
+4 bits per pixel
+8 bits per pixel
+15 bits per pixel
+16 bits per pixel
+24 bits per pixel
+32 bits per pixel
+48 bits per pixel
