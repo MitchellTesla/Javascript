@@ -1,0 +1,27 @@
+By default, a MutationObserver callback will execute for every DOM mutation in its designated purview until the element is garbage collected.
+
+To terminate callback execution early, use the disconnect() method.
+
+This example demonstrates how invoking disconnect() synchronously will halt callbacks.
+
+It will discard any pending asynchronous callbacks, even if they were from a DOM mutation during the observation window:
+
+Copy
+let observer = new MutationObserver(() => 
+               console.log('<body> attributes changed'));
+observer.observe(document.body, { attributes: true });
+document.body.className = 'foo';
+observer.disconnect();
+document.body.className = 'bar';
+To allow for these queued callbacks to execute before invoking disconnect(), a setTimeout could be employed to allow for pending callbacks to execute:
+
+Copy
+let observer = new MutationObserver(() =>
+             console.log('<body> attributes changed'));
+observer.observe(document.body, { attributes: true });
+document.body.className = 'foo';
+setTimeout(() => {
+  observer.disconnect();
+  document.body.className = 'bar';
+}, 0);
+Output:
