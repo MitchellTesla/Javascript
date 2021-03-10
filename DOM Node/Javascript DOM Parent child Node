@@ -1,0 +1,39 @@
+Each node has a parentNode property pointing to its parent in the document tree.
+
+All nodes contained within a childNodes list have the same parent, so each of their parentNode properties points to the same node.
+
+Each node within a childNodes list is considered to be a sibling of the other nodes in the same list.
+
+We can navigate from one node in the list to another by using the previousSibling and nextSibling properties.
+
+The first node in the list has null for the value of its previousSibling property, and the last node in the list has null for the value of its nextSibling property, as shown in the following example:
+
+Copy
+if (someNode.nextSibling === null){
+  console.log("Last node in the parent's childNodes list.");
+} else if (someNode.previousSibling === null){
+  console.log("First node in the parent's childNodes list.");
+}
+If there's only one child node, both nextSibling and previousSibling will be null.
+
+Another relationship exists between a parent node and its first and last child nodes.
+
+The firstChild and lastChild properties point to the first and last node in the childNodes list, respectively.
+
+The value of someNode.firstChild is always equal to someNode.childNodes[0], and the value of someNode.lastChild is always equal to someNode.childNodes[someNode.childNodes.length-1].
+
+If there is only one child node, firstChild and lastChild point to the same node.
+
+If there are no children, then firstChild and lastChild are both null.
+
+All of these relationships help to navigate easily between nodes in a document structure.
+
+hasChildNodes() returns true if the node has one or more child nodes and is more efficient than querying the length of the childNodes list.
+
+The ownerDocument property is a pointer to the document node that represents the entire document.
+
+Nodes are considered to be owned by the document in which they were created, because nodes cannot exist simultaneously in two or more documents.
+
+This property provides a quick way to access the document node without needing to traverse the node hierarchy back up to the top.
+
+Not all node types can have child nodes even though all node types inherit from Node.
