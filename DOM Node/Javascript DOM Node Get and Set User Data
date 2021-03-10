@@ -1,0 +1,44 @@
+The setUserData() method assigns data to a node and accepts three arguments:
+
+the key to set,
+the actual data, and
+a handler function.
+You can assign data to a node using the following code:
+
+Copy
+document.body.setUserData("name", "CSS", function() {});
+You can then retrieve the information using getUserData() and passing in the same key, as shown here:
+
+Copy
+let value = document.body.getUserData("name");
+The handler function for setUserData() is called whenever the node with the data is cloned, removed, renamed, or imported into another document.
+
+It gives you the opportunity to determine what should happen to the user data in each of those cases.
+
+The handler function accepts five arguments:
+
+a number indicating the type of operation (1 for clone, 2 for import, 3 for delete, or 4 for rename),
+the data key,
+the data value,
+the source node, and
+the destination node.
+The source node is null when the node is being deleted, and the destination node is null unless the node is being cloned.
+
+You can then determine how to store the data.
+
+Here is an example:
+
+Copy
+let div = document.createElement("div");
+div.setUserData("name", "CSS", function(operation, key, value, src, dest) {
+  if (operation == 1) {
+    dest.setUserData(key, value, function() {});  }
+});
+
+let newDiv = div.cloneNode(true);
+console.log(newDiv.getUserData("name"));  // "CSS"
+Here, a <div> element is created and has some data assigned to it, including some user data.
+
+When the element is cloned via cloneNode(), the handler function is called and the data is automatically assigned to the clone.
+
+When getUserData() is called on the clone, it returns the same value that was assigned to the original.
