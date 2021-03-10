@@ -1,0 +1,81 @@
+TreeWalker has the same functionality as NodeIterator, including nextNode() and previousNode(), and adds the following methods to traverse a DOM structure in different directions:
+
+Method
+Description
+parentNode()
+Travels to the current node's parent.
+firstChild()
+Travels to the first child of the current node.
+lastChild()
+Travels to the last child of the current node.
+nextSibling()
+Travels to the next sibling of the current node.
+previousSibling()
+Travels to the previous sibling of the current node.
+the root to traverse from,
+which node types to show,
+a filter, and
+a Boolean value indicating if entity references should be expanded.
+Because of these similarities, TreeWalker can always be used in place of NodeIterator, as in this example:
+
+Copy
+let div = document.getElementById("div1");
+let filter = function(node) {
+  return node.tagName.toLowerCase() == "li" ?
+    NodeFilter.FILTER_ACCEPT :
+    NodeFilter.FILTER_SKIP;
+};
+
+let walker = document.createTreeWalker(div, NodeFilter.SHOW_ELEMENT,
+                                       filter, false);
+
+let node = iterator.nextNode();
+while (node !== null) {
+  console.log(node.tagName);     // output the tag name
+  node = iterator.nextNode();
+}
+In addition to NodeFilter.FILTER_ACCEPT and NodeFilter.FILTER_SKIP, there is NodeFilter.FILTER_REJECT.
+
+When used with a NodeIterator object, NodeFilter.FILTER_SKIP and NodeFilter.FILTER_REJECT do the same thing: they skip over the node.
+
+When used with a TreeWalker object, NodeFilter.FILTER_SKIP skips over the node and goes on to the next node in the subtree, whereas NodeFilter.FILTER_REJECT skips over that node and that node's entire subtree.
+
+TreeWalker can move around the DOM structure.
+
+Consider the following HTML fragment:
+
+Copy
+<div id="div1">
+  <p><b>Hello</b> world!</p>
+  <ul>
+    <li>List item 1</li>
+    <li>List item 2</li>
+    <li>List item 3</li>
+  </ul>
+</div>
+Instead of specifying filter, it's possible to get at the <li> elements by navigating through the DOM tree using TreeWalker, as shown here:
+
+Copy
+let div = document.getElementById("div1");
+let walker = document.createTreeWalker(div, 
+                       NodeFilter.SHOW_ELEMENT, null, false);
+
+walker.firstChild();   // go to <p>
+walker.nextSibling();  // go to <ul>
+
+let node = walker.firstChild();  // go to first <li>
+while (node !== null) {
+  console.log(node.tagName);
+  node = walker.nextSibling();
+}
+TreeWalker from above code is returning only elements because of the second argument passed in to createTreeWalker().
+
+The TreeWalker type also has a property called currentNode that indicates the node that was last returned from the traversal via any of the traversal methods.
+
+This property can also be set to change where the traversal continues from when it resumes, as shown in this example:
+
+Copy
+let node = walker.nextNode();
+console.log(node === walker.currentNode);  // true
+walker.currentNode = document.body;        // change where to start from
+Compared to NodeIterator, the TreeWalker type allows greater flexibility when traversing the DOM.
