@@ -1,0 +1,75 @@
+Example
+Find out if the screen/viewport is less than or greater than 700 pixels wide:
+
+Copy
+let x = document.getElementById("demo");
+if (window.matchMedia("(max-width: 700px)").matches) {
+  x.innerHTML = "The screen is less than, or equal to, 700 pixels wide.";
+} else {
+  x.innerHTML = "The screen is at least 700 pixels wide.";
+}
+
+Description
+The window.matchMedia() method returns a MediaQueryList object representing the results of the specified CSS media query string.
+
+The value of the matchMedia() method can be any of the media features of the CSS @media rule, like min-height, min-width, orientation, etc.
+
+The MediaQueryList object has two properties and two methods:
+
+Parameter
+Description
+matches
+
+
+Used to check the results of a query.
+Returns a boolean value:
+true if the document matches the media query list, otherwise false
+media
+A String, representing the serialized media query list
+The first example on this page only runs the specified CSS media query and compares it to the current window state once.
+
+To use window.matchMedia() in a responsive manner, you can use its methods/event handlers:
+
+Method
+Description
+addListener(function_ref)
+
+Adds a new listener function,
+which is executed whenever the media query's evaluated result changes
+removeListener(function_ref)
+
+Removes a previously added listener function from the media query list.
+Does nothing if the specified listener is not already in the list
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+matchMedia()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+window.matchMedia(media_Query_String)
+Parameter Values
+Parameter
+Description
+media_Query_String
+
+Required.
+the media query to return a new MediaQueryList object
+Return Value
+A MediaQueryList object representing the results of the specified CSS media query string.
+
+More Examples
+If the viewport is less than, or equal to, 700 pixels wide, change the background color to yellow.
+
+If it is greater than 700, change it to pink
+
+Copy
+function myFunction(x) {
+  if (x.matches) { // If media query matches
+    document.body.style.backgroundColor = "yellow";
+  } else {
+    document.body.style.backgroundColor = "pink";
+  }
+}
+
+let x = window.matchMedia("(max-width: 700px)")
+myFunction(x) // Call listener function at run time
+x.addListener(myFunction) // Attach listener function on state changes
