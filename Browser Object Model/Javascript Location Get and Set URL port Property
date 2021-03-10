@@ -1,0 +1,30 @@
+Example
+Return the port number of the current URL:
+
+Copy
+let x = "Port: " + location.port;
+
+Description
+The port property gets and sets the port number the server uses for a URL.
+
+If the port number is not specified in the URL or if it is the scheme's default port - like 80, some browsers will display 0 or nothing.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+port	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Return the port property:
+
+Copy
+let a = location.port;
+Set the port property:
+
+Copy
+location.port = port;
+Property Values
+Value	Type	Description
+port	String	Specifies the port number of the URL
+Return Value
+A String, representing the port number of a URL.
+
+If the port number is not specified or if it is the scheme's default port (like 80 or 443), an empty string is returned.
