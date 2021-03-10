@@ -1,0 +1,114 @@
+We can use the following Element Properties of the Document Object to get elements from document.
+
+Property
+Description
+Returns
+activeElement
+
+Returns an object representing the currently focused
+element
+HTMLElement
+
+body
+Returns an object representing the body element
+HTMLElement
+embeds
+plugins
+Returns objects representing all the embed elements
+
+HTMLCollection
+
+forms
+Returns objects representing all the form elements
+HTMLCollection
+head
+Returns an object representing the head element
+HTMLHeadElement
+images
+Returns objects representing all the img elements
+HTMLCollection
+links
+
+Returns objects representing all the a and area elements in
+the document that have href attributes
+HTMLCollection
+
+scripts
+Returns objects representing all the script elements
+HTMLCollection
+Most of the properties described in table return an HTMLCollection object.
+
+This is the way that the DOM represents a collection of objects that represent elements.
+
+The following code demonstrates the two ways in which you can access the objects contained in the HTMLCollection Object.
+
+Copy
+let resultsElement = document.getElementById("results");
+
+let elems = document.images;
+
+for (let i = 0; i < elems.length; i++) {
+    resultsElement.innerHTML += "Image Element: " + elems[i].id + "\n";
+}
+
+let srcValue = elems.namedItem("myId3").src;
+resultsElement.innerHTML += "Src for myId3 element is: " + srcValue + "\n";
+
+The first way of working with an HTMLCollection is to treat it like an array.
+
+The length property returns the number of items in the collection, and the standard JavaScript array indexer is supported (the element[i] notation) to provide direct access to individual objects in the collection.
+
+This is the first approach we use in the example, having used the document.images property to get an HTMLCollection containing object representing all of the <img> elements in the document.
+
+Notice that we used the innerHTML property to set the contents of the <pre> element.
+
+The second approach is to use the namedItem() method, which returns the item in the collection that has the specified id or name attribute value (if there is one).
+
+This is the second approach we use in the example, where we use the namedItem() method to retrieve the object representing the <img> element with the id attribute value.
+
+Notice that we read the value of the src property on one of the objects.
+
+This is a property that is implemented by HTMLImageElement objects, which are used to represent <img> elements.
+
+The other property we use, id, is part of HTMLElement and so is available for all types of element.
+
+Using Array Notation to Obtain a Named Element
+You can also use array-style notation to obtain an object representing a named element.
+
+This is an element that has an id or name attribute value.
+
+Obtaining Named Element Objects.
+
+Copy
+let resultsElement = document.getElementById("results");
+let elems = document["html"];
+
+if (elems.namedItem) {
+    for (let i = 0; i < elems.length; i++) {
+        resultsElement.innerHTML += "Image Element: " + elems[i].id + "\n";
+    }
+} else {
+    resultsElement.innerHTML += "Src for element is: " + elems.src + "\n";
+}
+
+You can see how we have used the array-style indexer to obtain an object representing the element with an id value.
+
+An oddity of obtaining elements this way is that you can get different kinds of results, depending on the contents of the document and the order of the elements.
+
+The browser looks at all of the elements in the document in a depth-first order, trying to match either the id or name attribute to the specified value.
+
+If the first match is an id attribute, then the browser stops searching (because id values must be unique in documents) and returns an HTMLElement representing the matched element.
+
+If the first match is against a name attribute value, then you will receive either an HTMLElement (if there is only one matching element) or an HTMLCollection (if there is more than one).
+
+The browser won't match id values once it has started to match name values.
+
+You can see how we use the namedItem property as a test to see which kind of result we have received.
+
+In the example we receive an HTMLElement because the value we specified matches an id value.
+
+You can also refer to named elements as properties.
+
+So, for example, document['yourId'] and document.yourId have the same meaning.
+
+We tend to prefer the dot-notation format because it makes it clearer that we are trying to obtain element objects, but it is a matter of personal preference.
