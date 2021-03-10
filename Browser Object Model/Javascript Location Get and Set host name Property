@@ -1,0 +1,26 @@
+Example
+Return the hostname of the current URL:
+
+Copy
+let x = location.hostname;
+
+Description
+The hostname property gets and sets the hostname of a URL.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+hostname	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Return the hostname property:
+
+Copy
+let a = location.hostname;
+Set the hostname property:
+
+Copy
+location.hostname = hostname;
+Property Values
+Value	Type	Description
+hostname	String	Specifies the hostname of the URL
+Return Value
+A String, representing the domain name, or the IP address of a URL.
