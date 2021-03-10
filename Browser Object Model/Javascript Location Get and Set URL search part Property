@@ -1,0 +1,37 @@
+Example
+Return the query string part of a URL.
+
+Assume that the current URL is
+
+Copy
+https://demo2s.com/submit.htm?email=someone@example.com:
+Copy
+let x = location.search;
+The result of x will be:
+
+Copy
+?email=someone@example.com
+Description
+The search property gets and sets the query string part of a URL, including the question mark (?).
+
+The query string part of URL is after the question mark (?).
+
+This is often used for parameter passing.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+search	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Return the search property:
+
+Copy
+let a = location.search;
+Set the search property:
+
+Copy
+location.search = query_string;
+Property Values
+Value	Type	Description
+query_string	String	the search part of the URL
+Return Value
+A String, representing the query string part of a URL, including the question mark (?).
