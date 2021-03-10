@@ -1,0 +1,117 @@
+The Window object contains a set of methods for prompting the user in different ways.
+
+The browser can invoke system dialogs to display to the user through the alert(), confirm(), and prompt() methods.
+
+Name
+Description
+Returns
+alert(<msg>)
+
+Displays a dialog window to the user and waits for it to
+be dismissed
+void
+
+confirm(<msg>)
+Displays a dialog window with an OK/Cancel prompt
+boolean
+prompt(<msg>, <val>)
+Displays a dialog prompting the user to enter a value
+string
+showModalDialog(<url>)
+Displays a popup window showing the specified URL
+void
+These dialogs are not related to the web page being displayed in the browser and do not contain HTML.
+
+Their appearance is determined by operating system and / or browser settings rather than CSS.
+
+Additionally, each of these dialogs is synchronous and modal, meaning code execution stops when a dialog is displayed, and resumes after it has been dismissed.
+
+Alert
+The alert() method accepts a string to display to the user.
+
+alert() expects only one argument.
+
+When alert() is called, a system message box displays the specified text to the user, followed by a single OK button.
+
+If alert() is passed an argument that is not a string primitive, it will coerce the argument into a string with its.toString() method.
+
+Alert dialogs are typically used when users must be made aware of something that they have no control over, such as an error.
+
+A user's only choice is to dismiss the dialog after reading the message.
+
+Confirm
+The second type of dialog is invoked by calling confirm().
+
+A confirm dialog displays a message to the user.
+
+A confirmation dialog has a Cancel button along with the OK button, which allows the user to indicate if a given action should be taken.
+
+To determine if the user clicked OK or Cancel, the confirm() method returns a Boolean value: true if OK was clicked, or false if Cancel was clicked or the dialog box was closed by clicking the X in the corner.
+
+Typical usage of a confirm dialog looks like this:
+
+Copy
+if (confirm("Are you sure?")) {
+   console.log("yes");
+} else {
+   console.log("not sure.");
+}
+In this example, the confirm dialog is displayed to the user in the first line, which is a condition of the if statement.
+
+Prompt
+The final type of dialog is displayed by calling prompt(), which prompts the user for input.
+
+Along with OK and Cancel buttons, this dialog has a text box where the user may enter some data.
+
+The prompt() method accepts two arguments: the text to display to the user, and the default value for the text box. The default value can be an empty string.
+
+If the OK button is clicked, prompt() returns the value in the text box; if Cancel is clicked or the dialog is otherwise closed without clicking OK, the function returns null.
+
+Here's an example:
+
+Copy
+let result = prompt("What is your name? ", "");
+if (result !== null) {
+   console.log("Welcome, " + result);
+}
+These system dialogs can be helpful for displaying information to the user and asking for confirmation of decisions.
+
+find and print
+Two other types of dialogs can be displayed from JavaScript: find and print.
+
+Both of these dialogs are displayed asynchronously, returning control to the script immediately.
+
+The dialogs are the same as the ones the browser employs when the user selects either Find or Print from the browser's menu.
+
+These are displayed using the find() and print() methods on the window object as follows:
+
+Copy
+// display print dialog
+window.print();
+
+// display find dialog
+window.find();
+These two methods give no indication as to whether the user has done anything with the dialog, so it is difficult to make good use of them.
+
+Prompting the User.
+
+Copy
+let buttons = document.getElementsByTagName("button");
+for (let i = 0 ; i < buttons.length; i++) {
+    buttons[i].onclick = handleButtonPress;
+}
+
+function handleButtonPress(e) {
+    if (e.target.id == "alert") {
+        window.alert("This is an alert");
+    } else if (e.target.id == "confirm") {
+        let confirmed
+           = window.confirm("This is a confirm - do you want to proceed?");
+        alert("Confirmed? " + confirmed);
+    } else if (e.target.id == "prompt") {
+        let response = window.prompt("Enter a word", "hello");
+        alert("The word was " + response);
+    } else if (e.target.id == "modal") {
+        window.showModalDialog("https://demo2s.com");
+    }
+}
