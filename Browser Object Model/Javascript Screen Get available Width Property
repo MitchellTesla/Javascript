@@ -1,0 +1,31 @@
+Example
+Get the available width of your screen:
+
+Copy
+let x = "Available Width: " + screen.availWidth;
+
+Description
+The availWidth property returns the width of the user's screen, in pixels, minus interface features like the Windows Taskbar.
+
+To get the height of the screen excluding the Windows Taskbar, use the availHeight property.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+availWidth	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+let a = screen.availWidth;
+Return Value
+A Number, representing the width of the user's screen, in pixels
+
+More Examples
+All screen properties in one example:
+
+Copy
+let txt = "";
+txt += "<p>Total width/height: " + screen.width + "*" + 
+           screen.height + "</p>";
+txt += "<p>Available width/height: " + screen.availWidth + "*" + 
+           screen.availHeight + "</p>";
+txt += "<p>Color depth: " + screen.colorDepth + "</p>";
+txt += "<p>Color resolution: " + screen.pixelDepth + "</p>";
