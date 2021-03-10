@@ -1,0 +1,30 @@
+Example
+Encode a string in base-64:
+
+Copy
+let str = "Hello World!";
+let enc = window.btoa(str);
+let res = "Encoded String: " + enc;
+
+Description
+The btoa() method encodes a string in base-64.
+
+This method uses the "A-Z", "a-z", "0-9", "+", "/" and "=" characters to encode the string.
+
+We can use the atob() method to decode a base-64 encoded string.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+btoa()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+window.btoa(str)
+Parameter Values
+Parameter
+str
+Type/Optional
+Required.
+Description
+The string to be encoded
+Return Value
+A String, representing the base-64 encoded string
