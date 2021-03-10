@@ -1,0 +1,20 @@
+Example
+Set the text in the status bar:
+
+Copy
+window.status = "Some text in the status bar!!";
+
+Description
+The status property sets the text in the status bar at the bottom of the browser, or returns the previously set text.
+
+The defaultStatus property specifies the default text displayed in the status bar.
+
+To allow scripts to change the text of the status, the user must set the dom.disable_window_status_change preference to false in the about:config screen.
+
+In Firefox: "Tools > Options > Content -Enable JavaScript / Advanced > Allow scripts to change status bar text".
+
+Syntax
+Copy
+window.status
+Return Value
+A String, representing the text displayed in the status bar
