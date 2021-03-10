@@ -1,0 +1,66 @@
+XML namespaces allow elements from different XML-based languages to be mixed together in a single, well-formed document without fear of element name clashes.
+
+Technically, XML namespaces are not supported by HTML but supported in XHTML; therefore, the examples in this section are in XHTML.
+
+Namespaces are specified using the xmlns attribute.
+
+The namespace for XHTML is http://www.w3.org/1999/xhtml and should be included on the <html> element of any well-formed XHTML page, as shown in the following example:
+
+Copy
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+   <title>Example XHTML page</title>
+ </head>
+ <body>
+   Hello world!
+ </body>
+</html>
+For this example, all elements are considered to be part of the XHTML namespace by default.
+
+You can explicitly create a prefix for an XML namespace using xmlns, followed by a colon, followed by the prefix, as in this example:
+
+Copy
+<xhtml:html xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <xhtml:head>
+    <xhtml:title>Example XHTML page</xhtml:title>
+  </xhtml:head>
+  <xhtml:body>
+    Hello world!
+  </xhtml:body>
+</xhtml:html>
+Here, the namespace for XHTML is defined with a prefix of xhtml, requiring all XHTML elements to begin with that prefix.
+
+Attributes may be qualified by namespace to avoid confusion between languages, as shown in the following example:
+
+Copy
+<xhtml:html xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <xhtml:head>
+    <xhtml:title>Example XHTML page</xhtml:title>
+  </xhtml:head>
+  <xhtml:body xhtml:class="home">
+    Hello world!
+  </xhtml:body>
+</xhtml:html>
+The class attribute in this example is prefixed with xhtml.
+
+Adding namespace isn't really necessary when only one XML-based language is being used in a document; it is, however, very useful when mixing two languages together.
+
+Consider the following document containing both XHTML and SVG:
+
+Copy
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Example XHTML page</title>
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+       viewBox="0 0 100 100" style="width:100%; height:100%">
+      <rect x="0" y="0" width="100" height="100" style="fill:red" />
+     </svg>
+  </body>
+</html>
+In this example, the <svg> element is indicated as foreign to the containing document by setting its own namespace.
+
+All children of the <svg> element, as well as all attributes of the elements, are considered to be in the http://www.w3.org/2000/svg namespace.
+
+Even though the document is technically an XHTML document, the SVG code is considered valid because of the use of namespaces.
