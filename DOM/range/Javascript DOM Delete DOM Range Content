@@ -1,0 +1,39 @@
+When a range is created, internally it creates a document fragment node where all of the nodes in the selection are attached.
+
+The range contents must be well formed in order for this process to take place.
+
+The range does not represent a well-formed DOM structure if the selection begins inside one text node and ends in another.
+
+Ranges can recognize missing opening and closing tags and can reconstruct a valid DOM structure to operate on.
+
+With the range created, the contents of the range can be manipulated using a variety of methods.
+
+Delete
+For example, consider the following HTML:
+
+Copy
+<!DOCTYPE html>
+<html>
+  <body>
+    <p id="p1"><b>Hello</b> world!</p>
+  </body>
+</html>
+The method deleteContents() simply deletes the contents of the range from the document.
+
+Here is an example:
+
+Copy
+let p1 = document.getElementById("p1"),
+    helloNode = p1.firstChild.firstChild,
+    worldNode = p1.lastChild,
+    range = document.createRange();
+
+range.setStart(helloNode, 2);
+range.setEnd(worldNode, 3);
+
+range.deleteContents();
+Executing this code results in the following HTML being shown on the page:
+
+Copy
+<p><b>He</b>rld!</p>
+Because the range selection process altered the underlying DOM structure to remain well formed, the resulting DOM structure is well formed even after removing the contents.
