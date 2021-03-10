@@ -1,0 +1,31 @@
+Example
+When the "Check window" button is clicked, the function check() is called and the current window status is checked.
+
+If the topmost window (window.top) is different from the current window (window.self), then output that "This window is not the topmost window!".
+
+If the topmost window equals the current window, then fire the else statement:
+
+Copy
+function myFunction() {
+  if (window.top != window.self)  {
+    document.getElementById("demo").innerHTML = 
+    "This window is not the topmost window!";
+  } else {
+    document.getElementById("demo").innerHTML = 
+    "This window is the topmost window!";
+  }
+}
+
+Description
+The top property returns the topmost browser window of the current window.
+
+This property is read-only.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+top	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+window.top
+Return Value
+A reference to the topmost window in the window hierarchy
