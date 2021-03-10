@@ -1,0 +1,31 @@
+Example
+Return the protocol of the current URL:
+
+Copy
+let x = location.protocol;
+
+Description
+The protocol property gets and sets the protocol of the current URL, including the colon (:).
+
+The protocol controls how data are transmitted between computers.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+protocol	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Return the protocol property:
+
+Copy
+let a = location.protocol;
+Set the protocol property:
+
+Copy
+location.protocol = protocol;
+Property Values
+Value	Type	Description
+protocol	String	The protocol of the URL.
+Possible values: file: ftp: http: https: mailto: etc..
+
+Return Value
+A String, representing the protocol of the current URL, including the colon (:)
+
