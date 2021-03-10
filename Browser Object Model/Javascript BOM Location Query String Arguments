@@ -1,0 +1,46 @@
+Most of the information in location is accessible from properties of location object.
+
+Though location.search returns everything from the question mark until the end of the URL, there is no immediate access to query-string arguments on a one-by-one basis.
+
+The following function parses the query string and returns an object with entries for each argument:
+
+Copy
+let getQueryStringArgs = function() {
+  // get query string without the initial '?'
+  let qs = (location.search.length > 0 ? location.search.substring(1) : ""),
+      // object to hold data
+      args = {};
+
+  // assign each item onto the args object
+  for (let item of qs.split("&").map(kv => kv.split("="))) {
+    let name = decodeURIComponent(item[0]),
+      value = decodeURIComponent(item[1]);
+    if (name.length) {
+      args[name] = value;
+    }
+  }
+
+  return args;
+}
+The first step in this function is to strip off the question mark from the beginning of the query string.
+
+This happens only if location.search has one or more characters.
+
+The arguments will be stored on the args object, which is created using object-literal format.
+
+Next, the query string is split on the ampersand character, returning an array of strings in the format name=value.
+
+The for loop iterates over this array and then splits each item on the equal sign, returning an array where the first item is the name of the argument and the second item is the value.
+
+The name and value are each decoded using decodeURIComponent().
+
+Last, the name is assigned as a property on the args object, and its value is set to value.
+
+This function is used as follows: assume query string of ?q=javascript&num=10
+
+Copy
+let args = getQueryStringArgs();
+
+console.log(args["q"]);    // "javascript"
+console.log(args["num"]);  // "10"
+Each of the query-string arguments is now a property on the returned object, which provides fast access to each argument.
