@@ -1,0 +1,23 @@
+Example
+Load a new document:
+
+Copy
+location.assign("https://www.demo2s.com");
+
+Description
+The assign() method loads a new document.
+
+The replace() method would remove the URL of the current document from the document history, and it is not possible to use the "back" button to navigate back to the original document.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+assign()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+location.assign(URL)
+Parameter Values
+Parameter	Type	Description
+URL	String	Required. URL of the page to navigate to.
+Return Value
+No return value
+
