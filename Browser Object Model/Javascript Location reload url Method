@@ -1,0 +1,19 @@
+Example
+Reload the current document:
+
+Copy
+location.reload();
+Description
+The reload() method can reload the current document.
+
+The reload() method does the same as the reload button in your browser.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+reload()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+location.reload()
+Return Value
+No return value
+
