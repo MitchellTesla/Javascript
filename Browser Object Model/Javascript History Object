@@ -1,0 +1,12 @@
+The history object contains the URLs visited by the user within a browser window.
+
+The history object is part of the window object and is accessed through the window.history property.
+
+Property List
+Property	Description
+length	History length Property
+Method List
+Method	Description
+back()	History go back Method
+forward()	History go forward Method
+go()	History go to a history step Method
