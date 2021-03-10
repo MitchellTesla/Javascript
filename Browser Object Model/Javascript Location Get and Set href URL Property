@@ -1,0 +1,44 @@
+Example
+Return the entire URL of the current page:
+
+Copy
+let x = location.href;
+
+Description
+The href property gets and sets the entire URL of the current page.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+href	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Return the href property:
+
+Copy
+let a = location.href;
+Set the href property:
+
+Copy
+location.href = URL;
+Property Values
+Value	Type	Description
+URL	String	the URL of the link.
+Return Value
+A String, representing the entire URL of the page, including the protocol (like http://).
+
+More Examples
+Set the href value to point to another web site:
+
+Copy
+location.href = "https://www.demo2s.com";
+
+Example
+Set the href value to point to an anchor within a page:
+
+Copy
+location.href = "#top";
+
+Example
+Set the href value to point to an email address, will open and create a new email message:
+
+Copy
+location.href = "mailto:someone@example.com";
