@@ -1,0 +1,95 @@
+CSS styles are included in HTML pages using one of two elements.
+
+The <link> element is used to include CSS from an external file, whereas the <style> element is used to specify inline styles.
+
+The dynamic styles don't exist on the page when it is loaded initially and they are added after the page has been loaded.
+
+Link Element
+Consider this typical <link> element:
+
+Copy
+<link rel="stylesheet" type="text/css" href="styles.css">
+This element can just as easily be created using the following DOM code:
+
+Copy
+let link = document.createElement("link");
+link.rel = "stylesheet";
+link.type = "text/css";
+link.href = "styles.css";
+let head = document.getElementsByTagName("head")[0];
+head.appendChild(link);
+This code works in all major browsers without any issue.
+
+Note that <link> elements should be added to the <head> instead of the body for this to work properly in all browsers.
+
+The technique can be generalized into the following function:
+
+Copy
+function loadStyles(url){
+  let link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.type = "text/css";
+  link.href = url;
+  let head = document.getElementsByTagName("head")[0];
+  head.appendChild(link);
+}
+The loadStyles() function can then be called like this:
+
+Copy
+loadStyles("styles.css");
+Loading styles via an external file is asynchronous, so the styles will load out of order with the JavaScript code being executed.
+
+Typically, it's not necessary to know when the styles have been fully loaded.
+
+Inline
+The other way to define styles is using the <style> element and including inline CSS, such as this:
+
+Copy
+<style type="text/css">
+body {
+   background-color: red;
+}
+</style>
+The following DOM code should work:
+
+Copy
+let style = document.createElement("style");
+style.type = "text/css";
+style.appendChild(document.createTextNode("body{background-color:red}"));
+let head = document.getElementsByTagName("head")[0];
+head.appendChild(style);
+This code works in Firefox, Safari, Chrome, and Opera but not in Internet Explorer.
+
+The workaround for Internet Explorer is to access the element's styleSheet property, which in turn has a property called cssText that may be set to CSS code as this code sample shows:
+
+Copy
+let style = document.createElement("style");
+style.type = "text/css";
+try{
+  style.appendChild(document.createTextNode("body{background-color:red}"));
+} catch (ex){
+  style.styleSheet.cssText = "body{background-color:red}";
+}
+let head = document.getElementsByTagName("head")[0];
+head.appendChild(style);
+This new code uses a try-catch statement to catch the error that Internet Explorer throws and then responds by using the Internet Explorer-specific way of setting styles.
+
+The generic solution is as follows:
+
+Copy
+function loadStyleString(css){
+  let style = document.createElement("style");
+  style.type = "text/css";
+  try{
+    style.appendChild(document.createTextNode(css));
+  } catch (ex){
+    style.styleSheet.cssText = css;
+  }
+  let head = document.getElementsByTagName("head")[0];
+  head.appendChild(style);
+}
+The function can be called as follows:
+
+Copy
+loadStyleString("body{background-color:red}");
+Styles specified in this way are added to the page instantly, so changes should be seen immediately.
