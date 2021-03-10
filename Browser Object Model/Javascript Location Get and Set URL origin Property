@@ -1,0 +1,28 @@
+Example
+Return the protocol, hostname and port number of a URL.
+
+Assume that the current URL is https://www.demo2s.com:1024/test.htm#part2:
+
+Copy
+let x = location.origin;
+The result of x will be:
+
+Copy
+https://www.demo2s.com:1024
+Description
+The origin property returns the protocol, hostname and port number of a URL.
+
+If the port number is not specified in the URL or if it is the scheme's default port - like 80, some browsers will not display the port number.
+
+This property is read-only.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+origin	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+let a = location.origin;
+Return Value
+A String, representing the protocol including ://, the domain name or IP address and port number including the colon sign (:) of the URL.
+
+For URL's using the "file:" protocol, the return value differs between browsers.
