@@ -1,0 +1,24 @@
+Ranges can be cloned by calling the cloneRange() method.
+
+For example, consider the following HTML:
+
+Copy
+<!DOCTYPE html>
+<html>
+  <body>
+    <p id="p1"><b>Hello</b> world!</p>
+  </body>
+</html>
+This method creates an exact duplicate of the range on which it is called:
+
+Copy
+let p1 = document.getElementById("p1"),
+   helloNode = p1.firstChild.firstChild,
+   worldNode = p1.lastChild,
+   range = document.createRange();
+
+range.setStart(helloNode, 2);
+range.setEnd(worldNode, 3);
+
+let newRange = range.cloneRange();
+The new range contains all of the same properties as the original, and its end points can be modified without affecting the original in any way.
