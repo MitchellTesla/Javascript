@@ -1,0 +1,21 @@
+Example
+The user-agent header sent by your browser is:
+
+Copy
+let x = "User-agent header sent: " + navigator.userAgent;
+
+Description
+The userAgent property returns the value of the user-agent header sent by the browser to the server.
+
+The returned value contains information about the name, version and platform of the browser.
+
+This property is read-only.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+userAgent	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+let a = navigator.userAgent;
+Return Value
+A String, representing the user agent string for the current browser
