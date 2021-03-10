@@ -1,0 +1,22 @@
+We can clear a MutationObserver's record queue with the takeRecords() method.
+
+This will return the array of MutationRecord instances which exist in the queue, and empty the queue itself.
+
+This is demonstrated here:
+
+Copy
+let observer = new MutationObserver(
+(mutationRecords) => console.log(mutationRecords));
+
+observer.observe(document.body, { attributes: true });
+
+document.body.className = 'foo';
+document.body.className = 'bar';
+document.body.className = 'baz';
+
+console.log(observer.takeRecords());
+console.log(observer.takeRecords());
+Output:
+
+
+We can use takeRecords() when you would like to call disconnect() but wish to handle all pending MutationRecord instances in the queue which are discarded by calling disconnect().
