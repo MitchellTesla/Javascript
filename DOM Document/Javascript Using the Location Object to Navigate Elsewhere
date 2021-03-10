@@ -1,0 +1,27 @@
+You can also use the Location object available through the document.location property to navigate else where.
+
+There are a couple of different ways of doing this.
+
+First, you can assign a new value to one of the properties.
+
+Navigating to a Document by Assigning a New Value to a Location Property.
+
+Copy
+document.location.href = "https://demo2s.com";
+
+This example contains a button element that, when clicked, causes a new value to be assigned to the document.location.href property.
+
+The association between the button and the JavaScript function that will be executed when it is clicked is made using an event.
+
+You can also use the methods that the Location object defines.
+
+The difference between the assign() and replace() methods is that replace removes the current document from the browser's history, meaning that when the user clicks the back button, for example, the browser will skip over the current document, as though it had never been visited.
+
+The following code shows the use of the assign method.
+
+Navigating Using the assign Method of the Location Object.
+
+Copy
+document.location.assign("https://demo2s.com");
+
+When the user clicks the button element, the browser will navigate to the specified URL, which in this case is https://demo2s.com.
