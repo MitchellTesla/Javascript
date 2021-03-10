@@ -1,0 +1,102 @@
+To facilitate building tables, the HTML DOM adds several properties and methods to the <table>, <tbody>, and <tr> elements.
+
+The <table> element adds the following:
+
+Item
+Meaning
+caption
+Pointer to the <caption> element (if it exists).
+tBodies
+An HTMLCollection of <tbody> elements.
+tFoot
+Pointer to the <tfoot> element (if it exists).
+tHead
+Pointer to the <thead> element (if it exists).
+rows
+An HTMLCollection of all rows in the table.
+createTHead()
+Creates a <thead> element, places it into the table, and returns a reference.
+createTFoot()
+Creates a <tfoot> element, places it into the table, and returns a reference.
+createCaption()
+Creates a <caption> element, places it into the table, and returns a reference.
+deleteTHead()
+Deletes the <thead> element.
+deleteTFoot()
+Deletes the <tfoot> element.
+deleteCaption()
+Deletes the <caption> element.
+deleteRow(pos)
+Deletes the row in the given position.
+insertRow(pos)
+Inserts a row in the given position in the rows collection.
+The <tbody> element adds the following:
+
+Item
+Meaning
+rows
+An HTMLCollection of rows in the <tbody> element.
+deleteRow(pos)
+Deletes the row in the given position.
+insertRow(pos)
+Inserts a row in the given position in the rows collection and returns a reference to the new row.
+The <tr> element adds the following:
+
+Item
+Meaning
+cells
+An HTMLCollection of cells in the <tr> element.
+deleteCell(pos)
+Deletes the cell in the given position.
+insertCell(pos)
+Inserts a cell in the given position in the cells collection and returns a reference to the new cell.
+Suppose you want to create the following HTML table using the DOM:
+
+Copy
+<table border="1" width="100%">
+ <tbody>
+   <tr>
+     <td>Cell 1,1</td>
+     <td>Cell 2,1</td>
+   </tr>
+   <tr>
+     <td>Cell 1,2</td>
+     <td>Cell 2,2</td>
+   </tr>
+ </tbody>
+</table>
+For example, the following code shows how to create above table:
+
+Copy
+// create the table
+let table = document.createElement("table");
+table.border = 1;
+table.width = "100%";
+
+// create the tbody
+let tbody = document.createElement("tbody");
+table.appendChild(tbody);
+
+// create the first row
+tbody.insertRow(0);
+tbody.rows[0].insertCell(0);
+tbody.rows[0].cells[0].appendChild(document.createTextNode("Cell 1,1"));
+tbody.rows[0].insertCell(1);
+tbody.rows[0].cells[1].appendChild(document.createTextNode("Cell 2,1"));
+
+// create the second row
+tbody.insertRow(1);
+tbody.rows[1].insertCell(0);
+tbody.rows[1].cells[0].appendChild(document.createTextNode("Cell 1,2"));
+tbody.rows[1].insertCell(1);
+tbody.rows[1].cells[1].appendChild(document.createTextNode("Cell 2,2"));
+
+// add the table to the document body
+document.body.appendChild(table);
+To create the first row, the insertRow() method is called on the <tbody> element with an argument of 0, which indicates the position in which the row should be placed.
+
+After that point, the row can be referenced by tbody.rows[0] because it is automatically created and added into the <tbody> element in position 0.
+
+Creating a cell is done by calling insertCell() on the <tr> element and passing in the position in which the cell should be placed.
+
+The cell can then be referenced by tbody.rows[0].cells[0] because the cell has been created and inserted into the row in position 0.
