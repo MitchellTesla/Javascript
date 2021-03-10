@@ -1,0 +1,54 @@
+DOM Style augments document.defaultView to provide a method called getComputedStyle().
+
+This method accepts two arguments: the element to get the computed style for and a pseudo-element string, such as ":after".
+
+The second argument can be null if no pseudo-element information is necessary.
+
+The getComputedStyle() method returns a CSSStyleDeclaration object, which the same type as the style property, containing all computed styles for the element.
+
+Consider the following HTML page:
+
+Copy
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Computed Styles Example</title>
+  <style type="text/css">
+    #myDiv {
+      background-color: blue;
+      width: 100px;
+      height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div id="myDiv" style="background-color: red; border: 1px solid black"></div>
+</body>
+</html>
+In this example, the <div> element has styles applied to it both from an inline style sheet and from the style attribute.
+
+The style object has values for backgroundColor and border, but nothing for width and height, which are applied through a style sheet rule.
+
+The following code retrieves the computed style for the element:
+
+Copy
+let myDiv = document.getElementById("myDiv");
+let computedStyle = document.defaultView.getComputedStyle(myDiv, null);
+
+console.log(computedStyle.backgroundColor);  // "red"
+console.log(computedStyle.width);            // "100px"
+console.log(computedStyle.height);           // "200px"
+console.log(computedStyle.border);// "1px solid black" in some browsers
+When retrieving the computed style of this element, the background color is reported as "red", the width as "100px", and the height as "200px".
+
+The background color is not "blue" because that style is overridden on the element itself.
+
+The border property may or may not return the exact border rule from the style sheet.
+
+You should test your code on a number of browsers when using getComputedStyle().
+
+The computed styles in all browsers are read-only; you cannot change CSS properties on a computed style object.
+
+Sny CSS property that has a default value will be represented in the computed style.
+
+For instance, the visibility property always has a default value in all browsers, but this value differs per implementation.
