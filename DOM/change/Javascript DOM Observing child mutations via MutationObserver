@@ -1,0 +1,45 @@
+A MutationObserver can monitor changes when an element has a child node added or removed.
+
+This is accomplished by setting the childList property inside the MutationObserverInit object to true.
+
+A child node addition is demonstrated here:
+
+Copy
+// clear body
+document.body.innerHTML = '';
+
+let observer = new MutationObserver(
+    (mutationRecords) => console.log(mutationRecords));
+
+observer.observe(document.body, { childList: true });
+
+document.body.appendChild(document.createElement('div'));
+A child node removal is demonstrated here:
+
+Copy
+// clear body
+document.body.innerHTML = '';
+
+let observer = new MutationObserver(
+    (mutationRecords) => console.log(mutationRecords));
+
+observer.observe(document.body, { childList: true });
+
+document.body.appendChild(document.createElement('div'));
+A child reordering will register as two separate mutations since it is technically a node removal and subsequent re-addition:
+
+Copy
+// clear body
+document.body.innerHTML = '';
+
+let observer = new MutationObserver(
+     (mutationRecords) => console.log(mutationRecords));
+
+// Create two initial children
+document.body.appendChild(document.createElement('div'));
+document.body.appendChild(document.createElement('span'));
+
+observer.observe(document.body, { childList: true });
+
+// Reorder children
+document.body.insertBefore(document.body.lastChild, document.body.firstChild);
