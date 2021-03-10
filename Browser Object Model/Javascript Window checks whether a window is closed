@@ -1,0 +1,42 @@
+Example
+A function that checks whether a window called myWindow has been closed or not:
+
+Copy
+let myWindow;
+
+function openWin() {
+  myWindow = window.open("", "myWindow", "width=400, height=200");
+}
+
+function closeWin() {
+  if (myWindow) {
+    myWindow.close();
+  }
+}
+
+function checkWin() {
+  if (!myWindow) {
+    document.getElementById("msg").innerHTML = 
+         "'myWindow' has never been opened!";
+  } else {
+    if (myWindow.closed) {
+      document.getElementById("msg").innerHTML = 
+          "'myWindow' has been closed!";
+    } else {
+      document.getElementById("msg").innerHTML =
+       "'myWindow' has not been closed!";
+    }
+  }
+}
+
+Description
+The closed property returns a Boolean value indicating whether a window has been closed or not.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+closed	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+window.closed
+Return Value
+A Boolean, true if the window has been closed, or false if the window is open.
