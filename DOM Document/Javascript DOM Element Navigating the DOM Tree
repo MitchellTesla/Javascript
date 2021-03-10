@@ -1,0 +1,89 @@
+We can search for elements to treat the DOM like a tree and navigate its hierarchical structure.
+
+There are a set of properties and methods that are supported by all DOM objects that let us do just that; they are described in the following table.
+
+Tree navigation Properties and Methods.
+
+Property
+Description
+Returns
+childNodes
+Returns the set of child elements
+HTMLElement[]
+firstChild
+Returns the first child element
+HTMLElement
+hasChildNodes()
+Returns true if the current element has child elements
+boolean
+lastChild
+Returns the last child element
+HTMLElement
+nextSibling
+
+Returns the sibling element defined after the current
+element
+HTMLElement
+
+parentNode
+Returns the parent element
+HTMLElement
+previousSibling
+
+Returns the sibling element defined before the current
+element
+HTMLElement
+
+The following code shows a script that lets you navigate around the document, displaying information about the currently selected element in a pre element.
+
+Navigating the DOM Tree.
+
+Copy
+let resultsElem = document.getElementById("results");
+let element = document.body;
+
+let buttons = document.getElementsByTagName("button");
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].onclick = handleButtonClick;
+}
+
+processNewElement(element);
+
+function handleButtonClick(e) {
+    if (element.style) {
+        element.style.backgroundColor = "white";
+    }
+
+    if (e.target.id == "parent" && element != document.body) {
+        element = element.parentNode;
+    } else if (e.target.id == "child" && element.hasChildNodes()) {
+        element = element.firstChild;
+    } else if (e.target.id == "prev" && element.previousSibling) {
+        element = element.previousSibling;
+    } else if (e.target.id == "next" && element.nextSibling) {
+        element = element.nextSibling;
+    }
+    processNewElement(element);
+    if (element.style) {
+        element.style.backgroundColor = "lightgrey";
+    }
+}
+
+function processNewElement(elem) {
+    resultsElem.innerHTML = "Element type: " + elem + "\n";
+    resultsElem.innerHTML += "Element id: " + elem.id + "\n";
+    resultsElem.innerHTML += "Has child nodes: "
+        + elem.hasChildNodes() + "\n";
+    if (elem.previousSibling) {
+        resultsElem.innerHTML += ("Prev sibling is: "
+             + elem.previousSibling + "\n");
+    } else {
+        resultsElem.innerHTML += "No prev sibling\n";
+    }
+    if (elem.nextSibling) {
+        resultsElem.innerHTML += "Next sibling is: "
+            + elem.nextSibling + "\n";
+    } else {
+        resultsElem.innerHTML += "No next sibling\n";
+    }
+}
