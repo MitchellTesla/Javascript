@@ -1,0 +1,35 @@
+DOM traversals are a depth-first traversal of the DOM structure that allows movement in at least two directions depending on the type being used.
+
+NodeIterator and TreeWalker perform depth-first traversals of a DOM structure given a certain starting point.
+
+A traversal is rooted at a given node, and it cannot go any further up the DOM tree than the starting root.
+
+Consider the following HTML page:
+
+Copy
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Example</title>
+  </head>
+  <body>
+    <p><b>Hello</b> world!</p>
+  </body>
+</html>
+Any node can be the root of the traversals.
+
+Suppose, for example, that the <body> element is the traversal root.
+
+The traversal can then visit the <p> element, the <b> element, and the two text nodes that are descendants of <body>.
+
+The traversal can never reach the <html> element, the <head> element, or any other node that isn't in the <body> element's subtree.
+
+A traversal that has its root at document can access all of the nodes in document.
+
+Starting at document and moving sequentially, the first node visited is document and the last node visited is the text node containing " world!" from the very last text node at the end of the document.
+
+The traversal can be reversed to go back up the tree.
+
+In that case, the first node visited is the text node containing " world!" and the last one visited is the document node itself.
+
+Both NodeIterator and TreeWalker perform traversals in this manner.
