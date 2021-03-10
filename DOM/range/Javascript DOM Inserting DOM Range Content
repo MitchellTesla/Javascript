@@ -1,0 +1,62 @@
+The insertNode() method can insert a node at the beginning of the range selection.
+
+For example, consider the following HTML:
+
+Copy
+<!DOCTYPE html>
+<html>
+  <body>
+    <p id="p1"><b>Hello</b> world!</p>
+  </body>
+</html>
+Suppose that you want to insert the following HTML:
+
+Copy
+<span style="color: red">Inserted text</span>
+The following code accomplishes this:
+
+Copy
+let p1 = document.getElementById("p1"),
+   helloNode = p1.firstChild.firstChild,
+   worldNode = p1.lastChild,
+   range = document.createRange();
+
+range.setStart(helloNode, 2);
+range.setEnd(worldNode, 3);
+
+let span = document.createElement("span");
+span.style.color = "red";
+span.appendChild(document.createTextNode("Inserted text"));
+
+range.insertNode(span);
+Running this JavaScript effectively creates the following HTML code:
+
+Copy
+<p id="p1"><b>He<span style="color: red">Inserted text</span>llo</b> world</p>
+<span> is inserted just before the "llo" in "Hello", which is the first part of the range selection.
+
+We can insert content surrounding the range by using the surroundContents() method.
+
+This method accepts the node that surrounds the range contents as the argument.
+
+The following code highlights certain words in a web page, as shown here:
+
+Copy
+let p1 = document.getElementById("p1"),
+   helloNode = p1.firstChild.firstChild,
+   worldNode = p1.lastChild,
+   range = document.createRange();
+
+range.selectNode(helloNode);
+let span = document.createElement("span");
+span.style.backgroundColor = "yellow";
+range.surroundContents(span);
+This code highlights the range selection with a yellow background.
+
+The resulting HTML is as follows:
+
+Copy
+<p><b><span style="background-color:yellow">Hello</span></b> world!</p>
+In order to insert the <span>, the range has to contain a whole DOM selection.
+
+It can't have only partially selected DOM nodes.
