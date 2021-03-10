@@ -1,0 +1,45 @@
+Changing various properties on the location object can also modify the currently loaded page.
+
+The hash, search, hostname, pathname, and port properties can be set with new values that alter the current URL, as in this example:
+
+Assume starting at https://www.demo2s.com/css/
+
+changes URL to "https://www.demo2s.com/css/#section1"
+
+Copy
+location.hash = "#section1";
+changes URL to "https://www.demo2s.com/css/?q=javascript"
+
+Copy
+location.search = "?q=javascript";
+changes URL to "http://www.yahoo.com/css/"
+
+Copy
+location.hostname = "www.yahoo.com";
+changes URL to "http://www.yahoo.com/my_dir/"
+
+Copy
+location.pathname = "my_dir";
+changes URL to "http://www.yahoo.com:8080/css/"
+
+Copy
+Location.port = 8080;
+Each time a property on location is changed, with the exception of hash, the page reloads with the new URL.
+
+Changing the value of hash causes a new entry in the browser's history to be recorded.
+
+Example
+The simplest use for the document.location property is to get information about the location of the current object.
+
+Using the Location Object to Get Information About the Document.
+
+Copy
+document.writeln("protocol: " + document.location.protocol);
+document.writeln("host: " + document.location.host);
+document.writeln("hostname: " + document.location.hostname);
+document.writeln("port: " + document.location.port);
+document.writeln("pathname: " + document.location.pathname);
+document.writeln("search: " + document.location.search);
+document.writeln("hash: " + document.location.hash);
+
+The search property returns the query string portion of the URL, and the hash property returns the URL fragment.
