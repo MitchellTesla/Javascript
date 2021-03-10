@@ -1,0 +1,56 @@
+Example
+Display a confirmation box:
+
+Copy
+confirm("Press a button!");
+
+Description
+The confirm() method displays a dialog box with a specified message, an OK button and a Cancel button.
+
+A confirm box is used for user to verify or accept something.
+
+The confirm box takes the focus away from the current window, and forces the user to read the message.
+
+This method prevents the user from accessing other parts of the page until the box is closed.
+
+The confirm() method returns true if the user clicked "OK", and false otherwise.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+confirm()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+confirm(message)
+Parameter Values
+Parameter
+Type
+Description
+message
+
+String
+
+Optional.
+the text to display in the confirm box
+Return Value
+A Boolean, indicating whether "OK" or "Cancel" was clicked in the dialog box:
+
+true - the user clicked "OK"
+false - the user clicked "Cancel" or the "x" (close) button in the top right corner
+More Examples
+Display a confirmation box, and output what the user clicked:
+
+Copy
+let txt;
+let r = confirm("Press a button!");
+if (r == true) {
+  txt = "You pressed OK!";
+} else {
+  txt = "You pressed Cancel!";
+}
+document.getElementById("demo").innerHTML = txt;
+
+Example
+Confirmation box with line-breaks:
+
+Copy
+confirm("Press a button!\nEither OK or Cancel.");
