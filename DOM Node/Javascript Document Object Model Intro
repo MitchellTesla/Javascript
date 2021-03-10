@@ -1,0 +1,40 @@
+The Document Object Model (DOM) is an application programming interface (API) for HTML and XML documents.
+
+The DOM represents a document as a hierarchical tree of nodes, allowing developers to add, remove, and modify individual parts of the page.
+
+The DOM is a collection of objects representing the elements in your HTML document.
+
+Evolving out of early Dynamic HTML (DHTML), the DOM is now a truly cross-platform, language-independent way of representing and manipulating pages for markup.
+
+DOM Level 1 became a W3C recommendation in October 1998, providing interfaces for basic document structure and querying.
+
+Given the following html code:
+
+Copy
+<!DOCTYPE HTML>
+<html>
+    <body>
+        <p id="myId">
+            test<span id="myId2">span</span> 
+            test
+        </p>
+        <p id="LEGO">
+            test 
+        </p>
+    </body>
+</html>
+As part of the process of displaying your HTML document, the browser parses the HTML and creates a model.
+
+The model preserves the hierarchy of the HTML elements, and each element is represented by a JavaScript object.
+
+dom-tree.png
+
+You can use the DOM to get information about the document or to make changes to it.
+
+This is the foundation of modern web applications.
+
+Each model object in the model has properties and methods.
+
+When you use these to change the state of the object, the browser reflects the changes in the corresponding HTML element and updates your document.
+
+All of the DOM objects that represent elements support the same set of basic features.
