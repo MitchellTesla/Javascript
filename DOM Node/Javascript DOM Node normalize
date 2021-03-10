@@ -1,0 +1,7 @@
+The method normalize() deals with text nodes in a document subtree.
+
+After DOM node manipulations, we can have text nodes that contain no text or text nodes that are siblings.
+
+When normalize() is called on a node, that node's descendants are searched for both of these circumstances.
+
+If an empty text node is found, it is removed; if text nodes are immediate siblings, they are joined into a single text node.
