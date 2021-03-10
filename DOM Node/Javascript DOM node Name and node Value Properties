@@ -1,0 +1,15 @@
+Two properties, nodeName and nodeValue, give specific information about the node.
+
+The values of these properties are completely dependent on the node type.
+
+We need to test the node type before using one of these values, as the following code shows:
+
+Copy
+if (someNode.nodeType == 1){
+  value = someNode.nodeName;   // will be the element's tag name
+}
+In this example, the node type is checked to see if the node is an element.
+
+If so, the nodeName value is assigned to a variable.
+
+For elements, nodeName is always equal to the element's tag name, and nodeValue is always null.
