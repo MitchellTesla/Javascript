@@ -1,0 +1,93 @@
+Each callback is provided with an array of MutationRecord instances.
+
+Each instance contains information about what kind of mutation occurred and what part of the DOM was affected.
+
+The MutationRecord array for a single attribute mutation is shown here:
+
+Copy
+let observer = new MutationObserver(
+     (mutationRecords) => console.log(mutationRecords));
+
+observer.observe(document.body, { attributes: true });
+
+document.body.setAttribute('foo', 'bar');
+Output:
+
+
+A similar mutation involving a namespace is shown here:
+
+Copy
+let observer = new MutationObserver(
+    (mutationRecords) => console.log(mutationRecords));
+
+observer.observe(document.body, { attributes: true });
+
+document.body.setAttributeNS('baz', 'foo', 'bar');
+Output:
+
+
+Sequential modifications will generate multiple MutationRecord instances, and the next callback invocation will be passed all the pending instances in the order they were enqueued:
+
+Copy
+let observer = new MutationObserver(
+    (mutationRecords) => console.log(mutationRecords));
+
+observer.observe(document.body, { attributes: true });
+
+document.body.className = 'foo';
+document.body.className = 'bar';
+document.body.className = 'baz';
+Output:
+
+
+A MutationRecord instance will have the following properties:
+
+Key
+Value
+target
+The node that was affected by the mutation.
+type
+
+A string indicating what type of mutation occurred.
+Can be "attributes", "characterData", or "childList".
+oldValue
+
+
+When enabled in the MutationObserverInit object, attributes or characterData mutations will set this field to the value that was replaced.
+This value is only provided when attributeOldValue or characterDataOldValue is true, otherwise this value is null.
+A childList mutation will always set this field to null.
+attributeName
+
+For attributes mutations, the string name of the attribute which was modified.
+For all other mutations, this field is set to null.
+attributeNamespace
+
+For attributes mutations which make use of namespaces, the string namespace of the attribute which was modified.
+For all other mutations, this field is set to null.
+addedNodes
+
+For childList mutations, returns a NodeList of nodes added in the mutation.
+Defaults to an empty NodeList.
+removedNodes
+
+For childList mutations, returns a NodeList of nodes removed in the mutation.
+Defaults to an empty NodeList.
+previousSibling
+
+For childList mutations, returns the previous sibling Node of the mutated node.
+Defaults to null.
+nextSibling
+
+For childList mutations, returns the next sibling Node of the mutated node.
+Defaults to null.
+The second argument to the callback is the MutationObserver instance that detected the mutation, demonstrated here:
+
+Copy
+let observer = new MutationObserver(
+    (mutationRecords, mutationObserver) => 
+              console.log(mutationRecords, mutationObserver));
+
+observer.observe(document.body, { attributes: true });
+
+document.body.className = 'foo';
+Output:
