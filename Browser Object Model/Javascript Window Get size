@@ -1,0 +1,36 @@
+Example
+Get the browser window's height and width:
+
+Copy
+let w = window.outerWidth; 
+let h = window.outerHeight;
+
+Description
+The outerWidth property returns the outer width of the browser window, including all interface elements like toolbars/scrollbars.
+
+The outerHeight property returns the outer height of the browser window, including all interface elements like toolbars/scrollbars.
+
+These properties are read-only.
+
+We use the innerWidth and innerHeight properties to get the width/height of the window's content area, the window/frame without toolbars.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+outerWidth	Yes	Yes	Yes	Yes	Yes	Yes
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+outerHeight	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+window.outerWidth window.outerHeight
+Return Value
+A Number, representing the width and/or the height of the browser's window, including all interface elements, in pixels.
+
+More Examples
+A demonstration of innerWidth, innerHeight, outerWidth and outerHeight in one example:
+
+Copy
+let txt = "";
+txt += "<p>innerWidth: " + window.innerWidth + "</p>";
+txt += "<p>innerHeight: " + window.innerHeight + "</p>";
+txt += "<p>outerWidth: " + window.outerWidth + "</p>";
+txt += "<p>outerHeight: " + window.outerHeight + "</p>";
