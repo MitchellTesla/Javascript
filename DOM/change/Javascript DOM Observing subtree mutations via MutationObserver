@@ -1,0 +1,49 @@
+By default, the MutationObserver is scoped to only observe modifications to a single element and its child node list.
+
+This scope can be expanded to the entirety of its DOM subtree by setting the subtree property inside the MutationObserverInit object to true.
+
+Watching a subtree for attribute mutations can be accomplished in the following code:
+
+Copy
+// clear body
+document.body.innerHTML = '';
+
+let observer = new MutationObserver(
+(mutationRecords) => console.log(mutationRecords));
+
+// Create initial element
+document.body.appendChild(document.createElement('div'));
+
+// Observe the <body> subtree
+observer.observe(document.body, { attributes: true, subtree: true });
+
+// Modify <body> subtree
+document.body.firstChild.setAttribute('foo', 'bar');
+After a subtree node is removed, mutations which are now outside the observed subtree will still register as qualified mutations.
+
+This behavior is demonstrated here:
+
+Copy
+// clear body
+document.body.innerHTML = '';
+
+let observer = new MutationObserver(
+(mutationRecords) => console.log(mutationRecords));
+
+let subtreeRoot = document.createElement('div'),
+subtreeLeaf = document.createElement('span');
+
+// Create initial subtree of height 2
+document.body.appendChild(subtreeRoot);
+subtreeRoot.appendChild(subtreeLeaf);
+
+// Observe the subtree
+observer.observe(subtreeRoot, { attributes: true, subtree: true });
+
+// Move node in subtree outside of observed subtree
+document.body.insertBefore(subtreeLeaf, subtreeRoot);
+
+subtreeLeaf.setAttribute('foo', 'bar');
+subtree modification still registers as mutation
+
+Output:
