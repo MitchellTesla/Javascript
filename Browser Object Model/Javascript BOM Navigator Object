@@ -1,0 +1,108 @@
+Navigator object is the standard for browser identification on the client.
+
+The navigator object is common among all JavaScript-enabled web browsers.
+
+Each browser supports its own set of properties.
+
+The navigator object implements methods and properties defined in the following interfaces:
+
+Copy
+NavigatorID, 
+NavigatorLanguage, 
+NavigatorOnLine, 
+NavigatorContentUtils, 
+NavigatorStorage, 
+NavigatorStorageUtils, 
+NavigatorConcurrentHardware, 
+NavigatorPlugins, and 
+NavigatorUserMedia
+The following table lists each available property and method:
+
+Property/Method
+Description
+activeVrDisplays
+Returns an array of every VRDisplay instance with its ispresenting property set to true.
+appCodeName
+Returns "Mozilla" even in non-Mozilla browsers.
+appName
+Full browser name.
+appVersion
+
+Browser version.
+Typically does not correspond to the actual browser version.
+battery
+Returns a BatteryManager object to interact with the Battery Status API.
+buildId
+Build number for the browser.
+connection
+Returns a NetworkInformation object to interact with the Network Information API.
+cookieEnabled
+Indicates if cookies are enabled.
+credentials
+A CredentialsContainer to interact with the Credentials Management API.
+deviceMemory
+The amount of device memory in gigabytes.
+doNotTrack
+The user's do-not-track preference.
+geolocation
+A Geolocation object to interact with the Geolocation API.
+getVRDisplays()
+Returns an array of every VRDisplay instance available.
+getUserMedia()
+Returns the stream associated with the available media device hardware.
+hardwareConcurrency
+The device's number of processor cores.
+javaEnabled
+Indicates if Java is enabled in the browser.
+language
+The browser's primary language.
+languages
+An array of all the browser's preferred languages.
+locks
+A LockManager object to interact with the Web Locks API.
+mediaCapabilities
+A MediaCapabilities object to interact with the Media Capabilities API.
+mediaDevices
+The available media devices.
+maxTouchPoints
+The maximum number of supported touch points for the device's touch screen.
+mimeTypes
+Array of MIME types registered with the browser.
+onLine
+Indicates if the browser is connected to the Internet.
+oscpu
+The operating system and/or CPU on which the browser is running.
+permissions
+A Permissions object to interact with the Permissions API.
+platform
+The system platform on which the browser is running.
+plugins
+Array of plug-ins installed on the browser.
+product
+The name of the product, typically Gecko.
+productSub
+Extra information about the product (typically Gecko version information).
+registerProtocolHandler()
+Registers a website as a handler for a particular protocol.
+requestMediaKeySystemAccess()
+Returns a Promise which resolves to a MediaKeySystemAccess object.
+sendBeacon()
+Asynchronously transmits a small payload.
+serviceWorker
+The ServiceWorkerContainer used to interact with ServiceWorker objects.
+share()
+If available, invokes the current platform's native sharing mechanism.
+storage
+Returns the StorageManager object to interact with the Storage API.
+userAgent
+The user-agent string for the browser.
+vendor
+The brand name of the browser.
+vendorSub
+Extra information about the vendor.
+vibrate()
+Triggers the device to vibrate if vibration is supported.
+webdriver
+Indicates if the browser is controlled by automation.
+
+The navigator object's properties are typically used to determine the type of browser that is running a web page.
