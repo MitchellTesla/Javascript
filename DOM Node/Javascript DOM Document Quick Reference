@@ -1,0 +1,200 @@
+The Document Members
+The following table summarizes the members from Document object.
+
+Name
+Description
+Returns
+activeElement
+
+Returns an object representing the currently
+focused element in the document.
+HTMLElement
+
+
+body
+Returns an object representing the body
+element in the document.
+
+HTMLElement
+characterSet
+
+Returns the document character set
+encoding. This is a read-only property.
+string
+
+charset
+
+Gets or sets the document character set
+encoding.
+string
+
+childNodes
+Returns the set of child elements.
+HTMLElement[]
+compatMode
+Gets compatibility mode for the document.
+string
+cookie
+
+Gets or sets the cookies for the current
+document.
+string
+
+defaultCharset
+
+Gets the default character encoding used by
+the browser.
+string
+
+defaultView
+
+Returns the Window object for the current
+document.
+Window
+
+dir
+
+Gets or sets the text direction for the
+document.
+string
+
+
+domain
+Gets or sets the domain for the current
+document.
+
+string
+embeds
+
+Returns objects representing all the embed
+elements in the document.
+HTMLCollection
+
+firstChild
+Returns the first child element of an element.
+HTMLElement
+forms
+
+Returns objects representing all the form
+elements in the document.
+HTMLCollection
+
+
+getElementById(<id>)
+Returns the element with the specified id
+value.
+
+HTMLElement
+getElementsByClassName(<class>)
+
+Returns the elements with the specified class
+value.
+HTMLElement[]
+
+
+getElementsByName(<name>)
+Returns the elements with the specified name
+value.
+
+HTMLElement[]
+getElementsByTagName(<tag>)
+Returns the elements of the specified type.
+HTMLElement[]
+hasChildNodes()
+
+Returns true if the current element has child
+elements.
+boolean
+
+head
+
+Returns an object representing the head
+element.
+HTMLHeadElement
+
+images
+
+Returns objects representing all the img
+elements.
+HTMLCollection
+
+implementation
+
+Provides information about the DOM features
+that are available.
+DOMImplementation
+
+lastChild
+Returns the last child element.
+HTMLElement
+lastModified
+
+Returns the last modified time of the
+document.
+string
+
+links
+
+
+Returns objects representing all the a and
+area elements in the document that have href
+attributes.
+HTMLCollection
+
+
+location
+
+Provides information about the URL of the
+current document.
+Location
+
+nextSibling
+
+Returns the sibling element defined after the
+current element.
+HTMLElement
+
+parentNode
+Returns the parent element.
+HTMLElement
+
+previousSibling
+Returns the sibling element defined before
+the current element.
+
+HTMLElement
+
+querySelector(<selector>)
+
+Returns the first element that matches the
+
+specified CSS selector.
+
+HTMLElement
+
+querySelectorAll(<selector>)
+
+Returns all of the elements that match the
+specified CSS selector.
+HTMLElement[]
+
+readyState
+Returns the state of the current document.
+string
+referrer
+
+
+Returns the URL of the document that linked
+to the current document (this is the value of
+the corresponding HTTP header).
+string
+
+
+scripts
+
+Returns objects representing all the script
+elements.
+HTMLCollection
+
+title
+Gets or sets the title of the current document.
