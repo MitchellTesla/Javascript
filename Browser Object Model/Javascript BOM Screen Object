@@ -1,0 +1,32 @@
+The screen object as a property of window is used as an indication of client capabilities.
+
+This object provides information about the client's display outside the browser window, including information such as pixel width and height.
+
+Each browser provides different properties on the screen object.
+
+The following table describes each of the properties.
+
+Property
+Description
+availHeight
+The pixel height of the screen minus system elements such as Windows (read only).
+availLeft
+The first pixel from the left that is not taken up by system elements (read only).
+availTop
+The first pixel from the top that is not taken up by system elements (read only).
+availWidth
+The pixel width of the screen minus system elements (read only).
+colorDepth
+The number of bits used to represent colors; for most systems, 32 (read only).
+height
+The pixel height of the screen.
+left
+The pixel distance of the current screen's left side.
+pixelDepth
+The bit depth of the screen (read only).
+top
+The pixel distance of the current screen's top.
+width
+The pixel width of the screen.
+orientation
+Returns the screen orientation as specified in the Screen Orientation API.
