@@ -1,0 +1,89 @@
+The <script> element is used to insert JavaScript code into the page, either by using the src attribute to include an external file or by including text inside the element itself.
+
+Dynamic scripts are those that don't exist when the page is loaded but are included later by using the DOM.
+
+There are two ways to do this:
+
+pulling in an external file or
+inserting text directly.
+External
+Dynamically loading an external JavaScript file works as you would expect.
+
+Consider the following <script> element:
+
+Copy
+<script src="foo.js"></script>
+The DOM code to create this node is as follows:
+
+Copy
+let script = document.createElement("script");
+script.src = "foo.js";
+document.body.appendChild(script);
+The DOM code mirrors the HTML code that it represents.
+
+The external file is not downloaded until the <script> element is added to the page on the last line.
+
+The element could be added to the <head> element as well, though this has the same effect.
+
+This process can be generalized into the following function:
+
+Copy
+function loadScript(url) {
+  let script = document.createElement("script");
+  script.src = url;
+  document.body.appendChild(script);
+}
+This function can now be used to load external JavaScript files via the following call:
+
+Copy
+loadScript("client.js");
+Once loaded, the script is fully available to the rest of the page.
+
+There is no standard way to handle when the script has been fully loaded.
+
+Inline
+The other way to specify JavaScript code is inline, as in this example:
+
+Copy
+<script>
+function sayHi() {
+    console.log("hi");
+}
+</script>
+Using the DOM, it would be logical for the following to work:
+
+Copy
+let script = document.createElement("script");
+script.appendChild(document.createTextNode(
+             "function sayHi(){console.log('hi');}"));
+document.body.appendChild(script);
+This works in Firefox, Safari, Chrome, and Opera.
+
+A property called text exists on all <script> elements that can be used specifically to assign JavaScript code to, as in the following example:
+
+Copy
+var script = document.createElement("script");
+script.text = "function sayHi(){console.log('hi');}";
+document.body.appendChild(script);
+This updated code works in Internet Explorer, Firefox, Opera, and Safari 3 and later.
+
+This can be generalized into the following function:
+
+Copy
+function loadScriptString(code){
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  try {
+    script.appendChild(document.createTextNode(code));
+  } catch (ex){
+    script.text = code;
+  }
+  document.body.appendChild(script);
+}
+The function is called as follows:
+
+Copy
+loadScriptString("function sayHi(){console.log('hi');}");
+Code loaded in this manner is executed in the global scope and is available immediately after the script finishes executing.
+
+Note: all <script> elements created with innerHTML will never execute.
