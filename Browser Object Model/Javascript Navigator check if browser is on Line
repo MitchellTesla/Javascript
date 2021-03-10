@@ -1,0 +1,22 @@
+Example
+Find out whether the browser is online:
+
+Copy
+let x = "Is the browser online? " + navigator.onLine;
+
+Description
+The onLine property returns a Boolean value that tells whether the browser is in online or offline mode.
+
+This property is read-only.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+onLine	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+let a = navigator.onLine;
+Return Value
+A Boolean, indicating whether the browser is in online or offline mode.
+
+Returns true if the browser is online, otherwise it returns false
+
