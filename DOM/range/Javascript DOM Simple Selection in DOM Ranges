@@ -1,0 +1,60 @@
+To select a part of the document using a range is use either selectNode() or selectNodeContents().
+
+These methods each accept one argument, a DOM node, and fill a range with information from that node.
+
+The selectNode() method selects the entire node, including its children, whereas selectNodeContents() selects only the node's children.
+
+For example, consider the following HTML:
+
+Copy
+<!DOCTYPE html>
+<html>
+  <body>
+    <p id="p1"><b>Hello</b> world!</p>
+  </body>
+</html>
+This code can be accessed using the following JavaScript:
+
+Copy
+let range1 = document.createRange(),
+    range2 = document.createRange(),
+    p1 = document.getElementById("p1");
+range1.selectNode(p1);
+range2.selectNodeContents(p1);
+The two ranges in this example contain different sections of the document: range1 contains the <p> element and all its children, whereas range2 contains the <b> element, the text node "Hello", and the text node "world!".
+
+DOM-Range.png
+
+When selectNode() is called, startContainer, endContainer, and commonAncestorContainer are all equal to the parent node of the node that was passed in; in this example, these would all be equal to document.body.
+
+The startOffset property is equal to the index of the given node within the parent's childNodes collection which is 1 in this example.
+
+The endOffset is equal to the startOffset plus one because only one node is selected.
+
+When selectNodeContents() is called, startContainer, endContainer, and commonAncestorContainer are equal to the node that was passed in, which is the <p> element in this example.
+
+The startOffset property is always equal to 0, because the range begins with the first child of the given node, whereas endOffset is equal to the number of child nodes as node.childNodes.length, which is 2 in this example.
+
+We can get more fine-grained control over which nodes are included in the selection by using the following range methods:
+
+Method
+Meaning
+setStartBefore(refNode)
+
+Sets the starting point of the range to begin before refNode, so refNode is the first node in the selection.
+The startContainer property is set to refNode.parentNode, and the startOffset property is set to the index of refNode within its parent's childNodes collection.
+setStartAfter(refNode)
+
+Sets the starting point of the range to begin after refNode, so refNode is not part of the selection; rather, its next sibling is the first node in the selection.
+The startContainer property is set to refNode.parentNode, and the startOffset property is set to the index of refNode within its parent's childNodes collection plus one.
+setEndBefore(refNode)
+
+Sets the ending point of the range to begin before refNode, so refNode is not part of the selection; its previous sibling is the last node in the selection.
+The endContainer property is set to refNode.parentNode, and the endOffset property is set to the index of refNode within its parent's childNodes collection.
+setEndAfter(refNode)
+
+Sets the ending point of the range to begin before refNode, so refNode is the last node in the selection.
+The endContainer property is set to *refNode. parentNode*, and the endOffset property is set to the index of refNode within its parent's childNodes collection plus one.
+When you use any of these methods, all properties are assigned for you.
+
+However, it is possible to assign these values directly in order to make complex range selections.
