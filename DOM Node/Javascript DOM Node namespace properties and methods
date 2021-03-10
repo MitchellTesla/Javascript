@@ -1,0 +1,47 @@
+The Node type includes the following namespace-specific properties:
+
+Property	Meaning
+localName	The node name without the namespace prefix.
+namespaceURI	The namespace URI of the node or null if not specified.
+prefix	The namespace prefix or null if not specified.
+When a node uses a namespace prefix, the nodeName is equivalent to prefix + ":" + localName.
+
+Consider the following example:
+
+Copy
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+   <title>Example XHTML page</title>
+ </head>
+ <body>
+   <s:svg xmlns:s="http://www.w3.org/2000/svg" version="1.1"
+      viewBox="0 0 100 100" style="width:100%; height:100%">
+     <s:rect x="0" y="0" width="100" height="100" style="fill:red" />
+   </s:svg>
+ </body>
+</html>
+For the <html> element, the localName and tagName is "html", the namespaceURI is "http://www.w3.org/1999/xhtml", and the prefix is null.
+
+For the <s:svg> element, the localName is "svg", the tagName is "s:svg", the namespaceURI is "http://www.w3.org/2000/svg", and the prefix is "s".
+
+DOM Level 3 introduces the following methods to work with namespaces:
+
+Method
+Meaning
+isDefaultNamespace(namespaceURI)
+Returns true when the specified namespaceURI is the default namespace for the node.
+lookupNamespaceURI(prefix )
+Returns the namespace URI for the given prefix.
+lookupPrefix(namespaceURI)
+Returns the prefix for the given namespaceURI.
+In the previous example, the following code can be executed:
+
+Copy
+console.log(document
+             .body
+             .isDefaultNamespace("http://www.w3.org/1999/xhtml"));// true
+
+// assume svg contains a reference to <s:svg>
+console.log(svg.lookupPrefix("http://www.w3.org/2000/svg"));  // "s"
+console.log(svg.lookupNamespaceURI("s"));  // "http://www.w3.org/2000/svg"
+These methods are useful when you have a reference to a node without knowing its relationship to the rest of the document.
