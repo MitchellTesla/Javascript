@@ -1,0 +1,75 @@
+Creating complex ranges requires the use of the setStart() and setEnd() methods from Range object.
+
+Both methods accept two arguments: a reference node and an offset.
+
+For setStart(), the reference node becomes the startContainer, and the offset becomes the startOffset.
+
+For setEnd(), the reference node becomes the endContainer, and the offset becomes the endOffset.
+
+With these methods, it is possible to mimic selectNode() and selectNodeContents().
+
+Here is an example:
+
+Copy
+let range1 = document.createRange(),
+    range2 = document.createRange(),
+    p1 = document.getElementById("p1"),
+    p1Index = -1,
+    i,
+    len;
+for (i = 0, len = p1.parentNode.childNodes.length; i < len; i++) {
+  if (p1.parentNode.childNodes[i] === p1) {
+    p1Index = i;
+    break;
+  }
+}
+
+range1.setStart(p1.parentNode, p1Index);
+range1.setEnd(p1.parentNode, p1Index + 1);
+range2.setStart(p1, 0);
+range2.setEnd(p1, p1.childNodes.length);
+Note that to select the node, you must first determine the index of the given node (p1) in its parent node's childNodes collection.
+
+To select the node contents using range2, you do not need calculations; setStart() and setEnd() can be set with default values.
+
+Partial Selection
+setStart() and setEnd() can do partial selection of nodes.
+
+For example, consider the following HTML:
+
+Copy
+<!DOCTYPE html>
+<html>
+  <body>
+    <p id="p1"><b>Hello</b> world!</p>
+  </body>
+</html>
+Suppose that you want to select only from the "llo" in "Hello" to the "o" in "world!" in the previous HTML code.
+
+The first step is to get references to all of the relevant nodes, as shown in the following example:
+
+Copy
+let p1 = document.getElementById("p1"),
+    helloNode = p1.firstChild.firstChild,
+    worldNode = p1.lastChild
+The "Hello" text node is actually a grandchild of <p> because it's a child of <b>, so you can use p1.firstChild to get <b> and p1.firstChild.firstChild to get the text node.
+
+The "world!" text node is the second and the last child of <p>, so you can use p1.lastChild to retrieve it.
+
+Next, the range must be created and its boundaries defined, as shown in the following example:
+
+Copy
+let range = document.createRange();
+range.setStart(helloNode, 2);
+range.setEnd(worldNode, 3);
+Because the selection should start after the "e" in "Hello", helloNode is passed into setStart() with an offset of 2, the position after the "e" where "H" is in position 0.
+
+To set the end of the selection, pass worldNode into setEnd() with an offset of 3, indicating the first character that should not be selected, which is "r" in position 3.
+
+There is actually a space in position 0.
+
+DOM-Range-Index.png
+
+Because both helloNode and worldNode are text nodes, they become the startContainer and endContainer for the range so that the startOffset and endOffset accurately look at the text contained within each node rather than look for child nodes.
+
+The commonAncestorContainer is the <p> element, which is the first ancestor that contains both nodes.
