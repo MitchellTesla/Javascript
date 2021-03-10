@@ -1,0 +1,82 @@
+Example
+Open a new window, and resize the width and height 250px relative to its current position:
+
+Copy
+let myWindow;
+
+function openWin() {
+  myWindow = window.open("", "", "width=100, height=100");
+}
+
+function resizeWin() {
+  myWindow.resizeBy(250, 250);
+  myWindow.focus();
+}
+
+Description
+The resizeBy() method resizes a window by the specified amount, relative to its current size.
+
+This method moves the bottom right corner of the window by the specified number of pixels defined.
+
+The top left corner will not be moved, it stays in its original coordinates.
+
+Related methods:
+
+Method	Description
+resizeTo()	Resizes the window to the specified width and height
+moveBy()	Moves a window relative to its current position
+moveTo()	Moves a window to the specified position
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+resizeBy()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+resizeBy(width, height)
+Parameter Values
+Parameter
+Type
+Description
+width
+
+
+Number
+
+
+Required.
+A positive or a negative number
+how many pixels to resize the width by
+height
+
+
+Number
+
+
+Required.
+A positive or a negative number
+how many pixels to resize the height by
+Return Value
+No return value
+
+More Examples
+Open a new window, and decrease the width by 50px and increase the height by 50px:
+
+Copy
+myWindow.resizeBy(-50, 50);
+
+Example
+Copy
+let myWindow;
+
+function openWin() {
+  myWindow = window.open("", "", "width=250, height=250");
+}
+
+function resizeWinTo() {
+  myWindow.resizeTo(800, 600);
+  myWindow.focus();
+}
+
+function resizeWinBy() {
+  myWindow.resizeBy(-100, -50);
+  myWindow.focus();
+}
