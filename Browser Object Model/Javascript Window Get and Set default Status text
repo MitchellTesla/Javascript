@@ -1,0 +1,17 @@
+Example
+Set a default text in the status bar:
+
+Copy
+window.defaultStatus = "This is the default text in the status bar!!"
+
+Description
+The defaultStatus property gets and sets the default text in the status bar at the bottom of the browser.
+
+The defaultStatus property is not supported in any of the major browsers.
+
+Syntax
+Copy
+window.defaultStatus
+Return Value
+The default text displayed in the status bar.
+
