@@ -1,0 +1,21 @@
+Example
+Get the language of your browser:
+
+Copy
+let x = "Language of the browser: " + navigator.language;
+
+Description
+The language property returns the language version of the browser.
+
+This property is read-only.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+language	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+navigator.language
+Return Value
+A String, representing the language version of the browser.
+
+Examples of valid language codes are: "en", "en-US", "de", "fr", etc.
