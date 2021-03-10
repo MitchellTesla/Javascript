@@ -1,0 +1,113 @@
+The window.history property returns a History object, which you can use to perform basic operations on the browser history.
+
+The history object represents the user's navigation history since the given window was first used.
+
+Because history is a property of window, each browser window object has its own history object.
+
+For security reasons, it's not possible to determine the URLs that the user has visited.
+
+We can navigate backwards and forwards through the list of places the user has been without knowing the exact URL.
+
+The following table describes the properties and methods that the History object defines.
+
+Name
+Description
+Returns
+back()
+Goes one step back in the history
+void
+forward()
+Goes one step forward in the history
+void
+go(<index>)
+
+
+Goes to a position in the history relative to the
+current document; positive values are forward,
+and negative values are backward
+void
+
+
+length
+Returns the number of items in the history
+number
+pushState(<state>, <title>,
+<url>)
+Adds an entry to the browser history
+
+void
+
+replaceState(<state>, <title>,
+<url>)
+Replaces the current entry in the browser
+history
+void
+
+state
+
+Returns the state data associated with the
+current document in the browser history
+object
+
+Navigation
+The go() method navigates through the user's history in either direction, backward or forward.
+
+This method accepts a single argument, which is an integer representing the number of pages to go backward or forward.
+
+A negative number moves backward in history, similar to clicking the browser's Back button.
+
+A positive number moves forward, similar to clicking the browser's Forward button.
+
+Here's an example: go back one page
+
+Copy
+history.go(-1);
+go forward one page.
+
+Copy
+history.go(1);
+go forward two pages.
+
+Copy
+history.go(2);
+The go() method argument can also be a string, in which case the browser navigates to the first location in history that contains the given string.
+
+The closest location may be either backward or forward.
+
+If there's no entry in history matching the string, then the method does nothing, as in this example:
+
+go to nearest demo2s.com page
+
+Copy
+history.go("demo2s.com");
+Two shortcut methods, back() and forward(), may be used in place of go().
+
+These mimic the browser Back and Forward buttons as follows:
+
+go back one page.
+
+Copy
+history.back();
+go forward one page.
+
+Copy
+history.forward();
+The history object also has a property, length, which indicates how many items are in the history stack.
+
+This property reflects all items in the history stack, both those going backward and those going forward.
+
+For the first page loaded into a window or tab, history.length is equal to 0.
+
+By testing for this value as shown here, we can determine if the user's start point was your page:
+
+Copy
+if (history.length == 0){
+   //this is the first page in the user's window
+}
+The history object typically is used to create custom Back and Forward buttons and to determine if the page is the first in the user's history.
+
+Entries are made in the history stack whenever the page's URL changes.
+
+This includes changes to the URL hash, thus setting location.hash causes a new entry to be inserted into the history stack for these browsers.
+
+This behavior is commonly used by single-page application frameworks, which wish to simulate Back and Forward button functionality without causing full page reloads upon each navigation event.
