@@ -1,0 +1,75 @@
+The CSSStyleSheet type represents a CSS style sheet as included using a <link> element or defined in a <style> element.
+
+The elements themselves are represented by the HTMLLinkElement and HTMLStyleElement types, respectively.
+
+The CSSStyleSheet type is generic enough to represent a style sheet no matter how it is defined in HTML.
+
+The CSSStyleSheet type inherits from StyleSheet, which can be used as a base to define non-CSS style sheets.
+
+The following properties are inherited from StyleSheet:
+
+Property
+Description
+disabled
+
+A Boolean value indicating if the style sheet is disabled.
+This property is read/write, so setting its value to true will disable a style sheet.
+href
+
+The URL of the style sheet if it is included using <link>;
+otherwise, this is null.
+media
+
+
+
+A collection of media types supported by this style sheet.
+The collection has a length property and item() method, as with all DOM collections.
+Like other DOM collections, you can use bracket notation to access specific items in the collection.
+An empty list indicates that the style sheet should be used for all media.
+ownerNode
+
+Pointer to the node that owns the style sheet, which is either a <link> or a <style> element in HTML.
+This property is null if a style sheet is included in another style sheet using @import.
+parentStyleSheet
+When a style sheet is included via @import, this is a pointer to the style sheet that imported it.
+title
+The value of the title attribute on the ownerNode.
+type
+
+A string indicating the type of style sheet.
+For CSS style sheets, this is "text/css".
+With the exception of disabled, the rest of these properties are read-only.
+
+The CSSStyleSheet type supports all of these properties and the following properties and methods:
+
+Property
+Description
+cssRules
+A collection of rules contained in the style sheet.
+ownerRule
+If the style sheet was included using @import, this is a pointer to the rule representing the import; otherwise, this is null.
+deleteRule(index)
+Deletes the rule at the given location in the cssRules collection.
+insertRule(rule, index)
+Inserts the given string rule at the position specified in the cssRules collection.
+The list of style sheets available on the document is represented by the document.styleSheets collection.
+
+The number of style sheets on the document can be retrieved using the length property, and each individual style sheet can be accessed using either the item() method or bracket notation.
+
+Here is an example:
+
+Copy
+let sheet = null;
+for (let i = 0, len = document.styleSheets.length; i < len; i++) {
+   sheet = document.styleSheets[i];
+   console.log(sheet.href);
+}
+This code outputs the href property of each style sheet used in the document.
+
+<style> elements have no href.
+
+The style sheets returned in document.styleSheets vary from browser to browser.
+
+We can retrieve the CSSStyleSheet object directly from the <link> or <style> element.
+
+The DOM specifies a property called sheet that contains the CSSStyleSheet object.
