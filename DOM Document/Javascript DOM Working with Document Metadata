@@ -1,0 +1,92 @@
+Document object provides you with information about the document.
+
+The following table describes the properties you can use to get document metadata.
+
+Property
+Description
+Returns
+characterSet
+
+Returns the document character set encoding. This is a
+read-only property.
+string
+
+charset
+Gets or sets the document character set encoding.
+string
+compatMode
+Gets the compatibility mode for the document.
+string
+cookie
+Gets or sets the cookies for the current document.
+string
+defaultCharset
+Gets the default character encoding used by the browser.
+string
+defaultView
+Returns the Window object for the current document
+Window
+dir
+Gets or sets the text direction for the document.
+string
+domain
+Gets or sets the domain for the current document.
+string
+implementation
+
+Provides information about the DOM features that are
+available.
+DOMImplementation
+
+lastModified
+
+Returns the last modified time of the document (or the
+current time if no modification time is available).
+string
+
+location
+
+Provides information about the URL of the current
+document.
+Location
+
+readyState
+
+Returns the state of the current document. This is a read-
+only property.
+string
+
+referrer
+
+
+Returns the URL of the document that linked to the current
+document (this is the value of the corresponding HTTP
+header).
+string
+
+
+title
+
+Gets or sets the title of the current document (the contents
+of the title element, described in Chapter 7).
+string
+
+Getting Information from the Document
+You can get some useful information about the document using the metadata properties.
+
+Using the Document Object to Obtain Metadata.
+
+Copy
+document.writeln("characterSet: " + document.characterSet);
+document.writeln("charset: " + document.charset);
+document.writeln("compatMode: " + document.compatMode);
+document.writeln("defaultCharset: " + document.defaultCharset);
+document.writeln("dir: " + document.dir);
+document.writeln("domain: " + document.domain);
+document.writeln("lastModified: " + document.lastModified);
+document.writeln("referrer: " + document.referrer);
+document.writeln("title: " + document.title);
+
+These properties provide you with some useful insights into the document that you are working with.
+
+You can see the values for these properties.
