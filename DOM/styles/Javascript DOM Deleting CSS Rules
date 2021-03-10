@@ -1,0 +1,7 @@
+We can delete rules from a style sheet using deleteRule() method, which accepts a single argument: the index of the rule to remove.
+
+To remove the first rule in a style sheet, you can use the following code:
+
+Copy
+sheet.deleteRule(0);  // DOM method
+Deleting rules can affect the cascading effect of CSS.
