@@ -1,0 +1,15 @@
+The navigator object contains information about the browser.
+
+Property	Description
+appCodeName	Javascript Navigator Get appCodeName Property
+appName	Javascript Navigator Get appName Property
+appVersion	Javascript Navigator Get appVersion Property
+cookieEnabled	Javascript Navigator Get cookieEnabled Property
+geolocation	Javascript Navigator Get geolocation Property
+language	Javascript Navigator Get language Property
+Navigator check if browser is on Line	Javascript Navigator check if browser is on Line
+platform	Javascript Navigator Get platform Property
+product	Javascript Navigator Get product Property
+userAgent	Javascript Navigator Get userAgent Property
+javaEnabled()	Javascript Navigator Check if java is Enabled Method
+taintEnabled()	Javascript Navigator is taint Enabled Method
