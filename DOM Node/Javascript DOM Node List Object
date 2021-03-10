@@ -1,0 +1,27 @@
+Each node has a childNodes property containing a NodeList.
+
+A NodeList is an array-like object used to store an ordered list of nodes that are accessible by position.
+
+A NodeList is not an instance of Array even though its values can be accessed using bracket notation and the length property is present.
+
+NodeList objects are unique in that they are actually queries being run against the DOM structure, so changes will be reflected in NodeList objects automatically.
+
+A NodeList is a living object rather than a snapshot of what happened at the time it was first accessed.
+
+The following example shows how nodes stored in a NodeList may be accessed via bracket notation or by using the item() method:
+
+Copy
+let firstChild = someNode.childNodes[0];
+let secondChild = someNode.childNodes.item(1);
+let count = someNode.childNodes.length;
+Using bracket notation and using the item() method are both acceptable practices.
+
+The length property indicates the number of nodes in the NodeList at that time.
+
+We can convert NodeList objects into arrays using Array.prototype.slice().
+
+Consider the following example:
+
+Copy
+let arrayOfNodes = Array.prototype.slice.call(
+                     someNode.childNodes,0);
