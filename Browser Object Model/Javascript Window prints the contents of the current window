@@ -1,0 +1,22 @@
+Example
+Print the current page:
+
+Copy
+window.print();
+
+Description
+The print() method prints the contents of the current window.
+
+The print() method opens the Print Dialog Box, which lets the user to select preferred printing options.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+print()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+window.print()
+Parameters
+None
+
+Return Value
+No return value
