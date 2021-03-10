@@ -1,0 +1,28 @@
+Example
+Get the name of your browser:
+
+Copy
+let x = "Browser Name: " + navigator.appName;
+
+Description
+The appName property returns the name of the browser.
+
+This property is read-only.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+appName	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+let a = navigator.appName;
+Return Value
+A String, representing the name of the browser.
+
+The returned value varies from different browsers:
+
+IE11, Firefox, Chrome and Safari returns "Netscape"
+
+IE 10 and earlier versions return "Microsoft Internet Explorer"
+
+Opera returns "Opera".
+
