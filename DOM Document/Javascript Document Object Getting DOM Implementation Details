@@ -1,0 +1,32 @@
+The document.implementation property provides you with information about the browser implementation of the DOM features.
+
+This property returns a DOMImplementation object, which has one method that you are interested in: the hasFeature method.
+
+You can use this method to determine which DOM features are implemented.
+
+Using the document.implementation.hasFeature() Method.
+
+Copy
+let features = ["Core", "HTML", "CSS", "Selectors-API"];
+let levels = ["1.0", "2.0", "3.0"];
+
+document.writeln("<pre>");
+for (let i = 0; i < features.length; i++) {
+    document.writeln("Checking for feature: " + features[i]);
+    for (let j = 0; j < levels.length; j++) {
+        document.write(features[i] + " Level " + levels[j] + ": ");
+        document.writeln(document.implementation.hasFeature(features[i],
+            levels[j]));
+    }
+}
+document.write("</pre>")
+
+This script checks some of the different DOM features and the defined feature levels.
+
+This isn't as useful as it might appear.
+
+First, browsers don't always report the features they implement correctly.
+
+Some implement features but don't report them through the hasFeature() method, and others claim to implement features but don't.
+
+Second, a browser reporting that a feature doesn't mean that it is implemented in a useful way.
