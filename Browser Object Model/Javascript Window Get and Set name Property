@@ -1,0 +1,42 @@
+Example
+Create a window with the open() method, and return the name of the new window:
+
+Copy
+let myWindow = window.open("", "MsgWindow", "width = 200, height = 100"); 
+myWindow.document.write("<p>This window's name is: " + 
+               myWindow.name + "</p>");
+
+Description
+The name property gets and sets the name of the window.
+
+This property can modify the name of a window, after the window has been created.
+
+The name of the window is often used for setting targets for hyperlinks and forms.
+
+The value for name property is not required, as windows do not need to have names.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+name	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Return the name property:
+
+Copy
+let a = window.name;
+Set the name property:
+
+Copy
+window.name = win_Name;
+Property Values
+Value	Type	Description
+win_Name	String	the name of the window
+Return Value
+A String, representing the name of the window.
+
+If the name is not specified, this property returns "view"
+
+More Examples
+Set the name of the current window to "myWindowName":
+
+Copy
+window.name = "myWindowName";
