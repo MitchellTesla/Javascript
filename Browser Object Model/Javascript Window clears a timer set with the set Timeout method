@@ -1,0 +1,64 @@
+Example
+Prevent the function set with the setTimeout() to execute:
+
+Copy
+let myVar;
+
+function myFunction() {
+  mylet = setTimeout(function(){ console.log("Hello"); }, 3000);
+}
+
+function myStopFunction() {
+  clearTimeout(myVar);
+}
+
+Description
+The clearTimeout() method clears a timer set with the setTimeout() method.
+
+The ID value returned by setTimeout() is the parameter for the clearTimeout() method.
+
+Copy
+myVar = setTimeout("javascript function",milliseconds);
+Then, if the function has not already been executed, you will be able to stop the execution by calling the clearTimeout() method.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+clearTimeout()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+clearTimeout(id_of_set_timeout)
+Parameter Values
+Parameter
+Type/Optional
+Description
+id_of_set_timeout
+Required.
+The ID value of the timer returned by the setTimeout() method
+Return Value
+No return value
+
+More Examples
+The following example has a "Start!" button to start a timer, an input field that will count forever, and a "Stop!" button that will stop the timer:
+
+Copy
+let c = 0;
+let t;
+let timer_is_on = 0;
+
+function timedCount() {
+  document.getElementById("txt").value = c;
+  c = c + 1;
+  t = setTimeout(timedCount, 1000);
+}
+
+function startCount() {
+  if (!timer_is_on) {
+    timer_is_on = 1;
+    timedCount();
+  }
+}
+
+function stopCount() {
+  clearTimeout(t);
+  timer_is_on = 0;
+}
