@@ -1,0 +1,34 @@
+Example
+Get the latitude and longitude of the user's position:
+
+Copy
+let x = document.getElementById("demo");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  x.innerHTML = "Latitude: " + position.coords.latitude +
+  "<br>Longitude: " + position.coords.longitude;
+}
+
+Description
+The geolocation property returns a Geolocation object that can be used to locate the user's position.
+
+Since this can compromise user privacy, the position is not available unless the user approves it.
+
+This property is read-only.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+geolocation	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+let a = navigator.geolocation;
+Return Value
+A reference to the Geolocation object
