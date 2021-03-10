@@ -1,0 +1,38 @@
+Example
+Find out how many <iframe> elements there are in the window:
+
+Copy
+let x = window.length;
+
+Description
+The length property returns the number of <iframe> elements in the current window.
+
+This property is often used together with the window.frames property.
+
+This property will also work for <frame> elements.
+
+However, the <frame> element is not supported in HTML5.
+
+This property is read-only.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+length	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+window.length
+Return Value
+A Number, representing the number of frames in the current window.
+
+More Examples
+Loop through all frames on a page, and change the location of all frames to "demo2s.com":
+
+Copy
+function myFunction() {
+  let frames = window.frames;
+  let i;
+
+  for (i = 0; i < frames.length; i++) {
+    frames[i].location = "https://www.demo2s.com";
+  }
+}
