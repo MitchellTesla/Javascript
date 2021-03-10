@@ -1,0 +1,26 @@
+Example
+Change the background-color of an <iframe> element's parent document:
+
+Copy
+parent.document.body.style.backgroundColor = "red";
+
+Description
+The parent property returns the parent window of the current window.
+
+This property is read-only.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+parent	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+window.parent
+Return Value
+The parent window object of the current window
+
+More Examples
+Alert the location of the parent window when opening a new window:
+
+Copy
+window.open("", "", "width=200, height=100"); 
+console.log(window.parent.location);
