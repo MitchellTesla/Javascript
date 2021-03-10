@@ -1,0 +1,66 @@
+The cookie property allows you to read, add to, and update the cookies associated with the document.
+
+Reading and Creating Cookies.
+
+Copy
+function readCookies() {
+    document.getElementById("cookiedata").innerHTML = document.cookie;
+}
+
+function createCookie() {
+    cookieCount++;
+    document.cookie = "Cookie_" + cookieCount + "=Value_" + cookieCount;
+    readCookies();
+}
+
+function updateCookie() {
+    document.cookie = "Cookie_" + cookieCount + "=Updated_" + cookieCount;
+    readCookies();
+}
+
+The cookie property works in a slightly odd way.
+
+When you read the value of the property, you get back all of the cookies that are associated with the document.Cookies are name/value pairs in the form name=value.
+
+If multiple cookies are available, all are returned as the result of the cookie property, separated by a semicolon, for example: name1=value1;name2=value2.
+
+By contrast, when you want to create a new cookie, you assign a new name/value pair as the value of the cookie property, and it is added to the set of cookies for the document.
+
+You can set only one cookie at a time.
+
+If you set a value whose name portion corresponds to an existing cookie, then the value portion is used to update the cookie.
+
+To demonstrate this, the code above contains a script that reads, creates, and updates cookies.
+
+The readCookies() function reads the value of the document.cookie property and sets the result as the content of a paragraph (p) element.
+
+There are two button elements in the document.
+
+When the Add Cookie button is clicked, the createCookie() function assigns a new value to the cookie property, which will be added to the cookie collection.
+
+The Update Cookie button causes the updateCookie() function to be invoked.
+
+This function provides a new value for an existing cookie.
+
+Although the name=value form is the default for adding cookies, you can apply some additional data that changes the way the cookie is handled.
+
+These additions are described in the following table.
+
+The Additional Fields That Can Be Added to a Cookie.
+
+Addition
+Description
+path=<path>
+Sets the path associated with the cookie; this default to the path of the current document if not specified.
+domain=<domain>
+Sets the domain associated with the cookie; this defaults to the domain of the current document if not specified.
+max-age=<seconds>
+Sets the life of the cookie in terms of the number of seconds from the moment it was created.
+expires=<date>
+Sets the life of the cookie using a GMT-format date.
+secure
+The cookie will be sent only over a secure (HTTPS) connection.
+Each of these additional items is prepended to the name/value pair and separated with a semicolon, like this:
+
+Copy
+document.cookie = "MyCookie=MyValue;max-age=10";
