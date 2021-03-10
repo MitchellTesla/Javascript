@@ -1,0 +1,19 @@
+Example
+Find out if cookies are enabled in your browser:
+
+Copy
+let x = "Cookies Enabled: " + navigator.cookieEnabled;
+
+Description
+The cookieEnabled property returns a Boolean value that specifies whether cookies are enabled in the browser.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+cookieEnabled	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+navigator.cookieEnabled
+Return Value
+A Boolean, indicating whether cookies are enabled in the browser.
+
+Returns true if enabled, otherwise it returns false
