@@ -1,0 +1,165 @@
+Example
+Copy
+setInterval(function(){ console.log("Hello"); }, 3000);
+
+Description
+The setInterval() method calls a function or evaluates an expression at specified intervals in milliseconds.
+
+The setInterval() method will continue calling the function until clearInterval() is called, or the window is closed.
+
+The ID value returned by setInterval() is used as the parameter for the clearInterval() method.
+
+1000 ms = 1 second.
+
+To execute a function only once, after a specified number of milliseconds, use the setTimeout() method.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+setInterval()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+setInterval(function, milliseconds, param1, param2, ...)
+Parameter Values
+Parameter
+Description
+function
+
+Required.
+The function that will be executed
+milliseconds
+
+
+Required.
+The intervals in milliseconds on how often to execute the code.
+If the value is less than 10, the value 10 is used
+param1, param2, ...
+
+Optional.
+Additional parameters to pass to the function
+Return Value
+A Number, representing the ID value of the timer that is set.
+
+Use this value with the clearInterval() method to cancel the timer.
+
+More Examples
+You can also refer to a "named" function; Alert "Hello" every 3 seconds (3000 milliseconds):
+
+Copy
+let myVar;
+
+function myFunction() {
+  myVar = setInterval(alertFunc, 3000);
+}
+
+function alertFunc() {
+  console.log("Hello!");
+}
+
+Example
+Display the current time.
+
+the setInterval() method will execute the function once every 1 second, just like a digital watch:
+
+Copy
+let myVar = setInterval(myTimer, 1000);
+
+function myTimer() {
+  let d = new Date();
+  let t = d.toLocaleTimeString();
+  document.getElementById("demo").innerHTML = t;
+}
+
+Example
+Using clearInterval() to stop time in the previous example:
+
+Copy
+let myVar = setInterval(myTimer, 1000);
+
+function myTimer() {
+  let d = new Date();
+  let t = d.toLocaleTimeString();
+  document.getElementById("demo").innerHTML = t;
+}
+
+function myStopFunction() {
+  clearInterval(myVar);
+}
+
+Example
+Using setInterval() and clearInterval() to create a dynamic progress bar:
+
+Copy
+function move() {
+  let elem = document.getElementById("myBar");
+  let width = 0;
+  let id = setInterval(frame, 10);
+  function frame() {
+    if (width == 100) {
+      clearInterval(id);
+    } else {
+      width++;
+      elem.style.width = width + '%';
+    }
+  }
+}
+
+Example
+Toggle between two background colors once every 300 milliseconds:
+
+Copy
+let myVar = setInterval(setColor, 300);
+
+function setColor() {
+  let x = document.body;
+  x.style.backgroundColor =
+   x.style.backgroundColor == "yellow" ? "pink" : "yellow";
+}
+
+function stopColor() {
+  clearInterval(myVar);
+}
+
+Example
+Pass parameters to the alertFunc function:
+
+Copy
+let myVar;
+
+function myStartFunction() {
+  myVar = setInterval(alertFunc, 2000, "First parameter", 
+                               "Second parameter");
+}
+
+function alertFunc(param1, param2) {
+  document.getElementById("demo").innerHTML += "Hello ";
+
+  document.getElementById("demo2").innerHTML = 
+    "Parameters passed to alertFunc(): <br>"
+  + param1 + "<br>" + param2 + "<br>";
+}
+
+function myStopFunction() {
+  clearInterval(myVar);
+}
+
+If you use an anonymous function, it will work in all browsers:
+
+Copy
+let myVar;
+
+function myStartFunction() {
+  myVar = setInterval(function(){ 
+            alertFunc("First parameter", "Second parameter"); }, 2000);
+}
+
+function alertFunc(param1, param2) {
+  document.getElementById("demo").innerHTML += "Hello ";
+
+  document.getElementById("demo2").innerHTML = 
+    "Parameters passed to alertFunc(): <br>"
+  + param1 + "<br>" + param2 + "<br>";
+}
+
+function myStopFunction() {
+  clearInterval(myVar);
+}
