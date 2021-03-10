@@ -1,0 +1,73 @@
+Example
+Open a new window, and move the new window 250px relative to its current position:
+
+Copy
+let myWindow;
+
+function openWin() {
+  myWindow = window.open("", "myWindow", "width=200, height=100");
+  myWindow.document.write("<p>This is 'myWindow'</p>");
+}
+
+function moveWin() {
+  myWindow.moveBy(250, 250);
+  myWindow.focus();
+}
+
+Description
+The moveBy() method moves a window a specified number of pixels relative to its current coordinates.
+
+Related methods:
+
+Method	Description
+moveTo()	Moves a window to the specified position
+resizeBy()	Resizes the window by the specified pixels
+resizeTo()	Resizes the window to the specified width and height
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+moveBy()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+window.moveBy(x, y)
+Parameter Values
+Parameter
+Type
+Description
+x
+
+
+Number
+
+
+Required.
+A positive or negative number
+setting the amount of pixels to move the window horizontally
+y
+
+
+Number
+
+
+Required.
+A positive or negative number
+setting the amount of pixels to move the window vertically
+Return Value
+No return value
+
+More Examples
+Copy
+let myWindow;
+
+function openWin() {
+  myWindow = window.open("", "", "width=250, height=250");
+}
+
+function moveWinTo() {
+  myWindow.moveTo(150, 150);
+  myWindow.focus();
+}
+
+function moveWinBy() {
+  myWindow.moveBy(75, 50);
+  myWindow.focus();
+}
