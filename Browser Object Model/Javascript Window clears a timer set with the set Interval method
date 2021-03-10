@@ -1,0 +1,80 @@
+Example
+Display the current time.
+
+The setInterval() method will execute the myTimer function once every 1 second.
+
+Use clearInterval() to stop the time:
+
+Copy
+let mylet = setInterval(myTimer, 1000);
+
+function myTimer() {
+  let d = new Date();
+  let t = d.toLocaleTimeString();
+  document.getElementById("demo").innerHTML = t;
+}
+
+function myStopFunction() {
+  clearInterval(myVar);
+}
+
+Description
+The clearInterval() method clears a timer set with the setInterval() method.
+
+The ID value returned by setInterval() is used as the parameter for the clearInterval() method.
+
+To use the clearInterval() method, use a variable when creating the interval method:
+
+Copy
+mylet = setInterval("javascript function",milliseconds);
+Then you will be able to stop the execution by calling the clearInterval() method.
+
+Copy
+clearInterval(myVar);
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+clearInterval()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+clearInterval(variable)
+Parameter Values
+Parameter
+Type/Optional
+Description
+variable
+Required.
+The name of the timer returned by the setInterval() method
+Return Value
+No return value
+
+More Examples
+Toggle between two background colors once every 300 milliseconds, until it is stopped by clearInterval():
+
+Copy
+let mylet = setInterval(setColor, 300);
+
+function setColor() {
+  let x = document.body;
+  x.style.backgroundColor = 
+         x.style.backgroundColor == "yellow" ? "pink" : "yellow";
+}
+
+function stopColor() {
+  clearInterval(myVar);
+}
+
+Example
+We can use setInterval() and clearInterval() to create a dynamic progress bar:
+
+Copy
+let elem = document.getElementById("myBar");
+let width = 0;
+let id = setInterval(frame, 10);
+function frame() {
+  if (width == 100) {
+    clearInterval(id);
+  } else {
+    width++;
+    elem.style.width = width + '%';
+  }
+}
