@@ -1,0 +1,36 @@
+Example
+Get the current frame's height and width:
+
+Copy
+let w = window.innerWidth; 
+let h = window.innerHeight;
+
+Description
+The innerWidth property returns the width of a window's content area.
+
+The innerHeight property returns the height of a window's content area.
+
+These properties are read-only.
+
+We can use the outerWidth and outerHeight properties to get the width/height of the browser window.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+innerWidth	Yes	Yes	Yes	Yes	Yes	Yes
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+innerHeight	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+window.innerWidth 
+window.innerHeight
+Return Value
+A Number, representing the width and/or the inner height of the browser window's content area, in pixels.
+
+Example
+A demonstration of innerWidth, innerHeight, outerWidth and outerHeight in one example:
+
+Copy
+txt += "<p>innerWidth: " + window.innerWidth + "</p>";
+txt += "<p>innerHeight: " + window.innerHeight + "</p>";
+txt += "<p>outerWidth: " + window.outerWidth + "</p>";
+txt += "<p>outerHeight: " + window.outerHeight + "</p>";
