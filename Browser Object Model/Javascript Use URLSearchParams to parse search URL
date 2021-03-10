@@ -1,0 +1,34 @@
+URLSearchParams offers a collection of utility methods which allow you to inspect and modify query parameters using a standardized API.
+
+A URLSearchParams instance is created by passing a query string to the constructor.
+
+The instance exposes various methods like get(), set(), and delete() to perform query string operations.
+
+These are demonstrated here:
+
+Copy
+let qs = "?q=css&num=10";
+
+let searchParams = new URLSearchParams(qs);
+
+console.log(searchParams.toString());  // " q=css&num=10"
+searchParams.has("num");               // true
+searchParams.get("num");               // 10
+
+searchParams.set("page", "3");
+console.log(searchParams.toString());  // " q=css&num=10&page=3"
+
+searchParams.delete("q");
+console.log(searchParams.toString());  // " num=10&page=3"
+Most browsers that support URLSearchParams also support using the URLSearchParams as an iterable object:
+
+Copy
+let qs = "?q=css&num=10";
+
+let searchParams = new URLSearchParams(qs);
+
+for (let param of searchParams) {
+   console.log(param);
+}
+Output:
+
