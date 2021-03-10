@@ -1,0 +1,20 @@
+Example
+Get the version of your browser:
+
+Copy
+let x = "Version Info: " + navigator.appVersion;
+
+Description
+The appVersion property returns the version information of the browser.
+
+This property is read-only.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+appVersion	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+let a = navigator.appVersion;
+Return Value
+A String, representing the version information of the browser
+
