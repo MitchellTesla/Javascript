@@ -1,0 +1,173 @@
+Example
+Copy
+setTimeout(function(){ console.log("Hello"); }, 3000);
+
+Description
+The setTimeout() method calls a function or evaluates an expression after a specified number of milliseconds.
+
+1000 ms = 1 second.
+
+The function is only executed once.
+
+If you need to repeat execution, use the setInterval() method.
+
+Use the clearTimeout() method to prevent the function from running.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+setTimeout()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+setTimeout(function, milliseconds, param1, param2, ...)
+Parameter Values
+Parameter
+Description
+function
+
+Required.
+The function that will be executed
+milliseconds
+
+
+Optional.
+The number of milliseconds to wait before executing the code.
+If omitted, the value 0 is used
+param1, param2, ...
+
+Optional.
+Additional parameters to pass to the function
+Return Value
+A Number, representing the ID value of the timer that is set.
+
+Use this value with the clearTimeout() method to cancel the timer
+
+More Examples
+You can also refer to "named" function;
+
+Copy
+let myVar;
+
+function myFunction() {
+  myVar = setTimeout(alertFunc, 3000);
+}
+
+function alertFunc() {
+  console.log("Hello!");
+}
+
+Example
+Display a timed text:
+
+Copy
+let x = document.getElementById("txt");
+setTimeout(function(){ x.value="2 seconds" }, 2000);
+setTimeout(function(){ x.value="4 seconds" }, 4000);
+setTimeout(function(){ x.value="6 seconds" }, 6000);
+
+Example
+Open a new window and close the window after three seconds (3000 milliseconds):
+
+Copy
+let myWindow = window.open("", "", "width=200, height=100"); 
+myWindow.document.write("<p>This is 'myWindow'</p>"); 
+setTimeout(function(){ myWindow.close() }, 3000);
+
+Example
+Using clearTimeout() to prevent the function to run:
+
+Copy
+let myVar;
+
+function myFunction() {
+  myVar = setTimeout(function(){ console.log("Hello") }, 3000);
+}
+
+function myStopFunction() {
+  clearTimeout(myVar);
+}
+
+Example
+Count forever - but with the ability to stop the count:
+
+Copy
+let c = 0;
+let t;
+let timer_is_on = 0;
+
+function timedCount() {
+  document.getElementById("txt").value = c;
+  c = c + 1;
+  t = setTimeout(timedCount, 1000);
+}
+
+function startCount() {
+  if (!timer_is_on) {
+    timer_is_on = 1;
+    timedCount();
+  }
+}
+
+function stopCount() {
+  clearTimeout(t);
+  timer_is_on = 0;
+}
+
+Example
+A clock created with timing events:
+
+Copy
+function startTime() {
+  let today = new Date();
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  // add a zero in front of numbers<10
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById("txt").innerHTML = h + ":" + m + ":" + s;
+  let t = setTimeout(function(){ startTime() }, 500);
+}
+
+function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+
+Example
+Pass parameters to the alertFunc function:
+
+Copy
+let myVar;
+
+function myStartFunction() {
+  myVar = setTimeout(alertFunc, 2000, "First parameter", 
+                     "Second parameter");
+}
+
+function alertFunc(param1, param2) {
+  document.getElementById("demo").innerHTML += "Hello ";
+
+  document.getElementById("demo2").innerHTML = 
+  "Parameters passed to alertFunc(): <br>"
+  + param1 + "<br>" + param2 + "<br>";
+}
+
+However, if you use an anonymous function, it will work in all browsers:
+
+Copy
+let myVar;
+
+function myStartFunction() {
+  myVar = setTimeout(function(){ 
+     alertFunc("First parameter", "Second parameter"); }, 2000);
+}
+
+function alertFunc(param1, param2) {
+  document.getElementById("demo").innerHTML += "Hello ";
+
+  document.getElementById("demo2").innerHTML = 
+  "Parameters passed to alertFunc(): <br>"
+  + param1 + "<br>" + param2 + "<br>";
+}
