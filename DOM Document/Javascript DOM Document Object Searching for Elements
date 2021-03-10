@@ -1,0 +1,113 @@
+The Document object defines a number of methods that you can use to search for elements in the document.
+
+These methods are described in the following table.
+
+Property
+Description
+Returns
+getElementById(<id>)
+
+Returns the element with the specified id
+value
+HTMLElement
+
+getElementsByClassName(<class>)
+
+Returns the elements with the specified class
+value
+HTMLElement[]
+
+getElementsByName(<name>)
+
+Returns the elements with the specified name
+value
+HTMLElement[]
+
+getElementsByTagName(<tag>)
+Returns the elements of the specified type
+HTMLElement[]
+querySelector(<selector>)
+
+Returns the first element that matches the
+specified CSS selector
+HTMLElement
+
+querySelectorAll(<selector>)
+
+Returns all of the elements that match the
+specified CSS selector
+HTMLElement[]
+
+As you might expect, some of these methods return multiple elements.
+
+In fact, these methods return a NodeList, which is part of the underlying DOM specification that deals with generic structured document formats and not just HTML.
+
+However, for these purposes, you can treat them like arrays and keep the focus on HTML5.
+
+The search methods can be broken into two categories.
+
+The following code demonstrates the first of these categories-those methods whose name begins with getElement.
+
+Copy
+let resultsElement = document.getElementById("results");
+
+let pElems = document.getElementsByTagName("p");
+resultsElement.innerHTML += "There are " + pElems.length + " p elements\n";
+
+let myClassElems = document.getElementsByClassName("myClass");
+resultsElement.innerHTML += "There are " + myClassElems.length
+    + " elements in the myClass class\n";
+
+let nameElems = document.getElementsByName("myId");
+resultsElement.innerHTML += "There are " + nameElems.length
+    + " elements with the name 'myId'";
+
+When using the getElementById() method, the browser will return null if no element can be found with the specified id value.
+
+By contrast, the other methods will always return an array of HTMLElement objects, but the length property will return 0 to indicate no matches.
+
+Searching with CSS Selectors
+A useful alternative is to search using CSS selectors.
+
+Selectors allow you to find a broader range of elements in the document.
+
+Obtaining Element Objects Using CSS Selectors.
+
+Copy
+let resultsElement = document.getElementById("results");
+
+let elems = document.querySelectorAll("p, img#myId")
+resultsElement.innerHTML += "The selector matched " + elems.length
+    + " elements\n";
+
+In this example, we have used a selector that will match all <p> elements and the <img> element that has an id value.
+
+Chaining Searches Together
+A nice DOM feature is that all but one of the search methods the Document object implements are also implemented by HTMLElement objects, allowing you to chain searches together.
+
+The exception is the getElementById method, which is available only through the Document object.
+
+Chaining Searches Together.
+
+Copy
+let resultsElement = document.getElementById("results");
+
+let elems = document.getElementById("tblock")
+                  .getElementsByTagName("span");
+resultsElement.innerHTML +=
+   "There are " + elems.length + " span elements\n";
+
+let elems2 = document.getElementById("tblock")
+                     .querySelectorAll("span");
+resultsElement.innerHTML += "There are " + elems2.length
+    + " span elements (Mix)\n";
+
+let selElems = document.querySelectorAll("#tblock > span");
+resultsElement.innerHTML += "There are " + selElems.length
+    + " span elements (CSS)\n";
+
+There are two chained searches in this example, both of which we have started with the getElementById() method which gives me a single object to work with.
+
+In the first example, we chain a search using the getElementsByTagName method, and in the second we use a very simple CSS selector through the querySelectorAll method.
+
+Each of these examples returns the collection of span elements contained in the p element whose id is tblock.
