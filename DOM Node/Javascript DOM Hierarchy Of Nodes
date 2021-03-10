@@ -1,0 +1,56 @@
+Any HTML or XML document can be represented as a hierarchy of nodes using the DOM.
+
+There are several node types, each representing different information and/or markup in the document.
+
+Each node type has different characteristics, data, and methods, and each may have relationships with other nodes.
+
+These relationships create a hierarchy that allows markup to be represented as a tree, rooted at a particular node.
+
+For instance, consider the following HTML:
+
+Copy
+<html>
+  <head>
+    <title>Sample Page</title>
+  </head>
+  <body>
+    <p>Hello World!</p>
+  </body>
+</html>
+This simple HTML document can be represented in a hierarchy, as illustrated in the following tree.
+
+Copy
+Document
+ |
+ +---Element html
+      |
+      +---Element head
+      |    |
+      |    +---Element title
+      |         |
+      |         +---Text Sample Page
+      |
+      +---Element body
+           |
+           +---Element p
+                |
+                +----Text Hello world!
+A document node represents every document as the root.
+
+In this example, the only child of the document node is the <html> element, which is called the document element.
+
+The document element is the outermost element in the document within which all other elements exist.
+
+There can be only one document element per document.
+
+In HTML pages, the document element is always the <html> element.
+
+In XML, where there are no predefined elements, any element may be the document element.
+
+Every piece of markup can be represented by a node in the tree:
+
+HTML elements are represented by element nodes,
+attributes are represented by attribute nodes,
+the document type is represented by a document type node, and
+comments are represented by comment nodes.
+In total, there are 12 node types, all of which inherit from a base type.
