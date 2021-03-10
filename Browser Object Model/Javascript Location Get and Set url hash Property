@@ -1,0 +1,39 @@
+Example
+Return the anchor part of a URL.
+
+Assume that the current URL is http://www.example.com/test.htm#part2:
+
+Copy
+let x = location.hash;
+The result of x will be:
+
+Copy
+#part2
+Description
+The hash property gets and sets the anchor part of a URL, including the hash sign (#).
+
+When this property is used to set the anchor part, do not include the hash sign (#).
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+hash	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Return the hash property:
+
+Copy
+let a = location.hash;
+Set the hash property:
+
+Copy
+location.hash = anchor_name;
+Property Values
+Value	Type	Description
+anchor_name	String	Specifies the anchor part of a URL
+Return Value
+A String, representing the anchor part of the URL, including the hash sign (#).
+
+More Examples
+Set the anchor part:
+
+Copy
+location.hash = "part5";
