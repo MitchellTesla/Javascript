@@ -1,0 +1,35 @@
+All nodes in a document have relationships to other nodes.
+
+For instance, consider the following HTML:
+
+Copy
+<html>
+  <head>
+    <title>Sample Page</title>
+  </head>
+  <body>
+    <p>Hello World!</p>
+  </body>
+</html>
+In HTML, the <body> element is a child of the <html> element; likewise the <html> element is the parent of the <body> element.
+
+The <head> element is a sibling of the <body> element, because they both share the same immediate parent, the <html> element.
+
+This simple HTML document can be represented in a hierarchy, as illustrated in the following tree.
+
+Copy
+Document
+ |
+ +---Element html
+      |
+      +---Element head
+      |    |
+      |    +---Element title
+      |         |
+      |         +---Text Sample Page
+      |
+      +---Element body
+           |
+           +---Element p
+                |
+                +----Text Hello world!
