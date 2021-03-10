@@ -1,0 +1,114 @@
+The document.location property returns a Location object that gives you fine-grained information about the document's address and allows you to navigate to other documents.
+
+BOM location object provides information about the document that is currently loaded in the window, as well as general navigation functionality.
+
+The location object is a property of both window and document; both window.location and document.location point to the same object.
+
+The location object knows about the currently loaded document, and it also parses the URL into discrete segments that can be accessed via a series of properties.
+
+The following table describes the functions and properties of the Location object.
+
+Property
+Description
+Returns
+protocol
+Gets or sets the protocol component of the document URL
+string
+host
+Gets or sets the host component of the document URL
+string
+href
+Gets or sets the current document's location
+string
+hostname
+Gets or sets the host name component of the document URL
+string
+port
+Gets or sets the port component of the document URL
+string
+pathname
+Gets or sets the path component of the document URL
+string
+search
+Gets or sets the query component of the document URL
+string
+hash
+Gets or sets the hash component of the document URL
+string
+assign(<URL>)
+Navigates to the specified URL
+void
+replace(<URL>)
+
+Removes the current document and navigates to the one
+specified by the URL.
+void
+
+reload()
+Reloads the current document
+void
+resolveURL(<URL>)
+Resolves the specified relative URL to an absolute one
+string
+These properties are enumerated in the following table.
+
+If the browser was currently located at
+
+Copy
+http://userName:usrPas@www.demo2s.com:80/html-folder/?q=javascript#contents
+then the location object would behave as follows:
+
+Property Name
+Return Value
+Description
+location.hash
+"#contents"
+The URL hash, or an empty string if the URL does not have a hash.
+location.host
+"www.demo2s.com:80"
+The name of the server and port number if present.
+location.hostname
+"www.demo2s.com"
+The name of the server without the port number.
+location.href
+
+
+"http://www.demo2s.
+com:80/html-folder/?q=
+javascript#contents"
+The full URL of the currently loaded page.
+The toString() method of location returns this value.
+
+location.pathname
+"/html-folder/"
+The directory and/or filename of the URL.
+location.port
+
+"80"
+
+The port of the request if specified in the URL.
+If a URL does not contain a port, then this property returns an empty string.
+location.protocol
+
+"http:"
+
+The protocol used by the page.
+Typically "http:" or "https:".
+location.search
+
+"?q=javascript"
+
+The query string of the URL.
+It returns a string beginning with a question mark.
+location.username
+"userName"
+The username specified before the domain name.
+location.password
+"usrPas"
+The password specified before the domain name.
+location.origin
+
+"http:// www.demo2s.com"
+
+The origin of the URL.
+Read only.
