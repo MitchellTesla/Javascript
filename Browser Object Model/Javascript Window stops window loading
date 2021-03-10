@@ -1,0 +1,24 @@
+Example
+Stop the window from loading:
+
+Copy
+window.stop();
+
+Description
+The stop() method stops window loading.
+
+This method is the same as clicking on the browser's stop button.
+
+This method may be useful if the loading of an image or frame takes too long.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+stop()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+window.stop()
+Parameters
+None
+
+Return Value
+No return value
