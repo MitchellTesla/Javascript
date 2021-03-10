@@ -1,0 +1,17 @@
+Example
+Get the version of your browser:
+
+Copy
+let x = "Platform: " + navigator.platform;
+
+Description
+The platform property returns for which platform the browser is compiled.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+platform	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+let a = navigator.platform;
+Return Value
+A String, representing platform of the browser.
