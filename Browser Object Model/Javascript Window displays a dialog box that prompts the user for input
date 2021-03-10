@@ -1,0 +1,76 @@
+Example
+Display a prompt box which ask the user for name, and output a message:
+
+Copy
+function myFunction() {
+  let person = prompt("Please enter your name", "HTML");
+  if (person != null) {
+    document.getElementById("demo").innerHTML =
+    "Hello " + person + "! How are you today?";
+  }
+}
+
+Description
+The prompt() method displays a dialog box that prompts the visitor for input.
+
+A prompt box is used for user to input a value.
+
+When a prompt box pops up, the user will have to click either "OK" or "Cancel" to proceed after entering an input value.
+
+It prevents the user from accessing other parts of the page until the box is closed.
+
+The prompt() method returns the input value if the user clicks "OK".
+
+If the user clicks "cancel" the method returns null.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+prompt()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+prompt(text, default_Text)
+Parameter Values
+Parameter
+Type
+Description
+text
+
+String
+
+Required.
+The text to display in the dialog box
+default_Text
+
+String
+
+Optional.
+The default input text
+Return Value
+A String. If the user clicks "OK", the input value is returned.
+
+If the user clicks "cancel", null is returned.
+
+If the user clicks OK without entering any text, an empty string is returned.
+
+More Examples
+Using the switch statement together with prompt() to execute a block of code based on user input:
+
+Copy
+function myFunction() {
+  let text;
+  let favDrink = prompt("What's your favorite language?", "HTML");
+  switch(favDrink) {
+    case "HTML":
+      text = "Excellent choice.";
+      break;
+    case "CSS":
+      text = "CSS!";
+      break;
+    case "Javascript":
+      text = "Really?";
+      break;
+    default:
+      text = "do not know";
+  }
+  document.getElementById("demo").innerHTML = text;
+}
