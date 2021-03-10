@@ -1,0 +1,55 @@
+A MutationObserver can monitor changes when a node attribute is added, removed, or changed.
+
+Registering a callback is accomplished by setting the attributes property inside the MutationObserverInit object to true, as demonstrated here:
+
+Copy
+let observer = new MutationObserver(
+    (mutationRecords) => console.log(mutationRecords));
+
+observer.observe(document.body, { attributes: true });
+
+// Add attribute
+document.body.setAttribute('foo', 'bar');
+
+// Modify existing attribute
+document.body.setAttribute('foo', 'baz');
+
+// Remove attribute
+document.body.removeAttribute('foo');
+Output:
+
+
+The default behavior is to observe all attribute changes and to not record the old value inside the MutationRecord.
+
+To observe a subset of attributes, the attributeFilter property can be used as a white list of attribute names:
+
+Copy
+let observer = new MutationObserver(
+    (mutationRecords) => console.log(mutationRecords));
+
+observer.observe(document.body, { attributeFilter: ['foo'] });
+
+// Add whitelisted attribute
+document.body.setAttribute('foo', 'bar');
+
+// Add excluded attribute
+document.body.setAttribute('baz', 'qux');
+Only a single mutation record is created for the 'foo' attribute mutation
+
+Output:
+
+
+To preserve the old value inside the mutation record, the attributeOldValue can be set to true:
+
+Copy
+let observer = new MutationObserver(
+    (mutationRecords) => console.log(mutationRecords .map((x) => x.oldValue)));
+
+observer.observe(document.body, { attributeOldValue: true });
+
+document.body.setAttribute('foo', 'bar');
+document.body.setAttribute('foo', 'baz');
+document.body.setAttribute('foo', 'qux');
+Each mutation records the previous value
+
+Output:
