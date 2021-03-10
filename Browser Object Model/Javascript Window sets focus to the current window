@@ -1,0 +1,37 @@
+Example
+Assure that the new window GETS focus and send the new window to the front:
+
+Copy
+let myWindow = window.open("", "", "width=200,height=100");
+myWindow.document.write("<p>A new window!</p>");
+myWindow.focus();
+
+Description
+The focus() method sets focus to the current window.
+
+We can use the blur() method to remove focus from the current window.
+
+This method makes a request to bring the current window to the foreground.
+
+It may not work as you expect in all browsers, due to different user settings.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+focus()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+window.focus()
+Parameters
+None
+
+Return Value
+No return value
+
+More Examples
+Assure that the new window does NOT get focus. send the new window to the background:
+
+Copy
+let myWindow = window.open("", "myWindow", "width=200, height=100"); 
+myWindow.document.write("<p>This is 'myWindow'</p>"); 
+// Assures that the new window does NOT get focus);
+myWindow.blur();
