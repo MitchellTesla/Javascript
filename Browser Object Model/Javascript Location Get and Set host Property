@@ -1,0 +1,29 @@
+Example
+Return the hostname and port of the current URL:
+
+Copy
+let x = location.host;
+
+Description
+The host property gets and sets the host name and port of a URL.
+
+If the port number is not specified in the URL or if it is the scheme's default port - like 80, some browsers will not display the port number.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+host	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Return the host property:
+
+Copy
+let a = location.host;
+Set the host property:
+
+Copy
+location.host = hostname:port;
+Property Values
+Value	Type	Description
+hostname:port	String	the hostname and port number of the URL
+Return Value
+A String, representing the domain name and port number, or the IP address of a URL.
+
