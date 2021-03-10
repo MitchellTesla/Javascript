@@ -1,0 +1,20 @@
+We can test for the presence of the property or method on the DOM object that is associated with a feature.
+
+Copy
+let images;
+if (document.querySelectorAll) {
+    images = document.querySelectorAll("#paratext > img");
+} else {
+    images = document.getElementById("paratext").getElementsByTagName("img");
+}
+
+for (let i = 0; i < images.length; i++) {
+    images[i].style.border = "thick solid black";
+    images[i].style.padding = "4px";
+}
+
+In this example, the script uses an if clause to determine whether the document object defines a method called querySelectorAll.
+
+If the clause evaluates to true, then the browser supports the feature, and we can go on and use it.
+
+If the clause evaluates to false, then we can take an alternative approach to achieve the same goal.
