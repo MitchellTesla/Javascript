@@ -1,0 +1,69 @@
+The MutationObserverInit object controls which elements the observer should care about, and what kinds of changes it should care about.
+
+The observer can watch for attribute changes, text changes, or child node changes.
+
+The following are the properties in the MutationObserverInit object:
+
+Key
+Type
+Value
+subtree
+
+
+
+Boolean
+
+
+
+Indicating if the target element's node subtree should be watched in addition to the target element.
+When false, only the target element will be observed for designated mutations.
+When true, the target element and its entire node subtree will be watched for designated mutations.
+Defaults to false.
+attributes
+
+Boolean
+
+Indicating if modifications to node attributes should register as a mutation.
+Defaults to false.
+attributeFilter
+
+
+Array of string values
+
+
+Indicating which specific attributes should be observed for mutations.
+Setting this value to true will also coerce the value of attributes to true.
+Defaults to observing all attributes.
+attributeOldValue
+
+
+Boolean
+
+
+Indicating if the character data prior to mutation should be recorded in the MutationRecord.
+Setting this value to an array will also coerce the value of attributes to true.
+Defaults to false.
+characterData
+
+Boolean
+
+Indicating if modifications to character data should register as a mutation.
+Defaults to false.
+characterDataOldValue
+
+
+Boolean
+
+
+Indicating if the character data prior to mutation should be recorded in the MutationRecord.
+Setting this value to true will also coerce the value of characterData to true.
+Defaults to false.
+childList
+
+Boolean
+
+Indicating if modifications to the target node's child nodes should register as a mutation.
+Defaults to false.
+When calling observe(), the MutationObserverInit object must specify at least one of attributes, characterData, or childList to be true either explicitly or implicitly via an associated property such as attributeOldValue.
+
+Otherwise, an error will be thrown since there is no mutation that will trigger a callback to be invoked.
