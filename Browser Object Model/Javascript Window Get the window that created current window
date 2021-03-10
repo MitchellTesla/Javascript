@@ -1,0 +1,23 @@
+Example
+Write some text to the parent window:
+
+Copy
+let myWindow = window.open("", "myWindow", "width=200,height=100");
+myWindow.document.write("<p>This is 'myWindow'</p>");
+myWindow.opener.document.write("<p>This is the source window!</p>");
+
+Description
+The opener property returns a reference to the window that created the window.
+
+When opening a window with the window.open() method, you can use this property from the destination window to return details of the parent window.
+
+window.opener.close() will close the parent window.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+opener	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+let a = window.opener;
+Return Value
+A reference to the window that created the window.
