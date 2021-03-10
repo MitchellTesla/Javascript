@@ -1,0 +1,112 @@
+You can get a Window object in two ways.
+
+The official HTML5 way is to use the defaultView property on the Document object.
+
+Another approach is to use the window global variable, which all of the browsers support.
+
+The following code demonstrates both techniques.
+
+Obtaining a Window Object.
+
+Copy
+document.getElementById("owidth").innerHTML = window.outerWidth;
+document.getElementById("oheight").innerHTML
+    = document.defaultView.outerHeight;
+
+In the script we use the Window object to read the value of a pair of properties, outerWidth and outerHeight.
+
+Getting Information about the Window
+The basic functionality of the Window object relates to the window in which the document is currently displayed.
+
+The following table lists the properties and methods that handle this functionality.
+
+For the purposes of HTML, tabs within a browser window are treated as windows in their own right.
+
+Name
+Description
+Returns
+innerHeight
+Gets the height of the window content area
+number
+innerWidth
+Gets the width of the window content area
+number
+outerHeight
+
+Gets the height of the window, including borders, menu bars, and
+so on
+number
+
+outerWidth
+
+Gets the width of the window, including borders, menu bars, and
+so on
+number
+
+pageXOffset
+
+Gets the number of pixels that the window has been scrolled
+horizontally from the top-left corner
+number
+
+pageYOffset
+
+Gets the number of pixels that the window has been scrolled
+vertically from the top-left corner
+number
+
+screen
+Returns a Screen object describing the screen
+Screen
+screenLeft
+screenX
+Gets the number of pixels from the left edge of the window to the
+left edge of the screen
+number
+
+screenTop
+screenY
+Gets the number of pixels from the top edge of the window to the
+top edge of the screen
+number
+
+The following code shows how to use these properties to get information about the window.
+
+Copy
+document.getElementById("ow").innerHTML = window.outerWidth;
+document.getElementById("oh").innerHTML = window.outerHeight;
+document.getElementById("iw").innerHTML = window.innerHeight;
+document.getElementById("ih").innerHTML = window.innerHeight;
+document.getElementById("sw").innerHTML = window.screen.width;
+document.getElementById("sh").innerHTML = window.screen.height;
+
+The script in this example displays the value of various Window properties in a table.
+
+Notice that we used the screen property to obtain a Screen object.
+
+This object provides information about the screen that the window is displayed on and defines the properties shown in the following table.
+
+Name
+Description
+Returns
+availHeight
+
+The height of the portion of the screen available for displaying windows
+(excludes toolbars, menu bars, and so on)
+number
+
+availWidth
+
+The width of the portion of the screen available for displaying windows
+(excludes toolbars, menu bars, and so on)
+number
+
+colorDepth
+The color depth of the screen
+number
+height
+The height of the screen
+number
+width
+The width of the screen
+number
