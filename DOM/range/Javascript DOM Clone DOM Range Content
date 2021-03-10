@@ -1,0 +1,29 @@
+The range can create a clone of itself and can be inserted else where in the document by using cloneContents().
+
+For example, consider the following HTML:
+
+Copy
+<!DOCTYPE html>
+<html>
+  <body>
+    <p id="p1"><b>Hello</b> world!</p>
+  </body>
+</html>
+Copy
+let p1 = document.getElementById("p1"),
+    helloNode = p1.firstChild.firstChild,
+    worldNode = p1.lastChild,
+    range = document.createRange();
+
+range.setStart(helloNode, 2);
+range.setEnd(worldNode, 3);
+
+let fragment = range.cloneContents();
+p1.parentNode.appendChild(fragment);
+cloneContents() method returns a document fragment.
+
+The document fragment returned by cloneContents() contains clones of the nodes contained in the range instead of the actual nodes.
+
+The splitting of nodes ensures that a well-formed document isn't produced until one of these methods is called.
+
+The original HTML remains intact right up until the point that the DOM is modified.
