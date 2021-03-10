@@ -1,0 +1,24 @@
+Example
+Replace the current document:
+
+Copy
+location.replace("https://www.demo2s.com");
+
+Description
+The replace() method replaces the current document with a new one.
+
+The replace() method removes the URL of the current document from the document history, and it is not possible to use the "back" button to navigate back to the original document.
+
+We can use the assign() method to load a new document, and have the option to navigate back to the original document.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+replace()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+location.replace(newURL)
+Parameter Values
+Parameter	Type	Description
+newURL	String	Required. URL of the page to navigate to
+Return Value
+No return value
