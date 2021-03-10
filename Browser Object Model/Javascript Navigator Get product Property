@@ -1,0 +1,23 @@
+Example
+Get the browser's engine name:
+
+Copy
+let x = "Browser's Engine Name: " + navigator.product;
+
+Description
+The product property returns the engine (product) name of the browser.
+
+This property may not work as expected.
+
+All browsers returns "Gecko".
+
+This property is read-only.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+product	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+let a = navigator.product;
+Return Value
+A String, representing the engine name of the browser
