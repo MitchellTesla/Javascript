@@ -1,0 +1,32 @@
+Example
+Create a forward button on a page.
+
+This example will not work if the next page does not exist in the history list:
+
+Copy
+function goForward() {
+  window.history.forward();
+}
+The output of the code above will be:
+
+
+Description
+The forward() method loads the next URL in the history list.
+
+This is the same as clicking the "Forward button" in your browser, or history.go(1).
+
+This method will not work if the next page does not exist in the history list.
+
+To load the previous URL in the history list, use the history.back() method.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+forward()	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+history.forward()
+Parameters
+None
+
+Return Value
+No return value
