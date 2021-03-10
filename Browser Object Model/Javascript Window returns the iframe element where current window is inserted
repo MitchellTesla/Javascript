@@ -1,0 +1,33 @@
+Example
+Find out if the current window is in an <iframe>.
+
+If so, change its URL to "demo2s.com":
+
+Copy
+function myFunction() {
+  let frame = window.frameElement;
+
+  if (frame) {
+    frame.src = "https://www.demo2s.com/";
+  }
+}
+
+Description
+The frameElement property returns the <iframe> element in which the current window is inserted.
+
+If the document window is not placed within an <iframe>, the return value of this property is null.
+
+This property will also work for <frame> elements.
+
+However, the <frame> element is not supported in HTML5.
+
+This property is read-only.
+
+Browser Compatibility
+Chrome.png	Node.png	Firefox.png	Safari.png	Edge.png	Opera.png
+frameElement	Yes	Yes	Yes	Yes	Yes	Yes
+Syntax
+Copy
+window.frameElement
+Return Value
+An IFrame object, which is the host of the current window in the parent document, otherwise null
