@@ -1,0 +1,46 @@
+The MutationObserver API allows you to asynchronously execute a callback when the DOM is modified.
+
+With a MutationObserver, you are able to observe an entire document, a DOM subtree, or just a single element.
+
+You can observe changes to element attributes, child nodes, text, or any combination of the three.
+
+Basic usage
+A MutationObserver instance is created by calling the MutationObserver constructor and passing a callback function:
+
+Copy
+let observer = new MutationObserver(() => console.log('DOM was mutated!'));
+To link this observer with the DOM, the observe() method is used.
+
+This method accepts two required arguments:
+
+the target DOM node which is observed for changes, and
+the MutationObserverInit object.
+The MutationObserverInit object is used to control what changes the observer should watch for.
+
+It takes the form of a dictionary of key/value configuration options.
+
+For example, the following code creates an observer and configures it to watch for attribute changes on the body element:
+
+Copy
+let observer = new MutationObserver(() => 
+                 console.log('<body> attributes changed'));
+
+observer.observe(document.body, { attributes: true });
+At this point, any attribute changes to the <body> element will be detected by the MutationObserver instance, and the callback will asynchronously execute.
+
+Modifications to children or other non-attribute DOM mutations will not schedule a callback.
+
+This behavior is demonstrated here:
+
+Copy
+let observer = new MutationObserver(() => 
+                 console.log('<body> attributes changed'));
+
+observer.observe(document.body, { attributes: true });
+
+document.body.className = 'foo';
+console.log('Changed body class');
+Output:
+
+
+Note that the callback console.log executes second, indicating that the callback does not synchronously execute with the actual DOM mutation.
