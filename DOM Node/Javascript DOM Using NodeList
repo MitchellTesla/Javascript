@@ -1,0 +1,24 @@
+NodeList object, NamedNodeMap and HTMLCollection are three important collections in DOM.
+
+Each of these collections is considered "live".
+
+They are updated when the document structure changes so they are always showing the most accurate information.
+
+In reality, all NodeList objects are queries that are run against the DOM document.
+
+Any time you want to iterate over a NodeList, we should initialize a second variable with the length and then compare the iterator to that variable, as shown in the following example:
+
+Copy
+let divs = document.getElementsByTagName("div");
+
+for (let i = 0, len = divs.length; i < len; ++i) {
+    let div = document.createElement("div");
+    document.body.appendChild(div);
+}
+In this example, a second variable, len, is initialized.
+
+Because len contains a snapshot of divs.length at the time the loop began, it prevents the infinite loop.
+
+Generally speaking, we should limit the number of times you interact with a NodeList.
+
+Because a query is run against the document each time, try to cache frequently used values retrieved from a NodeList.
