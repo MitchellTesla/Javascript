@@ -1,0 +1,89 @@
+The Window object provides a set of methods through which you can interact with the window that contains your document.
+
+These methods are described in the following table.
+
+Name
+Description
+Returns
+blur()
+Un-focuses the window
+void
+close()
+
+Closes the window (not all browsers allow a script to
+close the window)
+void
+
+focus()
+Focuses the window
+void
+print()
+Prompts the user to print the page
+void
+scrollBy(<x>, <y>)
+Scrolls the document relative to its current position
+void
+scrollTo(<x>, <y>)
+Scrolls to the specified position
+void
+stop()
+Stops the document from loading
+void
+All of these methods should be used with caution because they take the control of the browser window away from the user.
+
+The following code shows some of the window interaction methods in use.
+
+Copy
+let buttons = document.getElementsByTagName("button");
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].onclick = handleButtonPress;
+}
+
+function handleButtonPress(e) {
+    if (e.target.id == "print") {
+        window.print();/* ww w .d  e  mo2s .c o m*/
+    } else if (e.target.id == "close") {
+        window.close();
+    } else {
+        window.scrollTo(0, 400);
+    }
+}
+
+<!DOCTYPE HTML>
+<html>
+    <body>
+        <p>
+            <button id="scroll">Scroll</button>
+            <button id="print">Print</button>
+            <button id="close">Close</button>
+        </p>
+        <p>
+            This is a test.
+            <img src="html.png" alt="apple"/>
+            This is a test.  Test Test Test Test.
+            <br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br>
+            <img src="css.png" alt="css"/>
+            test
+
+            test
+        </p>
+        <script>
+            let buttons = document.getElementsByTagName("button");
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].onclick = handleButtonPress;
+            }
+
+            function handleButtonPress(e) {
+                if (e.target.id == "print") {
+                    window.print();
+                } else if (e.target.id == "close") {
+                    window.close();
+                } else {
+                    window.scrollTo(0, 400);
+                }
+            }
+        </script>
+    </body>
+</html>
+The script in this example prints, closes, and scrolls the window in response to button presses.
