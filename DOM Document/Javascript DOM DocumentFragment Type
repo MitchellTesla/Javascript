@@ -1,0 +1,69 @@
+ DocumentFragment type has no representation in markup.
+
+The DOM defines a document fragment as a "lightweight" document, capable of containing and manipulating nodes without all of the additional overhead of a complete document.
+
+DocumentFragment nodes have the following characteristics:
+
+Item
+Value
+nodeType
+11
+nodeName
+#document-fragment
+nodeValue
+null
+parentNode
+null
+Child nodes
+may be Element, ProcessingInstruction, Comment, Text, CDATASection, or EntityReference.
+A document fragment cannot be added to a document directly.
+
+It acts as a repository for other nodes that may need to be added to the document.
+
+Document fragments are created using the document.createDocumentFragment() method, shown here:
+
+Copy
+let fragment = document.createDocumentFragment();
+Document fragments inherit all methods from Node and are used to perform DOM manipulations that are to be applied to a document.
+
+If a node from the document is added to a document fragment, that node is removed from the document tree and won't be rendered by the browser.
+
+New nodes that are added to a document fragment are also not part of the document tree.
+
+The contents of a document fragment can be added to a document via appendChild() or insertBefore().
+
+When a document fragment is passed in as an argument to either of these methods, all of the document fragment's child nodes are added in that spot; the document fragment itself is never added to the document tree.
+
+Example
+For example, consider the following HTML:
+
+Copy
+<ul id="myList"></ul>
+Suppose you would like to add three list items to this <ul> element.
+
+Adding each item directly to the element causes the browser to re-render the page with the new information.
+
+To avoid this, the following code example uses a document fragment to create the list items and then add them all at the same time:
+
+Copy
+let fragment = document.createDocumentFragment();
+let ul = document.getElementById("myList");
+
+for (let i = 0; i < 3; ++i) {
+  let li = document.createElement("li");
+  li.appendChild(document.createTextNode(`Item ${i + 1}`));
+  fragment.appendChild(li);
+}
+
+ul.appendChild(fragment);
+This example begins by creating a document fragment and retrieving a reference to the <ul> element.
+
+The for loop creates three list items, each with text indicating which item they are.
+
+To do this, an <li> element is created and then a text node is created and added to that element.
+
+The <li> element is then added to the document fragment using appendChild().
+
+When the loop is complete, all of the items are added to the <ul> element by calling appendChild() and passing in the document fragment.
+
+At that point, the document fragment's child nodes are all removed and placed onto the <ul> element.
