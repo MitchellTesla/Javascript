@@ -1,0 +1,38 @@
+You can obtain a CSSStyleDeclaration object containing the computed style for an element using the document.defaultView.getComputedStyle method.
+
+The object that you get back from this method contains details of all of the properties that the browser uses to display the element, and the value for each of them.
+
+You cannot modify the computed style through the CSSStyleDeclaration object that you get from the getComputedStyle method.
+
+Instead, you must modify a stylesheet or apply a property directly through the style attribute of an element.
+
+The following code demonstrates working with some computed style values.
+
+Working with the Computed Style for an Element.
+
+Copy
+let placeholder = document.getElementById("placeholder");
+displayStyles();
+
+function displayStyles() {
+    let newElem = document.createElement("table");
+    newElem.setAttribute("border", "1");
+
+    let targetElem = document.getElementById("block1");
+    let style = document.defaultView.getComputedStyle(targetElem);
+    addRow(newElem, "Property Count", style.length);
+    addRow(newElem, "margin-top",
+                      style.getPropertyValue("margin-top"));
+    addRow(newElem, "font-size",
+                      style.getPropertyValue("font-size"));
+    addRow(newElem, "font-family",
+                      style.getPropertyValue("font-family"));
+
+    placeholder.appendChild(newElem);
+}
+function addRow(elem, header, value) {
+    elem.innerHTML += "<tr><td>" + header + ":</td><td>"
+        +  value + "</td></tr>";
+}
+
+In this example, we have displayed the value of some properties that we have not explicitly defined values for.
