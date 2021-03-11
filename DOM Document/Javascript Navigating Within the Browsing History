@@ -1,0 +1,35 @@
+The window.history property returns a History object, which you can use to perform basic operations on the browser history.
+
+The back(), forward(), and go() methods tell the browser to navigate to a URL in the history.
+
+The back() and forward() methods have the same effect as the browser back and forward buttons.
+
+The go() method navigates to a place in the history relative to the current document.
+
+A positive value specifies the browser should go forward in the history, and a negative value specifies to move backward.
+
+The magnitude of the value specifies how many steps.
+
+For example, a value of -2 tells the browser to navigate to the document before last in the history.
+
+The following code demonstrates the use of these three methods.
+
+Navigating Within the Browser History.
+
+Copy
+let buttons = document.getElementsByTagName("button");
+for (let i = 0 ; i < buttons.length; i++) {
+    buttons[i].onclick = handleButtonPress;
+}
+
+function handleButtonPress(e) {
+    if (e.target.id == "back") {
+        window.history.back();
+    } else if (e.target.id == "forward") {
+        window.history.forward();
+    } else if (e.target.id == "go") {
+        window.history.go("http://www.demo2s.com");
+    }
+}
+
+In addition to these basic functions, HTML5 provides support for changing the browser history, within certain constraints.
