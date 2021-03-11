@@ -1,0 +1,47 @@
+The querySelectorAll() method accepts the CSS query and returns all matching nodes.
+
+This method returns a static instance of NodeList.
+
+The return value is a NodeList with all of the expected properties and methods as a snapshot of elements rather than a dynamic query.
+
+This implementation eliminates most of the performance overhead associated with the use of NodeList objects.
+
+Any call to querySelectorAll() with a valid CSS query will return a NodeList object regardless of the number of matching elements; if there are no matches, the NodeList is empty.
+
+The querySelectorAll() method is available on the Document, DocumentFragment, and Element types.
+
+Here are some examples:
+
+Get all <em> elements in a <div>, similar to getElementsByTagName("em").
+
+Copy
+let ems = document.getElementById("myDiv").querySelectorAll("em");
+Get all elements that have "selected" as a class.
+
+Copy
+let selecteds = document.querySelectorAll(".selected");
+Get all <strong> elements inside of <p> elements.
+
+Copy
+let strongs = document.querySelectorAll("p strong");
+The resulting NodeList object may be iterated over using iteration, item(), or bracket notation to retrieve individual elements.
+
+Here's an example:
+
+Copy
+let strongElements = document.querySelectorAll("p strong");
+All three of the following loops will have the same effect:
+
+Copy
+for (let strong of strongElements) {
+  strong.className = "important";
+}
+
+for (let i = 0; i < strongElements.length; ++i) {
+  strongElements.item(i).className = "important";
+}
+
+for (let i = 0; i < strongElements.length; ++i) {
+  strongElements [i].className = "important";
+}
+querySelectorAll() throws an error when the CSS selector is not supported by the browser or if there's a syntax error in the selector.
