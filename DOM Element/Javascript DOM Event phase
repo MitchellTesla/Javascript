@@ -1,0 +1,86 @@
+The eventPhase property will return one of the three values shown in the following table, representing the three phases in the event life cycle.
+
+Values for the Event.eventPhase Property.
+
+Name
+Description
+CAPTURING_PHASE
+The event is in the capture phase.
+AT_TARGET
+The event is in the target phase.
+BUBBLING_PHASE
+The event is in the bubble phase.
+Target Phase
+The target phase is the simplest of the three.
+
+When the capture phase has finished, the browser triggers any listeners for the event type that have been added to the target element.
+
+You can make multiple calls to the addEventListener() function, and so there can be more than one listener for a given event type.
+
+If you call the stopPropagation() or stopImmediatePropagation() functions during the target phase, you stop the flow of the event, and the bubble phase won't be performed.
+
+Bubble Phase
+After the target phase has been completed, the browser starts working its way up the chain of ancestor elements back toward the body element.
+
+At each element, the browser checks to see if there are listeners for the event type that are not capture-enabled (i.e., the third argument to the addEventListener() function is false).
+
+This is known as event bubbling.
+
+Copy
+let banana = document.getElementById("banana");
+let textblock = document.getElementById("block1");
+
+banana.addEventListener("mouseover", handleMouseEvent);
+banana.addEventListener("mouseout", handleMouseEvent);
+textblock.addEventListener("mouseover", handleDescendantEvent, true);
+textblock.addEventListener("mouseout", handleDescendantEvent, true);
+textblock.addEventListener("mouseover", handleBubbleMouseEvent, false);
+textblock.addEventListener("mouseout", handleBubbleMouseEvent, false);
+
+function handleBubbleMouseEvent(e) {
+   if (e.type == "mouseover" && e.eventPhase == Event.BUBBLING_PHASE) {
+        e.target.style.textTransform = "uppercase";
+   } else if (e.type == "mouseout" && e.eventPhase == Event.BUBBLING_PHASE) {
+        e.target.style.textTransform = "none";
+   }
+}
+
+function handleDescendantEvent(e) {
+  if (e.type == "mouseover" && e.eventPhase == Event.CAPTURING_PHASE) {
+        e.target.style.border = "thick solid red";
+        e.currentTarget.style.border = "thick double black";
+  } else if (e.type == "mouseout" && e.eventPhase == Event.CAPTURING_PHASE) {
+        e.target.style.removeProperty("border");
+        e.currentTarget.style.removeProperty("border");
+  }
+}
+
+function handleMouseEvent(e) {
+    if (e.type == "mouseover") {
+        e.target.style.background='black';
+        e.target.style.color='white';
+    } else {
+        e.target.style.removeProperty('color');
+        e.target.style.removeProperty('background');
+    }
+}
+
+We have added a new function called handleBubbleMouseEvent() and added it to the p element in the document.
+
+The p element has two event listeners now, one that is capture-enabled and one that is bubble-enabled.
+
+When you use the addEventListener() method, you are always in one of these states, meaning that an element's listeners will always be notified about decedent element events in addition to its own events.
+
+The choice is whether the listener is invoked before or after the target phase for events from descendants.
+
+The result of this new addition is that you have three listener functions that will be triggered for the mouseover event on the span element in the document.
+
+The handleDescendantEvent() function will be triggered during the capture phase, the handleMouseEvent() function will be invoked during the target phase, and handleBubbleMouseEvent() during the bubble phase.
+
+The appearance of the element is now affected by the style changes in all of the listener functions.
+
+Not all events support bubbling.
+
+You can check to see whether an event will bubble using the bubbles property.
+
+A value of true indicates that the event will bubble, and false means that it won't.
