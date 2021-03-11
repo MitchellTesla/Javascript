@@ -1,0 +1,51 @@
+The className property is easy to use when you want to quickly add classes to an element, but it becomes hard work if you want to do anything else, such as removing a class.
+
+Fortunately, you can use the classList property, which returns a DOMTokenList object.
+
+This object defines some useful methods and properties that allow you to manage the class list, as described in the following table.
+
+Member
+Description
+Returns
+add(<class>)
+Adds the specified class to the element
+void
+contains(<class>)
+Returns true if the element belongs to the specified class
+boolean
+length
+Returns the number of classes to which the element belongs
+number
+remove(<class>)
+Removes the specified class from the element
+boid
+toggle(<class>)
+Adds the class if it is not present and removes it if it is present
+boolean
+In addition to these properties and methods, you can also retrieve classes by index, using array-style notation.
+
+The use of the DOMTokenList object is shown in the following code.
+
+Using the classList Property.
+
+Copy
+let results = document.getElementById("results");
+document.getElementById("toggle").onclick = toggleClass;
+
+listClasses();
+function listClasses() {
+    let classlist = document.getElementById("textblock").classList;
+    results.innerHTML = "Current classes: "
+    for (let i = 0; i < classlist.length; i++) {
+        results.innerHTML += classlist[i] + " ";
+    }
+}
+
+function toggleClass() {
+    document.getElementById("textblock").classList.toggle("newclass");
+    listClasses();
+}
+
+In this example, the listClasses() function uses the classList property to obtain and enumerate the classes that the <p> element belongs to, using the array-style indexer to retrieve class names.
+
+The toggleClass() function, which is invoked when the button is clicked, uses the toggle() method to add and remove a class called newclass.
