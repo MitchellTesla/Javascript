@@ -1,0 +1,103 @@
+An event has three phases to its life cycle: capture, target, and bubbling.
+
+Capture Phase
+When an event is triggered, the browser identifies the element that the event relates to, which is referred to as the target for the event.
+
+The browser identifies all of the elements between the body element and the target and checks each of them to see if they have any event handlers that have asked to be notified of events of their descendants.
+
+The browser triggers any such handler before triggering the handlers on the target itself.
+
+The following code provides a demonstration.
+
+Copy
+let banana = document.getElementById("banana");
+let textblock = document.getElementById("block1");
+
+banana.addEventListener("mouseover", handleMouseEvent);
+banana.addEventListener("mouseout", handleMouseEvent);
+textblock.addEventListener("mouseover", handleDescendantEvent, true);
+textblock.addEventListener("mouseout", handleDescendantEvent, true);
+
+function handleDescendantEvent(e) {
+  if (e.type == "mouseover" && e.eventPhase == Event.CAPTURING_PHASE) {
+        e.target.style.border = "thick solid red";
+        e.currentTarget.style.border = "thick double black";
+  } else if (e.type == "mouseout" && e.eventPhase == Event.CAPTURING_PHASE) {
+        e.target.style.removeProperty("border");
+        e.currentTarget.style.removeProperty("border");
+  }
+}
+
+function handleMouseEvent(e) {
+    if (e.type == "mouseover") {
+        e.target.style.background='white';
+        e.target.style.color='black';
+    } else {
+        e.target.style.removeProperty('color');
+        e.target.style.removeProperty('background');
+    }
+}
+
+In this example, we have defined a <span> element as a child of the p element and registered handlers for the mouseover and mouseout events.
+
+Notice that when we registered with the parent (the p element), we added a third argument to the addEventListener() method, like this:
+
+Copy
+textblock.addEventListener("mouseover", handleDescendantEvent, true);
+This additional argument tells the browser that we want the <p> element to receive events for its descendant elements during the capture phase.
+
+When the mouseover event is triggered, the browser starts at the root of the HTML document and starts working its way down the DOM toward the target, the element that triggered the event.
+
+For each element in the hierarchy, the browser checks to see if it has registered an interest in captured events.
+
+At each element, the browser invokes any capture-enabled listeners.
+
+In this case, the browser will find and invoke the handleDescendantEvent() function that we registered with the <p> element.
+
+When the handleDescendantEvent() function is called, the Event object contains information about the target element via the target property, and the element that has led the function to be invoked, via the currentTarget property.
+
+We use both of these properties so that we can change the style of the p element and the span child.
+
+Event capture gives each of an element's ancestors a chance to react to an event before it is passed to the element itself.
+
+A parent element event handler can stop flow of the event down toward the target by calling the stopPropagation() or stopImmediatePropagation() functions on the Event object.
+
+stopPropagation() will ensure that all of the event listeners registered for the current element will be invoked, whereas stopImmediatePropagation() ignores any untriggered listeners.
+
+The following code shows the addition of the stopPropagation function to the handleDescendantEvent() event handler.
+
+Preventing Further Event Flow.
+
+Copy
+...
+function handleDescendantEvent(e) {
+    if (e.type == "mouseover" && e.eventPhase == Event.CAPTURING_PHASE) {
+        e.target.style.border = "thick solid red";
+        e.currentTarget.style.border = "thick double black";
+    } else if (e.type == "mouseout" && e.eventPhase == Event.CAPTURING_PHASE) {
+        e.target.style.removeProperty("border");
+        e.currentTarget.style.removeProperty("border");
+    }
+    e.stopPropagation();
+}
+ ...
+
+With this change, the browser capture phase ends when the handler on the p element is invoked.
+
+No other elements will be inspected, and the target and bubble phases will be skipped.
+
+In terms of the example, this means that the style changes in the handleMouseEvent() function will not be applied in response to the mouseover event.
+
+Notice that in the handler, we check the event type and establish which phase the event is in by using the eventPhase property, like this:
+
+Copy
+...
+if (e.type == "mouseover" && e.eventPhase == Event.CAPTURING_PHASE) {
+...
+Enabling capture events when registering an event listener doesn't stop events that are targeted at the element itself.
+
+In this case, the p element occupies space on the browser screen and will respond to mouseover events as well.
+
+To avoid this, we check to make sure that we only apply style changes when dealing with events that are in the capture phase.
+
+The events that are targeted at a descendant element and that we are only processing because we have registered a capture-enabled listener.
