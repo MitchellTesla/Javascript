@@ -1,0 +1,96 @@
+The members of the Event object are described in the following table.
+
+Functions and Properties of the Event Object.
+
+Name
+Description
+Returns
+type
+The name of the event (e.g., mouseover).
+string
+target
+The element at which the event is targeted.
+HTMLElement
+currentTarget
+
+The element whose event listeners are currently
+being invoked.
+HTMLElement
+
+eventPhase
+The phase in the event life cycle.
+number
+bubbles
+
+Returns true if the event will bubble through the
+document, false otherwise.
+boolean
+
+cancelable
+
+Returns true if the event has a default action that can
+be cancelled, false otherwise.
+boolean
+
+timeStamp
+
+The time at which the event was created, or 0 if the
+time isn't available.
+string
+
+stopPropagation()
+
+
+Halts the flow of the event through the element tree
+after the event listeners for the current element have
+been triggered.
+void
+
+
+stopImmediatePropagation()
+
+
+Immediately halts the flow of the event through the
+element tree; untriggered event listeners for the
+current element will be ignored.
+void
+
+
+preventDefault()
+
+Prevents the browser from performing the default
+action associated with the event.
+void
+
+defaultPrevented
+Returns true if preventDefault() has been called.
+boolean
+The Event object defines the functionality that is common to all events.
+
+There are other event-related objects that define extra functionality that is specified to a particular kind of event.
+
+Distinguishing Events by Type
+The type property tells you which kind of event you are dealing with.
+
+This value is provided as a string, such as mouseover.
+
+Being able to detect the type of event allows you to use one function to deal with multiple types.
+
+Copy
+let pElems = document.getElementsByTagName("p");
+for (let i = 0; i < pElems.length; i++) {
+    pElems[i].onmouseover = handleMouseEvent;
+    pElems[i].onmouseout = handleMouseEvent;
+}
+
+function handleMouseEvent(e) {
+    if (e.type == "mouseover") {
+        e.target.style.background='white';
+        e.target.style.color='black';
+    } else {
+        e.target.style.removeProperty('color');
+        e.target.style.removeProperty('background');
+    }
+}
+
+In the script for this example, we use the type property to work out what kind of event we are dealing with inside of a single event-handling function, handleMouseEvent.
