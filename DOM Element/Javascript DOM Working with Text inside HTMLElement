@@ -1,0 +1,66 @@
+The text content of an element is represented by a Text object, which is presented as a child of the element in the document model.
+
+The following code shows an element with some text content.
+
+Copy
+...
+<p>
+    test
+</p>
+...
+When the browser represents the <p> element in the document model, there will be an HTMLElement object for the element itself and a Text object for the content.
+
+Copy
+P element
+ |
+ +--text
+If an element has children and they contain text, each will be handled in the same way.
+
+The following code adds an element to the paragraph.
+
+Adding an Element to the Paragraph.
+
+Copy
+...
+<p>
+   test<b>500</b> test
+</p>
+...
+The addition of the <b> element changes the hierarchy of nodes used to represent the <p> element and its contents.
+
+Copy
+P
+ |
+ +--text
+ |
+ +--b
+ |  |
+ |  +-text
+ |
+ +--text
+The first child of the <p> element is a <Text> object that represents the text from the start of the block to the <b> element.
+
+Then there is the <b> element, which has its own child Text object representing the text contained between the start and end tags.
+
+Finally, the last child of the <p> element is a Text object representing the text that follows the b element through to the end of the block.
+
+The following table describes the members supported by the Text object.
+
+The following code shows some of the Text element methods and properties in use.
+
+Dealing with Text.
+
+Copy
+let results = document.getElementById("results");
+let elem = document.getElementById("textblock");
+
+document.getElementById("pressme").onclick = function() {
+    let textElem = elem.firstChild;
+    results.innerHTML = "The element has " +
+           textElem.length + " chars\n";
+
+};
+
+An important point to note when working with text is that whitespace is not collapsed.
+
+This means that any spaces or other whitespace characters that have been used to add structure to the HTML are counted as part of the text.
