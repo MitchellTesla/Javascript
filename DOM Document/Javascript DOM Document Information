@@ -1,0 +1,64 @@
+The document object, as an instance of HTMLDocument, has several additional properties that standard Document objects do not have.
+
+title
+The property title contains the text in the <title> element and is displayed in the title bar or tab of the browser window.
+
+This property can be used to retrieve the current page title and to change the page title such that the changes are reflected in the browser title bar.
+
+Changing the value of the title property does not change the <title> element.
+
+Here is an example: get the document title
+
+Copy
+let originalTitle = document.title;
+set the document title.
+
+Copy
+document.title = "New page title";
+URL, domain, referrer
+The URL property contains the complete URL of the page.
+
+The domain property contains the domain name of the page.
+
+The referrer property gives the URL of the page that linked to this page.
+
+The referrer property may be an empty string if there is no referrer to the page.
+
+get the complete URL
+
+Copy
+let url = document.URL;
+get the domain.
+
+Copy
+let domain = document.domain;
+get the referrer.
+
+Copy
+let referrer = document.referrer;
+The URL and domain properties are related.
+
+For example, if document.URL is https://www.demo2s.com/css/, then document.domain will be www.demo2s.com.
+
+Only the domain property is the only one that can be set.
+
+If the URL contains a sub domain, such as abc.demo2s.com, or www.demo2s.com, the domain may be set only to "demo2s.com".
+
+The property can never be set to a domain that the URL doesn't contain, as this example demonstrates:
+
+Copy
+// page from abc.demo2s.com
+document.domain = "demo2s.com";   // succeeds
+document.domain = "example.com";  // error!
+Setting document.domain is useful when there is a frame or iframe on the page from a different sub domain.
+
+Pages from different sub domains can't communicate with one another via JavaScript because of cross-domain security restrictions.
+
+By setting document.domain in each page to the same value, the pages can access JavaScript objects from each other.
+
+You cannot set document.domain to "demo2s.com" and then try to set it back to "abc.demo2s.com" because the latter would cause an error, as shown here:
+
+Copy
+// page from abc.demo2s.com
+document.domain = "demo2s.com";      // loosen - succeeds
+document.domain = "abc.demo2s.com";  // tighten - error!
