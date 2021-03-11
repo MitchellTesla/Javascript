@@ -1,0 +1,110 @@
+To get complete control of CSS via the DOM, you have to use the CSSStyleDeclaration object.
+
+The Members of the CSSStyleDeclaration Object.
+
+Member
+Description
+Returns
+cssText
+Gets or sets the text of the style.
+string
+getPropertyCSSValue(<name>)
+Gets the specified property.
+CSSPrimitiveValue
+getPropertyPriority(<name>)
+Gets the priority of the specified property.
+string
+getPropertyValue(<name>)
+Gets the specified value as a string.
+string
+item(<pos>)
+Gets the item at the specified position.
+string
+length
+Gets the number of items.
+number
+parentRule
+Gets the style rule if there is one.
+CSSStyleRule
+removeProperty(<name>)
+Removes the specified property.
+string
+setProperty(<name>, <value>,
+<priority>)
+Sets the value and priority for the specified
+property.
+void
+
+<style>
+
+Convenience property to get or set the
+specified CSS property.
+string
+
+In addition to the item method, most browsers support array-style notation, so that item(4) and item[4] are equivalent.
+
+Working with the Convenience Properties
+The easiest way to work with a CSSStyleDeclaration object is through the convenience properties, which correspond to individual CSS properties.
+
+You can determine the current value for a CSS property by reading the corresponding object property, and change the CSS value by assigning a new value to the object property.
+
+You are effectively reading and modifying the values defined in the HTML document, either in a stylesheet or applied directly to an element.
+
+When the browser comes to display an element, it will generated a set of computed values, where the browser styles, the stylesheets, and style attributes are allowed to cascade and inherit.
+
+Working with CSSStyleDeclaration Object Convenience Properties.
+
+Copy
+let placeholder = document.getElementById("placeholder");
+displayStyles();
+
+document.getElementById("pressme").onclick = function() {
+    document.styleSheets[0].cssRules.item(1).style.paddingTop = "10px";
+    document.styleSheets[0].cssRules.item(1).style.paddingRight = "12px";
+    document.styleSheets[0].cssRules.item(1).style.paddingLeft = "5px";
+    document.styleSheets[0].cssRules.item(1).style.paddingBottom = "5px";
+    displayStyles();
+}
+function displayStyles() {
+    if (placeholder.hasChildNodes()) {
+        let childCount = placeholder.childNodes.length;
+        for (let i = 0; i < childCount; i++) {
+            placeholder.removeChild(placeholder.firstChild);
+        }
+    }
+    displayStyleProperties(document.styleSheets[0].cssRules.item(1).style);
+    displayStyleProperties(document.getElementById("block2").style);
+}
+
+function displayStyleProperties(style) {
+    let newElem = document.createElement("table");
+    newElem.setAttribute("border", "1");
+
+    addRow(newElem, "border", style.border);
+    addRow(newElem, "color", style.color);
+    addRow(newElem, "padding", style.padding);
+    addRow(newElem, "paddingTop", style.paddingTop);
+
+    placeholder.appendChild(newElem);
+}
+
+function addRow(elem, header, value) {
+    elem.innerHTML += "<tr><td>" + header + ":</td><td>"
+        +  value + "</td></tr>";
+}
+
+The script in code displays the values of four CSSStyleDeclaration convenience properties.
+
+These are read from objects obtained from a stylesheet and from an element's style attribute to demonstrate the two different ways you can get these objects.
+
+The border, color, and padding convenience properties correspond to the CSS properties with the same name.
+
+The paddingTop convenience property corresponds to the padding-top CSS property.
+
+This is the general naming pattern for multiword CSS properties: remove the hyphens and capitalize the first letter of the second and subsequent words.
+
+As you can see, there are convenience properties for both shorthand and individual CSS properties (padding and paddingTop, for example).
+
+The convenience properties return an empty string ("") when there is no value set for the corresponding CSS property.
+
+When the button is clicked, the script modifies the value of the individual padding properties using the paddingTop, paddingBottom, paddingLeft, and paddingRight convenience properties on the CSSStyleDeclaration object obtained from the first stylesheet in the document.
