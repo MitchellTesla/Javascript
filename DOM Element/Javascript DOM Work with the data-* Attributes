@@ -1,0 +1,26 @@
+HTML5 supports custom attributes that are prefixed with data-, such as data-mycustomattribute.
+
+You can work with these custom attributes in the DOM via the dataset property, which returns an array of values, indexed by the custom part of the name.
+
+Using the dataset Property.
+
+Copy
+let results = document.getElementById("results");
+let elem = document.getElementById("textblock");
+
+for (let attr in elem.dataset) {
+    results.innerHTML += attr + "\n";
+}
+
+results.innerHTML += "Value of data-yourdata attr: " +
+   elem.dataset["yourdata"];
+
+The array of values that the dataset property returns isn't indexed by position as in regular arrays.
+
+If you want to enumerate the data-* attributes, you can do so using a for...in statement.
+
+Alternatively, you can request a value by name.
+
+Note that you need to provide only the custom part of the attribute name.
+
+For example, if you want the value of the data-yourData attribute, you request the value dataset["yourData"].
