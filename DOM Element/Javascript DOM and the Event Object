@@ -1,0 +1,77 @@
+We can use the DOM and the JavaScript Event object together.
+
+The following code shows how you can use the Event object and how you can use the DOM to associate a function with an event.
+
+Using the DOM to Set Up Event Handling.
+
+Copy
+let pElems = document.getElementsByTagName("p");
+for (let i = 0; i < pElems.length; i++) {
+    pElems[i].onmouseover = handleMouseOver;
+    pElems[i].onmouseout = handleMouseOut;
+}
+
+function handleMouseOver(e) {
+    e.target.style.background='white';
+    e.target.style.color='black';
+}
+
+function handleMouseOut(e) {
+    e.target.style.removeProperty('color');
+    e.target.style.removeProperty('background');
+}
+
+The script finds all of the elements that we want to handle events for, and sets a function name for the event handler property.
+
+There are properties like this for all the events.
+
+They are all named in the same way: on, followed by the name of the event.
+
+We use the name of the function to register it as an event listener.
+
+The functions that handle events in the code define a parameter called e.
+
+This will be set to an Event object created by the browser and that represents the event when it is triggered.
+
+The Event objects provide you with information about what's happened and let you respond to user interactions with more flexibility than including code in element attributes.
+
+In this example, we have used the target property to obtain the HTMLElement that triggered the event so we can use the style property and change its appearance.
+
+Use the addEventListener method
+You can also use the addEventListener() method, which is implemented by the HTMLElement object.
+
+You can also use the removeEventListener() method to disassociate a function and an event.
+
+Both methods let you express the event type and the functions that handle them as arguments, as shown in the following code.
+
+Using the addEventListener and removeEventListener Methods.
+
+Copy
+let pElems = document.getElementsByTagName("p");
+for (let i = 0; i < pElems.length; i++) {
+    pElems[i].addEventListener("mouseover", handleMouseOver);
+    pElems[i].addEventListener("mouseout", handleMouseOut);
+}
+
+document.getElementById("pressme").onclick = function() {
+    document.getElementById("block2").removeEventListener("mouseout",
+        handleMouseOut);
+}
+
+function handleMouseOver(e) {
+    e.target.style.background='white';
+    e.target.style.color='black';
+}
+
+function handleMouseOut(e) {
+    e.target.style.removeProperty('color');
+    e.target.style.removeProperty('background');
+}
+
+The script in this example uses the addEventListener() method to register the handleMouseOver() and handleMouseOut() functions as event handlers for the p elements.
+
+When the button is clicked, the removeEventListener method is used to disassociate the handleMouseOut function for the p element with the id value of block2.
+
+Notice that we have used the onclick property to set up the handler for the click event on the button element to demonstrate that you can freely mix and match techniques in the same script.
+
+The advantage of the addEventListener method is that it allows you access to some of the advanced event features.
