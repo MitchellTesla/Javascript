@@ -1,0 +1,54 @@
+The DOM specification states that the children of a Document node can be a DocumentType, Element, ProcessingInstruction, or Comment, there are two built-in shortcuts to child nodes.
+
+The first is the documentElement property, which always points to the <html> element in an HTML page.
+
+The document element is always represented in the childNodes list as well, but the documentElement property gives direct access to that element.
+
+Consider the following simple page:
+
+Copy
+<html>
+    <body>
+    </body>
+</html>
+When this page is parsed by a browser, the document has only one child node, which is the <html> element.
+
+This element is accessible from both documentElement and the childNodes list, as shown here:
+
+Copy
+let html = document.documentElement;     // get reference to <html>
+console.log(html === document.childNodes[0]);  // true
+console.log(html === document.firstChild);     // true
+This example shows that the values of documentElement, firstChild, and childNodes[0] are pointing to the <html> element.
+
+As an instance of HTMLDocument, the document object also has a body property that points to the <body> element directly.
+
+document.body can be used in JavaScript, as this example shows:
+
+Copy
+let body = document.body;  // get reference to <body>
+Both document.documentElement and document.body are supported in all major browsers.
+
+Another possible child node of a Document is a DocumentType.
+
+The <!DOCTYPE> tag is considered to be a separate entity from other parts of the document, and its information is accessible through the doctype property, which is document.doctype in browsers, as shown here:
+
+Copy
+let doctype = document.doctype;   // get reference to <!DOCTYPE>
+Comments that appear outside of the <html> element are child nodes of the document.
+
+Consider the following HTML page:
+
+Copy
+<!-- first comment -->
+<html>
+  <body>
+
+  </body>
+</html>
+<!-- second comment -->
+This page seems to have three child nodes: a comment, the <html> element, and another comment.
+
+Logically, you would expect document.childNodes to have three items corresponding to what appears in the code.
+
+In practice, however, browsers handle comments outside of the <html> element in different ways with respect to ignoring one or both of the comment nodes.
