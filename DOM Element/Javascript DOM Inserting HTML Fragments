@@ -1,0 +1,43 @@
+The innerHTML and outerHTML properties are useful for replacing existing elements, but if you want to use an HTML fragment to insert new elements, you must use the insertAdjacentHTML method.
+
+This method takes two arguments.
+
+The first is a value from the following table indicating where the fragment should be inserted relative to the current element, and the second is the fragment to insert.
+
+Position Parameter Values for the insertAdjacentHTML() Method.
+
+Value
+Description
+afterbegin
+Inserts the fragment as the first child of the current element
+afterend
+Inserts the fragment immediately before the current element
+beforebegin
+Inserts the fragment immediately before the current element
+beforeend
+Inserts the fragment as the last child of the current element
+The following code shows the use of the insertAdjacentHTML() method to insert fragments of HTML in and around a table row element.
+
+Copy
+let target = document.getElementById("targetrow");
+let buttons = document.getElementsByTagName("button");
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].onclick = handleButtonPress;
+}
+
+function handleButtonPress(e) {
+    if (e.target.id == "ab") {
+        target.insertAdjacentHTML("afterbegin", "<td>After Begin</td>");
+    } else if (e.target.id == "be") {
+        target.insertAdjacentHTML("beforeend", "<td>Before End</td>");
+    } else if (e.target.id == "bb") {
+        target.insertAdjacentHTML("beforebegin",
+            "<tr><td colspan='2'>Before Begin</td></tr>");
+    } else {
+        target.insertAdjacentHTML("afterend",
+            "<tr><td colspan='2'>After End</td></tr>");
+    }
+}
+
+In this example, we use the different position values to demonstrate how to insert HTML fragments in different locations.
+
