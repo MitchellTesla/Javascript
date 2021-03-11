@@ -1,0 +1,79 @@
+The following code demonstrates how to use the first pushState() argument to store something more complex.
+
+Storing a State Object in the Browser History.
+
+Copy
+if (window.history.state) {
+    displayState(window.history.state);
+    document.getElementById("state").innerHTML = "Yes";
+} else {
+    document.getElementById("name").innerHTML = "No Selection";
+}
+
+window.onpopstate = function(e) {
+    displayState(e.state);
+    document.getElementById("event").innerHTML = "Yes";
+}
+let buttons = document.getElementsByTagName("button");
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].onclick = function(e) {
+        let stateObj;
+        if (e.target.id == "banana") {
+            stateObj = {
+                name: "banana",
+                color: "yellow",
+                size: "large"
+            }
+        } else {
+            stateObj = {
+                name: "apple",
+                color: "red",
+                size: "medium"
+            }
+        }
+        window.history.pushState(stateObj, "");
+        displayState(stateObj);
+    };
+}
+
+function displayState(stateObj) {
+    document.getElementById("name").innerHTML = stateObj.name;
+    document.getElementById("color").innerHTML = stateObj.color;
+    document.getElementById("size").innerHTML = stateObj.size;
+}
+
+In this example, we represent the user's selection using an object with three properties, containing the name, color, and size of the your data that the user has picked, like this:
+
+Copy
+stateObj = { name: "apple", color: "red", size: "medium"}
+When the user makes a selection, we use the History.pushState() method to create a new history entry and associate the state object with it, like this:
+
+Copy
+window.history.pushState(stateObj, "");
+We haven't specified a URL in this example, which means that the state object is associated with the current document.
+
+You can use two ways to retrieve the state object when the user returns to your document.
+
+The first is through the history.state property, like this:
+
+Copy
+...
+if (window.history.state) {
+    displayState(window.history.state);
+...
+Not all browsers make the state object available through this property Chrome doesn't, for example.
+
+To deal with this, you must listen for the popstate event as well.
+
+Here is the code that listens and responds to the popstate event:
+
+Copy
+window.onpopstate = function(e) {
+    displayState(e.state);
+    document.getElementById("event").innerHTML = "Yes";
+}
+Notice that we display the state information in a table element, along with details of how the state object was obtained: via the property or the event.
+
+You must be careful not to rely on the state information being available.
+
+The browser's history can be lost in a number of different situations, including the user explicitly deleting it.
