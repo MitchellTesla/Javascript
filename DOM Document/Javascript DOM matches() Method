@@ -1,0 +1,12 @@
+matches() method accepts a single argument, a CSS selector, and returns true if the given element matches the selector or false if not.
+
+For example:
+
+Copy
+if (document.body.matches ("body.page1")){
+  // true
+}
+
+This method checks if an element would be returned by querySelector() or querySelectorAll() when you already have the element reference.
+
+Edge, Chrome, Firefox, Safari, and Opera fully support it.
