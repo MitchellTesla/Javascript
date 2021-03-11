@@ -1,0 +1,37 @@
+The CSSStyleSheet.disabled property lets you enable and disable all of the styles in a stylesheet in a single step.
+
+The following code gives a demonstration of using this property to toggle a stylesheet on and off.
+
+Enabling and Disabling a Stylesheet.
+
+Copy
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <style title="core styles">
+            p {
+                border: medium double black;
+                background-color: lightgray;
+            }
+            #block1 { color: white;
+                      border: thick solid black;
+                      background-color: gray;}
+        </style>
+    </head>
+    <body>
+        <p id="block1">test
+        </p>
+        <div><button id="pressme">Press Me </button></div>
+        <script>
+            document.getElementById("pressme").onclick = function() {
+                document.styleSheets[0].disabled =
+                        !document.styleSheets[0].disabled;
+            }
+        </script>
+    </body>
+ </html>
+ 
+ 
+In this example, clicking the button toggles the value of the disabled property on the stylesheet.
+
+When a stylesheet is disabled, none of the styles within the stylesheet are applied to elements.
