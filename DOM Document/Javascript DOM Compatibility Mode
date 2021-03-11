@@ -1,0 +1,25 @@
+The browser can render a document in either standards or quirks mode, we can determine in which mode the browser was rendering the page.
+
+The property on the document named compatMode can indicate what rendering mode the browser is in.
+
+The compatMode property tells you how the browser has handled the content in the document.
+
+The compatMode property will return one of two values, as described in the following table.
+
+Value
+Description
+CSS1Compat
+The document conforms to a valid HTML specification.
+BackCompat
+The document contains nonstandard features and has triggered the quirks mode.
+The following example shows how to use the compatMode.
+
+When in standards mode, document.compatMode is equal to CSS1Compat; when in quirks mode, document.compatMode is BackCompat:
+
+Copy
+if (document.compatMode == "CSS1Compat"){
+  console.log("Standards mode");
+} else {
+  console.log("Quirks mode");
+}
+The compatMode property was added to HTML5 to formalize its implementation.
