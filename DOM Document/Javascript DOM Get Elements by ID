@@ -1,0 +1,23 @@
+Via DOM we can retrieve references to a specific element or sets of elements to perform certain operations.
+
+The Document type provides two methods to this end: getElementById() and getElementsByTagName().
+
+By ID
+The getElementById() method accepts a single argument-the ID of an element to retrieve-and returns the element if found, or null if an element with that ID doesn't exist.
+
+The ID must be an exact match, including character case, to the id attribute of an element on the page.
+
+Consider the following element:
+
+Copy
+<div id="myDiv">Some text</div>
+This element can be retrieved using the following code:
+
+Copy
+// retrieve reference to the <div>
+let div = document.getElementById("myDiv");
+The following code, however, would return null:
+
+Copy
+let div = document.getElementById("mydiv");  // null
+If more than one element with the same ID are in a page, getElementById() returns the element that appears first in the document.
