@@ -1,0 +1,45 @@
+The innerHTML and outerHTML properties and the insertAdjacentHTML() method are convenient syntax shortcuts that allow you to work with fragments of HTML, thus avoiding the need to create elaborate hierarchies of element and text objects.
+
+The following code demonstrates using the innerHTML and outerHTML properties to get the HTML from elements.
+
+Using the innerHTML and outerHTML Properties.
+
+Copy
+let results = document.getElementById("results");
+let row = document.getElementById("applerow");
+
+document.getElementById("inner").onclick = function() {
+    results.innerHTML = row.innerHTML;
+};
+
+document.getElementById("outer").onclick = function() {
+    results.innerHTML = row.outerHTML;
+}
+
+The outerHTML property returns a string containing the HTML defining the element and the HTML of all of its children.
+
+The innerHTML property returns just the HTML of the children.
+
+In this example, we defined a pair of buttons that display the inner and outer HTML for a table row.
+
+We displayed the content in a textarea element, so that the browser treats the strings returned by these properties as text and not HTML.
+
+Changing the Document Structure
+You can use the outerHTML and innerHTML properties to change the structure of the document as well.
+
+We can use them to set text content without needing to create Text elements.
+
+Modifying the Document Model.
+
+Copy
+document.getElementById("move").onclick = function() {
+    let source = document.getElementById("apple");
+    let target = document.getElementById("targetrow");
+    target.innerHTML = source.innerHTML;
+    source.outerHTML = '<tr id="targetrow"><td colspan="2">' +
+        'This is the placeholder</td>';
+};
+
+In this example, we used the innerHTML property to set the child elements of a table row and the outerHTML to replace an element inline.
+
+These properties work on strings, meaning that you can obtain HTML fragments by reading the property values or by creating strings from scratch.
