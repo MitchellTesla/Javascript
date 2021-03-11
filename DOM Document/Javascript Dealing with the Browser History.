@@ -1,0 +1,58 @@
+Consider the following code
+
+Copy
+let sel = "No selection made";
+document.getElementById("msg").innerHTML = sel;
+
+let buttons = document.getElementsByTagName("button");
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].onclick = function(e) {
+        document.getElementById("msg").innerHTML = e.target.innerHTML;
+    };
+}
+
+This example contains a script that displays a message based on which button the user clicks.
+
+The problem is that when the user navigates away from the example document, the information about which button was clicked is lost.
+
+Inserting an Entry into the History
+The History.pushState() method lets you add a URL to the browser history, with some constraints.
+
+The URL must be from the same server name and port as the current document.
+
+One approach to adding URLs is to use just the query string or hash fragment appended to the current document.
+
+Adding an Entry to the Browser History.
+
+Copy
+let sel = "No selection made";
+if (window.location.search == "?banana") {
+    sel = "Selection: Banana";
+} else if (window.location.search == "?apple") {
+    sel = "Selection: Apple";
+}
+document.getElementById("msg").innerHTML = sel;
+
+let buttons = document.getElementsByTagName("button");
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].onclick = function(e) {
+        document.getElementById("msg").innerHTML = e.target.innerHTML;
+        window.history.pushState("", "", "?" + e.target.id);
+    };
+}
+
+The script in this example uses the pushState() method to add an item to the browser history.
+
+The URL that it added is the URL of the current document plus a query string indicating which button the user clicked.
+
+We also added some code that uses the Location object to read the query string and the selected value.
+
+When the user clicks the Banana button, the browser navigation bar shows the URL we pushed into the browsing history.
+
+The document isn't reloaded; only the history and the displayed URL change.
+
+Each time a button is clicked, a new URL is added to the history, creating a record of the user's path through the navigation.
+
+The benefit of these additional entries comes when the user navigates elsewhere and then returns to the document.
+
+When the user clicks the back button, the URL that we inserted into the history is loaded, and the script uses the query string to preserve some simple application state.
