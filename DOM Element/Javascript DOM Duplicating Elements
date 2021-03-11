@@ -1,0 +1,26 @@
+You can use the cloneNode() method to duplicate existing elements.
+
+This can be a convenient way to avoid the process of creating the elements you want from scratch.
+
+Duplicating Elements.
+
+Copy
+let tableBody = document.getElementById("fruitsBody");
+
+document.getElementById("add").onclick = function() {
+    let count = tableBody.getElementsByTagName("tr").length + 1;
+
+    let newElem = tableBody.getElementsByTagName("tr")[0].cloneNode(true);
+    newElem.getElementsByClassName("sum")[0].firstChild.data = count
+        + " + " + count;
+    newElem.getElementsByClassName("result")[0].firstChild.data =
+        count * count;
+
+    tableBody.appendChild(newElem);
+};
+
+In this example, we duplicate an existing row in a table to create more rows.
+
+The Boolean argument to the cloneNode() method specifies whether the child elements of the element should be duplicated as well.
+
+In this case, we have specified true, because we want the td elements that are contained in the tr element to form the structure of my new row.
