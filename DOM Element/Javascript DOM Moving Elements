@@ -1,0 +1,17 @@
+When moving elements from one part of the document to another, you simply need to associate the element you want to move with its new parent.
+
+You don't need to dislocate the element from its starting position.
+
+The following code provides a demonstration by moving a row from one table to another.
+
+Moving Elements.
+
+Copy
+document.getElementById("move").onclick = function() {
+    let elem = document.getElementById("apple");
+    document.getElementById("fruitsBody").appendChild(elem);
+};
+
+When the <button> element is pressed, the script moves the <tr> element with the id of apple and calls the appendChild() element on the <tbody> element with the id of fruitsBody.
+
+This has the effect of moving the row from one table to another.
