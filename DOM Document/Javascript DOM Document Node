@@ -1,0 +1,16 @@
+JavaScript represents document nodes via the Document type.
+
+In browsers, the document object is an instance of HTMLDocument which inherits from Document and represents the entire HTML page.
+
+The document object is a property of window and so is accessible globally.
+
+A Document node has the following characteristics:
+
+Item	Value
+nodeType	9
+nodeName	"#document"
+nodeValue	null
+parentNode	null
+ownerDocument	null
+childNodes	one Document Type, one Element, ProcessingInstruction, or Comment.
+The document object can be used to get information about the page and to manipulate both its appearance and the underlying structure.
