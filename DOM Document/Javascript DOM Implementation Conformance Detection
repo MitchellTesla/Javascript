@@ -1,0 +1,82 @@
+Because there are multiple levels and multiple parts of the DOM, it became necessary to determine exactly what parts of the DOM a browser has implemented.
+
+The document.implementation property is an object containing information and functionality tied directly to the browser's implementation of the DOM.
+
+DOM Level 1 specifies only one method on document.implementation, which is hasFeature().
+
+The hasFeature() method accepts two arguments:
+
+the name and
+version of the DOM feature to check for.
+If the browser supports the named feature and version, this method returns true, as with this example:
+
+Copy
+let hasXmlDom = document.implementation.hasFeature("XML", "1.0");
+The various values that can be tested are listed in the following table.
+
+Feature
+Supported Versions
+Description
+Core
+1.0, 2.0, 3.0
+Basic DOM that spells out the use of a hierarchical tree to represent documents
+XML
+1.0, 2.0, 3.0
+XML extension of the Core that adds support for CDATA sections, processing instructions, and entities
+HTML
+1.0, 2.0
+HTML extension of XML that adds support for HTML-specific elements and entities
+Views
+2.0
+Accomplishes formatting of a document based on certain styles
+Style Sheets
+2.0
+Relates style sheets to documents
+CSS
+2.0
+Support for Cascading Style Sheets Level 1
+CSS2
+2.0
+Support for Cascading Style Sheets Level 2
+Events
+2.0, 3.0
+Generic DOM events
+UI Events
+2.0, 3.0
+User interface events
+Text Events
+3.0
+Events fired from text input devices
+Mouse Events
+2.0, 3.0
+Events caused by the mouse (click, mouseover, and so on)
+Mutation Events
+2.0, 3.0
+Events fired when the DOM tree is changed
+Mutation Name Events
+3.0
+Events fired when DOM elements or element attributes are renamed
+HTML Events
+2.0
+HTML 4.01 events
+Range
+2.0
+Objects and methods for manipulating a range in a DOM tree
+Traversal
+2.0
+Methods for traversing a DOM tree
+LS
+3.0
+Loading and saving between files and DOM trees synchronously
+LS-Async
+3.0
+Loading and saving between files and DOM trees asynchronously
+Validation
+3.0
+Methods to modify a DOM tree and still make it valid
+XPath
+3.0
+Language for addressing parts of an XML document
+If hasFeature() returns true it does not mean that the implementation conforms to all the specifications it claims to.
+
+We should use capability detection in addition to hasFeature() before using specific parts of the DOM.
