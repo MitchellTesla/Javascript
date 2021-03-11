@@ -1,0 +1,32 @@
+The Document object defines the event described in the following table.
+
+The Document Object Events.
+
+Name
+Description
+readystatechange
+Triggered when the value of the readyState property changes.
+The window object defines a wide range of events, which are described in the following table.
+
+Name
+Description
+onabort
+Triggered when the loading of a document or resource is aborted.
+onafterprint
+
+Triggered when the Window.print() method is called, before the user is presented
+with the print options.
+onbeforeprint
+Triggered after the user has printed the document.
+onerror
+Triggered when there is an error loading a document or resource.
+onhashchange
+Triggered when the hash fragment changes.
+onload
+Triggered when the loading of a document or resource is complete.
+onpopstate
+Triggered to provide a state object associated with the browser history.
+onresize
+Triggered when the window is resized.
+onunload
+Triggered when the document is unloaded from the window/browser.
