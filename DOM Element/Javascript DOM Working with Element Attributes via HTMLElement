@@ -1,0 +1,52 @@
+There are properties for some of the most important global attributes, but there is also support for reading and setting any attribute on an element.
+
+The following table describes the available methods and properties defined by the HTMLElement object for this purpose.
+
+Member
+Description
+Returns
+attributes
+Returns the attributes applied to the element
+Attr[]
+dataset
+Returns the data-* attributes
+string[<name>]
+getAttribute(<name>)
+Returns the value of the specified attribute
+string
+hasAttribute(<name>)
+
+Returns true if the element has the specified
+attribute
+boolean
+
+removeAttribute(<name>)
+
+Removes the specified attribute from the
+element
+void
+
+setAttribute(<name>, <value>)
+
+Applies an attribute with the specified name
+and value
+void
+
+The four methods for working with attributes are easy to use and behave just as you might expect.
+
+Using the Attribute Methods.
+
+Copy
+let results = document.getElementById("results");
+let elem = document.getElementById("textblock");
+
+results.innerHTML = "Element has lang attribute: "
+    + elem.hasAttribute("lang") + "\n";
+results.innerHTML += "Adding lang attribute\n";
+elem.setAttribute("lang", "en-US");
+results.innerHTML += "Attr value is : " + elem.getAttribute("lang") + "\n";
+results.innerHTML += "Set new value for lang attribute\n";
+elem.setAttribute("lang", "en-UK");
+results.innerHTML += "Value is now: " + elem.getAttribute("lang") + "\n";
+
+In this example, we check for, add, and change the value of the lang attribute.
