@@ -1,0 +1,43 @@
+A DocumentType object contains all of the information about the document's doctype and has the following characteristics:
+
+Item
+Value
+nodeType
+10
+nodeName
+the name of the doctype.
+nodeValue
+null
+parentNode
+a Document.
+Child nodes
+not supported.
+DocumentType objects cannot be created dynamically in DOM Level 1; they are created only as the document's code is being parsed.
+
+For browsers that support it, the DocumentType object is stored in document.doctype.
+
+DOM Level 1 describes three properties for DocumentType objects:
+
+Property
+Meaning
+name
+entities
+notations
+the name of the doctype
+a NamedNodeMap of entities described by the doctype;
+a NamedNodeMap of notations described by the doctype.
+Because documents in browsers typically use an HTML or XHTML doctype, the entities and notations lists are typically empty.
+
+They are filled only with inline doc types.
+
+This property is filled with the name of the doctype, which is the text that appears immediately after <!DOCTYPE.
+
+Consider the following HTML 4.01 strict doctype:
+
+Copy
+<!DOCTYPE HTML PUBLIC "-// W3C// DTD HTML 4.01// EN"
+"http:// www.w3.org/TR/html4/strict.dtd">
+For this doctype, the name property is "HTML":
+
+Copy
+console.log(document.doctype.name); // "HTML"
