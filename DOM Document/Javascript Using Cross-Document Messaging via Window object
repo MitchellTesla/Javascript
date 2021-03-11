@@ -1,0 +1,156 @@
+The Window object is a gateway to another new feature in HTML5 called cross-document messaging.
+
+Under normal circumstances, scripts from different sources (known as origins) are not allowed to communicate.
+
+Script Origins
+Browsers use components of a URL to determine the origin of a resource such as a script.
+
+Limitations are placed on interaction and communication between scripts from different origins.
+
+If the protocol, hostname, and port are the same, then two scripts are considered to be from the same origin, even if other parts of the URL are different.
+
+The following table gives some examples, each of which is compared to the URL http://mysub.mydomain.com/example.html.
+
+URL
+Result
+http://mysub.mydomain.com/apps/other.html
+Same origin
+https://mysub.mydomain.com/apps/other.html
+Different origin; protocol differs
+https://yourServer::81.mydomain.com/apps/example.html
+Different origin; port differs
+http://myserver.mydomain.com/doc.html
+Different origin; host differs
+Scripts can use the document.domain property to change their origin, although only to widen the focus of the current URL.
+
+For example, scripts that originate from http://server1.domain.com and http://server2.domain.com can both set the domain property to domain.com in order to have the same origin.
+
+HTML5 provides a specification for this kind of communication through the Window method postMessage(<msg>, <origin>).
+
+It can send the specified message to another document.
+
+Example
+The goal is for the main document, example.html, to be able to call the displayMessage() function defined in the script element of the embedded document, otherdomain.html.
+
+We use the postMessage() method, but we need to call that method on the Window that contains the document we want to target.
+
+The Window object provides the support needed to find embedded documents, as described in the following table.
+
+Name
+Description
+Returns
+defaultView
+Returns the Window for the active document
+Window
+frames
+
+Returns an array of the Window objects for the nested iframe elements
+in the document
+Window[]
+
+opener
+Returns the Window that opened the current browsing context
+Window
+parent
+Returns the parent of the current Window
+Window
+self
+Returns the Window for the current document
+Window
+top
+Returns the topmost Window
+Window
+length
+Returns the number of nested iframe elements in the document
+number
+[<index>]
+Returns the Window for the nested document at the specified index
+Window
+[<name>]
+Returns the Window for the nested document with the specified name
+Window
+For this example, we are going to use the array-style notation to locate the Window object we want, so that we can call the postMessage() method.
+
+The following code shows the example.html document.
+
+Locating a Window Object and Invoking the postMessage() Method.
+
+Copy
+<!DOCTYPE HTML>
+<html>
+    <body>
+        <p id="status">Ready</p>
+        <button id="send">Send Message</button>
+        <p>
+            <iframe name="nested"
+                    src="https://yourServer::81/otherdomain.html"
+                    width="90%"
+                    height="75px"></iframe>
+        </p>
+        <script>
+            document.getElementById("send").onclick = function() {
+                window["nested"].postMessage("we like LEGO",
+                                 "https://yourServer::81");
+                document.getElementById("status").innerHTML = "Message Sent";
+            }
+        </script>
+    </body>
+</html>
+We find the Window object that contains the script that we want to send the message to (window["nested"]), and then call the postMessage() method.
+
+The two arguments are the message that we want to send and the origin of the target script, which in this case is https://yourServer::81.
+
+As a security measure, the browser will discard the message if the postMessage() method is called with the wrong target origin.
+
+To receive the message, we need to listen for the message event in the other script.
+
+The browser passes a MessageEvent object, which defines the properties shown in the following table.
+
+Name
+Description
+Returns
+data
+Returns the message sent by the other script
+object
+origin
+Returns the origin of the sending script
+string
+source
+Returns the window associated with the sending script
+Window
+The following code shows how to use the message event to receive a cross-document message.
+
+Listening for the Message Event.
+
+Copy
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Other Page</title>
+    </head>
+    <body>
+        <h1 id="banner">This is the nested document</h1>
+        <script>
+            window.addEventListener("message", receiveMessage, false);
+
+            function receiveMessage(e) {
+                if (e.origin == "http://yourServer") {
+                    displayMessage(e.data);
+                } else {
+                    displayMessage("Message Discarded");
+                }
+            }
+
+            function displayMessage(msg) {
+                document.getElementById("banner").innerHTML = msg;
+            }
+        </script>
+    </body>
+</html>
+
+
+Note that when a message event is received, we check the origin property of the MessageEvent object to make sure we recognize and trust the other script.
+
+This is an important precaution that prevents messages from unknown and untrusted scripts being acted on.
+
+We now have a simple mechanism for sending a message from one script to another, even though they have different origins.
