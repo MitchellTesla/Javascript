@@ -1,0 +1,69 @@
+There are a few different ways that you can handle events.
+
+The most direct way is to create a simple event handler using an event attribute.
+
+Elements define an event attribute for each of the event that they support.
+
+For example, the onmouseover event attribute is the event attribute for the global mouseover event, which is triggered when the user moves the pointer over the area of the browser screen that is occupied by the element.
+
+Implementing a Simple Inline Event Handler
+The most direct way of using an event attribute is to assign the attribute a set of JavaScript statements.
+
+When the event is triggered, the browser will execute the statements you have provided.
+
+Handling an Event with Inline JavaScript.
+
+Copy
+<p onmouseover="this.style.background='white'; this.style.color='black'">
+test
+</p>
+
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <style type="text/css">
+            p {
+                background: gray;
+                color:white;
+                padding: 10px;
+                margin: 5px;
+                border: thin solid black
+            }
+        </style>
+    </head>
+    <body>
+        <p
+        onmouseover="this.style.background='white'; this.style.color='black'">
+        test
+        </p>
+    </body>
+</html>
+In this example, we have specified that two JavaScript statements should be executed in response to the mouseover event by setting them at the value for the onmouseover event attribute for the p element in the document.
+
+Here are the statements:
+
+Copy
+this.style.background='white';
+this.style.color='black'
+These are CSS properties that are applied directly to the element's style attribute.
+
+The browser sets the value of the special variable this to be the HTMLElement object representing the element that triggered the event, and the style property returns the CSSStyleDeclaration object for the element.
+
+Notice that we use double quotes to delimit the overall attribute value, and single quotes to specify the colors we want as JavaScript string literals.
+
+You can use them in the other order if you prefer, but this is the technique for embedding quoted values in an attribute.
+
+If you load the document into a browser, the initial style defined in the style element is applied to the p element.
+
+When you move the mouse over the element, the JavaScript statements will be executed and change the values assigned to the background and color CSS properties.
+
+Handling the MouseOut Event.
+
+Copy
+<p onmouseover="this.style.background='white'; this.style.color='black'"
+   onmouseout="this.style.removeProperty('color');
+   this.style.removeProperty('background')">
+    test
+</p>
+
+With this addition, you have an element that responds to the mouse entering and exiting the screen space it occupies.
