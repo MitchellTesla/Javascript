@@ -1,0 +1,59 @@
+The document object can write to the output stream of a web page via four methods:
+
+Copy
+write(), 
+writeln(), 
+open(), and
+close().
+The write() and writeln() methods each accept a string argument to write to the output stream.
+
+write() simply adds the text as is.
+
+writeln() appends a new-line character (\n) to the end of the string.
+
+These two methods can be used as a page is being loaded to dynamically add content to the page, as shown in the following example:
+
+Copy
+document.write("<strong>" + (new Date()).toString() + "</strong>");
+
+This example outputs the current date and time as the page is being loaded.
+
+The date is enclosed by a <strong> element, which is treated the same as if it were included in the HTML portion of the page, meaning that a DOM element is created and can later be accessed.
+
+Any HTML that is output via write() or writeln() is treated this way.
+
+The write() and writeln() methods are often used to dynamically include external resources such as JavaScript files.
+
+Copy
+<html>
+<head>
+  <title>document.write() Example</title>
+</head>
+<body>
+  <script type="text/javascript">
+    document.write("<script type=\"text/javascript\" src=\"file.js\">" +
+      "<\/script>");
+  </script>
+</body>
+</html>
+The string "<\/script>" no longer registers as a closing tag for the outermost <script> tag, so there is no extra content output to the page.
+
+If document.write() is called after the page has been completely loaded, the content overwrites the entire page, as shown in the following example:
+
+Copy
+window.onload = function(){
+        document.write("Hello world!");
+};
+
+In this example, the window.onload event handler is used to delay the execution of the function until the page is completely loaded.
+
+When that happens, the string "Hello world!" overwrites the entire page content.
+
+The open() and close() methods are used to open and close the web page output stream, respectively.
+
+Neither method is required to be used when write() or writeln() is used during the course of page loading.
+
+Note
+Document writing is not supported in strict XHTML documents.
+
+For pages that are served with the application/xml+xhtml content type, these methods will not work.
