@@ -1,0 +1,62 @@
+The getElementsByTagName() accepts a single argument-the tag name of the elements to retrieve-and returns a NodeList containing zero or more elements.
+
+In HTML documents, this method returns an HTMLCollection object, which is very similar to a NodeList in that it is considered a live collection.
+
+For example, the following code retrieves all <img> elements in the page and returns an HTMLCollection:
+
+Copy
+let images = document.getElementsByTagName("img");
+This code stores an HTMLCollection object in the images variable.
+
+As with NodeList objects, items in HTMLCollection objects can be accessed using bracket notation or the item() method.
+
+The number of elements in the object can be retrieved via the length property, as this example demonstrates:
+
+output the number of images
+
+Copy
+console.log(images.length);
+output the src attribute of the first image
+
+Copy
+console.log(images[0].src);
+output the src attribute of the first image
+
+Copy
+console.log(images.item(0).src);
+The HTMLCollection object has an additional method, namedItem(), that lets you reference an item in the collection via its name attribute.
+
+For example, suppose you had the following <img> element in a page:
+
+Copy
+<img src="myimage.gif" name="myImage">
+A reference to this <img> element can be retrieved from the images variable like this:
+
+Copy
+let myImage = images.namedItem("myImage");
+In this way, an HTMLCollection gives you access to named items in addition to indexed items, making it easier to get exactly the elements.
+
+You can also access named items by using bracket notation, as shown in the following example:
+
+Copy
+let myImage = images["myImage"];
+For HTMLCollection objects, bracket notation can be used with either numeric or string indices.
+
+Behind the scenes, a numeric index calls item() and a string index calls namedItem().
+
+Get All
+To retrieve all elements in the document, pass in * to getElementsByTagName().
+
+The asterisk is generally understood to mean "all" in JavaScript and Cascading Style Sheets (CSS).
+
+Here's an example:
+
+Copy
+let allElements = document.getElementsByTagName("*");
+This single line of code returns an HTMLCollection containing all of the elements in the order in which they appear.
+
+So the first item is the <html> element, the second is the <head> element, and so on.
+
+getElementsByTagName() method is case-insensitive for maximum compatibility with existing HTML pages.
+
+When used in XML pages, including XHTML, getElementsByTagName() switches to case-sensitive mode.
