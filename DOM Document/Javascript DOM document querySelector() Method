@@ -1,0 +1,23 @@
+The querySelector() method accepts a CSS query and returns the first descendant element that matches the pattern or null if there is no matching element.
+
+Here is an example.
+
+Get the body element.
+
+Copy
+let body = document.querySelector("body");
+Get the element with the ID myDiv.
+
+Copy
+let myDiv = document.querySelector("#myDiv");
+Get first element with a class of "selected".
+
+Copy
+let selected = document.querySelector(".selected");
+Get first image with class of "button".
+
+Copy
+let img = document.body.querySelector("img.button");
+When the querySelector() method is used on the Document type, it starts trying to match the pattern from the document element; when used on an Element type, the query attempts to make a match from the descendants of the element only.
+
+If there's a syntax error or an unsupported selector in the query, then querySelector() throws an error.
