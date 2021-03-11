@@ -1,0 +1,61 @@
+The document.readyState property gives you information about the current stage in the process of loading and parsing the HTML document.
+
+Remember that, by default, the browser executes your scripts as soon as it encounters the script element in the document, but that script execution can be deferred using the defer attribute.
+
+It can be useful to know what stage the browser has got to in loading and processing the HTML.
+
+The readyState property on the document object is supported by all modern browsers.
+
+This property was formalized in HTML5.
+
+The readyState property for document has two possible values:
+
+State	Meaning
+loading	The document is loading.
+complete	The document is completely loaded.
+interactive	The document has been parsed, but the browser is still loading linked resources (images, media files, and so on).
+The value of the readyState property moves from loading to interactive to complete as the browser loads and processes the document.
+
+This property is most useful in conjunction with the readystatechange event, which is triggered each time the value of the readyState property changes.
+
+The best way to use the document.readyState property is as an indicator that the document has loaded.
+
+We can also add an onload event handler to set a flag indicating that the document was loaded.
+
+Basic usage:
+
+Copy
+if (document.readyState == "complete"){
+    // Do stuff
+}
+Example
+Using the Document Ready State to Defer Script Execution.
+
+Copy
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <script>
+            document.onreadystatechange = function() {
+                if (document.readyState == "interactive") {
+                    document.getElementById("pressme").onclick = function() {
+                        document.getElementById("results").innerHTML = 
+                                "Button Pressed";
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <button id="pressme">Press Me</button>
+        <pre id="results"></pre>
+    </body>
+</html>
+
+This script uses the document ready state to defer execution of a function until the document reaches the interactive stage.
+
+This script relies on being able to find elements in the document that have not been loaded by the browser at the point where the script is being executed.
+
+By deferring execution until the document has been completely loaded, we can be sure that the elements will be found.
+
+This is an alternative to putting the script element at the end of the document.
