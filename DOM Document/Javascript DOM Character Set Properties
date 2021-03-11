@@ -1,0 +1,11 @@
+The characterSet property indicates the actual character set being used by the document and can also be used to specify a new character set.
+
+By default, this value is "UTF-16".
+
+Its value may be changed by using <meta> elements or response headers or through setting the characterSet property directly.
+
+Here's an example:
+
+Copy
+console.log(document.characterSet);   // "UTF-16"
+document.characterSet = "UTF-8";
