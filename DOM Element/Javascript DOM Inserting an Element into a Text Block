@@ -1,0 +1,15 @@
+An important variation on modifying the model is to add an element to a text block, represented by a Text object.
+
+Inserting an Element into a Text Block.
+
+Copy
+document.getElementById("insert").onclick = function() {
+    let textBlock = document.getElementById("textblock");
+    textBlock.firstChild.splitText(10);
+    let newText = textBlock.childNodes[1].splitText(4).previousSibling;
+    textBlock.insertBefore(document.createElement("b"),
+        newText).appendChild(newText);
+}
+
+In this example, we take a word from the existing text and making it a child of a new <b> element.
+
