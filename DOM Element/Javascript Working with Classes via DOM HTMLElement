@@ -1,0 +1,24 @@
+You can deal with the classes that an element belongs to in two ways.
+
+The first is to use the className property, which returns a list of the classes.
+
+You add or remove classes by changing the value of the string.
+
+You can see both reading and modifying the classes in the following code.
+
+A common use for classes is to target elements with styles.
+
+Using the className Property.
+
+Copy
+document.getElementById("pressme").onclick = function(e) {
+    document.getElementById("textblock").className += " newclass";
+};
+
+In this example, clicking the button triggers the script, which appends a new class to the list for the element.
+
+Notice that we need to add a leading space to the value we appended to the className property value.
+
+This is because the browser expects a list of classes, each separated by a space.
+
+The browser will apply styles whose selectors are class-based when we make a change like this.
