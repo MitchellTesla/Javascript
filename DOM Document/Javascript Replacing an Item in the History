@@ -1,0 +1,20 @@
+You can use the replaceState() method to replace the entry for the current document.
+
+Replacing the Current Entry in the Browser History.
+
+Copy
+let sel = "No selection made";
+if (window.location.search == "?banana") {
+    sel = "Selection: Banana";
+} else if (window.location.search == "?apple") {
+    sel = "Selection: Apple";
+}
+document.getElementById("msg").innerHTML = sel;
+
+let buttons = document.getElementsByTagName("button");
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].onclick = function(e) {
+        document.getElementById("msg").innerHTML = e.target.innerHTML;
+        window.history.replaceState("", "", "otherpage?" + e.target.id);
+    };
+}
