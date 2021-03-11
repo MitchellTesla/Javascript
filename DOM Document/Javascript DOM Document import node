@@ -1,0 +1,19 @@
+The Document importNode() takes a node from a different document and import it into a new document so that it can be added into the document structure.
+
+Every node has an ownerDocument property that indicates the document it belongs to.
+
+If a method such as appendChild() is called and a node with a different ownerDocument is passed in, an error will occur.
+
+Calling importNode() on a node from a different document returns a new version of the node that is owned by the current document.
+
+The importNode() method accepts two arguments: the node to clone and a Boolean value indicating if the child nodes should also be copied.
+
+The result is a duplicate of the node that is suitable for use in the document.
+
+Here is an example:
+
+Copy
+// import node and all children
+let newNode = document.importNode(oldNode, true);   
+document.body.appendChild(newNode);
+This method is used more frequently with XML documents.
