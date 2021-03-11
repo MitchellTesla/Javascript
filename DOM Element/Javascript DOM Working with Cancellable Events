@@ -1,0 +1,35 @@
+Some events define a default action that will be performed when an event is triggered.
+
+As an example, the default action for the click event on the a element is that the browser will load the content at the URL specified in the href attribute.
+
+When an event has a default action, the value of its cancelable property will be true.
+
+You can stop the default action from being performed by calling the preventDefault() function.
+
+The following code gives an example of working with a cancellable event in an event-handler function.
+
+Cancelling a Default Action.
+
+Copy
+function handleClick(e) {
+    if (!confirm("Do you want to navigate to " + e.target.href + " ?")) {
+        e.preventDefault();
+    }
+}
+
+let elems = document.querySelectorAll("a");
+for (let i = 0; i < elems.length; i++) {
+    elems[i].addEventListener("click", handleClick, false);
+}
+
+In this example, we use the confirm() function to prompt the user to see whether they really want to navigate to the URL that the a element leads to.
+
+If the user clicks the Cancel button, then we call the preventDefault() function.
+
+This means that the browser will no longer navigate to the URL.
+
+Note that calling the preventDefault() function doesn't stop the event from flowing through the capture, target, and bubble phases.
+
+These phases will still be performed, but the browser won't perform the default action at the end of the bubble phase.
+
+You can test to see whether the preventDefault() function has been called on an event by an earlier event handler by reading the defaultPrevented property; if it returns true, then the preventDefault() function has been called.
