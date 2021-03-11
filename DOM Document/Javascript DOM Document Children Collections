@@ -1,0 +1,23 @@
+The document object has several special collections.
+
+Each of these collections is an HTMLCollection object and provides faster access to common parts of the document, as described here:
+
+Name
+Description
+document.anchors
+Contains all <a> elements with a name attribute in the document.
+document.applets
+
+Contains all <applet> elements in the document.
+This collection is deprecated because the <applet> element is no longer recommended for use.
+document.forms
+
+Contains all <form> elements in the document.
+The same as document.getElementsByTagName("form").
+document.images
+
+Contains all <img> elements in the document.
+The same as document.getElementsByTagName("img").
+document.links
+Contains all <a> elements with an href attribute in the document.
+These special collections are always available on HTMLDocument objects and, like all HTMLCollection objects, are constantly updated to match the contents of the current document.
