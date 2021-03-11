@@ -1,0 +1,26 @@
+The DocumentType type adds three new properties: publicId, systemId, and internalSubset.
+
+The publicId and systemId properties represent data that is readily available in a doctype but were inaccessible using DOM Level 1.
+
+Consider the following HTML doctype:
+
+Copy
+<!DOCTYPE HTML PUBLIC "-// W3C// DTD HTML 4.01// EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+In this doctype, the publicId is "-// W3C// DTD HTML 4.01// EN" and the systemId is http://www.w3.org/TR/html4/strict.dtd.
+
+Browsers that support DOM Level 2 should be able to run the following JavaScript code:
+
+Copy
+console.log(document.doctype.publicId);
+console.log(document.doctype.systemId);
+The internalSubset property accesses any additional definitions that are included in the doctype, as shown in the following example:
+
+Copy
+<!DOCTYPE html PUBLIC "-// W3C// DTD XHTML 1.0 Strict// EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
+
+[<!ELEMENT name (#PCDATA)>] >
+For this code, document.doctype.internalSubset returns "<!ELEMENT name (#PCDATA)>".
+
+Internal subsets are rarely used in HTML and are slightly more common in XML.
