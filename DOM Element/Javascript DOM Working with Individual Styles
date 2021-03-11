@@ -1,0 +1,83 @@
+The CSSStyleSheet.cssRules property returns a CSSRuleList object that provides access to the individual styles in the stylesheet.
+
+The members of this object are described in the following table.
+
+The Members of the CSSRuleList Object.
+
+Member
+Description
+Returns
+item(<pos>)
+Returns the CSS style at the specified index.
+CSSStyleRule
+length
+Returns the number of styles in the stylesheet.
+number
+Each CSS style in the stylesheet is represented by a CSSStyleRule object.
+
+The members of the CSSStyleRule are shown in the following table.
+
+Member
+Description
+Returns
+cssText
+Gets or sets the text including the selector for the style.
+string
+parentStyleSheet
+Gets the stylesheet to which this style belongs.
+CSSStyleSheet
+selectorText
+Gets or sets the selector text for the style.
+string
+style
+Gets an object representing the styles.
+CSSStyleDeclaration
+The following code shows the use of the CSSRuleList object and the basic properties of the CSSStyleRule object.
+
+The style property returns a CSSStyleDeclaration property, which allows you to work with a style and which is the same object you use when applying styles to an individual element.
+
+Working with the CSSRuleList and CSSStyleRule Objects.
+
+Copy
+let placeholder = document.getElementById("placeholder");
+processStyleSheet();
+
+document.getElementById("pressme").onclick = function() {
+
+    document.styleSheets[0].cssRules.item(1).selectorText = "#block2";
+
+    if (placeholder.hasChildNodes()) {
+        let childCount = placeholder.childNodes.length;
+        for (let i = 0; i < childCount; i++) {
+            placeholder.removeChild(placeholder.firstChild);
+        }
+    }
+    processStyleSheet();
+}
+
+function processStyleSheet() {
+    let rulesList = document.styleSheets[0].cssRules;
+
+    for (let i = 0; i < rulesList.length; i++) {
+        let rule = rulesList.item(i);
+
+        let newElem = document.createElement("table");
+        newElem.setAttribute("border", "1");
+
+        addRow(newElem, "parentStyleSheet", rule.parentStyleSheet.title);
+        addRow(newElem, "selectorText", rule.selectorText);
+        addRow(newElem, "cssText", rule.cssText);
+        placeholder.appendChild(newElem);
+    }
+}
+
+function addRow(elem, header, value) {
+    elem.innerHTML += "<tr><td>" + header + ":</td><td>"
+        +  value + "</td></tr>";
+}
+
+We can get information about the defined styles, reporting on the parent stylesheet, the selector, and the individual declarations contained in the style.
+
+Some browser will display the shorthand properties if they have been used.
+
+When the button is clicked, the selector for one of the styles is changed from #block1 to #block2, which has the effect of changing which of the p elements the style applies to.
