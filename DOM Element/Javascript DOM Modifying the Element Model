@@ -1,0 +1,111 @@
+You can add, remove, duplicate, and copy elements.
+
+The following table describes the properties and methods that are available for altering the DOM hierarchy.
+
+Member
+Description
+Returns
+appendChild(HTMLElement)
+
+Appends the specified element as a
+child of the current element
+HTMLElement
+
+cloneNode(boolean)
+Copies an element
+HTMLElement
+compareDocumentPosition(HTMLElement)
+
+Determines the relative position of an
+element
+number
+
+innerHTML
+Gets or sets the element's contents
+string
+insertAdjacentHTML(<pos>, <text>)
+Inserts HTML relative to the element
+void
+insertBefore(<new_Element>, <child_Element>)
+
+Inserts the first element before the
+second (child) element
+HTMLElement
+
+isEqualNode(<HTMLElement>)
+
+Determines if the specified element is
+equal to the current element
+boolean
+
+isSameNode(HTMLElement)
+
+Determines if the specified element is
+the same as the current element
+boolean
+
+outerHTML
+
+Gets or sets an element's HTML and
+contents
+string
+
+removeChild(HTMLElement)
+
+Removes the specified child of the
+current element
+HTMLElement
+
+replaceChild(HTMLElement, HTMLElement)
+
+Replaces a child of the current
+element
+HTMLElement
+
+These properties and methods are available on all element objects.
+
+In addition, the document object defines two methods that allow you to create new elements.
+
+This is essential when you want to add content to your document.
+
+These creation methods are described in the following table.
+
+Member
+Description
+Returns
+createElement(<tag>)
+
+Creates a new HTMLElement object with the specific tag
+type
+HTMLElement
+
+createTextNode(<text>)
+Creates a new Text object with the specified content
+Text
+You create new elements through the document object, and then insert them by finding an existing HTMLElement and using one of the methods described previously.
+
+Creating and Deleting Elements.
+Copy
+let tableBody = document.getElementById("fruitsBody");
+
+document.getElementById("add").onclick = function() {
+  let row = tableBody.appendChild(document.createElement("tr"));
+  row.setAttribute("id", "newrow");
+  row.appendChild(document.createElement("td"))
+    .appendChild(document.createTextNode("new Data"));
+  row.appendChild(document.createElement("td"))
+    .appendChild(document.createTextNode("My Data"));
+};
+
+document.getElementById("remove").onclick = function() {
+    let row = document.getElementById("newrow");
+    row.parentNode.removeChild(row);
+}
+
+The script in this example uses the DOM to add and remove rows from an HTML table.
+
+When adding the row, we start by creating a tr element, and then use it as the parent for the td and Text objects.
+
+You need to create the element, associate it with its parent, and repeat the process for any child elements or text content.
+
+To remove elements, you must find the element, navigate to the parent element, and then use the removeChild method.
