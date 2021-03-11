@@ -1,0 +1,39 @@
+You can compare element objects in two ways.
+
+The first is simply to see if they represent the same element, which you can do using the isSameNode() method.
+
+This allows you to compare objects that you have obtained from different queries, as shown in the following code.
+
+Comparing Element Objects.
+
+Copy
+let elemByID = document.getElementById("plumrow");
+let elemByPos
+    = document.getElementById("fruitsBody").getElementsByTagName("tr")[0];
+
+if (elemByID.isSameNode(elemByPos)) {
+    document.getElementById("results").innerHTML = "Objects are the same";
+}
+
+The script in this example locates element objects using two different techniques: by searching for a specific id and by searching by tag type from the parent element.
+
+The isSameNode() method returns true when these objects are compared because they represent the same element.
+
+The alternative is to test to see if element objects are equal , which you can do by using the isEqualNode() method.
+
+Elements are equal if they are of the same type, have the same attribute values, and each of their children is also equal and in the same order.
+
+Working with Equal Elements.
+
+Copy
+let elems = document.getElementsByClassName("plumrow");
+
+if (elems[0].isEqualNode(elems[1])) {
+    document.getElementById("results").innerHTML = "Elements are equal";
+} else {
+    document.getElementById("results").innerHTML = "Elements are NOT equal";
+}
+
+In this example, the two <tr> elements are equal, even though they are distinct elements in different parts of the document.
+
+If we changed any of the attributes or the content of the child td element, then the elements would no longer be equal.
