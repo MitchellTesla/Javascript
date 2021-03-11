@@ -1,0 +1,107 @@
+The complete set of mouse-related events is shown in the following table.
+
+Name
+Description
+click
+Triggered when the mouse button is clicked and released.
+dblclick
+Triggered when the mouse button is clicked and released twice.
+mousedown
+Triggered when the mouse button is clicked.
+mouseenter
+
+Triggered when the pointer is moved to be within the screen region occupied by the
+element or one of its descendants.
+mouseleave
+
+Triggered when the pointer is moved to be outside the screen region occupied by the
+element and all its descendants.
+mousemove
+Triggered when the pointer is moved while over the element.
+mouseout
+
+This is the same as for mouseleave, except that this event will trigger while the pointer is
+still over a descendant element.
+mouseover
+
+This is the same as for mouseenter, except that this event will trigger while the pointer is
+still over a descendant element.
+mouseup
+Triggered when the mouse button is released.
+When a mouse event is triggered, the browser dispatches a MouseEvent object.
+
+This is an Event object with the additional properties and methods shown in the following table.
+
+Name
+Description
+Returns
+button
+
+Indicates which button has been clicked; 0 is the main mouse button, 1 is the
+middle button, and 2 is the secondary/right button.
+number
+
+altKey
+Returns true if the alt/option key was clicked when the event was triggered.
+boolean
+clientX
+
+Returns the X position of the mouse when the event was triggered, relative to
+the element's viewport.
+number
+
+clientY
+
+Returns the Y position of the mouse when the event was triggered, relative to
+the element's viewport.
+number
+
+screenX
+
+Returns the X position of the mouse when the event was triggered, relative to
+the screen coordinate system.
+number
+
+screenY
+
+Returns the Y position of the mouse when the event was triggered, relative to
+the screen coordinate system.
+number
+
+shiftKey
+Returns true if the Shift key was pressed when the event was triggered.
+boolean
+ctrlKey
+Returns true if the Ctrl key was pressed when the event was triggered.
+boolean
+The following code shows how you can use the additional functionality provided by the MouseEvent object.
+
+Using the MouseEvent Object to Respond to Mouse Events.
+
+Copy
+let textblock = document.getElementById("block1");
+let typeCell = document.getElementById("eType");
+let xCell = document.getElementById("eX");
+let yCell = document.getElementById("eY");
+
+textblock.addEventListener("mouseover", handleMouseEvent, false);
+textblock.addEventListener("mouseout", handleMouseEvent, false);
+textblock.addEventListener("mousemove", handleMouseEvent, false);
+
+function handleMouseEvent(e) {
+    if (e.eventPhase == Event.AT_TARGET) {
+        typeCell.innerHTML = e.type;
+        xCell.innerHTML = e.clientX;
+        yCell.innerHTML = e.clientY;
+
+        if (e.type == "mouseover") {
+            e.target.style.background='black';
+            e.target.style.color='white';
+        } else {
+            e.target.style.removeProperty('color');
+            e.target.style.removeProperty('background');
+        }
+    }
+}
+
+The script in this example updates cells in a table in response to two kinds of mouse events.
