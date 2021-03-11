@@ -1,0 +1,36 @@
+You can obtain a collection containing all of the attributes for an element through the attributes property, which returns an array of Attr objects.
+
+The properties of the Attr object are described in the following table.
+
+Properties
+Description
+Returns
+name
+Returns the name of the attribute
+string
+value
+Gets or sets the value of the attribute
+string
+The following code shows how to use the attributes property and the Attr object to read and modify an element's attributes.
+
+Working with the attributes Property.
+
+Copy
+let results = document.getElementById("results");
+let elem = document.getElementById("textblock");
+
+let attrs = elem.attributes;
+
+for (let i = 0; i < attrs.length; i++) {
+    results.innerHTML += "Name: " + attrs[i].name + " Value: "
+        + attrs[i].value + "\n";
+}
+
+attrs["data-yourdata"].value = "banana";
+
+results.innerHTML += "Value of data-yourdata attr: "
+    + attrs["data-yourdata"].value;
+
+As you can see from the listing, the attributes in the array of Attr objects are indexed by position and name.
+
+In this example, we enumerate the names and values of the attributes applied to an element, and then modify the value of one of them.
