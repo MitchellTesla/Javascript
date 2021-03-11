@@ -1,0 +1,75 @@
+You access the CSS stylesheets available in your document using the document.styleSheets property, which returns a collection of objects representing the stylesheets associated with the document.
+
+The returned type is CSSStyleSheet[].
+
+Each stylesheet is represented by a CSSStyleSheet object, which provides the set of properties and methods for manipulating the styles in the document.
+
+The following table summarizes the CSSStyleSheet members.
+
+Member
+Description
+Returns
+cssRules
+Returns the set of rules in the stylesheet.
+CSSRuleList
+deleteRule(<pos>)
+Removes a rule from the stylesheet.
+void
+disabled
+Gets or sets the disabled state of the stylesheet.
+boolean
+href
+Returns the href for linked stylesheets.
+string
+insertRule(<rule>, <pos>)
+Inserts a new rule into the stylesheet.
+number
+media
+
+Returns the set of media constraints applied to the
+stylesheet.
+MediaList
+
+ownerNode
+Returns the element in which the style is defined.
+HTMLElement
+title
+Returns the value of the title attribute.
+string
+type
+Returns the value of the type attribute.
+string
+Getting Basic Information About Stylesheets
+We can get some basic information about the stylesheets defined in the document.
+
+Getting Basic Information About the Stylesheets in a Document.
+
+Copy
+let placeholder = document.getElementById("placeholder");
+let sheets = document.styleSheets;
+
+for (let i = 0; i < sheets.length; i++) {
+    let newElem = document.createElement("table");
+    newElem.setAttribute("border", "1");
+    addRow(newElem, "Index", i);
+    addRow(newElem, "href", sheets[i].href);
+    addRow(newElem, "title", sheets[i].title);
+    addRow(newElem, "type", sheets[i].type);
+    addRow(newElem, "ownerNode", sheets[i].ownerNode.tagName);
+    placeholder.appendChild(newElem);
+}
+
+function addRow(elem, header, value) {
+    elem.innerHTML += "<tr><td>" + header + ":</td><td>"
+        +  value + "</td></tr>";
+}
+
+The script in this example enumerates the stylesheets defined in the document and creates a table element containing the basic information available for each.
+
+In this document, there are three stylesheets.
+
+Two are defined using script elements and the other is contained in an external file called styles.css and is imported into the document using the link element.
+
+Note that not all properties have values.
+
+As an example, the href property will only return a value if the stylesheet has been loaded as an external file.
