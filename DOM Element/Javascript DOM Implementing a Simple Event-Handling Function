@@ -1,0 +1,27 @@
+We can define a function and specifying the function name as the value for the event attributes in the element.
+
+Using a Function to Handle an Event.
+
+Copy
+<script type="text/javascript">
+    function handleMouseOver(elem) {
+        elem.style.background='white';
+        elem.style.color='black';
+    }
+
+    function handleMouseOut(elem) {
+        elem.style.removeProperty('color');
+        elem.style.removeProperty('background');
+    }
+</script>
+
+<p onmouseover="handleMouseOver(this)" onmouseout="handleMouseOut(this)">
+    test
+</p>
+<p onmouseover="handleMouseOver(this)" onmouseout="handleMouseOut(this)">
+    This is a test.  Test Test Test Test.
+</p>
+
+In this example, we define JavaScript functions that contain the statements we want performed in response to the mouse events and specify those functions in the onmouseover and onmouseout attributes.
+
+The special value this refers to the element that has triggered the event.
