@@ -1,0 +1,33 @@
+To obtain the properties defined in an element's style attribute, you read the value of the style property defined by HTMLElement objects.
+
+The style property returns a CSSStyleDeclaration object, which is the same kind of object that you can obtain through stylesheets.
+
+To demonstrate the HTMLElement.style property, we have used the CSSStyleDeclaration.cssText property in following code to display and modify the style properties that are applied to an element.
+
+Obtaining a CSSStyleDeclaration Object from an HTMLElement.
+
+Copy
+let placeholder = document.getElementById("placeholder");
+let targetElem = document.getElementById("block1");
+displayStyle();
+
+document.getElementById("pressme").onclick = function() {
+    targetElem.style.cssText = "color:black";
+    displayStyle();
+}
+
+function displayStyle() {
+    if (placeholder.hasChildNodes()) {
+        placeholder.removeChild(placeholder.firstChild);
+    }
+    let newElem = document.createElement("table");
+    addRow(newElem, "Element CSS", targetElem.style.cssText);
+    placeholder.appendChild(newElem);
+}
+
+function addRow(elem, header, value) {
+    elem.innerHTML += "<tr><td>" + header + ":</td><td>"
+        +  value + "</td></tr>";
+}
+
+This script displays the value of the style attribute for an element and, when the button is clicked, changes that value to apply a different style
