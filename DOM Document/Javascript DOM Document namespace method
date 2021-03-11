@@ -1,0 +1,26 @@
+The Document type includes the following namespace-specific methods:
+
+Method
+Meaning
+createElementNS(namespaceURI, tagName)
+Creates a new element with the given tagName as part of the namespace indicated by namespaceURI.
+createAttributeNS(namespaceURI, attributeName)
+Creates a new attribute node as part of the namespace indicated by namespaceURI.
+getElementsByTagNameNS(namespaceURI, tagName)
+Returns a NodeList of elements with the given tagName that are also a part of the namespace indicated by namespaceURI.
+These methods are used by passing in the namespace URI of the namespace, as shown in the following example.
+
+create a new SVG element.
+
+Copy
+let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+create new attribute for a random namespace.
+
+Copy
+let att = document.createAttributeNS("http://www.demo2s.com", "demo");
+get all XHTML elements.
+
+Copy
+let elems = document.getElementsByTagNameNS(
+                      "http://www.w3.org/1999/xhtml", "*");
+The namespace-specific methods are necessary only when there are two or more namespaces in a given document.
