@@ -1,0 +1,55 @@
+HTMLElement objects provide a set of properties that you can use to read and modify data about the element that is being represented.
+
+The following table describes these properties.
+
+Property
+Description
+Returns
+checked
+Gets or sets the presence of the checked attribute
+boolean
+classList
+Gets or sets the list of classes to which the element belongs
+DOMTokenList
+className
+Gets or sets the list of classes to which the element belongs
+string
+dir
+Gets or sets the value of the dir attribute
+string
+disabled
+Gets or sets the presence of the disabled attribute
+boolean
+hidden
+Gets or sets the presence of the hidden attribute
+boolean
+id
+Gets or sets the value of the id attribute
+string
+lang
+Gets or sets the value of the lang attribute
+string
+spellcheck
+Gets or sets the presence of the spellcheck attribute
+boolean
+tabIndex
+Gets or sets the value of the tabindex attribute
+number
+tagName
+Returns the tag name (indicating the element type)
+string
+title
+Gets or sets the value of the title attribute
+string
+The following code shows the use of some of the basic data properties listed in the table.
+
+Copy
+let results = document.getElementById("results");
+let elem = document.getElementById("textblock");
+
+results.innerHTML += "tag: " + elem.tagName + "\n";
+results.innerHTML += "id: " + elem.id + "\n";
+results.innerHTML += "dir: " + elem.dir + "\n";
+results.innerHTML += "lang: " + elem.lang + "\n";
+results.innerHTML += "hidden: " + elem.hidden + "\n";
+results.innerHTML += "disabled: " + elem.disabled + "\n";
