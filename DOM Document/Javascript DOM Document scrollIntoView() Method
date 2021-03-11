@@ -1,0 +1,28 @@
+The browsers implemented several methods that control scrolling in different ways.
+
+The scrollIntoView() method exists on all HTML elements and scrolls the browser window or container element so the element is visible in the viewport.
+
+If an argument of true is supplied, it specifies alignToTop and the window scrolls so that the top of the element is at the top of the viewport.
+
+If an argument of false is supplied, it specifies alignToTop and the window scrolls so that the bottom of the element is at the top of the viewport.
+
+If an object argument is supplied, the user can provide values for the behavior property, which specifies how the scroll should occur: auto, instant, or smooth (supported by Firefox), and the block property is the same as alignToTop.
+
+If no argument is supplied, the element is scrolled so that it is fully visible in the viewport but may not be aligned at the top.
+
+For example.
+
+Ensures this element is visible.
+
+Copy
+document.forms[0].scrollIntoView();
+These behave identically.
+
+Copy
+document.forms[0].scrollIntoView(true);
+document.forms[0].scrollIntoView({block: true});
+This attempts to scroll the element smoothly into view:
+
+Copy
+document.forms[0].scrollIntoView({behavior: 'smooth', block: true});
+Note that setting focus to an element also causes the browser to scroll the element into view so that the focus can properly be displayed.
