@@ -1,0 +1,31 @@
+The devicemotion event can inform you when the device is actually moving, not just when it has changed orientation.
+
+For instance, devicemotion is useful to determine that the device is falling or is being held by someone who is walking.
+
+When the devicemotion event fires, the event object contains the following additional properties:
+
+Property
+Meaning
+acceleration
+An object containing x, y, and z properties that tells you the acceleration in each dimension without considering gravity.
+accelerationIncludingGravity
+An object containing x, y, and z properties that tells you the acceleration in each dimension, including the natural acceleration of gravity in the z-axis.
+interval
+The amount of time, in milliseconds, that will pass before another devicemotion event is fired. This value should be constant from event to event.
+rotationRate
+An object containing the alpha, beta, and gamma properties that indicate device orientation.
+If acceleration, accelerationIncludingGravity, or rotationRate cannot be provided, then the property value is null.
+
+Because of that, you should always check that the value is not null before using any of these properties.
+
+For example:
+
+Copy
+window.addEventListener("devicemotion", (event) => {
+  let output = document.getElementById("output");
+  if (event.rotationRate !== null) {
+    output.innerHTML += `Alpha=${event.rotationRate.alpha}` +
+                        `Beta=${event.rotationRate.beta}` +
+                        `Gamma=${event.rotationRate.gamma}`;
+  }
+});
