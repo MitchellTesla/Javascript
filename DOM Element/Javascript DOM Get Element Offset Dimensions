@@ -1,0 +1,58 @@
+The offset dimensions' properties incorporate all of the visual space that an element takes up on the screen.
+
+The following four properties are used to retrieve offset dimensions:
+
+Property
+Meaning
+offsetHeight
+The amount of vertical space, in pixels, taken up by the element, including its height, the height of a horizontal scrollbar (if visible), the top border height, and the bottom border height.
+offsetLeft
+The number of pixels between the element's outside left border and the containing element's inside left border.
+offsetTop
+The number of pixels between the element's outside top border and the containing element's inside top border.
+offsetWidth
+The amount of horizontal space taken up by the element, including its width, the width of a vertical scrollbar (if visible), the left border width, and the right border width.
+The offsetLeft and offsetTop properties are in relation to the containing element, which is stored in the offsetParent property.
+
+The offsetParent may not necessarily be the same as the parentNode.
+
+For example, the offsetParent of a <td> element is the <table> element that it's an ancestor of, because the <table> is the first element in the hierarchy that provides dimensions.
+
+The offset of an element on the page can roughly be determined by taking the offsetLeft and offsetTop properties and adding them to the same properties of the offsetParent, continuing up the hierarchy until you reach the root element.
+
+Dimensions-Properties.png
+
+Here is an example:
+
+Copy
+function getElementLeft(element) {
+   let actualLeft = element.offsetLeft;
+   let current = element.offsetParent;
+
+   while (current !== null) {
+       actualLeft += current.offsetLeft;
+       current = current.offsetParent;
+   }
+
+   return actualLeft;
+}
+
+function getElementTop(element) {
+  let actualTop = element.offsetTop;
+  let current = element.offsetParent;
+
+  while (current !== null) {
+    actualTop += current.offsetTop;
+    current = current.offsetParent;
+  }
+
+  return actualTop;
+}
+These two functions go through the DOM hierarchy using the offsetParent property, adding up the offset properties at each level.
+
+For simple page layouts using CSS-based layouts, these functions are very accurate.
+
+Generally, all elements that are contained solely within <div> elements have <body> as their offsetParent, so getElementLeft() and getElementTop() will return the same values as offsetLeft and offsetTop.
+
+All of the offset dimension properties are read-only and are calculated each time they are accessed.
+
