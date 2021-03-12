@@ -1,0 +1,34 @@
+The eventPhase property aids in determining what phase of event flow is currently active.
+
+If the event handler is called during the capture phase, eventPhase is 1;
+
+If the event handler is at the target, eventPhase is 2;
+
+If the event handler is during the bubble phase, eventPhase is 3.
+
+Note that even though "at target" occurs during the bubbling phase, eventPhase is always 2.
+
+Here is an example showing the various eventPhase values:
+
+Copy
+let btn = document.getElementById("myBtn");
+btn.onclick = function(event) {
+    console.log(event.eventPhase);   // 2
+};
+
+document.body.addEventListener("click", (event) => {
+    console.log(event.eventPhase);   // 1
+}, true);
+
+document.body.onclick = (event) => {
+    console.log(event.eventPhase);   // 3
+};
+When the button in this example is clicked, the first event handler to fire is the one on document.body in the capturing phase, which logs a message that displays 1 as the eventPhase.
+
+Next, the event handler on the button itself is fired, at which point the eventPhase is 2.
+
+The last event handler to fire is during the bubbling phase on document.body when eventPhase is 3.
+
+Whenever eventPhase is 2, this, target, and currentTarget are always equal.
+
+The event object exists only while event handlers are still being executed; once all event handlers have been executed, the event object is destroyed
