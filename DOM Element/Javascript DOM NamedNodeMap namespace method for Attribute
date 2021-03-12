@@ -1,0 +1,14 @@
+The NamedNodeMap type introduces the following methods for dealing with namespaces.
+
+Because attributes are represented by a NamedNodeMap, these methods mostly apply to attributes.
+
+Method
+Meaning
+getNamedItemNS(namespaceURI, localName)
+Gets the item from the namespace represented by namespaceURI and with a name of localName.
+removeNamedItemNS(namespaceURI, localName)
+Removes the item from the namespace represented by namespaceURI and with a name of localName.
+setNamedItemNS(node)
+Adds node, which should have namespace information already applied.
+These methods are rarely used because attributes are typically accessed directly from an element.
+
