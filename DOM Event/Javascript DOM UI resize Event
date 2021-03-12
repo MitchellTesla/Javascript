@@ -1,0 +1,15 @@
+When the browser window is resized to a new height or width, the resize event fires.
+
+This event fires on window, so an event handler can be assigned either via JavaScript or by using the onresize attribute on the <body> element.
+
+Prefer to use the JavaScript approach, as shown here:
+
+Copy
+window.addEventListener("resize", (event) => {
+   console.log("Resized");
+});
+The event object is created and its target is document in DOM-compliant browsers.
+
+We should avoid computation-heavy code in the event handler for this event because it will be executed frequently and cause a noticeable slowdown in the browser.
+
+NOTE The resize event also fires when the browser window is minimized or maximized.
