@@ -1,0 +1,7 @@
+Comment nodes can be created using the document.createComment() method and passing in the comment text, as shown in the following code:
+
+Copy
+let comment = document.createComment("A comment");
+Browsers don't recognize comments that exist after the closing </html> tag.
+
+If you need to access comment nodes, make sure they appear as descendants of the <html> element.
