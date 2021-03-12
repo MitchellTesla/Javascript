@@ -1,0 +1,31 @@
+The window's load event fires when everything on the page has been completely loaded, which may take some time for pages with lots of external resources.
+
+The DOMContentLoaded event fires as soon as the DOM tree is completely formed and without regard to images, JavaScript files, CSS files, or other such resources.
+
+DOMContentLoaded allows event handlers to be attached earlier in the page download process, which means a faster time to interactivity for users.
+
+To handle the DOMContentLoaded event, you can attach an event handler either on the document or on the window.
+
+Here's an example which listens for the event on document:
+
+Copy
+document.addEventListener("DOMContentLoaded", (event) => {
+  console.log("Content loaded");
+});
+The event object target for DOMContentLoaded is document.
+
+The DOMContentLoaded event is typically used to attach event handlers or perform other DOM manipulations.
+
+This event always fires before the load event.
+
+For browsers that don't support DOMContentLoaded, a timeout should be set during page loading with a millisecond delay of 0, as in this example:
+
+Copy
+setTimeout(() => {
+  // attach event handlers here
+  }, 0);
+The code will run the function as soon as the current JavaScript process is complete.
+
+There is a single JavaScript process running as the page is being downloaded and constructed, so the timeout will fire after that.
+
+To work properly, this must be the first timeout set on the page, and even then, it is not guaranteed that the timeout will run prior to the load event in all circumstances.
