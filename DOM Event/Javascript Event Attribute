@@ -1,0 +1,74 @@
+Events are certain actions performed either by the user or by the browser itself.
+
+These events have names like click, load, and mouseover.
+
+A function that is called in response to an event is called an event handler or an event listener.
+
+Event handlers have names beginning with "on", so an event handler for the click event is called onclick and an event handler for the load event is called onload.
+
+Assigning event handlers can be accomplished in a number of different ways.
+
+HTML Event Handlers
+Each event supported by a particular element can be assigned using an HTML attribute with the name of the event handler.
+
+The value of the attribute should be some JavaScript code to execute.
+
+For example, to execute some JavaScript when a button is clicked, you can use the following:
+
+Copy
+<input type="button" value="Click Me" onclick="console.log('Clicked')"/>
+When this button is clicked, a message is logged.
+
+This interaction is defined by specifying the onclick attribute and assigning some JavaScript code as the value.
+
+In this way we need to escape the JavaScript code used attribute value.
+
+To use double quotes, you will change the code to the following:
+
+Copy
+<input type="button" value="Click Me"
+onclick="console.log(&quot;Clicked&quot;)"/>
+An event handler defined in HTML may contain the precise action to take or it can call a script defined elsewhere on the page, as in this example:
+
+Copy
+<script>
+function showMessage() {
+    console.log("Hello world!");
+}
+</script>
+<input type="button" value="Click Me" onclick="showMessage()"/>
+In this code, the button calls showMessage() when it is clicked.
+
+The showMessage() function is defined in a separate <script> element and could also be included in an external file.
+
+Code executing as an event handler has access to everything in the global scope.
+
+A function is created that wraps the attribute value.
+
+That function has a special local variable called event, which is the event object:
+
+Copy
+<!-- outputs "click" -->
+<input type="button" value="Click Me" onclick="console.log(event.type)">
+This gives you access to the event object without needing to define it yourself.
+
+The this value inside of the function is equivalent to the event's target element, as shown in this example:
+
+Copy
+<!-- outputs "Click Me" -->
+<input type="button" value="Click Me" onclick="console.log(this.value)">
+Within the function, members of both document and the element itself can be accessed as if they were local variables.
+
+The event handler code can access other members of the same form without referencing the form element itself.
+
+Copy
+<form method="post">
+   <input type="text" name="username" value="">
+   <input type="button" value="Echo Username"
+          onclick="console.log(username.value)">
+</form>
+Most HTML event handlers are enclosed in try-catch blocks so that they quietly fail, as in the following example:
+
+Copy
+<input type="button" value="Click Me" onclick="try{showMessage();}catch(ex) {}">
+If this button is clicked before the showMessage() function is defined, no JavaScript error occurs because the error is caught before the browser can handle it.
