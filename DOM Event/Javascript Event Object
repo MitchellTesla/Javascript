@@ -1,0 +1,35 @@
+When a DOM event is fired, all of the relevant information is gathered and stored on an object called event.
+
+This object contains basic information such as
+
+the element that caused the event,
+the type of event that occurred, and
+any other data that may be relevant to the particular event.
+For example, an event caused by a mouse action generates information about the mouse's position, whereas an event caused by a keyboard action generates information about the keys that were pressed.
+
+All browsers support the event object in various ways.
+
+In DOM-compliant browsers, the event object is passed in as the only argument to an event handler.
+
+Here is an example which references the event object inside the handler both ways:
+
+Copy
+let btn = document.getElementById("myBtn");
+btn.onclick = function(event) {
+  console.log(event.type);  // "click"
+};
+
+btn.addEventListener("click", (event) => {
+  console.log(event.type);  // "click"
+}, false);
+Both event handlers in this example log a message indicating the type of event being fired by using the event.type property.
+
+This property always contains the type of event that was fired, such as "click".
+
+When an event handler is assigned using HTML attributes, the event object is available as a variable called event.
+
+This example demonstrates how to use this variable:
+
+Copy
+<input type="button" value="Click Me" onclick="console.log(event.type)">
+Providing the event object in this way allows HTML attribute event handlers to perform the same as JavaScript functions.
