@@ -1,0 +1,36 @@
+Focus events are fired when elements of a page receive or lose focus.
+
+These events work in concert with the document.hasFocus() and document.activeElement properties to give insight as to how the user is navigating the page.
+
+There are six focus events:
+
+Event
+Meaning
+blur
+
+Fires when an element has lost focus.
+This event does not bubble and is supported in all browsers.
+focus
+
+Fires when an element has received focus.
+This event does not bubble and is supported in all browsers.
+focusin
+
+Fires when an element has received focus.
+This is a bubbling version of the focus HTML event.
+focusout
+
+Fires when an element has lost focus.
+This is a generic version of the blur HTML event.
+The two primary events of this group are focus and blur, both of which have been supported in browsers since the early days of JavaScript.
+
+The focus events don't bubble.
+
+This led to the inclusion of focusin and focusout.
+
+When focus is moved from one element to another on the page, the order of events is as follows:
+
+focusout fires on the element losing focus.
+focusin fires on the element receiving focus.
+blur fires on the element losing focus.
+focus fires on the element receiving focus.
