@@ -1,0 +1,23 @@
+HTML5 adds functionality to aid with focus management in the DOM.
+
+The first is document.activeElement, which always contains a pointer to the DOM element that currently has focus.
+
+An element can receive focus automatically as the page is loading, via user input, or programmatically using the focus() method.
+
+For example:
+
+Copy
+let button = document.getElementById("myButton");
+button.focus();
+console.log(document.activeElement === button);  // true
+By default, document.activeElement is set to document.body when the document is first loaded.
+
+Before the document is fully loaded, document.activeElement is null.
+
+The document.hasFocus() returns a Boolean value indicating if the document has focus:
+
+Copy
+let button = document.getElementById("myButton");
+button.focus();
+console.log(document.hasFocus());  // true
+Determining if the document has focus allows you to determine if the user is interacting with the page.
