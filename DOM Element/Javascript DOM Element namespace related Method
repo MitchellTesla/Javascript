@@ -1,0 +1,18 @@
+The Element has the following namespace related methods which are mostly related to attributes.
+
+Method
+Meaning
+getAttributeNS(namespaceURI, localName)
+Gets the attribute from the namespace represented by namespaceURI and with a name of localName.
+getAttributeNodeNS(namespaceURI, localName)
+Gets the attribute node from the namespace represented by namespaceURI and with a name of localName.
+getElementsByTagNameNS(namespaceURI, tagName)
+Returns a of descendant elements with the given tagName that are also a part of the namespace indicated by namespaceURI.
+hasAttributeNS(namespaceURI, localName)
+Determines if the element has an attribute from the namespace represented by namespaceURI and with a name of localName. Note:DOM Level 2 Core also adds a hasAttribute() method for use without namespaces.
+removeAttributeNS(namespaceURI, localName)
+Removes the attribute from the namespace represented by namespaceURI and with a name of localName.
+setAttributeNS(namespaceURI, qualifiedName, value)
+Sets the attribute from the namespace represented by namespaceURI and with a name of qualifiedName equal to value.
+setAttributeNodeNS(attNode)
+Sets the attribute node from the namespace represented by namespaceURI.
