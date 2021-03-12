@@ -1,0 +1,1 @@
+document.getElementById("myDIV").style.animation = "myNewAnimation 4s 2";
