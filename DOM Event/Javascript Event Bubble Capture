@@ -1,0 +1,80 @@
+JavaScript's interaction with HTML is handled through events.
+
+Events can be subscribed to using listeners that execute only when an event occurs.
+
+Event Flow
+When you click on a button, you're clicking on the button and on its container and on the page as a whole.
+
+Event flow describes the order in which events are received on the page.
+
+Event Bubbling
+The event flow is called event bubbling if an event is said to start at the most specific element which is the deepest possible point in the document tree and then flow upward toward the least specific node which is the document.
+
+Consider the following HTML page:
+
+Copy
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Event Bubbling Example</title>
+</head>
+<body>
+  <div id="myDiv">Click Me</div>
+</body>
+</html>
+When you click the <div> element in the page, the click event occurs in the following order:
+
+<div>
+<body>
+<html>
+document
+The click event is first fired on the <div>, which is the element that was clicked.
+
+Then the click event goes up the DOM tree, firing on each node along its way until it reaches the document object.
+
+All modern browsers support event bubbling, although there are some variations on how it is implemented.
+
+Modern browsers continue event bubbling up to the window object.
+
+Event Capturing
+The event flow is called event capturing if the least specific node should receive the event first and the most specific node should receive the event last.
+
+Event capturing was designed to intercept the event before it reached the intended target.
+
+If the previous example is used with event capturing, clicking the <div> element fires the click event in the following order:
+
+document
+<html>
+<body>
+<div>
+With event capturing, the click event is first received by the document and then continues down the DOM tree to the actual target of the event, the <div> element.
+
+Event capturing is supported in all modern browsers.
+
+All of them actually begin event capturing at the window-level event.
+
+The general advice is to use event bubbling freely while retaining event capturing for special circumstances.
+
+Three Phases
+The event flow specified by DOM Level 2 Events has three phases:
+
+the event capturing phase,
+at the target, and
+the event bubbling phase.
+Event capturing occurs first, providing the opportunity to intercept events if necessary.
+
+Next, the actual target receives the event.
+
+The final phase is bubbling, which allows a final response to the event.
+
+In the DOM event flow, the actual target (the <div> element) does not receive the event during the capturing phase.
+
+The capturing phase moves from document to <html> to <body> and stops.
+
+The next phase is "at target," which fires on the <div> and is considered to be part of the bubbling phase in terms of event handling.
+
+Then, the bubbling phase occurs and the event travels back up to the document.
+
+Modern browsers all fire an event during the capturing phase on the event target.
+
+There are two opportunities to work with the event on the target
