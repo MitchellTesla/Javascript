@@ -1,0 +1,31 @@
+Inside an event handler, the this object is always equal to the value of currentTarget, whereas target contains only the actual target of the event.
+
+If the event handler is assigned directly onto the intended target, then this, currentTarget, and target all have the same value.
+
+Here is an example demonstrating where the two properties are equivalent to this:
+
+Copy
+let btn = document.getElementById("myBtn");
+btn.onclick = function(event) {
+  console.log(event.currentTarget === this);  // true
+  console.log(event.target === this);         // true
+};
+This code examines the values of currentTarget and target relative to this.
+
+Because the target of the click event is the button, all three are equal.
+
+If the event handler existed on a parent node of the button, such as document.body, the values would be different.
+
+Consider the following example, where a click handler is set on document.body:
+
+Copy
+document.body.onclick = function(event) {
+  console.log(event.currentTarget === document.body);              // true
+  console.log(this === document.body);                             // true
+  console.log(event.target === document.getElementById("myBtn"));  // true
+};
+When the button is clicked in this example, both this and currentTarget are equal to document.body because that's where the event handler was registered.
+
+The target property is equal to the button element itself, because that's the true target of the click event.
+
+Because the button itself doesn't have an event handler assigned, the click event bubbles up to document.body, where the event is handled.
