@@ -1,0 +1,21 @@
+The mousewheel event fires when the user interacts with the mouse wheel, rolling it vertically in either direction.
+
+This event fires on each element and bubbles up to window on modern browsers.
+
+The event object for the mousewheel event contains all standard information about mouse events and an additional property called wheelDelta.
+
+When the mouse wheel is rolled toward the front of the mouse, wheelDelta is a positive multiple of 120; when the mouse wheel is rolled toward the rear of the mouse, wheelDelta is a negative multiple of 120.
+
+An onmousewheel event handler can be assigned to any element on the page or to the document to handle all mouse wheel interactions.
+
+Here's an example:
+
+Copy
+document.addEventListener("mousewheel", (event) => {
+    console.log(event.wheelDelta);
+});
+This example simply displays the wheelDelta value when the event is fired.
+
+In most cases, you need only know which direction the mouse wheel was turned, which can easily be determined by the sign of the wheelDelta value.
+
+The mousewheel event was added to HTML5 and availabile in most browsers.
