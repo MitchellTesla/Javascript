@@ -1,0 +1,11 @@
+We can use contains() method to determine if a given node is a descendant of another.
+
+The contains() method is called on the ancestor node from which the search should begin and accepts a single argument, which is the target descendant node.
+
+If the node exists as a descendant of the root node, the method returns true; otherwise it returns false.
+
+Here is an example:
+
+Copy
+console.log(document.documentElement.contains(document.body));  // true
+This example tests to see if the <body> element is a descendant of the <html> element, which returns true in all well-formed HTML pages.
