@@ -1,0 +1,45 @@
+The focus-related events are triggered into response to elements gaining and losing the focus.
+
+The Focus-Related Events.
+
+Name
+Description
+blur
+Triggered when the element loses the focus.
+focus
+Triggered when the element gains the focus.
+focusin
+Triggered when the element is just about to gain the focus.
+focusout
+Triggered when the element is just about to lose the focus.
+These events are represented by a FocusEvent object, which adds the property shown in the following table to the core Event object functionality.
+
+Name
+Description
+Returns
+relatedTarget
+
+The element that is about to gain or lose the focus; this
+property is used only by the focusin and focusout events.
+HTMLElement
+
+Using the Focus Events.
+
+Copy
+let inputElems = document.getElementsByTagName("input");
+for (let i = 0; i < inputElems.length; i++) {
+    inputElems[i].onfocus = handleFocusEvent;
+    inputElems[i].onblur = handleFocusEvent;
+}
+
+function handleFocusEvent(e) {
+    if (e.type == "focus") {
+        e.target.style.backgroundColor = "lightgray";
+        e.target.style.border = "thick double red";
+    } else {
+        e.target.style.removeProperty("background-color");
+        e.target.style.removeProperty("border");
+    }
+}
+
+The script in this example uses the focus and blur events to change the style of a pair of input elements.
