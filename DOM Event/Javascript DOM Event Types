@@ -1,0 +1,18 @@
+There are many categories of events that can occur in a web browser.
+
+The type of event being fired determines the information that is available about the event.
+
+DOM Level 3 Events specifies the following event groups:
+
+User interface (UI) events are general browser events that may have some interaction with the BOM.
+Focus events are fired when an element gains or loses focus.
+Mouse events are fired when the mouse is used to perform an action on the page.
+Wheel events are fired when a mouse wheel (or similar device) is used.
+Text events are fired when text is input into the document.
+Keyboard events are fired when the keyboard is used to perform an action on the page.
+Composition events are fired when inputting characters for an Input Method Editor IME.
+In addition to these categories, HTML5 defines another set of events, and browsers often implement proprietary events both on the DOM and on the BOM.
+
+These proprietary events are implemented differently across browsers.
+
+All major browsers support DOM Level 2 and 3 Events.
