@@ -1,0 +1,59 @@
+The scroll dimensions provide information about an element whose content is scrolling.
+
+The four scroll dimension properties are as follows:
+
+Property
+Meaning
+scrollHeight
+The total height of the content if there were no scrollbars present.
+scrollLeft
+
+The number of pixels that are hidden to the left of the content area.
+This property can be set to change the scroll position of the element.
+scrollTop
+
+The number of pixels that are hidden in the top of the content area.
+This property can be set to change the scroll position of the element.
+scrollWidth
+The total width of the content if there were no scrollbars present.
+Scroll-Dimension-Properties.png
+
+The scrollWidth and scrollHeight properties are useful for determining the actual dimensions of the content in a given element.
+
+For example, the <html> element is considered the element that scrolls the viewport in a web browser.
+
+Therefore, the height of an entire page that has a vertical scrollbar is document.documentElement.scrollHeight.
+
+The relationship between scrollWidth and scrollHeight to clientWidth and clientHeight is not clear when it comes to documents that do not scroll.
+
+Inspecting these properties on document.documentElement leads to inconsistent results across browsers.
+
+When trying to determine the total height of a document, including the minimum height based on the viewport, you must take the maximum value of scrollWidth/clientWidth and scrollHeight/clientHeight to guarantee accurate results across browsers.
+
+Here is an example:
+
+Copy
+let docHeight = Math.max(document.documentElement.scrollHeight,
+                         document.documentElement.clientHeight);
+
+let docWidth = Math.max(document.documentElement.scrollWidth,
+                        document.documentElement.clientWidth);
+The scrollLeft and scrollTop properties can be used either to determine the current scroll settings on an element or to set them.
+
+When an element hasn't been scrolled, both properties are equal to 0.
+
+If the element has been scrolled vertically, scrollTop is greater than 0, indicating the amount of content that is not visible at the top of the element.
+
+If the element has been scrolled horizontally, scrollLeft is greater than 0, indicating the number of pixels that are not visible on the left.
+
+Because each property can also be set, you can reset the element's scroll position by setting both scrollLeft and scrollTop to 0.
+
+The following function checks to see if the element is at the top, and if not, it scrolls it back to the top:
+
+Copy
+function scrollToTop(element) {
+  if (element.scrollTop != 0) {
+    element.scrollTop = 0;
+  }
+}
+This function uses scrollTop both for retrieving the value and for setting it.
