@@ -1,0 +1,61 @@
+The contextmenu event bubbles, so a single event handler can be assigned to a document that handles all such events for the page.
+
+The target of the event is the element that was acted on.
+
+This event can be canceled in all browsers, using event.preventDefault() in DOM-compliant browsers.
+
+The contextmenu event is considered a mouse event and so has all of the properties related to the cursor position.
+
+Typically, a custom context menu is displayed using an oncontextmenu event handler and hidden again using the onclick event handler.
+
+Consider the following HTML page:
+
+Copy
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ContextMenu Event Example</title>
+</head>
+<body>
+  <div id="myDiv">Right click or Ctrl+click me to get a custom context menu.
+    Click anywhere else to get the default context menu.</div>
+  <ul id="myMenu" style="position:absolute;visibility:hidden;background-color:
+    silver">
+    <li><a href="http://www.google.com">Search site</a></li>
+    <li><a href="http://www.demo2s.com">Demo site</a></li>
+    <li><a href="http://www.yahoo.com">Yahoo!</a></li>
+  </ul>
+</body>
+</html>
+In this code, a <div> is created that has a custom context menu.
+
+The <ul> element serves as the custom context menu and is initially hidden.
+
+The JavaScript to make this example work is as follows:
+
+Copy
+window.addEventListener("load", (event) => {
+  let div = document.getElementById("myDiv");
+
+  div.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
+
+    let menu = document.getElementById("myMenu");
+    menu.style.left = event.clientX + "px";
+    menu.style.top = event.clientY + "px";
+    menu.style.visibility = "visible";
+  });
+
+  document.addEventListener("click", (event) => {
+    document.getElementById("myMenu").style.visibility = "hidden";
+  });
+});
+Here, an oncontextmenu event handler is defined for the <div>.
+
+The event handler begins by canceling the default behavior, ensuring that the browser's context menu won't be displayed.
+
+Next, the <ul> element is placed into position based on the clientX and clientY properties of the event object.
+
+The last step is to show the menu by setting its visibility to "visible".
+
+An onclick event handler is then added to the document to hide the menu whenever a click occurs, which is the behavior of system context menus.
