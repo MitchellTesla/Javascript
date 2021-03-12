@@ -1,0 +1,29 @@
+CDATA sections are specific to XML-based documents and are represented by the CDATASection type.
+
+The CDATASection type inherits from the base Text type, so it has all of the same string manipulation methods except for splitText().
+
+A CDATASection node has the following characteristics:
+
+Item
+Value
+nodeType
+4
+nodeName
+#cdata-section
+nodeValue
+the contents of the CDATA section.
+parentNode
+a Document or Element.
+Child nodes
+not supported.
+CDATA sections are valid only in XML documents, so most browsers will incorrectly parse a CDATA section into either a Comment or an Element.
+
+Consider the following:
+
+Copy
+<div id="myDiv"><![CDATA[This is some content.]]></div>
+In this example, a CDATASection node should exist as the first child of the <div>; however, none of the four major browsers interpret it as such.
+
+Even in valid XHTML pages, the browsers don't properly support embedded CDATA sections.
+
+True XML documents allow the creation of CDATA sections using document.createCDataSection() and pass in the node's content.
