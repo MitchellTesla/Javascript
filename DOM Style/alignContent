@@ -1,0 +1,1 @@
+document.getElementById("main").style.alignContent = "space-between";
