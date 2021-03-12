@@ -1,0 +1,63 @@
+The className property is used to add, remove, and replace class names.
+
+Because className contains a single string, we have to deal with the class list as a while string.
+
+For example, consider the following HTML code:
+
+Copy
+<div class="abc user disabled">...</div>
+This <div> element has three classes assigned.
+
+To remove one of these classes, you need to split the class attribute into individual classes, remove the unwanted class, and then create a string containing the remaining classes.
+
+HTML5 classList property provides a new way to work with class list.
+
+The classList property is an instance of a new type of collection named DOMTokenList.
+
+DOMTokenList has a length property to indicate how many items it contains, and individual items may be retrieved via the item() method or using bracket notation.
+
+It also has the following additional methods:
+
+Method
+Meaning
+add(value)
+Adds the given string value to the list. If the value already exists, it will not be added.
+contains(value)
+Indicates if the given value exists in the list (true if so; false if not).
+remove(value)
+Removes the given string value from the list.
+toggle(value)
+If the value already exists in the list, it is removed. If the value doesn't exist, then it's added.
+To remove one class among the class list string we can do:
+
+Copy
+div.classList.remove("user");
+Using this code ensures that the rest of the class names will be unaffected by the change.
+
+The other methods reduce the complexity of the basic operations, as shown in these examples:
+
+Remove the "disabled" class.
+
+Copy
+div.classList.remove("disabled");
+Add the "current" class.
+
+Copy
+div.classList.add("current");
+Toggle the "user" class.
+
+Copy
+div.classList.toggle("user");
+Figure out what's on the element.
+
+Copy
+if (div.classList.contains("abc") && !div.classList.contains("disabled")){
+  // Do stuff
+)
+Iterate over the class names.
+
+Copy
+for (let class of div.classList){
+  doStuff(class);
+}
+The classList property is fully in all other major browsers.
