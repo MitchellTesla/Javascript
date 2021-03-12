@@ -1,0 +1,26 @@
+The Text type splitText() method splits a text node into two text nodes, separating the nodeValue at a given offset.
+
+The original text node contains the text up to the specified offset, and the new text node contains the rest of the text.
+
+The method returns the new text node, which has the same parentNode as the original.
+
+Consider the following example:
+
+Copy
+let element = document.createElement("div");
+element.className = "message";
+
+let textNode = document.createTextNode("Hello world!");
+element.appendChild(textNode);
+
+document.body.appendChild(element);
+
+let newNode = element.firstChild.splitText(5);
+console.log(element.firstChild.nodeValue);  // "Hello"
+console.log(newNode.nodeValue);             // " world!"
+console.log(element.childNodes.length);     // 2
+In this example, the text node containing the text "Hello world!" is split into two text nodes at position 5.
+
+Position 5 contains the space between "Hello" and "world!", so the original text node has the string "Hello" and the new one has the text " world!", including the space.
+
+Splitting text nodes is used most often with DOM parsing techniques for extracting data from text nodes.
