@@ -1,0 +1,1 @@
+document.getElementById("myDIV").style.animationDuration = "3s";
