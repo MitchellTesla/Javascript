@@ -1,0 +1,55 @@
+The innerText property works with all text content contained within an element, regardless of how deep in the subtree the text exists.
+
+When used to read the value, innerText concatenates the values of all text nodes in the subtree in depth-first order.
+
+When used to write the value, innerText removes all children of the element and inserts a text node containing the given value.
+
+Consider the following HTML code:
+
+Copy
+<div id="content">
+        <p>This is a <strong>paragraph</strong> with a list following it.</p>
+        <ul>
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+        </ul>
+</div>
+For the <div> element in this example, the innerText property returns the following string:
+
+Copy
+This is a paragraph with a list following it.
+Item 1
+Item 2
+Item 3
+Note that different browsers treat white space in different ways, so the formatting may or may not include the indentation in the original HTML code.
+
+The following code uses the innerText property to set the contents of the <div> element:
+
+Copy
+div.innerText = "Hello world!";
+After executing this line of code, the HTML of the page is effectively changed to the following:
+
+Copy
+<div id="content">Hello world!</div>
+Setting innerText removes all of the child nodes that existed before, completely changing the DOM subtree.
+
+Additionally, setting innerText encodes all HTML syntax characters such as less-than, greater-than, quotation marks, and ampersands, that may appear in the text.
+
+Here is an example:
+
+Copy
+div.innerText = "Hello & hi, <b>\"hi\"!</b>";
+The result of this operation is as follows:
+
+Copy
+<div id="content">
+Hello &amp; hi, &lt;b&gt;&quot;hi&quot;!&lt;/b&gt;</div>
+The innerText property is also useful for stripping out HTML tags.
+
+By setting the innerText equal to the innerText, as shown here, all HTML tags are removed:
+
+Copy
+div.innerText = div.innerText;
+Executing this code replaces the contents of the container with just the text that exists already.
+
