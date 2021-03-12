@@ -1,0 +1,42 @@
+The insertAdjacentHTML() method accepts two arguments:
+
+the position in which to insert and
+the HTML or text to insert.
+The first argument must be one of the following values:
+
+Value
+Meaning
+"beforebegin"
+Insert just before the element as a previous sibling.
+"afterbegin"
+Insert just inside of the element as a new child or series of children before the first child.
+"beforeend"
+Insert just inside of the element as a new child or series of children after the last child.
+"afterend"
+Insert just after the element as a next sibling.
+Note that each of these values is case insensitive.
+
+The second argument is parsed as an HTML string or as a raw string and in the case of HTML, will throw an error if the value cannot be properly parsed.
+
+Basic usage is as follows.
+
+Insert as previous sibling.
+
+Copy
+element.insertAdjacentHTML("beforebegin", "<p>Hello world!</p>");
+element.insertAdjacentText("beforebegin", "Hello world!");
+Insert as first child.
+
+Copy
+element.insertAdjacentHTML("afterbegin", "<p>Hello world!</p>");
+element.insertAdjacentText("afterbegin", "Hello world!");
+Insert as last child.
+
+Copy
+element.insertAdjacentHTML("beforeend", "<p>Hello world!</p>");
+element.insertAdjacentText("beforeend", "Hello world!");
+Insert as next sibling.
+
+Copy
+element.insertAdjacentHTML("afterend", "<p>Hello world!</p>"); element.
+insertAdjacentText("afterend", "Hello world!");
