@@ -1,0 +1,42 @@
+Elements may have any number of children and descendants.
+
+The childNodes property contains all of the immediate children of the element, which may be other elements, text nodes, comments, or processing instructions.
+
+For example, consider the following code:
+
+Copy
+<ul id="myList">
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+When this code is parsed, the <ul> element will have seven elements: three <li> elements and four text nodes representing the white space between <li> elements.
+
+If the white space between elements is removed, as the following example demonstrates, all browsers return the same number of child nodes:
+
+Copy
+<ul id="myList"><li>Item 1</li><li>Item 2</li><li>Item 3</li></ul>
+Using this code, browsers return three child nodes for the <ul> element.
+
+We need to check the nodeType before performing an action, as the following example shows:
+
+Copy
+for (let i = 0, len = element.childNodes.length; i < len; ++i) {
+  if (element.childNodes[i].nodeType == 1) {
+    // do processing
+  }
+}
+This code loops through each child node of a particular element and performs an operation only if nodeType is equal to 1, which is the element node type.
+
+To get child nodes and other descendants with a particular tag name, elements also support the getElementsByTagName() method.
+
+When used on an element, the search is rooted on the element, so only descendants of that element are returned.
+
+In the <ul> code, all <li> elements can be retrieved using the following code:
+
+Copy
+let ul = document.getElementById("myList");
+let items = ul.getElementsByTagName("li");
+This works because the <ul> element has only one level of descendants.
+
+If there were more levels, all <li> elements contained in all levels would be returned.
