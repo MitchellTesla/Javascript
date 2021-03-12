@@ -1,0 +1,38 @@
+The method setAttribute() accepts two arguments:
+
+the name of the attribute to set and
+the value to set it to.
+If the attribute already exists, setAttribute() replaces its value with the one specified; if the attribute doesn't exist, setAttribute() creates it and sets its value.
+
+Consider the following HTML element:
+
+Copy
+<div id="myDiv" class="bd" title="asdf" lang="en" dir="ltr"></div>
+Here's an example:
+
+Copy
+let div = document.getElementById("myDiv");
+div.setAttribute("id", "someOtherId");
+div.setAttribute("class", "ft");
+div.setAttribute("title", "Some other text");
+div.setAttribute("lang","fr");
+div.setAttribute("dir", "rtl");
+The setAttribute() method works with both HTML attributes and custom attributes in the same way.
+
+Attribute names get normalized to lowercase when set using this method, so "ID" ends up as "id".
+
+Copy
+Because all attributes are properties, assigning directly to the property can set the attribute values, as shown here:
+
+Copy
+div.id = "someOtherId";
+div.align = "left";
+Adding a custom property to a DOM element does not automatically make it an attribute of the element:
+
+Copy
+div.mycolor = "red";
+console.log(div.getAttribute("mycolor"));   
+// null (except in Internet Explorer)
+This example adds a custom property named mycolor and sets its value to "red".
+
+In most browsers, this property does not automatically become an attribute on the element, so calling getAttribute() to retrieve an attribute with the same name returns null.
