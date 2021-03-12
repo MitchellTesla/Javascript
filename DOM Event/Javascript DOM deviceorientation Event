@@ -1,0 +1,44 @@
+The deviceorientation event is fired on window when accelerometer information is available and changes.
+
+The deviceorientation inform you of how the device is oriented in space.
+
+A device is said to exist in three-dimensional space along an x-axis, a y-axis, and a z-axis.
+
+These all start at zero when the device is at rest on a horizontal surface.x
+
+The x-axis goes from the left of the device to the right, the y-axis goes from the bottom of the device to the top, and the z-axis goes from the back of the device to the front.
+
+When deviceorientation fires, it returns information about how the values of each axis have changed relative to the device at rest.
+
+The event object has five properties:
+
+Property
+Meaning
+alpha
+The difference in y-axis degrees as you rotate around the z-axis (side-to-side tilt); a floating point number between 0 and 360.
+beta
+The difference in z-axis degrees as you rotate around the x-axis (front-to-back tilt); a floating point number between -180 and 180.
+gamma
+The difference in the z-axis degrees as you rotate around the y-axis (twisting tilt); a floating point number between -90 and 90.
+absolute
+A Boolean value indicating if the device is returning absolute values or not.
+compassCalibrated
+A Boolean value indicating if the device's compass is properly calibrated or not.
+Here's a simple example that outputs the values for alpha, beta, and gamma:
+
+Copy
+window.addEventListener("deviceorientation", (event) => {
+   let output = document.getElementById("output");
+   output.innerHTML =
+      `Alpha=${event.alpha}, Beta=${event.beta], Gamma=${event.gamma$}<br>`;
+});
+You can use this information to rearrange or otherwise alter elements on the screen in reaction to the device changing its orientation.
+
+For example, this code rotates an element in reaction to the device orientation:
+
+Copy
+window.addEventListener("deviceorientation", (event) => {
+   let arrow = document.getElementById("arrow");
+   arrow.style.webkitTransform = `rotate(${Math.round(event.alpha)}deg)`;
+});
+The element "arrow" is rotated along with the value of event.alpha, giving it a compass-like feel.
