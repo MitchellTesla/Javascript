@@ -1,0 +1,28 @@
+The event object inputMethod property indicates how the text was input into the control.
+
+The possible values are:
+
+Value
+Indicate
+0
+the browser couldn't determine how the input was entered.
+1
+a keyboard was used.
+2
+the text was pasted in.
+3
+the text was dropped in as part of a drag operation.
+4
+the text was input using an IME.
+5
+the text was input by selecting an option in a form.
+6
+the text was input by handwriting (such as with a stylus).
+7
+the text was input by voice command.
+8
+the text was input by a combination of methods.
+9
+the text was input by script.
+Using this property, you can determine how text was input into a control in order to verify its validity.
+
