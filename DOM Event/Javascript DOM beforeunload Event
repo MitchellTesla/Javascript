@@ -1,0 +1,16 @@
+The beforeunload event fires on the window and is intended to give developers a way to prevent the page from being unloaded.
+
+This event fires before the page starts to unload from the browser, allowing continued use of the page should it ultimately not be unloaded.
+
+You cannot cancel this event. The event gives you the ability to display a message to the user.
+
+The message indicates that the page is about to be unloaded, displays the message, and asks if the user would like to continue to close the page or remain on the page.
+
+In order to cause this dialog box to pop up, you must set event.returnValue equal to the string you want displayed in the dialog for Internet Explorer and Firefox and also return it as the function value for Safari and Chrome, as in this example:
+
+Copy
+window.addEventListener("beforeunload", (event) => {
+   let message = "Really?";
+   event.returnValue = message;
+   return message;
+});
