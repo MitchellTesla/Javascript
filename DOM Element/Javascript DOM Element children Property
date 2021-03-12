@@ -1,0 +1,10 @@
+The children property is an HTMLCollection that contains only an element's child nodes that are also elements.
+
+Otherwise, the children property is the same as childNodes and may contain the same items when an element has only elements as children.
+
+The children property is accessed as follows:
+
+Copy
+let childCount = element.children.length;
+let firstChild = element.children[0];
+All modern browsers support contains
