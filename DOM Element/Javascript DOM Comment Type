@@ -1,0 +1,32 @@
+Comments are represented in the DOM by the Comment type.
+
+A Comment node has the following characteristics:
+
+Item
+Value
+nodeType
+8
+nodeName
+#comment
+nodeValue
+the content of the comment
+parentNode
+a Document or Element.
+Child nodes
+not supported.
+The Comment type inherits from the same base as the Text type, so it has all of the same string manipulation methods except splitText().
+
+The actual content of the comment may be retrieved using either nodeValue or the data property.
+
+A comment node can be accessed as a child node from its parent.
+
+Consider the following HTML code:
+
+Copy
+<div id="myDiv"><!-- A comment --></div>
+In the example above, the comment is a child node of the <div> element, which means it can be accessed like this:
+
+Copy
+let div = document.getElementById("myDiv");
+let comment = div.firstChild;
+console.log(comment.data);  // "A comment"
