@@ -1,0 +1,63 @@
+For the mouseover and mouseout events, there are other elements related to the event.
+
+Both of these events involve moving the mouse cursor from within the boundaries of one element to within the boundaries of another element.
+
+For the mouseover event, the primary target of the event is the element that is gaining the cursor, and the related element is the one that is losing the cursor.
+
+For mouseout, the primary target is the element that is losing the cursor, and the related element is the one that is gaining the cursor.
+
+Consider the following example:
+
+Copy
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Related Elements Example</title>
+</head>
+<body>
+ <div id="myDiv"
+      style="background-color:red;height:100px;width:100px;"></div>
+</body>
+</html>
+This page renders a single <div> on the page.
+
+If the mouse cursor starts over the <div> and then moves outside of it, a mouseout event fires on <div> and the related element is the <body> element.
+
+The mouseover event fires on <body> and the related element is the <div>.
+
+The DOM provides information about related elements via the relatedTarget property on the event object.
+
+This property contains a value only for the mouseover and mouseout events; it is null for all other events.
+
+A cross-browser method to get the related element:
+
+Copy
+var EventUtil = {
+  // more code here
+  getRelatedTarget: function(event) {
+    if (event.relatedTarget) {
+      return event.relatedTarget;
+    } else if (event.toElement) {
+      return event.toElement;
+    } else if (event.fromElement) {
+      return event.fromElement;
+    } else {
+      return null;
+    }
+  }
+};
+The code above uses feature detection to determine which value to return.
+
+The EventUtil.getRelatedTarget() method can then be used as follows:
+
+Copy
+let div = document.getElementById("myDiv");
+div.addEventListener("mouseout", (event) => {
+  let target = event.target;
+  let relatedTarget = EventUtil.getRelatedTarget(event);
+  console.log(
+    `Moused out of ${target.tagName} to ${relatedTarget.tagName}`);
+});
+This example registers an event handler for the mouseout event on the <div> element.
+
+When the event fires, a message is logged indicating the place the mouse moved from and the place the mouse moved to.
