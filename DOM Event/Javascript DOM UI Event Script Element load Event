@@ -1,0 +1,15 @@
+The <script> element fires a load event, allowing you to determine when dynamically loaded JavaScript files have been completely loaded.
+
+JavaScript files start downloading only after the src property has been assigned and the element has been added into the document, so the order in which the event handler and the src property are assigned is insignificant.
+
+The following illustrates how to assign an event handler for a <script> element:
+
+Copy
+window.addEventListener("load", () => {
+  let script = document.createElement("script");
+  script.addEventListener("load", (event) => {
+    console.log("Loaded");
+  });
+  script.src = "example.js";
+  document.body.appendChild(script);
+});
