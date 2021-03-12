@@ -1,0 +1,14 @@
+The method removeAttribute() removes the attribute from the element altogether.
+
+This does more than just clear the attribute's value; it completely removes the attribute from the element.
+
+Consider the following HTML element:
+
+Copy
+<div id="myDiv" class="bd" title="asdf" lang="en" dir="ltr"></div>
+Here's an example:
+
+Copy
+let div = document.getElementById("myDiv");
+div.removeAttribute("class");
+This method isn't used very frequently, but it can be useful for specifying exactly which attributes to include when serializing a DOM element.
