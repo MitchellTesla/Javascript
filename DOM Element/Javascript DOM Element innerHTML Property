@@ -1,0 +1,53 @@
+When used in read mode, innerHTML returns the HTML representing all of the child nodes, including elements, comments, and text nodes.
+
+When used in write mode, innerHTML completely replaces all of the child nodes in the element with a new DOM subtree based on the specified value.
+
+Consider the following HTML code:
+
+Copy
+<div id="content">
+  <p>This is a <strong>paragraph</strong> with a list following it.</p>
+  <ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+  </ul>
+</div>
+For the <div> element in this example, the innerHTML property returns the following string:
+
+Copy
+<p>This is a <strong>paragraph</strong> with a list following it.</p>
+<ul>
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+The exact text returned from innerHTML differs from browser to browser.
+
+You cannot depend on the returned value of innerHTML being exactly the same from browser to browser.
+
+When used in write mode, innerHTML parses the given string into a DOM subtree and replaces all of the existing child nodes with it.
+
+Because the string is considered to be HTML, all tags are converted into elements in the standard way that the browser handles HTML.
+
+Setting simple text without any HTML tags, as shown here, sets the plain text:
+
+Copy
+div.innerHTML = "Hello world!";
+You can set innerHTML to a string containing HTML and the string will be parsed.
+
+Consider the following example:
+
+Copy
+div.innerHTML = "Hello & hi, <b>\"hi\"!</b>";
+The result of this operation is as follows:
+
+Copy
+<div id="content">Hello &amp; hi, <b>&quot;hi&quot;!</b></div>
+After setting innerHTML, you can access the newly created nodes as you would any other nodes in the document.
+
+Setting innerHTML causes the HTML string to be parsed by the browser into an appropriate DOM tree.
+
+Setting innerHTML and then reading it back typically results in a different string being returned.
+
+The returned string is the result of serializing the DOM subtree that was created for the original HTML string.
