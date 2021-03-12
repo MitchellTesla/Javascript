@@ -1,0 +1,8 @@
+Browsers offer a method called getBoundingClientRect() on each element, which returns a DOMRect object that has six properties: left, top, right, bottom, height, and width.
+
+These properties give the location of the element on the page relative to the viewport.
+
+Copy
+let myDiv = document.getElementById("myDiv");
+let rect = myDiv.getBoundingClientRect();
+console.log(rect);
