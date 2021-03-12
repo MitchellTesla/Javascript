@@ -1,0 +1,18 @@
+The DOM textInput event fires when a character is input to an editable area.
+
+The keypress fires on any element that can have focus but textInput fires only on editable areas.
+
+The textInput fires only for keys that result in a new character being inserted, whereas keypress fires for keys that affect text in any way including Backspace.
+
+The textInput event provides a data property on the event object that contains the character that was inserted.
+
+The value of data is always the exact character that was inserted, so if the S key is pressed without Shift, data is "s", but if the same key is pressed holding Shift down, then data is "S".
+
+The textInput event can be used as follows:
+
+Copy
+let textbox = document.getElementById("myText");
+textbox.addEventListener("textInput", (event) => {
+    console.log(event.data);
+});
+In this example, the character that was inserted into the text box is displayed in a log message.
