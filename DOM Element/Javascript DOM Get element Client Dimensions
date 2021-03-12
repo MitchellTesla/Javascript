@@ -1,0 +1,19 @@
+The client dimensions of an element comprise the space occupied by the element's content and its padding.
+
+There are only two properties related to client dimensions: clientWidth and clientHeight.
+
+The clientWidth property is the width of the content area plus the width of both the left and the right padding.
+
+The clientHeight property is the height of the content area plus the height of both the top and the bottom padding.
+
+Client-Dimension-Properties.png
+
+The client dimensions are the amount of space inside of the element, so the space taken up by scrollbars is not counted.
+
+The most common use of these properties is to determine the browser viewport size.
+
+This is done by using the clientWidth and clientHeight of document.documentElement.
+
+These properties represent the dimensions of the viewport which is the <html> or <body> elements.
+
+The client dimensions are read-only and are calculated each time they are accessed.
