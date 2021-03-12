@@ -1,0 +1,24 @@
+HTML5 introduced the hashchange event to notify developers when the URL hash changed.
+
+The URL hash value is everything following a pound sign (#) in a URL.
+
+The developers used the URL hash to store state information or navigational information in Ajax applications.
+
+The onhashchange event handler must be attached to the window, and it is called whenever the URL hash changes.
+
+The event object should have two additional properties: oldURL and newURL.
+
+These properties hold the complete URL including the hash before the change and after the change.
+
+The contrasting URLs are tracked in the following example:
+
+Copy
+window.addEventListener("hashchange", (event) => {
+    console.log(`Old URL: ${event.oldURL}, New URL: ${event.newURL}`);
+});
+It's best to use the location object to determine the current hash:
+
+Copy
+window.addEventListener("hashchange", (event) => {
+  console.log(`Current hash: ${location.hash}`);
+});
