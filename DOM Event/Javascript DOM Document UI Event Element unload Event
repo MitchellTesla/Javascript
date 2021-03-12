@@ -1,0 +1,32 @@
+The unload event fires when a document has completely unloaded.
+
+The unload event typically fires when navigating from one page to another and is most often used to clean up references to avoid memory leaks.
+
+An onunload event handler can be assigned in two ways.
+
+The first is by using JavaScript, as shown here:
+
+Copy
+window.addEventListener("unload", (event) => {
+  console.log("Unloaded!");
+ });
+The event object is generated for this event and the target is set to document in DOM-compliant browsers.
+
+The second way to assign the event handler is to add an attribute to the <body> element, as in this example:
+
+Copy
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unload Event Example</title>
+</head>
+<body onunload="console.log('Unloaded!')">
+
+</body>
+</html>
+Be careful with the code that executes inside of an onunload event handler.
+
+Because the unload event fires after everything is unloaded, not all objects that were available when the page was loaded are still available.
+
+Trying to manipulate the location of a DOM node or its appearance can result in errors.
+
