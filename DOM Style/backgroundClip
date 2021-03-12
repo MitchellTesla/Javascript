@@ -1,0 +1,1 @@
+document.getElementById("myDIV").style.backgroundClip = "content-box";
