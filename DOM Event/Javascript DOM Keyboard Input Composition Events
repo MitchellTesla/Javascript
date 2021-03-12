@@ -1,0 +1,46 @@
+Composition events handle complex input sequences typically found on IMEs.
+
+IME stands for input method editor.
+
+IMEs allow users to input characters not found on the physical keyboard.
+
+For example, those using a Latin keyboard can still enter Japanese characters into the computer.
+
+IMEs often require multiple keys to be pressed at once while resulting in only a single character being entered.
+
+Composition events help to detect and work with such input.
+
+There are three composition events:
+
+Event
+Meaning
+compositionstart
+Fires when the text composition system of the IME is opened, indicating that input is about to commence.
+compositionupdate
+Fires when a new character has been inserted into the input field.
+compositionend
+Fires when the text composition system is closed, indicating a return to normal keyboard input.
+Composition events are similar to text events in many ways.
+
+When a composition event fires, the target is the input field receiving the text.
+
+The only additional event property is data, which contains one of the following:
+
+When accessed during compositionstart, contains the text being edited. For instance, if text has been selected and will now be replaced.
+When accessed during compositionupdate, contains the new character being inserted.
+When accessed during compositionend, contains all of the input entered during this composition session.
+The composition events can be used to filter input where necessary.
+
+These events can be used as follows:
+
+Copy
+let textbox = document.getElementById("myText");
+textbox.addEventListener("compositionstart", (event) => {
+  console.log(event.data);
+});
+textbox.addEventListener("compositionupdate", (event) => {
+  console.log(event.data);
+});
+textbox.addEventListener("compositionend", (event) => {
+  console.log(event.data);
+});
