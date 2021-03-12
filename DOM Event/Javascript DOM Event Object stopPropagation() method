@@ -1,0 +1,17 @@
+The stopPropagation() method stops the flow of an event through the DOM structure immediately, canceling any further event capturing or bubbling before it occurs.
+
+For example, an event handler added directly to a button can call stopPropagation() to prevent an event handler on document.body from being fired, as shown in the following example:
+
+Copy
+let btn = document.getElementById("myBtn");
+btn.onclick = function(event) {
+  console.log("Clicked");
+  event.stopPropagation();
+};
+
+document.body.onclick = function(event) {
+   console.log("Body clicked");
+};
+Without the call to stopPropagation() in this example, two messages would be logged when the button is clicked.
+
+However, the click event never reaches document.body, so the onclick event handler is never executed.
