@@ -1,0 +1,60 @@
+The keyboard events are triggered in response to key presses.
+
+The set of events in this category is shown in the following table.
+
+Name
+Description
+keydown
+Triggered when the user presses a key.
+keypress
+Triggered when a user presses and releases a key.
+keyup
+Triggered when the user releases a key.
+These events are represented by a KeyboardEvent object, which adds the property shown in the following table to the core Event object functionality.
+
+Name
+Description
+Returns
+char
+Returns the character represented by the key press.
+string
+key
+Returns the key that was pressed.
+string
+ctrlKey
+
+Returns true if the Ctrl key was down when the key was
+pressed.
+boolean
+
+shiftKey
+
+Returns true if the Shift key was down when the key was
+pressed.
+boolean
+
+altKey
+
+Returns true if the Alt key was down when the key was
+pressed.
+boolean
+
+repeat
+Returns true if the key is being held down.
+boolean
+The following code shows some of the keyboard events in use.
+
+Copy
+let inputElems = document.getElementsByTagName("input");
+for (let i = 0; i < inputElems.length; i++) {
+    inputElems[i].onkeyup = handleKeyboardEvent;
+}
+
+function handleKeyboardEvent(e) {
+    document.getElementById("message").innerHTML = "Key pressed: " +
+        e.keyCode + " Char: " + String.fromCharCode(e.keyCode);
+}
+
+The script in this example changes the content of a span element to display key strokes sent to a pair of input elements.
+
+Notice how we use the String.fromCharCode function to convert the value of the keyCode property into a more useful value.
