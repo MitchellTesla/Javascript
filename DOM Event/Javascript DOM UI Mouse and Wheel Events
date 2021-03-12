@@ -1,0 +1,68 @@
+There are nine mouse events defined in DOM Level 3 Events.
+
+They are as follows:
+
+Event
+Meaning
+click
+
+Fires when the user clicks the primary mouse button (the left button) or when the user presses the Enter key.
+For accessibility purposes, because onclick event handlers can be executed using the keyboard and the mouse.
+dblclick
+Fires when the user double-clicks the primary mouse button (the left button).
+mousedown
+Fires when the user pushes any mouse button down.
+mouseenter
+
+Fires when the mouse cursor is outside of an element and then the user first moves it inside of the boundaries of the element.
+This event does not bubble and does not fire when the cursor moves over descendant elements.
+mouseleave
+
+Fires when the mouse cursor is over an element and then the user moves it outside of that element's boundaries.
+This event does not bubble and does not fire when the cursor moves over descendant elements.
+mousemove
+
+Fires repeatedly as the cursor is being moved around an element.
+This event cannot be fired via the keyboard.
+mouseout
+
+
+Fires when the mouse cursor is over an element and then the user moves it over another element.
+The element moved to may be outside of the bounds of the original element or a child of the original element.
+This event cannot be fired via the keyboard.
+mouseover
+
+Fires when the mouse cursor is outside of an element and then the user first moves it inside of the boundaries of the element.
+This event cannot be fired via the keyboard.
+mouseup
+
+Fires when the user releases a mouse button.
+This event cannot be fired via the keyboard.
+All elements on a page support mouse events.
+
+All mouse events bubble except mouseenter and mouseleave, and they can all be canceled, which affects the default behavior of the browser.
+
+Canceling the default behavior of mouse events can affect other events as well because of the relationship that exists amongst the events.
+
+A click event can be fired only if a mousedown event is fired and followed by a mouseup event on the same element; if either mousedown or mouseup is canceled, then the click event will not fire.
+
+Similarly, it takes two click events to cause the dblclick event to fire.
+
+If anything prevents these two click events from firing by either canceling one of the click events or canceling either mousedown or mouseup, the dblclick event will not fire.
+
+These four mouse events always fire in the following order:
+
+mousedown
+mouseup
+click
+mousedown
+mouseup
+click
+dblclick
+Both click and dblclick rely on other events to fire before they can fire, whereas mousedown and mouseup are not affected by other events.
+
+The DOM Level 3 feature name is just MouseEvent instead of MouseEvents.
+
+There is also a sub group of mouse events called wheel events.
+
+Wheel events are really just a single event, mousewheel, which monitors interactions of a mouse wheel or a similar device such as the Mac track pad
