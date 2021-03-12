@@ -1,0 +1,50 @@
+The Element type represents an XML or HTML element, providing access to information such as its tag name, children, and attributes.
+
+An Element node has the following characteristics:
+
+Item
+Value
+nodeType
+1
+nodeName
+the element's tag name.
+nodeValue
+null
+parentNode
+may be a Document or Element.
+childNodes
+may be Element, Text, Comment, ProcessingInstruction, CDATASection, or EntityReference.
+An element's tag name is accessed via the nodeName property or by using the tagName property; both properties return the same value.
+
+Consider the following element:
+
+Copy
+<div id="myDiv"></div>
+This element can be retrieved and its tag name accessed in the following way:
+
+Copy
+let div = document.getElementById("myDiv");
+console.log(div.tagName);  // "DIV"
+console.log(div.tagName == div.nodeName);   // true
+The element has a tag name of div and an ID of "myDiv".
+
+div.tagName actually outputs "DIV" instead of "div".
+
+When used with HTML, the tag name is always represented in all uppercase; when used with XML (including XHTML), the tag name always matches the case of the source code.
+
+If you aren't sure whether your script will be on an HTML or XML document, it's best to convert tag names to a common case before comparison, as this example shows:
+
+Copy
+if (element.tagName == "div"){  // AVOID! Error prone!
+  // do something here
+}
+
+// Preferred - works in all documents
+if (element.tagName.toLowerCase() == "div"){ 
+  // do something here
+}
+This example shows two comparisons against a tagName property.
+
+The first is quite error prone because it won't work in HTML documents.
+
+The second approach, converting the tag name to all lowercase, is preferred because it will work for both HTML and XML documents.
