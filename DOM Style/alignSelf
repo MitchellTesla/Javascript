@@ -1,0 +1,1 @@
+document.getElementById("myBlueDiv").style.alignSelf = "stretch";
