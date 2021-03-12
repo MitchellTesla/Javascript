@@ -1,0 +1,30 @@
+The load event is perhaps the most often used event in JavaScript.
+
+For the window object, the load event fires when the entire page has been loaded, including all external resources such as images, JavaScript files, and CSS files.
+
+You can define an onload event handler in two ways.
+
+The first is by using JavaScript, as shown here:
+
+Copy
+window.addEventListener("load", (event) => {
+  console.log("Loaded!");
+});
+The event object is passed into the event handler.
+
+The event object event.target set to document.
+
+The second way to assign the onload event handler is to add an onload attribute to the <body> element, as in the following example:
+
+Copy
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Load Event Example</title>
+</head>
+<body onload="console.log('Loaded!')">
+
+</body>
+</html>
+Generally speaking, any events that occur on the window can be assigned via attributes on the <body> element because there is no access to the window element in HTML.
+
