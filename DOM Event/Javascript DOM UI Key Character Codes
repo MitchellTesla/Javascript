@@ -1,0 +1,34 @@
+When a keypress event occurs, this means that the key affects the display of text on the screen.
+
+All browsers fire the keypress event for keys that insert or remove a character; other keys are browser-dependent.
+
+Browsers support a property on the event object called charCode, which is filled in only for the keypress event and contains the ASCII code for the character related to the key that was pressed.
+
+In this case, the keyCode is typically equal to 0 or may also be equal to the key code for the key that was pressed.
+
+To retrieve the character code in a cross-browser way, you must therefore first check to see if the charCode property is used and, if not, use keyCode instead, as shown in the following example:
+
+Copy
+var EventUtil = {
+  getCharCode: function(event) {
+    if (typeof event.charCode == "number") {
+      return event.charCode;
+    } else {
+      return event.keyCode;
+    }
+  }
+};
+This method checks to see if the charCode property is a number.
+
+It will be undefined for browsers that don't support it and, if it is, returns the value.
+
+Otherwise, the keyCode value is returned.
+
+This method can be used as follows:
+
+Copy
+let textbox = document.getElementById("myText");
+textbox.addEventListener("keypress", (event) => {
+     console.log(EventUtil.getCharCode(event));
+});
+Once you have the character code, it's possible to convert it to the actual character using the String.fromCharCode() method.
