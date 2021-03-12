@@ -1,0 +1,18 @@
+The click event is fired only when the primary mouse button is clicked on an element or when the Enter key is pressed on the keyboard, so button information isn't necessary.
+
+For the mousedown and mouseup events, there is a button property on the event object that indicates the button that was pressed or released.
+
+The DOM button property has the following three possible values:
+
+0 for the primary mouse button,
+1 for the middle mouse button (the scroll wheel button), and
+2 for the secondary mouse button.
+In traditional setups, the primary mouse button is the left button and the secondary button is the right one.
+
+For mouse events, detail contains a number indicating how many times a click has occurred at the given location.
+
+Clicks are considered to be a mousedown event followed by a mouseup event at the same pixel location.
+
+The value of detail starts at 1 and is incremented every time a click occurs.
+
+If the mouse is moved between mousedown and mouseup, then detail is set back to 0.
