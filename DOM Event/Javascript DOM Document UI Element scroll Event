@@ -1,0 +1,17 @@
+Even though the scroll event occurs on the window, it actually refers to changes in the appropriate page-level element.
+
+In quirks mode, the changes are observable using the scrollLeft and scrollTop of the <body> element; in standards mode, the changes occur on the <html> element in all browsers except Safari, which still tracks scroll position on <body>.
+
+The following example shows how to properly handle this:
+
+Copy
+window.addEventListener("scroll", (event) => {
+  if (document.compatMode == "CSS1Compat") {
+    console.log(document.documentElement.scrollTop);
+  } else {
+    console.log(document.body.scrollTop);
+  }
+});
+This code assigns an event handler that outputs the vertical scroll position of the page, depending on the rendering mode.
+
+The scroll event occurs repeatedly as the document is being scrolled, so it's best to keep the event handlers as simple as possible
