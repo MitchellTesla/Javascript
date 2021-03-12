@@ -1,0 +1,84 @@
+Text nodes are represented by the Text type and contain plain text that is interpreted literally and may contain escaped HTML characters but no HTML code.
+
+A Text node has the following characteristics:
+
+Item
+Description
+nodeType
+3
+nodeName
+#text
+nodeValue
+text contained in the node.
+parentNode
+an Element
+Child nodes
+not supported.
+The text contained in a Text node may be accessed via either the nodeValue property or the data property, both of which contain the same value.
+
+Changes to either nodeValue or data are reflected in the other as well.
+
+The following methods allow for manipulation of the text in the node:
+
+Method
+Description
+appendData(text)
+Appends text to the end of the node.
+deleteData(offset, count)
+Deletes count number of characters starting at position offset.
+insertData(offset, text)
+Inserts text at position offset.
+replaceData(offset, count, text)
+Replaces the text starting at offset through offset + count with text.
+splitText(offset)
+Splits the text node into two text nodes separated at position offset.
+substringData(offset, count)
+Extracts a string from the text beginning at position offset and continuing until offset + count.
+In addition to these methods, the length property returns the number of characters in the node.
+
+This value is the same as using nodeValue.length or data.length.
+
+By default, every element that may contain content will have at most one text node when content is present.
+
+Here is an example.
+
+No content, so no text node:
+
+Copy
+<div></div>
+White space content, so one text node
+
+Copy
+<div> </div>
+Content, so one text node
+
+Copy
+<div>Hello World!</div>
+The first <div> element in this code has no content, so there is no text node.
+
+The second <div> element has a single text node as a child even though its content is white space.
+
+The text node's nodeValue is a single space.
+
+The third <div> also has a single text node whose nodeValue is "Hello World!".
+
+The following code lets you access this node:
+
+Copy
+let textNode = div.firstChild;  // or div.childNodes[0]
+Once a reference to the text node is retrieved, it can be changed like this:
+
+Copy
+div.firstChild.nodeValue = "Some other message";
+As long as the node is currently in the document tree, the changes to the text node will be reflected immediately.
+
+The string is HTML- or XML-encoded depending on the type of document.
+
+Any less-than symbols, greater-than symbols, or quotation marks are escaped, as shown in this example:
+
+Copy
+div.firstChild.nodeValue = "Some <strong>hi</strong> message";
+will output
+
+Copy
+Some &lt;strong&gt;hi&lt;/strong&gt; message
