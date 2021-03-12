@@ -1,0 +1,40 @@
+New text nodes can be created using the document.createTextNode() method, which accepts text as its only argument.
+
+The text will be HTML- or XML-encoded, as shown in this example:
+
+Copy
+let textNode = document.createTextNode("<strong>Hello</strong> world!");
+When a new text node is created, its ownerDocument property is set, but it does not appear in the browser window until it is added to a node in the document tree.
+
+The following code creates a new <div> element and adds a text to it:
+
+Copy
+let element = document.createElement("div");
+element.className = "message";
+
+let textNode = document.createTextNode("Hello world!");
+element.appendChild(textNode);
+
+document.body.appendChild(element);
+This example creates a new <div> element and assigns it a class of "message".
+
+Then a text node is created and added to that element.
+
+The last step is to add the element to the document's body, which makes both the element and the text node appear in the browser.
+
+Typically, elements have only one text node as a child.
+
+However, it is possible to have multiple text nodes as children, as this example demonstrates:
+
+Copy
+let element = document.createElement("div");
+element.className = "message";
+
+let textNode = document.createTextNode("Hello world!");
+element.appendChild(textNode);
+
+let anotherTextNode = document.createTextNode("Yippee!");
+element.appendChild(anotherTextNode);
+
+document.body.appendChild(element);
+When a text node is added as a sibling of another text node, the text in those nodes is displayed without any space between them.
