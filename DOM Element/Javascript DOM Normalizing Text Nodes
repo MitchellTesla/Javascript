@@ -1,0 +1,26 @@
+To join sibling text nodes together, use normalize(), and it exists on the Node type and thus is available on all node types.
+
+When normalize() is called on a parent of two or more text nodes, those nodes are merged into one text node whose nodeValue is equal to the concatenation of the nodeValue properties of each text node.
+
+Here's an example:
+
+Copy
+let element = document.createElement("div");
+element.className = "message";
+
+let textNode = document.createTextNode("Hello world!");
+element.appendChild(textNode);
+
+let anotherTextNode = document.createTextNode("Hi!");
+element.appendChild(anotherTextNode);
+
+document.body.appendChild(element);
+
+console.log(element.childNodes.length);     // 2
+
+element.normalize();
+console.log(element.childNodes.length);     // 1
+console.log(element.firstChild.nodeValue);  // "Hello world!Hi!"
+When the browser parses a document, it will never create sibling text nodes.
+
+Sibling text nodes can appear only by programmatic DOM manipulation.
