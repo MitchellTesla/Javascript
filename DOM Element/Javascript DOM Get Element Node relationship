@@ -1,0 +1,36 @@
+We can determine node relationships using the compareDocumentPosition() method.
+
+This method determines the relationship between two nodes and returns a bit mask indicating the relationship.
+
+The values for the bit mask are as shown in the following table.
+
+Mask
+Relationship Between Nodes
+Meaning
+0x1
+Disconnected
+The passed-in node is not in the document.
+0x2
+Precedes
+The passed-in node appears in the DOM tree prior to the reference node.
+0x4
+Follows
+The passed-in node appears in the DOM tree after the reference node.
+0x8
+Contains
+The passed-in node is an ancestor of the reference node.
+0x10
+Is contained by
+The passed-in node is a descendant of the reference node.
+The result of compareDocumentPosition() can be bitwise ANDed to determine if the reference node contains the given node.
+
+Here is an example:
+
+Copy
+let result = document.documentElement.compareDocumentPosition(document.body);
+console.log(!!(result & 0x10));
+When this code is executed, result becomes 20, or 0x14 (0x4 for "follows" plus 0x10 for "is contained by").
+
+Applying a bitwise mask of 0x10 to the result returns a nonzero number, and the two NOT operators convert that value into a Boolean.
+
+All modern browsers support compareDocumentPosition.
