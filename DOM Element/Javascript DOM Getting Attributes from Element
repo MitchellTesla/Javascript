@@ -1,0 +1,69 @@
+Each element may have zero or more attributes, which are used to give extra information about the particular element or its contents.
+
+The three primary DOM methods for working with attributes are
+
+getAttribute(),
+setAttribute(), and
+removeAttribute().
+These methods are intended to work on any attribute, including those defined as properties on the HTMLElement type.
+
+Consider the following HTML element:
+
+Copy
+<div id="myDiv" class="bd" title="asdf" lang="en" dir="ltr"></div>
+Here's an example:
+
+Copy
+let div = document.getElementById("myDiv");
+console.log(div.getAttribute("id"));     // "myDiv"
+console.log(div.getAttribute("class"));  // "bd"
+console.log(div.getAttribute("title"));  // "asdf
+console.log(div.getAttribute("lang"));   // "en"
+console.log(div.getAttribute("dir"));    // "ltr"
+Note that the attribute name passed into getAttribute() is exactly the same as the actual attribute name, so you pass in "class" to get the value of the class attribute.
+
+If the attribute with the given name doesn't exist, getAttribute() always returns null.
+
+The getAttribute() method can also retrieve the value of custom attributes that aren't part of the formal HTML language.
+
+Consider the following element:
+
+Copy
+<div id="myDiv" my_special_attribute="hello!"></div>
+In this element, a custom attribute named my_special_attribute is defined to have a value of "hello!".
+
+This value can be retrieved using getAttribute() just like any other attribute, as shown here:
+
+Copy
+let value = div.getAttribute("my_special_attribute");
+Note that attribute names are case-insensitive, so "ID" and "id" are considered the same attribute.
+
+According to HTML5, custom attributes should be prepended with data- in order to validate.
+
+All attributes on an element are also accessible as properties of the DOM element object itself.
+
+The five properties defined on HTMLElement that map directly to corresponding attributes, but all recognized non-custom attributes get added to the object as properties.
+
+Consider the following element:
+
+Copy
+<div id="myDiv" align="left" my_special_attribute="hello"></div>
+Because id and align are recognized attributes for the <div> element in HTML, they will be represented by properties on the element object.
+
+The my_special_attribute attribute is custom and so won't show up as a property on the element.
+
+Two types of attributes have property names that don't map directly to the same value returned by getAttribute().
+
+Styles
+The first attribute is style, which is used to specify stylistic information about the element using CSS.
+
+When accessed via getAttribute(), the style attribute contains CSS text while accessing it via a property that returns an object.
+
+The style property is used to programmatically access the styling of the element and so does not map directly to the style attribute.
+
+Event
+The second category of attribute that behaves differently is event-handler attributes such as onclick.
+
+When the onclick property is accessed, however, it returns a JavaScript function or null if the attribute isn't specified.
+
+The getAttribute() method is used primarily to retrieve the value of a custom attribute.
