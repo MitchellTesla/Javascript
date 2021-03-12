@@ -1,0 +1,43 @@
+A mouse event can be linked with the state of certain keyboard keys to determine the action to take.
+
+The modifier keys Shift, Ctrl, Alt, and Meta are often used to alter the behavior of a mouse event.
+
+The DOM specifies four properties to indicate the state of these modifier keys: shiftKey, ctrlKey, altKey, and metaKey.
+
+Each of these properties contains a Boolean value that is set to true if the key is being held down or false if the key is not pressed.
+
+When a mouse event occurs, you can determine the state of the various keys by inspecting these properties.
+
+Consider the following example, which checks for modifier key state when a click event is fired:
+
+Copy
+let div = document.getElementById("myDiv");
+div.addEventListener("click", (event) => {
+    let keys = new Array();
+
+    if (event.shiftKey) {
+       keys.push("shift");
+    }
+    if (event.ctrlKey) {
+       keys.push("ctrl");
+    }
+
+    if (event.altKey) {
+       keys.push("alt");
+    }
+
+    if (event.metaKey) {
+       keys.push("meta");
+    }
+
+    console.log("Keys: " + keys.join(","));
+});
+In this example, an onclick event handler checks the state of the various modifier keys.
+
+The keys array contains the names of the modifier keys that are being held down.
+
+For each property that is true, the name of the key is added to keys.
+
+At the end of the event handler, the keys are displayed in a log message.
+
+Modern browsers support all four keys.
