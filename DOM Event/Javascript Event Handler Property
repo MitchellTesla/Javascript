@@ -1,0 +1,41 @@
+The traditional way of assigning event handlers in JavaScript is to assign a function to an event handler property.
+
+This was the event handler assignment method introduced in the fourth generation of web browsers, and it still remains in all modern browsers because of its simplicity and cross-browser support.
+
+To assign an event handler using JavaScript, you must first retrieve a reference to the object to act on.
+
+Each element as well as window and document has event handler properties that are typically all lowercase, such as onclick.
+
+An event handler is assigned by setting the property equal to a function, as in this example:
+
+Copy
+let btn = document.getElementById("myBtn");
+btn.onclick = function() {
+  console.log("Clicked");
+};
+Here, a button is retrieved from the document and an onclick event handler is assigned.
+
+The event handler is run within the scope of element, meaning that this is equivalent to the element.
+
+The value of this is demonstrated in the following example:
+
+Copy
+let btn = document.getElementById("myBtn");
+btn.onclick = function() {
+  console.log(this.id);  // "myBtn"
+};
+This code displays the element's ID when the button is clicked. The ID is retrieved using this.id.
+
+It's possible to use this to access any of the element's properties or methods from within the event handlers.
+
+Event handlers added in this way are intended for the bubbling phase of the event flow.
+
+You can remove an event handler by setting the value of the event handler property to null, as in the following example:
+
+Copy
+btn.onclick = null;  // remove event handler
+Once the event handler is set to null, the button no longer has any action to take when it is clicked.
+
+If you've assigned an event handler using HTML, the value on the onclick property is a function containing the code specified in the HTML attribute.
+
+These event handlers can also be removed by setting the property to null.
