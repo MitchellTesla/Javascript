@@ -1,0 +1,37 @@
+Keyboard events are fired when the user interacts with the keyboard.
+
+There are three keyboard events, as described here:
+
+Event
+Meaning
+keydown
+Fires when the user presses a key on the keyboard and fires repeatedly while the key is being held down.
+keypress
+
+
+Fires when the user presses a key on the keyboard that results in a character and fires repeatedly while the key is being held down.
+This event also fires for the Esc key.
+DOM Level 3 Events deprecates the keypress event in favor of the textInput event.
+keyup
+Fires when the user releases a key on the keyboard.
+These events are most easily seen as the user types in a text box, though all elements support them.
+
+There is only one text event and it is called textInput.
+
+This event is an augmentation of keypress intended to make it easier to intercept text input before being displayed to the user.
+
+The textInput event fires just before text is inserted into a text box.
+
+When the user presses a character key once on the keyboard, the keydown event is fired first, followed by the keypress event, followed by the keyup event.
+
+Both keydown and keypress are fired before any change has been made to the text box, whereas the keyup event fires after changes have been made to the text box.
+
+If a character key is pressed and held down, keydown and keypress are fired repeatedly and don't stop until the key is released.
+
+For non character keys, a single key press on the keyboard results in the keydown event being fired followed by the keyup event.
+
+If a non character key is held down, the keydown event fires repeatedly until the key is released, at which point the keyup event fires.
+
+Keyboard events support the same set of modifier keys as mouse events.
+
+The shiftKey, ctrlKey, altKey, and metaKey properties are all available for keyboard events.
