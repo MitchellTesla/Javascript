@@ -1,0 +1,59 @@
+The load event also fires on images, both those that are in the DOM and those that are not.
+
+You can assign an onload event handler directly using HTML on any images in the document, using code such as this:
+
+Copy
+<img src="smile.gif" onload="console.log('Image loaded.')">
+This example logs a message when the given image has been loaded.
+
+This can also be done using JavaScript, as follows:
+
+Copy
+let image = document.getElementById("myImage");
+image.addEventListener("load", (event) => {
+     console.log(event.target.src);
+});
+Here, the onload event handler is assigned using JavaScript.
+
+The event object is passed in, though it doesn't have much useful information.
+
+The target of the event is the <img> element, so its src property can be accessed and displayed.
+
+When creating a new <img> element, an event handler can be assigned to indicate when the image has been loaded.
+
+In this case, it's important to assign the event before assigning the src property, as in the following example:
+
+Copy
+window.addEventListener("load", () => {
+  let image = document.createElement("img");
+  image.addEventListener("load", (event) => {
+     console.log(event.target.src);
+  });
+  document.body.appendChild(image);
+  image.src = "smile.gif";
+});
+The first part of this example is to assign an onload event handler for the window.
+
+A new image element is created and its onload event handler is set.
+
+Then, the image is added to the page and its src is assigned.
+
+Note that the element need not be added to the document for the image download to begin; it begins as soon as the src property is set.
+
+The Image object was used to preload images on the client.
+
+It can be used the same way as an <img> element with the exception that it cannot be added into the DOM tree.
+
+Consider the following example which instantiates a new Image object:
+
+Copy
+window.addEventListener("load", () => {
+  let image = new Image();
+  image.addEventListener("load", (event) => {
+    console.log("Image loaded!");
+  });
+  image.src = "smile.gif";
+});
+Here, the Image constructor is used to create a new image and the event handler is assigned.
+
+Some browsers implement the Image object as an <img> element, but not all, so it's best to treat them as separate.
