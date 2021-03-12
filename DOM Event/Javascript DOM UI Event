@@ -1,0 +1,45 @@
+UI events are those events that aren't necessarily related to user actions.
+
+The UI events are as follows:
+
+Event
+load
+
+
+
+
+Description
+Fires
+on a window when the page has been completely loaded,
+on a frameset when all frames have been completely loaded,
+on an <img> element when it has been completely loaded, or
+on an <object> element when it has been completely loaded.
+unload
+
+
+
+Fires
+on a window when the page has been completely unloaded,
+on a frameset when all frames have been completely unloaded, or
+on an <object> element when it has been completely unloaded.
+abort
+Fires on an <object> element if it is not fully loaded before the user stops the download process.
+error
+
+
+
+
+Fires
+on a window when a JavaScript error occurs,
+on an <img> element if the image specified cannot be loaded,
+on an <object> element if it cannot be loaded, or
+on a frameset if one or more frames cannot be loaded..
+select
+Fires when the user selects one or more characters in a text box (either <input> or <textarea>).
+resize
+Fires on a window or frame when it is resized.
+scroll
+
+Fires on any element with a scrollbar when the user scrolls it.
+The <body> element contains the scrollbar for a loaded page.
+Most of the HTML events are related either to the window object or to form controls.
