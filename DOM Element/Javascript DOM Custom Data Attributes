@@ -1,0 +1,33 @@
+HTML5 allows elements to have non standard attributes prefixed with data- in order to provide information that isn't necessary to the rendering or semantic value of the element.
+
+These attributes can be added as desired and named anything, provided that the name begins with data-.
+
+Here is an example:
+
+Copy
+<div id="myDiv" data-appId="12345" data-myname="CSS"></div>
+When a custom data attribute is defined, it can be accessed via the dataset property of the element.
+
+The dataset property contains an instance of DOMStringMap that is a mapping of name-value pairs.
+
+Each attribute of the format data-name is represented by a property with a name equivalent to the attribute but without the data- prefix.
+
+For example, attribute data-myname is represented by a property called myname.
+
+The following is an example of how to use custom data attributes:
+
+Copy
+let div = document.getElementById("myDiv");
+// Get the values
+let appId = div.dataset.appId;
+let myName = div.dataset.myname;
+
+// Set the value
+div.dataset.appId = 1234;
+div.dataset.myname = "CSS";
+
+// Is there a "myname" value?
+if (div.dataset.myname){
+  console.log('Hello, ${div.dataset.myname}');
+}
+Custom data attributes are useful when non visual data needs to be tied to an element.
