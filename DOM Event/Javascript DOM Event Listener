@@ -1,0 +1,73 @@
+DOM Level 2 Events define two methods to deal with the assignment and removal of event handlers: addEventListener() and removeEventListener().
+
+These methods exist on all DOM nodes and accept three arguments:
+
+the event name to handle,
+the event handler function, and
+a Boolean value indicating whether to call the event handler during the capture phase (true) or during the bubble phase (false).
+To add an event handler for the click event on a button, you can use the following code:
+
+Copy
+let btn = document.getElementById("myBtn");
+btn.addEventListener("click", () => {
+  console.log(this.id);
+}, false);
+This code adds an onclick event handler to a button that will be fired in the bubbling phase since the last argument is false.
+
+The event handler runs in the scope of the element on which it is attached.
+
+We can add multiple event handlers by using addEventListener().
+
+Consider the following example:
+
+Copy
+let btn = document.getElementById("myBtn");
+btn.addEventListener("click", () => {
+  console.log(this.id);
+}, false);
+btn.addEventListener("click", () => {
+  console.log("Hello world!");
+}, false);
+Here, two event handlers are added to the button.
+
+The event handlers fire in the order in which they were added, so the first log displays the element's ID and the second displays the message "Hello world!"
+
+Event handlers added via addEventListener() can be removed only by using removeEventListener() and passing in the same arguments as were used when the handler was added.
+
+The anonymous functions added using addEventListener() cannot be removed, as shown in this example:
+
+Copy
+let btn = document.getElementById("myBtn");
+
+btn.addEventListener("click", () => {
+  console.log(this.id);
+}, false);
+
+// other code here
+
+btn.removeEventListener("click", function() {   // won't work!
+  console.log(this.id);
+}, false);
+In this example, an anonymous function is added as an event handler using addEventListener().
+
+The call to removeEventListener() looks like it's using the same arguments, but in reality, the second argument is a completely different function than the one used in addEventListener().
+
+The event handler function passed into removeEventListener() must be the same one that was used in addEventListener(), as in this example:
+
+Copy
+let btn = document.getElementById("myBtn");
+let handler = function() {
+     console.log(this.id);
+};
+btn.addEventListener("click", handler, false);
+
+// other code here
+
+btn.removeEventListener("click", handler, false);  // works!
+This rewritten example works as expected because the same function is used for both addEventListener() and removeEventListener().
+
+In most cases, event handlers are added to the bubbling phase of the event flow because this offers the broadest possible cross-browser support.
+
+Attaching an event handler in the capture phase is best done if you need to intercept events before they reach their intended target.
+
+If this is not necessary, it's advisable to avoid event capturing
