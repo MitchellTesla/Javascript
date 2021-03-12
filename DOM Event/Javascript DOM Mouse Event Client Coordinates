@@ -1,0 +1,70 @@
+Client Coordinates
+Mouse events all occur at a particular location within the browser viewport.
+
+This information is stored in the clientX and clientY properties of the event object.
+
+These properties indicate the location of the mouse cursor within the viewport at the time of the event and are supported in all browsers.
+
+You can retrieve the client coordinates of a mouse event in the following way:
+
+Copy
+let div = document.getElementById("myDiv");
+div.addEventListener("click", (event) => {
+console.log(`Client coordinates: ${event.clientX}, ${event.clientY}`);
+});
+This example assigns an onclick event handler to a <div> element.
+
+When the element is clicked, the client coordinates of the event are displayed.
+
+Keep in mind that these coordinates do not take into account the scroll position of the page, so these numbers do not indicate the location of the cursor on the page.
+
+Page Coordinates
+Where client coordinates give you information about where an event occurred in the viewport, page coordinates tell you where on the page the event occurred via the pageX and pageY properties of the event object.
+
+These properties indicate the location of the mouse cursor on the page, so the coordinates are from the left and top of the page itself rather than the viewport.
+
+You can retrieve the page coordinates of a mouse event in the following way:
+
+Copy
+let div = document.getElementById("myDiv");
+div.addEventListener("click", (event) => {
+console.log(`Page coordinates: ${event.pageX}, ${event.pageY}`);
+});
+The values for pageX and pageY are the same as clientX and clientY when the page is not scrolled.
+
+You can calculate them using client coordinates and scrolling information.
+
+You need to use the scrollLeft and scrollTop properties on either document.body when in quirks mode or document.documentElement in standards mode.
+
+The calculation is done as follows:
+
+Copy
+let div = document.getElementById("myDiv");
+div.addEventListener("click", (event) => {
+  let pageX = event.pageX,
+    pageY = event.pageY;
+  if (pageX === undefined) {
+    pageX = event.clientX + (document.body.scrollLeft ||
+        document.documentElement.scrollLeft);
+  }
+  if (pageY === undefined) {
+    pageY = event.clientY + (document.body.scrollTop ||
+        document.documentElement.scrollTop);
+  }
+  console.log(`Page coordinates: ${pageX}, ${pageY}`);
+});
+Screen Coordinates
+Mouse events occur not only in relation to the browser window but also in relation to the entire screen.
+
+We can determine the location of the mouse in relation to the entire screen by using the screenX and screenY properties.
+
+You can retrieve the screen coordinates of a mouse event in the following way:
+
+Copy
+let div = document.getElementById("myDiv");
+div.addEventListener("click", (event) => {
+   console.log(`Screen coordinates: ${event.screenX}, ${event.screenY}`);
+});
+This code assigns an onclick event handler to a <div> element.
+
+When the element is clicked, the screen coordinates of the event are displayed.
