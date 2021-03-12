@@ -1,0 +1,29 @@
+The orientationchange event can determine when the user switched the device from landscape to portrait mode.
+
+The window.orientation property on mobile contains one of three values:
+
+0 for portrait mode,
+90 for landscape mode when rotated to the left (the Home button on the right), and
+-90 for landscape mode when rotated to the right (the Home button on the left).
+Whenever the user changes from one mode to another, the orientationchange event fires.
+
+Typical usage of this event is as follows:
+
+Copy
+window.addEventListener("load", (event) => {
+   let div = document.getElementById("myDiv");
+   div.innerHTML = "Current orientation is " + window.orientation;
+
+   window.addEventListener("orientationchange", (event) => {) {
+      div.innerHTML = "Current orientation is " + window.orientation;
+   });
+});
+In this example, the initial orientation is displayed when the load event fires.
+
+Then, the event handler for orientationchange is assigned.
+
+Whenever the event fires, the message on the page is updated to indicate the new orientation.
+
+All iOS devices support both the orientationchange event and the window.orientation property.
+
+Because orientationchange is considered a window event, you can also assign an event handler by adding the onorientationchange attribute to the <body> element.
