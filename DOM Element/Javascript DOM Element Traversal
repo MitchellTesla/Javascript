@@ -1,0 +1,31 @@
+The Element Traversal API adds five new properties to DOM elements:
+
+Method
+Meaning
+childElementCount
+Returns the number of child elements (excludes text nodes and comments).
+firstElementChild
+Points to the first child that is an element. Element-only version of firstChild.
+lastElementChild
+Points to the last child that is an element. Element-only version of lastChild.
+previousElementSibling
+Points to the previous sibling that is an element. Element-only version of previousSibling.
+nextElementSibling
+Points to the next sibling that is an element. Element-only version of nextSibling.
+The following code shows how to use the Element Traversal properties:
+
+Copy
+let parentElement = document.getElementById('parent');
+let currentChildElement = parentElement.firstElementChild;
+
+// For zero children, firstElementChild returns null and the loop is skipped
+while (currentChildElement) {
+   // You already know this is an ELEMENT_NODE, 
+   // do whatever work is needed here
+   processChild(currentChildElement);
+   if (currentChildElement === parentElement.lastElementChild) {
+      break;
+   }
+   currentChildElement = currentChildElement.nextElementSibling;
+}
+Element Traversal is implemented in Internet Explorer 9+ and all modern browsers.
