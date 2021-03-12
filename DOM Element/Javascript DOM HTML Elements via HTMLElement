@@ -1,0 +1,50 @@
+All HTML elements are represented by the HTMLElement type, either directly or through sub typing.
+
+The HTMLElement inherits directly from Element and adds several properties.
+
+Each property represents one of the following standard attributes that are available on every HTML element:
+
+Property
+Meaning
+id
+A unique identifier for the element in the document.
+title
+Additional information about the element, typically represented as a tooltip.
+lang
+The language code for the contents of the element.
+dir
+The direction of the language, "ltr" (left-to-right) or "rtl" (right-to-left);.
+className
+The equivalent of the class attribute, which is used to specify CSS classes on an element.
+Each of these properties can be used both to retrieve the corresponding attribute value and to change the value.
+
+Consider the following HTML element:
+
+Copy
+<div id="myDiv" class="bd" title="Body text" lang="en" dir="ltr"></div>
+All of the information specified by this element may be retrieved using the following JavaScript code:
+
+Copy
+let div = document.getElementById("myDiv");
+console.log(div.id);         // "myDiv"
+console.log(div.className);  // "bd"
+console.log(div.title);      // "Body text"
+console.log(div.lang);       // "en"
+console.log(div.dir);        // "ltr"
+We can use the following code to change each of the attributes by assigning new values to the properties:
+
+Copy
+div.id = "someOtherId";
+div.className = "newClass";
+div.title = "Some other text";
+div.lang = "fr";
+div.dir ="rtl";
+Not all of the properties affect the page when overwritten.
+
+Changes to id or lang will be transparent to the user assuming no CSS styles are based on these values.
+
+Changes to title will be apparent only when the mouse is moved over the element.
+
+Changes to dir will cause the text on the page to be aligned to either the left or the right as soon as the property is written.
+
+Changes to className may appear immediately if the class has different CSS style information than the previous one.
