@@ -1,0 +1,57 @@
+Element attributes are represented by the Attr type in the DOM.
+
+Attribute nodes have the following characteristics:
+
+Item
+Value
+nodeType
+11
+nodeName
+the attribute name
+nodeValue
+the attribute value.
+parentNode
+null
+Child nodes
+
+not supported in HTML.
+may be Text or EntityReference in XML.
+The attributes are not considered part of the DOM document tree.
+
+Attribute nodes are rarely referenced directly, with most developers use getAttribute(), setAttribute(), and removeAttribute() to work with attributes.
+
+There are three properties on an Attr object:
+
+Property
+Meaning
+name
+the attribute name (same as nodeName);
+value
+specified
+the attribute value (same as nodeValue);
+a Boolean value indicating if the attribute was specified in code or if it is a default value.
+New attribute nodes can be created by using document.createAttribute() and passing in the name of the attribute.
+
+For example, the following code adds an align attribute to an element:
+
+Copy
+let attr = document.createAttribute("align");
+attr.value = "left";
+element.setAttributeNode(attr);
+
+console.log(element.attributes["align"].value);        // "left"
+console.log(element.getAttributeNode("align").value);  // "left"
+console.log(element.getAttribute("align"));            // "left"
+In this example, a new attribute node is created.
+
+The name property is assigned by the call to createAttribute(), so there is no need to assign it directly afterward.
+
+The value property is then assigned to "left".
+
+To add the newly created attribute to an element, you can use the element's setAttributeNode() method.
+
+Once the attribute is added, it can be accessed in any number of ways: via the attributes property, using getAttributeNode(), or using getAttribute().
+
+Both attributes and getAttributeNode() return the actual Attr node for the attribute, whereas getAttribute() returns only the attribute value.
+
+The get Attribute(), setAttribute(), and removeAttribute() methods are preferable over manipulating attribute nodes.
