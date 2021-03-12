@@ -1,0 +1,141 @@
+For keydown and keyup events, the event object's keyCode property is filled in with a code that maps to a specific key on the keyboard.
+
+For alphanumeric keys, the keyCode is the same as the ASCII value
+
+So the 7 key has a keyCode of 55 and the A key has a keyCode of 65, regardless of the state of the Shift key.
+
+Here's an example shows the inspection of the keyCode property:
+
+Copy
+let textbox = document.getElementById("myText");
+textbox.addEventListener("keyup", (event) => {
+     console.log(event.keyCode);
+});
+In this example, the keyCode is displayed every time a keyup event is fired.
+
+The complete list of key codes to non character keys is listed in the following table.
+
+Key
+Key Code
+Backspace
+8
+Tab
+9
+Enter
+13
+Shift
+16
+Ctrl
+17
+Alt
+18
+Pause/Break
+19
+Caps Lock
+20
+Esc
+27
+Page Up
+33
+Page Down
+34
+End
+35
+Home
+36
+Left Arrow
+37
+Up Arrow
+38
+Right Arrow
+39
+Down Arrow
+40
+Ins
+45
+Del
+46
+Left Windows Key
+91
+Right Windows Key
+92
+Context Menu Key
+93
+Num pad 0
+96
+Num pad 1
+97
+Num pad 2
+98
+Num pad 3
+99
+Num pad 4
+100
+Num pad 5
+101
+Num pad 6
+102
+Num pad 7
+103
+Num pad 8
+104
+Num pad 9
+105
+Num pad +
+107
+Minus (both Num pad and not)
+109
+Num pad .
+110
+Num pad /
+111
+F1
+112
+F2
+113
+F3
+114
+F4
+115
+F5
+116
+F6
+117
+F7
+118
+F8
+119
+F9
+120
+F10
+121
+F11
+122
+F12
+123
+Num Lock
+144
+Scroll Lock
+145
+Semicolon (IE/Safari/Chrome)
+186
+Semicolon (Opera/FF)
+59
+Less than
+188
+Greater than
+190
+Forward slash
+191
+Grave accent ( `)
+192
+Equals
+61
+Left Bracket
+219
+Back slash (\)
+220
+Right Bracket
+221
+Single Quote
+222
